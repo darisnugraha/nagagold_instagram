@@ -146,8 +146,8 @@ class DataBarang extends MX_Controller
                         $data1[$z]['lokasi_gambar'] = $uploadData['file_name'];
                         $z++;
                 }
-            // } elseif ($_FILES['photo' . $i]['name'] == '' && $nama_file[$y] <> "") {
-            } elseif ($nama_file[$y] <> "") {
+            } elseif ($_FILES['photo' . $i]['name'] == '' && $nama_file[$y] <> "") {
+            // } elseif ($nama_file[$y] <> "") {
                 $data1[$z]['kode_gambar'] = $nama;
                 $data1[$z]['lokasi_gambar'] = $nama_file[$y];
                 $y++;
@@ -158,17 +158,17 @@ class DataBarang extends MX_Controller
         $kode                        = decrypt_url($this->input->post('kode_barcode'));
         $respons                     = $this->SERVER_API->_putAPI('barang/edit/1/' . $kode, $data, $this->token);
         if ($respons->status == "berhasil") {
-            $lokasi_gambar            = $this->input->post('lokasi_gambar');
-            for($j =0; $j < count($lokasi_gambar); $j++){
-                $nama_file_baru = $_FILES['photo' . $j]['name'];
-                if($lokasi_gambar[$j] != $nama_file[$j]){
-                    $url_gambar_hapus = "./assets/images/NsiPic/product/".$lokasi_gambar[$j];
-                    $delete_file = unlink($url_gambar_hapus);
-                }else if($nama_file_baru != ""){
-                    $url_gambar = "./assets/images/NsiPic/product/".$lokasi_gambar[$j];
-                    $delete_file = unlink($url_gambar);
-                }
-            }
+            // $lokasi_gambar            = $this->input->post('lokasi_gambar');
+            // for($j =0; $j < count($lokasi_gambar); $j++){
+            //     $nama_file_baru = $_FILES['photo' . $j]['name'];
+            //     if($lokasi_gambar[$j] != $nama_file[$j]){
+            //         $url_gambar_hapus = "./assets/images/NsiPic/product/".$lokasi_gambar[$j];
+            //         $delete_file = unlink($url_gambar_hapus);
+            //     }else if($nama_file_baru != ""){
+            //         $url_gambar = "./assets/images/NsiPic/product/".$lokasi_gambar[$j];
+            //         $delete_file = unlink($url_gambar);
+            //     }
+            // }
     
             $this->session->set_flashdata('alert', success($respons->pesan));
         } else {
