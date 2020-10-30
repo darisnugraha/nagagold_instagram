@@ -1,0 +1,102 @@
+<div id="keatas" class="filter-pencarian animate__backInUp">
+<a href="#" target="_blank"><div class="button_filter"><i class="fa fa-filter"></i> Filter</div></a></div>
+
+<div class="page-content-wrapper">
+    <div class="container">
+        <!-- Cart Wrapper-->
+
+        <div class="cart-wrapper-area py-3">
+        <!-- <h4 class="faq-heading text-center">Cari No Transaksi?</h4> -->
+          <!-- Search Form--><br>
+          <form class="faq-search-form" action="#" method="">
+            <input class="form-control" type="search" name="search" placeholder="Search">
+            <button type="submit"><i class="fa fa-search"></i></button>
+          </form>
+          <br>
+          <div class="cart-wrapper-area py-3">
+            <div class="cart-table card mb-3">
+                <div class="card shipping-method-choose-title-card bg-success">
+                    <div class="card-body">
+                        <h6 class="text-center mb-0 text-white">Pesanan Selesai</h6>
+                    </div>
+                </div>
+                <div class="table-responsive card-body">
+                No Transaksi : 98329873981298
+                    <table class="table">
+                        <tr>
+                            <td width="10px">#</td>
+                            <td>Nama Barang</td>
+                            <td>Harga Barang </td>
+                        </tr>
+                        
+                        <tr>
+                            <td style="vertical-align:text-top;"><img style="max-width:5.5rem !important" src="http://157.230.33.176/tm_hidup/assets/images/NsiPic/product/b51713dbf446abe35ea02f77a8853e31.jpg"></td>
+                            <td>CINCIN COR MDL 700 <br>
+                            Kadar: 80<br>
+                            Berat : 2.8 Gram<br>
+                            </td>
+                            <td style="vertical-align:text-top;">Rp 1.2500.0000 </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align:text-top;"><img style="max-width:5.5rem !important" src="http://157.230.33.176/tm_hidup/assets/images/NsiPic/product/b51713dbf446abe35ea02f77a8853e31.jpg"></td>
+                            <td>CINCIN COR MDL 700 <br>
+                            Kadar: 80<br>
+                            Berat : 2.8 Gram<br>
+                            </td>
+                            <td style="vertical-align:text-top;">Rp 1.2500.0000 </td>
+                        </tr>
+                        
+                    </table>
+                    <!-- <table class="table table-striped">
+                    <tr>
+                            <td>Nama Barang</td>
+                            <td> Total </td>
+                        </tr>
+                        <tr>
+                        <tr>
+                            <td>2020-05-27 10:38:01</td>
+                            <td>Selesai antar di METRO~~ Kantor Pos METRO 34100~~ Diterima oleh Ujang METRO </td>
+                        </tr>
+                        <tr>
+                            <td>2020-05-27 10:38:01</td>
+                            <td>Selesai antar di METRO~~ Kantor Pos METRO 34100~~ Diterima oleh Ujang METRO </td>
+                        </tr>
+                        <tr>
+                            <td>2020-05-27 10:38:01</td>
+                            <td>Selesai antar di METRO~~ Kantor Pos METRO 34100~~ Diterima oleh Ujang METRO </td>
+                        </tr>
+                        <tr>
+                            <td>2020-05-27 10:38:01</td>
+                            <td>Selesai antar di METRO~~ Kantor Pos METRO 34100~~ Diterima oleh Ujang METRO </td>
+                        </tr>
+                        <tr>
+                            <td>2020-05-27 10:38:01</td>
+                            <td>Selesai antar di METRO~~ Kantor Pos METRO 34100~~ Diterima oleh Ujang METRO </td>
+                        </tr>
+                        <tr>
+                            <td>2020-05-27 10:38:01</td>
+                            <td>Selesai antar di METRO~~ Kantor Pos METRO 34100~~ Diterima oleh Ujang METRO </td>
+                        </tr>
+                    </table> -->
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <br>
+        <br>
+        <script>
+              $(document).ready(function() {
+                $("#keatas").hide();
+                // memberikan efek fade in pada id #keatas
+                $(function () {
+                    $(window).scroll(function () {
+                    if ($(this).scrollTop() > 100) {
+                        $('#keatas').fadeIn();
+                    } else {
+                        $('#keatas').fadeOut();
+                    }
+                    });
+                });
+              })
+        </script>

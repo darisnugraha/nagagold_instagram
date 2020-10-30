@@ -1,0 +1,3 @@
+Compres
+$config['compress_output'] = FALSE; JADI TRUE
+Penambahan GZip Compresion .httacess

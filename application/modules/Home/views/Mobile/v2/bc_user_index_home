@@ -1,0 +1,55 @@
+<div class="container" id="databarangkategori">
+    <?php foreach ($DataBarang as $row) : ?>
+      <div class="section-heading d-flex align-items-center justify-content-between">
+        <h6 class="ml-1"><?= $row->nama_kategori ?></h6><a onclick="$('.loaderform').show();" class="btn btn-primary btn-sm" href="<?= base_url('carikategori/' . encrypt_url($row->kode_kategori)) ?>">View All</a>
+      </div>
+      <div class="row">
+        <!-- Single Top Product Card-->
+        <?php foreach ($row->jenis  as $jenis) : ?>
+          <?php $a = 1; foreach ($jenis->barang  as $barang) : ?>
+          <?php if($a < 2): ?>
+            <div class="col-6 col-sm-4 col-lg-3">
+              <div class="card top-product-card mb-3">
+                <div class="card-body">
+                  <!-- <span class="badge badge-success">Sale</span> -->
+                  <!-- <a class="wishlist-btn" href="#"><i class="lni lni-heart"></i></a> -->
+                  <?php $databarang = $barang->gambar;
+                  for ($i = 0; $i < 1; $i++) : ?>
+                    <a class="product-thumbnail d-block" onclick="$('.loaderform').show();" href="<?= base_url('produk/' . encrypt_url($barang->kode_barcode)) ?>">
+                      <img class="mb-2" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= base_url('assets/images/NsiPic/product/' . $databarang[$i]->lokasi_gambar) ?>" alt="">
+                    </a>
+                  <?php endfor; ?>
+                  <a class="product-title d-block" href="<?= base_url('produk/' . encrypt_url($barang->kode_barcode)) ?>">
+                    <!-- <?= $barang->nama_barang ?> -->
+                    <?= strlen($barang->nama_barang) > 12 ? substr($barang->nama_barang, 0, 10) . '....' :  $barang->nama_barang  ?>
+                  </a>
+                  <p class="sale-price">
+                    Rp.<?= strlen(number_format($barang->harga_jual)) > 12 ? substr(number_format($barang->harga_jual), 0, 10) . '....' : number_format($barang->harga_jual) ?>
+                  </p>
+                  <div class="product-rating">
+                    Kadar: <?= $barang->kadar ?><br>
+                    Berat : <?= $barang->berat ?> Gram<br>
+                    <!-- <i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i> -->
+                  </div>
+                  <?php if ($this->session->userdata('status_login') == "SEDANG_LOGIN") : ?>
+                  <a class="btn btn-success btn-sm" onclick="$('.loaderform').show();" href="<?= base_url('add-cart/'.encrypt_url($barang->kode_barcode)); ?>">
+                    <i class="lni lni-plus"></i>
+                  </a>
+                  <?php elseif ($this->session->userdata('status_login') == "SEDANG_LOGIN_ADMIN") : ?>
+                    <button
+                     class="btn btn-success btn-sm" onclick="Swal.fire('Oopss!','Admin tidak bisa menambahka barang!','info')">
+                    <i class="lni lni-plus"></i></button>
+                  <?php else: ?>
+                    <button class="btn btn-success btn-sm" onclick="Swal.fire('Oopss!','Silahkan Login Terlebih Dahulu!','info')">
+                    <i class="lni lni-plus"></i></button>
+                  <?php endif; ?>
+                </div>
+              </div>
+            </div>
+            <?php endif; $a++?>
+          <?php endforeach; ?>
+        <?php endforeach; ?>
+      </div>
+    <?php endforeach; ?>
+
+  </div>
