@@ -68,6 +68,8 @@
                                 // $no=1;
                                 for($i=0; $i < $jml; $i++ ): 
                                 ?>
+                                 <input value="<?= $data_gambar[$i]->lokasi_gambar ?>" name="lokasi_gambar[]" type="hidden" />
+
                                 <div class="intro-y col-span-3 lg:col-span-3 imageshow<?= $data_gambar[$i]->kode_gambar ?>">
                                     <div class="mt-3">
                                         <div>

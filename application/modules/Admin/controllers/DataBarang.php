@@ -155,11 +155,8 @@ class DataBarang extends MX_Controller
             }
         }
         $data['gambar'] = $data1;
-        
-
         $kode                        = decrypt_url($this->input->post('kode_barcode'));
         $respons                     = $this->SERVER_API->_putAPI('barang/edit/1/' . $kode, $data, $this->token);
-
         if ($respons->status == "berhasil") {
             $lokasi_gambar            = $this->input->post('lokasi_gambar');
             for($j =0; $j < count($lokasi_gambar); $j++){
