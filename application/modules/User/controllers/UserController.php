@@ -15,6 +15,7 @@ class UserController extends MX_Controller
 	public function index()
 	{
 		$response['DataCart']		= $this->SERVER_API->_getAPI('penjualan/belum-selesai-customer', $this->token);
+		$response['CountItem']		= $this->SERVER_API->_getAPI('penjualan/belum-selesai-customer', $this->token);
 		$data_point					= $this->SERVER_API->_getAPI('customer/kode_customer/'.$this->session->userdata('kode_customer'), $this->token);
 
 		foreach($data_point->data as $row){
@@ -187,6 +188,7 @@ class UserController extends MX_Controller
 	public function historytransaksi()
 	{
 		$response['DataCart']		= $this->SERVER_API->_getAPI('penjualan/belum-selesai-customer/', $this->token);
+		$response['CountItem']		= $this->SERVER_API->_getAPI('penjualan/belum-selesai-customer', $this->token);
 		// var_dump($response);
 		// die;
 		$this->session->set_userdata('status_header', '');

@@ -82,6 +82,17 @@
         background-color: #2a166f;
         color: white;
     }
+    .notify-item {
+        position: relative;
+        right: -7px;
+        top: -9px;
+        background: red;
+        text-align: center;
+        border-radius: 50px 50px 50px 50px;
+        color: white;
+        padding: 5px 5px;
+        /* font-size: 10px; */
+      }
 </style>
 <div class="page-content-wrapper">
     <div class="container">
@@ -94,15 +105,50 @@
                         <h6 class="text-center mb-0 text-white titlemenu">Menunggu Pembayaran</h6>
                     </div>
                 </div>
+                <?php
+                            $notifmenunggukonfirmasi ='';
+                            $notifmenunggupembayaran ='';
+                            $notifproses ='';
+                            $notiffinish ='';
+                            $jum_open = 0;
+                            $jum_bayar = 0;
+                            $jum_PROSES = 0;
+                            $jum_FINISH =0;
+                            // $counbarang ='0';
+                            foreach($CountItem->data as $jumlahnya){
+                                    $counbarang = count($jumlahnya->detail_barang);
+                                    if($jumlahnya->status_trx=="OPEN"){
+                                        $jum_open = $jum_open + $counbarang; 
+                                    }else if($jumlahnya->status_trx=="BAYAR"){
+                                        $jum_bayar = $jum_bayar + $counbarang;
+                                    }else if($jumlahnya->status_trx=="PROSES"){
+                                        $jum_PROSES = $jum_PROSES + $counbarang;
+                                    }else if($jumlahnya->status_trx == "KIRIM" || $jumlahnya->status_trx == "AMBIL"){
+                                        $jum_FINISH = $jum_FINISH + $counbarang;
+                                    }
+                                }
+                                if($jum_open>0){
+                                    $notifmenunggupembayaran = '<span class="notify-item"> '.$jum_open.' </span>';
+                                }
+                                if($jum_bayar>0){
+                                    $notifmenunggukonfirmasi = '<span class="notify-item"> '.$jum_bayar.' </span>';
+                                }
+                                if($jum_PROSES>0){
+                                    $notifproses = '<span class="notify-item"> '.$jum_PROSES.' </span>';
+                                }
+                                if($jum_FINISH>0){
+                                    $notiffinish = '<span class="notify-item"> '.$jum_FINISH.' </span>';
+                                }
+                            ?>
                 <div class="table-responsive container">
                     <div class="ignielHorizontal">
-                        <ul>
-                            <li><button onclick="openCity('menunggupembayaran','Menunggu Pembayaran','tab1')" id="tab1" class="buttonku activeku">Menunggu Pembayaran</button></li>
-                            <li><button onclick="openCity('menunggukonfirmasi','Menunggu Konfirmasi','tab2')" id="tab2" class="buttonku">Menunggu Konfirmasi</button></li>
-                            <li><button onclick="openCity('pesanandalamproses','Pesanan Dalam Proses','tab3')" id="tab3" class="buttonku">Pesanan Dalam Proses</button></li>
-                            <li><button class="buttonku" onclick="openCity('pesanandalampengiriman','Proses Pengiriman / Ambil','tab4')" id="tab4">Proses Pengiriman / Ambil</button></li>
-                            <!-- <li><button class="buttonku" onclick="openCity('pesanansudahsampai','Pesanan Telah Selesai','tab5')" id="tab5">Pesanan Telah Selesai</button></li> -->
-                        </ul>
+                    <ul>
+                        <li><button onclick="openCity('menunggupembayaran','Menunggu Pembayaran','tab1')" id="tab1" class="buttonku activeku">  Menunggu Pembayaran <?= $notifmenunggupembayaran ?> </button></li>
+                        <li><button onclick="openCity('menunggukonfirmasi','Menunggu Konfirmasi','tab2')" id="tab2" class="buttonku">Menunggu Konfirmasi <?= $notifmenunggukonfirmasi ?></button></li>
+                        <li><button onclick="openCity('pesanandalamproses','Pesanan Dalam Proses','tab3')" id="tab3" class="buttonku">Pesanan Dalam Proses <?= $notifproses ?></button></li>
+                        <li><button class="buttonku" onclick="openCity('pesanandalampengiriman','Pesanan Sedang Dikirim','tab4')" id="tab4">Proses Pengiriman / Ambil <?= $notiffinish ?></button></li>
+                        <!-- <li><button class="buttonku" onclick="openCity('pesanansudahsampai','Pesanan Sudah Sampai','tab5')" id="tab5">Pesanan Selesai</button></li> -->
+                    </ul>
                     </div>
                 </div>
             </div>
