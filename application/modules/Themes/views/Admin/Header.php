@@ -52,6 +52,12 @@ if ($thisPage == "/hidup_retail/wp-proses-penjualan" || $thisPage == "/hidup_ret
     $Prossestransaksi = "tooltipstered side-menu--open side-menu--active";
     $openproses = "side-menu__sub-open";
 }
+$kelolauser = "";
+$datausers = "";
+if ($thisPage == "/hidup_retail/wp-user" || $thisPage == "/hidup_retail/wp-user-toko") {
+    $kelolauser = "tooltipstered side-menu--open side-menu--active";
+    $datausers = "side-menu__sub-open";
+}
 
 ?>
 <html lang="en">
@@ -335,11 +341,31 @@ if ($thisPage == "/hidup_retail/wp-proses-penjualan" || $thisPage == "/hidup_ret
                         <div class="side-menu__title"> Batal Penjualan </div>
                     </a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="<?= base_url('wp-user') ?>" class="side-menu side-menu<?= $user ?>">
                         <div class="side-menu__icon"> <i data-feather="users"></i> </div>
                         <div class="side-menu__title"> Kelola User </div>
                     </a>
+                </li> -->
+                <li>
+                    <a href="javascript:;" class="side-menu <?= $KelolaUsers ?>">
+                        <div class="side-menu__icon"> <i data-feather="users"></i> </div>
+                        <div class="side-menu__title"> Kelola User <i data-feather="chevron-down" class="side-menu__sub-icon"></i> </div>
+                    </a>
+                    <ul class="<?= $datausers ?>">
+                        <li>
+                            <a href="<?= base_url('wp-user') ?>" class="side-menu">
+                                <div class="side-menu__icon"> <i data-feather="circle"></i> </div>
+                                <div class="side-menu__title"> User Admin </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= base_url('wp-user-toko') ?>" class="side-menu">
+                                <div class="side-menu__icon"> <i data-feather="circle"></i> </div>
+                                <div class="side-menu__title"> User Toko </div>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="<?= base_url('wp-hadiah') ?>" class="side-menu side-menu<?= $hadiah ?>">

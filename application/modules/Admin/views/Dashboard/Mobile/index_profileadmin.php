@@ -18,19 +18,23 @@
             </div>
             <!-- User Meta Data-->
             <div class="card user-data-card">
-                <form type="POST" id="formValidasiPenjualan">
+                <form method="POST" action="<?= base_url('gantipasswordusertoko') ?>" id="formValidasiPenjualan">
                     <div class="card-body">
                         <div class="form-group">
                             <div class="title mb-2"><i class="lni lni-user"></i><span>User Id</span>
-                            <input class="form-control" required onkeypress="return event.keyCode!=13" placeholder="Masukan User Id" name="nama_customer" required type="text" value="<?= $this->session->userdata('nama_user') ?>">
+                            <input class="form-control" readonly required onkeypress="return event.keyCode!=13" placeholder="Masukan User Id" name="nama_customer" required type="text" value="<?= $this->session->userdata('nama_user') ?>">
                         </div>
                         <div class="form-group">
                             <div class="title mb-2"><i class="lni lni-key"></i><span>Password</span></div>
-                            <input class="form-control" onkeypress="return event.keyCode!=13" placeholder="Masukan Password" name="pass_key" required type="password" value="">
+                            <input class="form-control" onkeypress="return event.keyCode!=13" placeholder="Masukan Password Lama" name="password" required type="password" value="">
+                        </div>
+                        <div class="form-group">
+                            <div class="title mb-2"><i class="lni lni-key"></i><span>Password Baru</span></div>
+                            <input class="form-control" onkeypress="return event.keyCode!=13" placeholder="Masukan Password Baru" name="new_password" required type="password" value="">
                         </div>
                         <div class="form-group">
                             <div class="title mb-2"><i class="lni lni-key"></i><span>Retype-Password</span></div>
-                            <input class="form-control" onkeypress="return event.keyCode!=13" placeholder="Ulangi Passwprd" name="retype_pass_key" required type="password" value="">
+                            <input class="form-control" onkeypress="return event.keyCode!=13" placeholder="Ulangi Passwsord" name="retype_password" required type="password" value="">
                         </div>
                     </div>
                     <button class="btn btn-success w-100" type="submit">Simpan Perubahan</button>

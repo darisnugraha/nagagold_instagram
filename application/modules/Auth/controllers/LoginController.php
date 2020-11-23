@@ -173,6 +173,36 @@ class LoginController extends MX_Controller
 			redirect('wp-login');
 		}
 	}
+	public function cekloginadmintoko()
+	{
+		$data['user_id'] 	  = $this->input->post('user_id');
+		$data['password'] 	  = $this->input->post('pass_key');
+		$respons 			  = $this->SERVER_API->_postAPI('user-toko/login-user', $data);
+		if ($respons->status == "berhasil") {
+			foreach ($respons->data as $user) {
+				$user_id = $user->user_id;
+				$nama_user = $user->nama_user;
+				$kode_toko = $user->kode_toko;
+				$token		   =  $user->token;
+			}
+			$data = [
+				'user_id' 		=> $user_id,
+				'nama_user' 	=> $nama_user,
+				'Admintoken' 	=> $token,
+				'kode_toko' 	=> $kode_toko,
+				'status_login'	=> 'SEDANG_LOGIN_ADMIN'
+			];
+			$this->session->set_userdata($data);
+			redirect('wp-dashboard');
+		} else {
+			if ($this->mobile === true) {
+				$this->session->set_flashdata('alert', information($respons->pesan));
+			}else{
+				$this->session->set_flashdata('Pesan', '<div class="rounded-md flex items-center px-5 py-4 mb-2 bg-theme-31 text-theme-6 pesanerror"> <i data-feather="alert-octagon" class="w-6 h-6 mr-2"></i> ' . $respons->pesan . ' </div>');
+			}
+			redirect('wp-login');
+		}
+	}
 
 	public function daftar_member()
 	{

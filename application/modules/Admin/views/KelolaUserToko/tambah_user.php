@@ -4,36 +4,31 @@
             <div class="modal__content">
                 <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200">
                     <h2 class="font-medium text-base mr-auto">
-                        Tambah User Admin
+                        Tambah User Toko
                     </h2>
                 </div>
-                <form action="<?= base_url('simpan-user') ?>" class="validate-form" method="POST">
+                <form action="<?= base_url('simpan-user-toko') ?>" class="validate-form" method="POST">
                     <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
                         <div class="col-span-12">
                             <label>User Id</label>
-                            <input type="text" name="user_id" required onkeypress="return event.keyCode != 13;" class="input w-full border mt-2 flex-1" placeholder="Masukan User Id">
+                            <input type="text" name="user_id_toko" required onkeypress="return event.keyCode != 13;" class="input w-full border mt-2 flex-1" placeholder="Masukan User Id">
                         </div>
                         <div class="col-span-12">
                             <label>Nama Lengkap</label>
-                            <input type="text" name="nama_lkp" required onkeypress="return event.keyCode != 13;" class="input w-full border mt-2 flex-1" placeholder="Masukan Kode Jenis">
-                        </div>
-                        <div class="col-span-12">
-                            <label>Type User</label>
-                            <select style="width:100%" name="type" class="select2 w-full">
-                                <option value="ADMIN"> ADMIN </option>
-                                <option value="OWN"> OWNER </option>
-                            </select>
+                            <input type="text" name="user_name_toko" required onkeypress="return event.keyCode != 13;" class="input w-full border mt-2 flex-1" placeholder="Masukan Nama Lengkap">
                         </div>
                         <div class="col-span-12">
                             <label>Password</label>
-                            <input type="password" required onkeypress="return event.keyCode != 13;" name="password" id="pass1" class="input w-full border mt-2 flex-1" placeholder="Masukan Kode Jenis">
-                            <label style="display: none" id="password_salah1" class="error" for="age">Password Tidak Sama</label>
+                            <input type="password" name="password" required onkeypress="return event.keyCode != 13;" class="input w-full border mt-2 flex-1" placeholder="Masukan Password">
                         </div>
                         <div class="col-span-12">
-                            <label>Ulangi Password</label>
-                            <input type="password" required onkeypress="return event.keyCode != 13;" name="retype_password" id="pass2" class="input w-full border mt-2 flex-1" placeholder="Ulangi Password">
-                            <label style="display: none" id="password_salah" class="error" for="age">Password Tidak Sama.</label>
-                        </div>
+                                <label>Kode Toko </label>
+                                <select style="width:100%" required name="kode_toko" class="select2 w-full">
+                                    <?php foreach($DataToko->data  as $datatoko ): ?>
+                                       <option value="<?= $datatoko->kode_toko ?>" <?= $datatokoa->kode_toko == $row->kode_toko ? 'selected' : '' ?>> <?= $datatoko->kode_toko ?> - <?= $datatoko->nama_toko ?> </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
                     </div>
                     <div class="px-5 py-3 text-right border-t border-gray-200">
                         <button type="button" data-dismiss="modal" class="button w-20 border text-gray-700 mr-1">Batal</button>

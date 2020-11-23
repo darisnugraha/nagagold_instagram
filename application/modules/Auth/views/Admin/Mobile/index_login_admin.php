@@ -10,7 +10,7 @@
         </a>
         <!-- Register Form-->
         <div class="register-form mt-5 px-4">
-          <form action="<?= base_url('cekloginadmin') ?>" id="form-login" method="POST">
+          <form action="<?= base_url('cekloginadmintoko') ?>" id="form-login" method="POST">
           <?= $this->session->flashdata('Pesan') ?>
             <div class="form-group text-left mb-4"><span>User Id</span>
               <label for="username"><i class="lni lni-user"></i></label>

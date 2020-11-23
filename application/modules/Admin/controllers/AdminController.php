@@ -31,6 +31,21 @@ class AdminController extends MX_Controller
         }
     }
 
+    function gantipasswordusertoko(){
+        $data['password']          = $this->input->post('password');
+        $data['new_password']      = $this->input->post('new_password');
+        $data['retype_password']   = $this->input->post('retype_password');
+        $respons                   = $this->SERVER_API->_putAPI('user-toko/password',$data, $this->token);
+        if ($respons->status == "berhasil") {
+            $this->session->set_flashdata('alert', success($respons->pesan));
+            redirect('wp-profile-admin');
+        } else {
+            $this->session->set_flashdata('alert', information($respons->pesan));
+            redirect('wp-profile-admin');
+        }
+
+        // var_dump($data);
+    }
     function profileadmin(){
         $this->template->adminmobile('Dashboard/Mobile/index_profileadmin');
     }
@@ -94,6 +109,14 @@ class AdminController extends MX_Controller
         $respons['DataUser']   = $this->SERVER_API->_getAPI('user', $this->token);
         $this->template->display_admin('Admin/KelolaUser/index_user', $respons);
     }
+    function userlisttoko()
+    {
+        $this->session->set_userdata('title', 'Kelola User Toko');
+        $respons['title']      = 'Data User Toko';
+        $respons['DataUser']   = $this->SERVER_API->_getAPI('user-toko/all', $this->token);
+        $respons['DataToko']   = $this->SERVER_API->_getAPI('toko/all', $this->token);
+        $this->template->display_admin('Admin/KelolaUserToko/index_user', $respons);
+    }
 
     function edit_user_admin()
     {
@@ -119,6 +142,22 @@ class AdminController extends MX_Controller
             redirect('wp-user');
         }
     }
+    function simpanussertoko()
+    {
+        $data['user_id_toko']     = $this->input->post('user_id_toko');
+        $data['user_name_toko']   = $this->input->post('user_name_toko');
+        $data['kode_toko']        = $this->input->post('kode_toko');
+        $data['password']         = $this->input->post('password');
+        $data['retype_password']  = $this->input->post('password');
+        $respons                     = $this->SERVER_API->_postAPI('user-toko/add', $data, $this->token);
+        if ($respons->status == "berhasil") {
+            $this->session->set_flashdata('alert', success($respons->pesan));
+            redirect('wp-user-toko');
+        } else {
+            $this->session->set_flashdata('alert', information($respons->pesan));
+            redirect('wp-user-toko');
+        }
+    }
     function edituser()
     {
         $kode                       = $this->input->post('user_id');
@@ -142,6 +181,17 @@ class AdminController extends MX_Controller
         } else {
             $this->session->set_flashdata('alert', information($respons->pesan));
             redirect('wp-user');
+        }
+    }
+    function hapususertoko($kode)
+    {
+        $respons                     = $this->SERVER_API->_deletetAPI('user-toko/by-id/' . $kode, $this->token);
+        if ($respons->status == "berhasil") {
+            $this->session->set_flashdata('alert', success($respons->pesan));
+            redirect('wp-user-toko');
+        } else {
+            $this->session->set_flashdata('alert', information($respons->pesan));
+            redirect('wp-user-toko');
         }
     }
 

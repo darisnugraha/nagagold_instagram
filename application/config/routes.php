@@ -42,6 +42,7 @@ $route['wp-login']              = 'Auth/LoginController/index_admin';
 $route['wp-daftar-member']      = 'Auth/LoginController/daftar_member';
 $route['edit-profile-user']     = 'Auth/AdminController/edit_user_admin';
 $route['cekloginadmin']         = 'Auth/LoginController/cekloginadmin';
+$route['cekloginadmintoko']         = 'Auth/LoginController/cekloginadmintoko';
 $route['formaktifasimemberlama'] = 'Auth/LoginController/formaktifasimemberlama';
 // $route['register']              = 'Auth/LoginController/register';
 $route['formmemberlama']        = 'Auth/RegisterController/formmemberlama';
@@ -62,6 +63,7 @@ $route['wp-dashboard']          = 'Admin/AdminController/index';
 
 $route['wp-parameter-poin']      = 'Admin/AdminController/parameterpoint';
 $route['wp-profile-admin']       = 'Admin/AdminController/profileadmin';
+$route['gantipasswordusertoko']  = 'Admin/AdminController/gantipasswordusertoko';
 $route['wp-penjualan-admin']     = 'Admin/AdminController/datapenjualan';
 $route['detail-penjualan-admin'] = 'Admin/AdminController/detailpenjualan';
 
@@ -195,9 +197,12 @@ $route['cari-no-transaksi-proses-penjualan']  = 'Admin/Transaksi/cari_proses_pen
 
 //user
 $route['wp-user']                            = 'Admin/AdminController/userlist';
+$route['wp-user-toko']                       = 'Admin/AdminController/userlisttoko';
 $route['simpan-user']                        = 'Admin/AdminController/simpanusser';
+$route['simpan-user-toko']                   = 'Admin/AdminController/simpanussertoko';
 $route['edit-user']                          = 'Admin/AdminController/edituser';
 $route['hapus-user/(:any)']                  = 'Admin/AdminController/hapususer/$1';
+$route['hapus-user-toko/(:any)']              = 'Admin/AdminController/hapususertoko/$1';
 //En user
 
 //Hadiah
