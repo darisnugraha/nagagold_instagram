@@ -102,6 +102,7 @@ class SERVER_API extends CI_Model
   //Post Api
   public function _postAPI($controller = "", $data = "", $token = "")
   {
+    
     if ($data == "") {
       $isidata = '';
     } else {
@@ -131,4 +132,32 @@ class SERVER_API extends CI_Model
     curl_close($curl);
     return json_decode($response);
   }
+
+  public function _kirimnotifikasi($data){
+    $data1['notification'] = $data;
+    $data1['to'] = '/topics/news';
+   
+    $curl = curl_init();
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://fcm.googleapis.com/fcm/send',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'POST',
+      CURLOPT_POSTFIELDS =>json_encode($data1),
+      CURLOPT_HTTPHEADER => array(
+        'Authorization: key=AAAApxVBD8Q:APA91bGoh0fZr_pvSaR857WqAlKRtvGD7UDnTObcspGVq1R4LKQpX0VxtX0WSAagkchdo-INKKzMTFCz_48IoJPbbB8Ega07UzFVq6KcTXjxSt5pyeq-2lCWgEn831D_GdOp5LhKG6qR',
+        'Content-Type: application/json'
+      ),
+    ));
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+    return json_decode($response);
+  }
+
 }

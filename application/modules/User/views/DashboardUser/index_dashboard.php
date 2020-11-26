@@ -763,7 +763,7 @@
                                                             <tr>
                                                                 <td colspan="5">
                                                                     <div class="card-body d-flex align-items-center justify-content-between">
-                                                                    <button onclick="terimapesanan('<?= $pesanandalampengiriman->id_trx ?>')" class="btn activeku btn-block btn-terima-pesanan-<?= $pesanandalampengiriman->id_trx ?>" style="color:#FFFFFF">Terima Pesanan</button>
+                                                                    <!-- <button onclick="terimapesanan('<?= $pesanandalampengiriman->id_trx ?>')" class="btn activeku btn-block btn-terima-pesanan-<?= $pesanandalampengiriman->id_trx ?>" style="color:#FFFFFF">Terima Pesanan</button> -->
                                                                     <button class="btn activeku btn-block btn-loading-<?= $pesanandalampengiriman->id_trx ?>" style="cursor: not-allowed; display:none" type="button"> <i class="fa fa-spinner fa-spin"></i> </button>
 
                                                                         <!-- <button onclick="pernerimaanpesanan('<?= base_url('wp-terima-pesanan/' . $pesanandalampengiriman->id_trx); ?>')" class="btn activeku btn-block" style="color:#FFFFFF">Terima Pesanan</button> -->

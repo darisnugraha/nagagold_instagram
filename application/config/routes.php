@@ -60,12 +60,14 @@ $route['simpanrecorder']        = 'Auth/RegisterController/simpanrecorder';
 $route['audio']        = 'Auth/RegisterController/audio';
 
 $route['wp-dashboard']          = 'Admin/AdminController/index';
+$route['wp-pushnotif']          = 'Admin/AdminController/pushnotif';
+$route['kirimnotif']            = 'Admin/AdminController/kirimnotif';
 
 $route['wp-parameter-poin']      = 'Admin/AdminController/parameterpoint';
 $route['wp-profile-admin']       = 'Admin/AdminController/profileadmin';
 $route['gantipasswordusertoko']  = 'Admin/AdminController/gantipasswordusertoko';
 $route['wp-penjualan-admin']     = 'Admin/AdminController/datapenjualan';
-$route['detail-penjualan-admin'] = 'Admin/AdminController/detailpenjualan';
+$route['detail-penjualan-admin/(:any)/(:any)'] = 'Admin/AdminController/detailpenjualan/$1/$2';
 
 $route['wp-slider']              = 'Admin/AdminController/index_slider';
 $route['simpan-slider']          = 'Admin/AdminController/simpanslider';

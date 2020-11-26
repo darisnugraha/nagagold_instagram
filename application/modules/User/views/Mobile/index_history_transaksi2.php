@@ -685,7 +685,7 @@
                                                     <td>
                                                     <td colspan="6">
                                                         <div class="card-body d-flex align-items-center justify-content-between">
-                                                        <button onclick="terimapesanan('<?= $pesanankirim->id_trx ?>')" class="btn btn-success btn-block btn-terima-pesanan-<?= $pesanankirim->id_trx ?>" style="color:#FFFFFF">Terima Pesanan</button>
+                                                        <!-- <button onclick="terimapesanan('<?= $pesanankirim->id_trx ?>')" class="btn btn-success btn-block btn-terima-pesanan-<?= $pesanankirim->id_trx ?>" style="color:#FFFFFF">Terima Pesanan</button> -->
                                                         <button class="btn btn-success btn-block btn-loading-<?= $pesanankirim->id_trx ?>" style="cursor: not-allowed; display:none" type="button"> <i class="fa fa-spinner fa-spin"></i> </button>
 
                                                             <!-- <button onclick="pernerimaanpesanan('<?= base_url('wp-terima-pesanan/' . $pesanankirim->id_trx); ?>')" class="btn btn-success btn-block" style="color:#FFFFFF">Terima Pesanan</button> -->

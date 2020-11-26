@@ -430,6 +430,12 @@ if ($thisPage == "/hidup_retail/wp-user" || $thisPage == "/hidup_retail/wp-user-
                                 <div class="side-menu__title"> Edit Profile Perusahaan </div>
                             </a>
                         </li>
+                        <li>
+                            <a href="<?= base_url('wp-pushnotif') ?>" class="side-menu">
+                                <div class="side-menu__icon"> <i data-feather="circle"></i> </div>
+                                <div class="side-menu__title"> Kirim Notifikasi Ke Customer </div>
+                            </a>
+                        </li>
 
                     </ul>
                 </li>

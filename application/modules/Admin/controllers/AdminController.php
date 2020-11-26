@@ -46,14 +46,69 @@ class AdminController extends MX_Controller
 
         // var_dump($data);
     }
+    function pushnotif(){
+        $this->session->set_userdata('title', 'Kirim Notifikasi Ke Customer');
+        $respons['title']      = 'Kirim Notifikasi Ke Customer';
+        $this->template->display_admin('Pengaturan/PushNotif/index_push',$respons);
+    }
+
+    function kirimnotif(){
+        $data['title']             = $this->input->post('title');
+        $data['body']              = $this->input->post('body');
+        $data['type']              = 1;
+        $info = pathinfo($_FILES['image']['name']);
+        $filename = $info['basename'];
+        $directory = "./assets/images/NsiPic/PushNotif/";
+        if (!is_dir($directory)) {
+            mkdir($directory, 0777, true);
+        }
+        $config['quality']          = '50%';
+        $config['remove_spaces'] = TRUE;
+        $config['overwrite']     = TRUE;
+        $config['encrypt_name'] = TRUE;
+        $config['upload_path']   = $directory;
+        $config['allowed_types'] = 'jpg|png|jpeg'; //type yang dapat diakses bisa anda sesuaikan
+        $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
+        // $nmfile =  $filename;
+        // $config['file_name']            = $filename;
+
+        $this->upload->initialize($config);
+
+        $this->load->library('upload', $config);
+
+        if ($_FILES['image']) {
+            $this->upload->do_upload('image');
+            $uploadData = $this->upload->data();
+            $config1['image_library'] = 'gd2';
+            $config1['source_image'] = './assets/images/NsiPic/PushNotif/' . $uploadData['file_name'];
+            $config1['create_thumb'] = FALSE;
+            $config1['maintain_ratio'] = TRUE;
+            $config1['quality'] = '70%';
+            $config1['width'] = 1280;
+            $config1['height'] = 810;
+            $config1['new_image'] = './assets/images/NsiPic/PushNotif/' . $uploadData['file_name'];
+            $this->load->library('image_lib', $config1);
+            $this->image_lib->initialize($config1);
+            $this->image_lib->resize();
+            $data['image'] = base_url().'assets/images/NsiPic/PushNotif/'.$uploadData['file_name'];
+        }
+        $respons                   = $this->SERVER_API->_kirimnotifikasi($data);
+        if($respons){
+            $this->session->set_flashdata('alert', success('Notifikasi Berhasil Dikirim'));
+            redirect('wp-pushnotif');
+        }
+        // echo $respons;
+    }
     function profileadmin(){
         $this->template->adminmobile('Dashboard/Mobile/index_profileadmin');
     }
     function datapenjualan(){
-        $this->template->adminmobile('Dashboard/Mobile/index_datapenjualan');
+        $respons['DataPenjualan']   = $this->SERVER_API->_getAPI('penjualan/ambil/trx-toko', $this->token);
+        $this->template->adminmobile('Dashboard/Mobile/index_datapenjualan',$respons);
     }
-    function detailpenjualan(){
-        $this->template->adminmobile('Dashboard/Mobile/index_detaildatapenjualan');
+    function detailpenjualan($id_transaksi, $kode_customer){
+        $respons['DetailDataPenjualan']   = $this->SERVER_API->_getAPI('penjualan/ambil/cek-customer-trx/'.$id_transaksi.'/'.$kode_customer, $this->token);
+        $this->template->adminmobile('Dashboard/Mobile/index_detaildatapenjualan',$respons);
     }
     function loaddashboard(){
         // if ($_POST['status']) {
@@ -418,8 +473,10 @@ class AdminController extends MX_Controller
         // die;
         if ($respons->status == "berhasil") {
             $this->session->set_flashdata('alert', success($respons->pesan));
+            unlink('./assets/logo/'.$this->input->post('name_logo'));
             redirect('wp-profile-perusahaan');
         } else {
+            $this->session->set_userdata($data);
             $this->session->set_flashdata('alert', information($respons->pesan));
             redirect('wp-profile-perusahaan');
         }

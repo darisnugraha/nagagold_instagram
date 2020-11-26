@@ -18,27 +18,27 @@
                 <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
                     <div class="col-span-12">
                         <label>Kode Perusahaan</label>
-                        <input type="text" name="kode_perusahaan" value="" class="input w-full border mt-2 flex-1" placeholder="Masukan Nama Perusahaan">
+                        <input type="text" name="kode_perusahaan" value="<?= $this->session->userdata('kode_perusahaan'); ?>" class="input w-full border mt-2 flex-1" placeholder="Masukan Nama Perusahaan">
                     </div>
                     <div class="col-span-12">
                         <label>Nama Perusahaan</label>
-                        <input type="text" onkeypress="return HurufNoEnter(event)" name="nama_perusahaan" value="" class="input w-full border mt-2 flex-1" placeholder="Masukan Nama Perusahaan">
+                        <input type="text" onkeypress="return HurufNoEnter(event)" name="nama_perusahaan" value="<?= $this->session->userdata('nama_perusahaan'); ?>" class="input w-full border mt-2 flex-1" placeholder="Masukan Nama Perusahaan">
                     </div>
                     <div class="col-span-12">
                         <label>No Hp</label>
-                        <input type="text" onkeypress="return NumberNoEnter(event)" name="no_hp" value="" class="input w-full border mt-2 flex-1" placeholder="Masukan No Hp">
+                        <input type="text" onkeypress="return NumberNoEnter(event)" name="no_hp" value="<?= $this->session->userdata('no_hp'); ?>" class="input w-full border mt-2 flex-1" placeholder="Masukan No Hp">
                     </div>
                     <div class="col-span-12">
                         <label>Email</label>
-                        <input type="email" name="email" value="" class="input w-full border mt-2 flex-1" placeholder="Email Perusahaan">
+                        <input type="email" name="email" value="<?= $this->session->userdata('email'); ?>" class="input w-full border mt-2 flex-1" placeholder="Email Perusahaan">
                     </div>
                     <div class="col-span-12">
                         <label>Alamat Perusahaan</label>
-                        <textarea name="alamat" class="input w-full border mt-2 flex-1" placeholder="Masukan Alamat Lengkap"></textarea>
+                        <textarea name="alamat" class="input w-full border mt-2 flex-1" placeholder="Masukan Alamat Lengkap"><?= $this->session->userdata('alamat'); ?></textarea>
                     </div>
                     <div class="col-span-12">
                         <label>Lokasi</label>
-                        <textarea name="lokasi" class="input w-full border mt-2 flex-1" placeholder="Masukan Lokasi Google Maps"></textarea>
+                        <textarea name="lokasi" class="input w-full border mt-2 flex-1" placeholder="Masukan Lokasi Google Maps"><?= $this->session->userdata('lokasi'); ?></textarea>
                     </div>
                    <!--  <div class="col-span-12">
                         <label>No Hp</label>
