@@ -126,7 +126,7 @@ if (isset($cart->data)) {
                         <div class="col-md-3 nav-left">
                             <!-- logo -->
                             <strong class="logo">
-                                <a href="#"><img width="100%" src="<?= base_url('assets/logo/' . $data->data[0]->logo) ?>" alt="logo"></a>
+                                <a href="#"><img width="100%" src="<?= $data->data[0]->logo ?>" alt="logo"></a>
                                 <!-- <a href="#"><img src="<?= base_url('assets/logo/logokencaaputeraemas.png') ?>" alt="logo"></a> -->
                             </strong>
                         </div>

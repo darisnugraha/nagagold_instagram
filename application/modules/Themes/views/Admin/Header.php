@@ -222,7 +222,7 @@ if ($thisPage == "/hidup_retail/wp-user" || $thisPage == "/hidup_retail/wp-user-
         <!-- BEGIN: Side Menu -->
         <nav class="side-nav">
             <a href="" class="intro-x flex items-center pl-5 pt-4">
-                <img width="150px" src="<?= base_url('assets/logo/' . $data->data[0]->logo) ?>">
+                <img width="150px" src="<?= $data->data[0]->logo ?>">
                 <!-- <span class="hidden xl:block text-white text-lg ml-3"> Mid<span class="font-medium">one</span> </span -->
             </a>
             <div class="side-nav__devider my-6"></div>
