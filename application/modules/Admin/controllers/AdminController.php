@@ -456,7 +456,7 @@ class AdminController extends MX_Controller
                 $this->upload->do_upload('logo');
             }
             $uploadData = $this->upload->data();
-            $data['logo'] = $uploadData['file_name'];
+            $data['logo'] = base_url().'assets/logo/'.$uploadData['file_name'];
         }
 
         $data['kode_perusahaan']         = $this->input->post('kode_perusahaan');
