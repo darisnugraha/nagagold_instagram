@@ -96,8 +96,11 @@ class AdminController extends MX_Controller
         if($respons){
             $this->session->set_flashdata('alert', success('Notifikasi Berhasil Dikirim'));
             redirect('wp-pushnotif');
+        }else{
+            $this->session->set_flashdata('alert', error('Koneksi Bermasalah'));
+            redirect('wp-pushnotif');
         }
-        // echo $respons;
+        echo $respons;
     }
     function profileadmin(){
         $this->template->adminmobile('Dashboard/Mobile/index_profileadmin');
@@ -107,17 +110,84 @@ class AdminController extends MX_Controller
         $this->template->adminmobile('Dashboard/Mobile/index_datapenjualan',$respons);
     }
     function detailpenjualan($id_transaksi, $kode_customer){
-        $respons['DetailDataPenjualan']   = $this->SERVER_API->_getAPI('penjualan/ambil/cek-customer-trx/'.$id_transaksi.'/'.$kode_customer, $this->token);
+        $respons['DataPenjualan']   = $this->SERVER_API->_getAPI('penjualan/ambil/trx-toko', $this->token);
+        $respons['id_transaksi'] = $id_transaksi;
+        $respons['DetailDataPenjualan']   = $this->SERVER_API->_getAPI('penjualan/ambil/cek-customer-trx/'.$id_transaksi.'&'.$kode_customer, $this->token);
         $this->template->adminmobile('Dashboard/Mobile/index_detaildatapenjualan',$respons);
     }
+
+    function cekkodecustomer(){
+        $kode_customer = $this->input->post('kode_customer');
+        $id_transaksi = $this->input->post('id_transaksi');
+        $respons  = $this->SERVER_API->_getAPI('penjualan/ambil/cek-customer-trx/'.$id_transaksi.'&'.$kode_customer, $this->token);
+        // var_dump($respons);
+        $this->output->set_status_header(200);
+        $this->output->set_content_type('application/json', 'utf-8');
+        return $this->output->set_output(json_encode($respons));
+    }
+    function serahambil(){
+        $id_transaksi =  $this->input->post('id_transaksi');
+        $data['kode_customer'] = $this->input->post('kode_customer');
+        $data['nama_customer'] = $this->input->post('nama_customer');
+        $data['alamat']        = $this->input->post('alamat');
+        $data['email']         = $this->input->post('email');
+        $data['no_hp']         = $this->input->post('no_hp');
+
+        $directory = "./assets/images/NsiPic/buktiambilbarang/";
+			if (!is_dir($directory)) {
+				mkdir($directory, 0755, true);
+				chmod($directory, 0777);
+			} else {
+				chmod($directory, 0777);
+			}
+			$config['quality']          = '70%';
+			$config['remove_spaces'] = TRUE;
+			$config['overwrite']     = TRUE;
+			$config['encrypt_name'] = TRUE;
+			$config['upload_path']   = $directory;
+			$config['allowed_types'] = 'jpg|png|jpeg'; //type yang dapat diakses bisa anda sesuaikan
+			$config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
+			// $nmfile =  $filename;
+			// $config['file_name']            = $filename;
+
+			$this->upload->initialize($config);
+
+			$this->load->library('upload', $config);
+
+			if ($_FILES['bukti_ambil']) {
+				$this->upload->do_upload('bukti_ambil');
+				$uploadData = $this->upload->data();
+				$config1['image_library'] = 'gd2';
+				$config1['source_image'] = './assets/images/NsiPic/buktiambilbarang/' . $uploadData['file_name'];
+				$config1['create_thumb'] = FALSE;
+				$config1['maintain_ratio'] = TRUE;
+				$config1['quality'] = '70%';
+				$config1['width'] = 640;
+				$config1['height'] = 640;
+				$config1['new_image'] = './assets/images/NsiPic/buktiambilbarang/' . $uploadData['file_name'];
+				$this->load->library('image_lib', $config1);
+				$this->image_lib->initialize($config1);
+				$this->image_lib->resize();
+				$data['bukti_ambil'] = base_url('assets/images/NsiPic/buktiambilbarang/').$uploadData['file_name'];
+            }
+            $respons  = $this->SERVER_API->_postAPI('penjualan/ambil/serah-barang/'.$id_transaksi, $data, $this->token);
+            $this->output->set_status_header(200);
+            $this->output->set_content_type('application/json', 'utf-8');
+            return $this->output->set_output(json_encode($respons));
+    }
+
     function loaddashboard(){
         // if ($_POST['status']) {
+            $respons = $this->SERVER_API->_getAPI('pengunjung/get/'.date('Y-m-d'), $this->token);
+            $penjualan   = $this->SERVER_API->_getAPI('penjualan/ambil/trx-toko', $this->token);
+            
+            $totalpenjualan = count($penjualan->data);
             $output = '';
             $output = '
                 <div class="col-6">
                     <div class="card mb-4 catagory-card">
                         <div class="card-body">
-                        <h1>1</h1>
+                        <h1>'.$totalpenjualan.'</h1>
                         </div>
                         <div class="card-footer">
                         Orderan Baru Hari Ini
@@ -127,7 +197,7 @@ class AdminController extends MX_Controller
                 <div class="col-6">
                     <div class="card mb-4 catagory-card">
                         <div class="card-body">
-                           <h1>1</h1>
+                           <h1>'.$respons->data[0]->pengunjung.'</h1>
                         </div>
                         <div class="card-footer">
                             Pengunjung Hari Ini

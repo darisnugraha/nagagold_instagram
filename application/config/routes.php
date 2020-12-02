@@ -68,6 +68,8 @@ $route['wp-profile-admin']       = 'Admin/AdminController/profileadmin';
 $route['gantipasswordusertoko']  = 'Admin/AdminController/gantipasswordusertoko';
 $route['wp-penjualan-admin']     = 'Admin/AdminController/datapenjualan';
 $route['detail-penjualan-admin/(:any)/(:any)'] = 'Admin/AdminController/detailpenjualan/$1/$2';
+$route['cekkodecustomer']       = 'Admin/AdminController/cekkodecustomer';
+$route['serah-ambil']           = 'Admin/AdminController/serahambil';
 
 $route['wp-slider']              = 'Admin/AdminController/index_slider';
 $route['simpan-slider']          = 'Admin/AdminController/simpanslider';

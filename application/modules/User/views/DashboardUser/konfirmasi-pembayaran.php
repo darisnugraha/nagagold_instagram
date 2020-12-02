@@ -77,7 +77,6 @@
                     <div class="form-group">
                         <button type="submit" class="button btn-block btn-click" style="display: block;">Konfirmasi Sekarang</button>
                         <button class="button btn-block btn-loading" style="cursor: not-allowed; display:none" type="button"> <i class="fa fa-spinner fa-spin"></i> </button>
-
                     </div>
                 </form>
             </div>
