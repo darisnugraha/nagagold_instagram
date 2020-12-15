@@ -32,7 +32,7 @@
         <?php endif; ?>
         <div class="login-meta-data"><a onclick="$('.loaderform').show();" class="text-white forgot-password d-block mt-3 mb-1" href="<?= base_url('forgetpassword') ?>">Forgot Password?</a>
           <p class="text-white mb-0">Belum Punya Akun ?<a onclick="$('.loaderform').show();" class="text-white ml-2" href="<?= base_url('wp-daftar-member') ?>">Klik Disini</a></p>
-          <p class="text-white mb-0">Aktifasi Member Lama ?<a onclick="$('.loaderform').show();" class="text-white ml-2" href="<?= base_url('formaktifasimemberlama') ?>">Klik Disini</a></p>
+          <p class="text-white mb-0">Aktivasi Member Lama ?<a onclick="$('.loaderform').show();" class="text-white ml-2" href="<?= base_url('formaktifasimemberlama') ?>">Klik Disini</a></p>
         </div>
       </div>
     </div>

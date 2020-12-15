@@ -268,8 +268,8 @@ class LoginController extends MX_Controller
 				];
 				if ($status == "OPEN") {
 					$this->session->set_userdata($data);
-					$this->session->set_flashdata('title_button', 'Aktifasi Sekarang');
-					$this->session->set_flashdata('title_form', 'Aktifasi Member Lama');
+					$this->session->set_flashdata('title_button', 'Aktivasi Sekarang');
+					$this->session->set_flashdata('title_form', 'Aktivasi Member Lama');
 					$this->session->set_flashdata('PesanMemberLama', '<div class="alert alert-success" role="alert">Kode Member Terdaftar Silahkan Lengkapi Form Berikut</div>');
 					redirect('formmemberlama');
 				} else {
