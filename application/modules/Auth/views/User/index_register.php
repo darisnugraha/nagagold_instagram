@@ -81,11 +81,11 @@
                                     </div>
                                     <div class="form-group">
                                     <label>Kode Pos <span class="required"> * </span></label>
-                                        <input type="text" value="<?= $this->session->userdata('kode_poss_lama'); ?>" required name="kode_pos" required placeholder="Masykan Kode Pos" class="form-control" >
+                                        <input type="text" value="<?= $this->session->userdata('kode_poss_lama'); ?>" required name="kode_pos" required placeholder="Masukan Kode Pos" class="form-control" >
                                     </div>
                                     <div class="form-group">
                                         <label>Masukan Alamat Lengkap <span class="required"> * </span></label>
-                                        <textarea required class="form-control" name="alamat1" placeholder="Masukan ALamat Lengkap"><?= $this->session->userdata('alamat1_lama'); ?></textarea>
+                                        <textarea required class="form-control" name="alamat1" placeholder="Masukan Alamat Lengkap"><?= $this->session->userdata('alamat1_lama'); ?></textarea>
                                     </div>
                                     <!-- form-group has-success -->
                                     <div id="pesaneror" class="form-group">

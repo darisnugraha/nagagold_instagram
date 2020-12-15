@@ -57,7 +57,7 @@
             <div class="form-group text-left mb-4">
               <span>Masukan Kode Pos</span>
               <label for="password"><i class="lni lni-map-marker"></i></label>
-              <input type="number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" value="<?= $this->session->userdata('kode_poss_lama'); ?>" required name="kode_pos" placeholder="Masykan Kode Pos" class="form-control">
+              <input type="number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" value="<?= $this->session->userdata('kode_poss_lama'); ?>" required name="kode_pos" placeholder="Masukan Kode Pos" class="form-control">
             </div>
             <div class="form-group text-left mb-4">
               <span>Masukan Alamat Lengkap</span>
