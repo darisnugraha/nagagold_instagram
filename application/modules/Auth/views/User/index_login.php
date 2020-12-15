@@ -5,7 +5,7 @@
 
         <ol class="breadcrumb no-hide">
             <li><a href="#">Home</a></li>
-            <li class="active"><a href="#">Login dan Aktifasi Akun</a></li>
+            <li class="active"><a href="#">Login dan Aktivasi Akun</a></li>
         </ol><!-- Block  Breadcrumb-->
 
         <!-- <h2 class="page-heading">
@@ -41,7 +41,7 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="box-authentication">
-                        <h3>Aktifasi Member Lama</h3>
+                        <h3>Aktivasi Member Lama</h3>
                         <p>Silahkan masukan kode member untuk aktifiasi akun lama.</p>
                         <?= $this->session->flashdata('Pesan') ?>
                         <form method="post" id="form1" action="<?= base_url('cekmemberlama') ?>" autocomplete="off">
@@ -50,7 +50,7 @@
                                 <input type="textx" required name="kode_customer" placeholder="Masukan Kode Member" class="form-control">
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="button btn-block">Aktifasi Sekarang</button>
+                                <button type="submit" class="button btn-block">Aktivasi Sekarang</button>
                             </div>
                         </form>
                     </div>

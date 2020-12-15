@@ -62,7 +62,7 @@
                 <a href="signup.html">Daftar Sekarang</a>
             </p>
             <p class="text-center text-white">
-                Aktifasi AKun?<br>
+            Aktivasi AKun?<br>
                 <a href="signup.html">Disini</a>
             </p>
         </div>

@@ -82,7 +82,7 @@
         <!-- Login Meta-->
         <div class="login-meta-data"><a onclick="$('.loaderform').show();" class="text-white forgot-password d-block mt-3 mb-1" href="<?= base_url('forgetpassword') ?>">Forgot Password?</a>
           <p class="text-white mb-0">Sudah Punya Akun ?<a onclick="$('.loaderform').show();" class="text-white ml-2" href="<?= base_url('login') ?>">Klik Disini</a></p>
-          <p class="text-white mb-0">Aktifasi Member Lama ?<a onclick="$('.loaderform').show();" class="text-white ml-2" href="<?= base_url('formaktifasimemberlama') ?>">Klik Disini</a></p>
+          <p class="text-white mb-0">Aktivasi Member Lama ?<a onclick="$('.loaderform').show();" class="text-white ml-2" href="<?= base_url('formaktifasimemberlama') ?>">Klik Disini</a></p>
         </div>
       </div>
     </div>

@@ -125,8 +125,8 @@ class RegisterController extends MX_Controller{
     }
 	function formmemberlama(){
 		$this->session->set_userdata('status_form','MEMBERLAMA');
-        $respons['nama_form']  		  	  = 'Aktifasi Member Lama';
-        $respons['nama_button']  		  = 'Aktifasi Sekarang';
+        $respons['nama_form']  		  	  = 'Aktivasi Member Lama';
+        $respons['nama_button']  		  = 'Aktivasi Sekarang';
         $respons['Provinsi']			  = $this->SERVER_API->_getAPI('raja-ongkir/provinsi/','');
         if ($this->mobile === true) {
             $this->template->displayauth('Home/Mobile/v2/index_daftar_member_lama',$respons);

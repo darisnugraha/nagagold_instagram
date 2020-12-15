@@ -12,7 +12,7 @@
               <label for="username"><i class="lni lni-user"></i></label>
               <input class="form-control" name="kode_customer" required type="text" placeholder="Masaukan Kode Member">
             </div>
-            <button class="btn btn-login btn-lg w-100" onclick="validasimemberlama();" type="button">Aktifasi Sekarang</button>
+            <button class="btn btn-login btn-lg w-100" onclick="validasimemberlama();" type="button">Aktivasi Sekarang</button>
           </form>
         </div>
         <!-- Login Meta-->
