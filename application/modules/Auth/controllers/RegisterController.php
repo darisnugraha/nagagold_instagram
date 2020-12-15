@@ -15,7 +15,7 @@ class RegisterController extends MX_Controller{
             redirect('dashboard');
         }else{
             if ($this->mobile === true) {
-                $this->load->view('Home/Mobile/v2/index_daftar_member');
+                $this->template->displayauth('Home/Mobile/v2/index_daftar_member');
             }else{
                 $this->template->display_toko('auth/index_register');
             }
@@ -129,7 +129,7 @@ class RegisterController extends MX_Controller{
         $respons['nama_button']  		  = 'Aktifasi Sekarang';
         $respons['Provinsi']			  = $this->SERVER_API->_getAPI('raja-ongkir/provinsi/','');
         if ($this->mobile === true) {
-            $this->load->view('Home/Mobile/v2/index_daftar_member_lama',$respons);
+            $this->template->displayauth('Home/Mobile/v2/index_daftar_member_lama',$respons);
         }else{
             $this->template->display_toko('User/index_register', $respons);
         }
