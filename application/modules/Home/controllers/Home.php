@@ -339,6 +339,7 @@ class Home extends MX_Controller
 			$output = '';
 			$respons = $this->SERVER_API->_getAPI('kategori/jenis', $this->token);
 			$data = $respons->data;
+			$jml = count($data);
 			for ($i = 0; $i < 9; $i++) {
 				if ($data[$i] != null) {
 					$url = base_url('assets/icon/' . strtolower($data[$i]->icon));
@@ -356,7 +357,12 @@ class Home extends MX_Controller
 					';
 				}
 				echo $output;
+				if($i == $jml-1){
+					goto end;
+				}
 			}
+			end:
+			$jml =0;
 		}
 	}
 	function loadcarinamabarang()
