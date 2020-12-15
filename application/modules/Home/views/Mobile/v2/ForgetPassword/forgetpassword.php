@@ -20,7 +20,7 @@
         </div>
         <!-- Login Meta--><br>
         <div class="login-meta-data">
-          <p class="text-white mb-0"><a onclick="$('.loaderform').show();" class="text-white ml-2" href="<?= base_url('') ?>">Kembali Kelamaan Utama</a></p>
+          <p class="text-white mb-0"><a onclick="$('.loaderform').show();" class="text-white ml-2" href="<?= base_url('') ?>">Kembali Ke Halaman Utama</a></p>
         </div>
       </div>
     </div>

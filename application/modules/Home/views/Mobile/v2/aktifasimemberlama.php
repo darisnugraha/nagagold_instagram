@@ -10,7 +10,7 @@
           <form action="<?= base_url('cekmemberlama') ?>" id="form-aktifasi-memberlama" method="POST">
             <div class="form-group text-left mb-4"><span>Kode Member</span>
               <label for="username"><i class="lni lni-user"></i></label>
-              <input class="form-control" name="kode_customer" required type="text" placeholder="Msaukan Kode Member">
+              <input class="form-control" name="kode_customer" required type="text" placeholder="Masaukan Kode Member">
             </div>
             <button class="btn btn-login btn-lg w-100" onclick="validasimemberlama();" type="button">Aktifasi Sekarang</button>
           </form>
