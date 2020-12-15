@@ -8,7 +8,8 @@
                 <div class="row">
                     <?php 
                     $data = $KategoriBarang->data;
-                    for($i=0; $i<9; $i++):?>
+                    $jml = count($data);
+                    for($i=0; $i<$jml; $i++):?>
                     <?php if($data[$i]!= null): ?>
                     <div class="col-4">
                         <div class="card mb-3 catagory-card">
