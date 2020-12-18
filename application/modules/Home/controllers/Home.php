@@ -584,7 +584,11 @@ class Home extends MX_Controller
 					}
 				}
 			}else{
-				echo 'data_kosong';
+				if($startindex==0){
+					echo 'data_kosong';
+				}else{
+					echo 'sudah_melampaui_batas';
+				}
 			}
 		} else {
 			redirect('');

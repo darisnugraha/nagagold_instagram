@@ -57,7 +57,7 @@
                 },
                 cache: false,
                 success: function(data) {
-                    if (data == 'data_kosong' || data == '') {
+                    if (data == 'data_kosong') {
                         $('#load_data_message').html(`
                         <div class="card weekly-product-card mb-3">
                         <div class="card-body d-flex align-items-center">
@@ -65,6 +65,15 @@
                         </div>
                     </div>
                     `);
+                        action = 'active';
+                    }else if (data == 'sudah_melampaui_batas') {
+                        $('#load_data_message').html(`
+                        <div class="card weekly-product-card mb-3">
+                            <div class="card-body d-flex align-items-center">
+                                Barang Sudah Mencapai Batas Akhir !!!<br>
+                            </div>
+                        </div>
+                        `);
                         action = 'active';
                     } else {
                         $('#load_data').append(data);
