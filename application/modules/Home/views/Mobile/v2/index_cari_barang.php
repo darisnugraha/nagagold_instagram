@@ -20,6 +20,7 @@
         var limit = 10;
         var start = 0;
         var kategori = '<?= $kode_kategori ?>';
+        var nama_kategori = '<?= $nama_kategori ?>';
         var action = 'inactive';
 
         function lazzy_loader(limit) {
@@ -56,11 +57,13 @@
                 },
                 cache: false,
                 success: function(data) {
-                    if (data == '') {
+                    if (data == 'data_kosong' || data == '') {
                         $('#load_data_message').html(`
-                    <br>
-                    <br>
-                    <br><br>
+                        <div class="card weekly-product-card mb-3">
+                        <div class="card-body d-flex align-items-center">
+                           Mohon maaf data barang dengan kategori `+nama_kategori+` masih kosong !!!<br>
+                        </div>
+                    </div>
                     `);
                         action = 'active';
                     } else {

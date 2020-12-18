@@ -489,97 +489,102 @@ class Home extends MX_Controller
 				$id   			= $this->input->post('kategori');
 				$data     		= $this->SERVER_API->_getAPI('barang/kategori/' . $id . '&' . $startindex . '&' . $limit, $this->token);
 			}
-			$output = '';
-			// var_dump();;
-			if ($data->count > $this->input->post('start')) {
-				$click = "Swal.fire( 'Opps!!!', 'Silahkan Login Terlebih Dahulu', 'info' )";
-				$error = "this.onerror=null;this.src='" . base_url() . "/assets/images/notfound.png';";
-				$loading = "$('.loaderform').show();";
-				$loadingMobile = "$('.errorLogin').show();";
+
+			if($data->status=="berhasil"){
+				$output = '';
+				// var_dump();;
+				if ($data->count > $this->input->post('start')) {
+					$click = "Swal.fire( 'Opps!!!', 'Silahkan Login Terlebih Dahulu', 'info' )";
+					$error = "this.onerror=null;this.src='" . base_url() . "/assets/images/notfound.png';";
+					$loading = "$('.loaderform').show();";
+					$loadingMobile = "$('.errorLogin').show();";
 
 
-				if ($_POST['device'] == "mobile") {
-					$output .= '
-					<div class="row">';
-					foreach ($data->data as $row) {
-
-						if ($this->session->userdata('status_login') == "SEDANG_LOGIN") {
-							$status_login = '<a onclick="' . $loading . '" class="add-cart-btn btn btn-success" href="' . base_url('add-cart/' . encrypt_url($row->kode_barcode)) . '"> <i class="lni lni-plus"></i>
-									</a>';
-						} else {
-							$status_login = ' <a href="#"  onclick="' . $click . '" class="add-cart-btn btn btn-success"> <i class="lni lni-plus"></i> </a>';
-						}
-						$databarang = $row->gambar;
-						for ($i = 0; $i < 1; $i++) {
-							$gambar = base_url('assets/images/NsiPic/product/' . $databarang[$i]->lokasi_gambar);
-						}
-						$nama_barang = strlen($row->nama_barang) > 12 ? substr($row->nama_barang, 0, 10) . '....' :  $row->nama_barang;
+					if ($_POST['device'] == "mobile") {
 						$output .= '
-								<div class="col-6 col-sm-4">
-									<div class="card top-product-card mb-3">
-									<div class="card-body"> 
-										<a onclick="' . $loading . '" class="product-thumbnail d-block" href="' . base_url('produk/' . encrypt_url($row->kode_barcode)) . '">
-										<img onError="' . $error . '" class="mb-2" src="' . $gambar . '" alt=""></a>
-										<a onclick="' . $loading . '" class="product-title d-block" href="' . base_url('produk/' . encrypt_url($row->kode_barcode)) . '">
-										' . $nama_barang . '</a>
-										<div class="product-rating">
-										Kadar: ' . $row->kadar_cetak . '<br>
-										Berat : ' . $row->berat . 'Gram<br>
-										</div>
-										' . $status_login . '
-									</div>
-								</div>
-							</div>
-							';
-					}
-					$output .= '</div>';
+						<div class="row">';
+						foreach ($data->data as $row) {
 
-					echo $output;
-				} else {
-					$output .= '
-					<ol class="product-items row">';
-
-					foreach ($data->data as $row) {
-						$databarang = $row->gambar;
-						for ($i = 0; $i < 1; $i++) {
-							$gambar = base_url('assets/images/NsiPic/product/' . $databarang[$i]->lokasi_gambar);
-						}
-						if ($this->session->userdata('status_login') == "SEDANG_LOGIN") {
-							$status_login = '<a onclick="' . $click . '" class="add-cart-btn btn btn-success" href="' . base_url('tambah-kekeranjang/'
-								. encrypt_url($row->kode_barcode) . '/'
-								. encrypt_url($row->nama_barang) . '/'
-								. encrypt_url($row->harga) . '/'
-								. encrypt_url('1')) . '"> <i class="lni lni-plus"></i>
+							if ($this->session->userdata('status_login') == "SEDANG_LOGIN") {
+								$status_login = '<a onclick="' . $loading . '" class="add-cart-btn btn btn-success" href="' . base_url('add-cart/' . encrypt_url($row->kode_barcode)) . '"> <i class="lni lni-plus"></i>
 										</a>';
-						} else {
-							$status_login = '<button type="button"  onclick="' . $click . '" class="btn btn-cart"><span>Add to Cart</span></button>';
-						}
-						$brghasil = $row->harga_jual+$row->ongkos;
-						$harga = strlen(number_format($brghasil)) > 12 ? substr(number_format($brghasil), 0, 10) . '....' : number_format($brghasil);
-						$output .= '
-							<li class="col-sm-3 product-item ">
-								<div class="product-item-opt-1">
-									<div class="product-item-info">
-										<div class="product-item-photo">
-											<img onError="' . $error . '" src="' . $gambar . '" ></a>
+							} else {
+								$status_login = ' <a href="#"  onclick="' . $click . '" class="add-cart-btn btn btn-success"> <i class="lni lni-plus"></i> </a>';
+							}
+							$databarang = $row->gambar;
+							for ($i = 0; $i < 1; $i++) {
+								$gambar = base_url('assets/images/NsiPic/product/' . $databarang[$i]->lokasi_gambar);
+							}
+							$nama_barang = strlen($row->nama_barang) > 12 ? substr($row->nama_barang, 0, 10) . '....' :  $row->nama_barang;
+							$output .= '
+									<div class="col-6 col-sm-4">
+										<div class="card top-product-card mb-3">
+										<div class="card-body"> 
+											<a onclick="' . $loading . '" class="product-thumbnail d-block" href="' . base_url('produk/' . encrypt_url($row->kode_barcode)) . '">
+											<img onError="' . $error . '" class="mb-2" src="' . $gambar . '" alt=""></a>
+											<a onclick="' . $loading . '" class="product-title d-block" href="' . base_url('produk/' . encrypt_url($row->kode_barcode)) . '">
+											' . $nama_barang . '</a>
+											<div class="product-rating">
+											Kadar: ' . $row->kadar_cetak . '<br>
+											Berat : ' . $row->berat . 'Gram<br>
+											</div>
 											' . $status_login . '
 										</div>
-										<div class="product-item-detail">
-											<strong class="product-item-name"><a href="' . base_url('produk/' . encrypt_url($row->kode_barcode)) . '">' . $row->nama_barang . '</a></strong>
-											<div class="clearfix">
-												<div class="product-item-price">
-													<span class="price">Rp.' . $harga . '</span>
+									</div>
+								</div>
+								';
+						}
+						$output .= '</div>';
+
+						echo $output;
+					} else {
+						$output .= '
+						<ol class="product-items row">';
+
+						foreach ($data->data as $row) {
+							$databarang = $row->gambar;
+							for ($i = 0; $i < 1; $i++) {
+								$gambar = base_url('assets/images/NsiPic/product/' . $databarang[$i]->lokasi_gambar);
+							}
+							if ($this->session->userdata('status_login') == "SEDANG_LOGIN") {
+								$status_login = '<a onclick="' . $click . '" class="add-cart-btn btn btn-success" href="' . base_url('tambah-kekeranjang/'
+									. encrypt_url($row->kode_barcode) . '/'
+									. encrypt_url($row->nama_barang) . '/'
+									. encrypt_url($row->harga) . '/'
+									. encrypt_url('1')) . '"> <i class="lni lni-plus"></i>
+											</a>';
+							} else {
+								$status_login = '<button type="button"  onclick="' . $click . '" class="btn btn-cart"><span>Add to Cart</span></button>';
+							}
+							$brghasil = $row->harga_jual+$row->ongkos;
+							$harga = strlen(number_format($brghasil)) > 12 ? substr(number_format($brghasil), 0, 10) . '....' : number_format($brghasil);
+							$output .= '
+								<li class="col-sm-3 product-item ">
+									<div class="product-item-opt-1">
+										<div class="product-item-info">
+											<div class="product-item-photo">
+												<img onError="' . $error . '" src="' . $gambar . '" ></a>
+												' . $status_login . '
+											</div>
+											<div class="product-item-detail">
+												<strong class="product-item-name"><a href="' . base_url('produk/' . encrypt_url($row->kode_barcode)) . '">' . $row->nama_barang . '</a></strong>
+												<div class="clearfix">
+													<div class="product-item-price">
+														<span class="price">Rp.' . $harga . '</span>
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-							</li>
-						';
+								</li>
+							';
+						}
+						$output .= '</ol>';
+						echo $output;
 					}
-					$output .= '</ol>';
-					echo $output;
 				}
+			}else{
+				echo 'data_kosong';
 			}
 		} else {
 			redirect('');

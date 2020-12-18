@@ -7,17 +7,17 @@
 
         <div class="cart-wrapper-area py-3">
         <!-- <h4 class="faq-heading text-center">Cari No Transaksi?</h4> -->
-          <!-- Search Form--><br>
+          <!-- Search Form-->
           <!-- <form class="faq-search-form" action="#" method="">
-            <input class="form-control" type="search" name="search" placeholder="Search">
-            <button type="submit"><i class="fa fa-search"></i></button>
-          </form>
-          <br> -->
-
-           
+            <Select class="form-control">
+                <option> Pilih Transaksi </option>
+                <option> Offline </option>
+                <option> Online </option>
+            </Select>
+          </form> -->
+          <br>
             <div id="load_data"></div>
             <div id="load_data_message"></div>
-            
         </div>
 
         <br>
