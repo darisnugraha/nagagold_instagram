@@ -473,6 +473,11 @@ class Home extends MX_Controller
 			}
 		}
 	}
+
+	function privacypolice(){
+		// echo 'TEst';
+		$this->template->display_toko('Dekstop/pripacypolice');
+	}
 	function loaddatakategorimobile()
 	{
 		if ($_POST['limit']) {

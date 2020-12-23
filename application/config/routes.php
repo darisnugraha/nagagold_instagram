@@ -246,6 +246,7 @@ $route['verifikasi-email']                          = 'User/UserController/verif
 // end
 
 //Home
+$route['privacy-police']                     = 'Home/Home/privacypolice';
 $route['panduan-pembayaran']                 = 'Home/Home/panduanpembayaran';
 $route['home/loaddatakategori']              = 'Home/Home/loaddatakategori';
 $route['home/loaddatabarangperkategori']     = 'Home/Home/loaddatabarangperkategori';
