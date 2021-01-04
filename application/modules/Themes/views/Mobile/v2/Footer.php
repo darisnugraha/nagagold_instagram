@@ -76,7 +76,7 @@
       new Rolldate({
         el: '#date-group1-2',
         format: 'YYYY/MM/DD',
-        beginYear: 2000,
+        beginYear: 1900,
         endYear: 2100
       })
     }
