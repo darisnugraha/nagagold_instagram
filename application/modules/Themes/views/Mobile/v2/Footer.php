@@ -70,7 +70,16 @@
     <script src="<?php echo base_url('assets/theme/js/select2/js/select2.js') ?>"></script>
     <script src="<?php echo base_url('assets/module/function.js') ?>"></script>
     <script src="<?php echo base_url('assets/module/jquery.autocomplete.min.js') ?>"></script>
+    <script src="<?php echo base_url('assets/module/rolldate.js') ?>"></script>
     <script type="text/javascript">
+    window.onload = function() {
+      new Rolldate({
+        el: '#date-group1-2',
+        format: 'YYYY/MM/DD',
+        beginYear: 2000,
+        endYear: 2100
+      })
+    }
     function funclogin(){
       $('.loaderform').show();
       window.location = base_url+'login';

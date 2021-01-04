@@ -27,7 +27,7 @@
             </div>
             <div class="form-group text-left mb-4"><span>Tanggal Lahir</span>
               <label for="password"><i class="lni lni-timer"></i></label>
-              <input type="date" value="<?= $this->session->userdata('tgl_lahir_lama'); ?>" required name="tgl_lahir" required placeholder="Tanggal Lahir" class="form-control">
+              <input type="text" id="date-group1-2" value="<?= $this->session->userdata('tgl_lahir_lama'); ?>" required name="tgl_lahir" required placeholder="Tanggal Lahir" class="form-control">
             </div>
             <div class="form-group text-left mb-4"><span>Pilih Provinsi</span>
               <label for="password"><i class="lni lni-map-marker"></i></label>
