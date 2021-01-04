@@ -34,7 +34,7 @@
 
             <div class="form-group">
               <div class="title mb-2"><i class="lni lni-timer"></i><span>Tanggal Lahir</span></div>
-              <input class="form-control" name="tgl_lahir" type="text" id="date-group1-2" value="<?= $this->session->userdata('tgl_lahir') ?>">
+              <input class="form-control" name="tgl_lahir" placeholder="Masukan Tanggal Lahir" type="text" id="date-group1-2" value="<?= $this->session->userdata('tgl_lahir') ?>">
             </div>
             <!-- <div class="form-group">
                   <div class="title mb-2"><i class="lni lni-phone"></i><span>No Hp</span></div>
