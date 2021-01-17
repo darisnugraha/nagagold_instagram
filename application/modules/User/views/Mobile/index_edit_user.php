@@ -48,17 +48,17 @@
             </div>
             <!-- <div class="form-group">
               <div class="title mb-2"><i class="lni lni-key"></i><span>Password Lama</span></div>
-              <input class="form-control" name="pass_key" type="password" placeholder="Maasukan Password Lama">
+              <input class="form-control" name="pass_key" type="password" placeholder="Masukan Password Lama">
               <small class="form-text text-muted">Kosongkan Jika Tidak Ingin Mengganti  Passsword.</small>
             </div> -->
             <div class="form-group">
               <div class="title mb-2"><i class="lni lni-key"></i><span>Password Baru</span></div>
-              <input class="form-control" name="pass_key" type="password" placeholder="Maasukan Password">
+              <input class="form-control" name="pass_key" type="password" placeholder="Masukan Password">
               <small class="form-text text-muted">Kosongkan Jika Tidak Ingin Mengganti Passsword.</small>
             </div>
             <div class="form-group">
-              <div class="title mb-2"><i class="lni lni-key"></i><span>Rytepe Password Baru</span></div>
-              <input class="form-control" name="pass_key" type="password" placeholder="Rytepe Password Baru">
+              <div class="title mb-2"><i class="lni lni-key"></i><span>Ulangi Password Baru</span></div>
+              <input class="form-control" name="pass_key" type="password" placeholder="Ulangi Password Baru">
               <!-- <small class="form-text text-muted">Kosongkan Jika Tidak Ingin Mengganti Passsword.</small> -->
             </div>
             <button onclick="FormValidasi();" class="btn btn-success w-100" type="submit">Simpan Perubahan</button>
