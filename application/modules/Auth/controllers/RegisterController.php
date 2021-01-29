@@ -96,9 +96,10 @@ class RegisterController extends MX_Controller{
             $this->session->unset_userdata('provinsi_lama');
             $this->session->unset_userdata('kota_lama');
             $this->session->unset_userdata('kecamatan_lama');
-            $this->session->set_userdata('email_resend',$this->input->post('email'));
-    		$this->session->set_flashdata('status_resend_email', 'Resend');
-            redirect('login');
+            $this->session->set_userdata('no_hp',$this->input->post('no_hp'));
+            $this->session->set_flashdata('status_resend_email', 'Resend');
+			$this->session->set_flashdata('PesanOtp', 'Masukan Kode Otp');
+            redirect('otentivikasi-daftar');
         }else{
             $data = [
                 'nama_customer_lama' 		=> $this->input->post('nama_customer'),

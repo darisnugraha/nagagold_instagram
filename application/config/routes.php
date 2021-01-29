@@ -17,8 +17,11 @@ $route['web']           = 'Auth/LoginController/web';
 
 $route['login']         = 'Auth/LoginController/index';
 $route['otentivikasi']  = 'Auth/LoginController/otentivikasi';
+$route['otentivikasi-daftar']  = 'Auth/LoginController/otentivikasidaftar';
 $route['verifikasi-otp'] = 'Auth/LoginController/verifikasiotp';
+$route['verifikasi-otp-daftar'] = 'Auth/LoginController/verifikasiotpdaftar';
 $route['resend-otp/(:any)']        = 'Auth/LoginController/resendotp/$1';
+$route['resend-otp-daftar/(:any)']        = 'Auth/LoginController/resendotpdaftar/$1';
 $route['resendotpforget/(:any)']        = 'Auth/LoginController/resendotpforget/$1';
 $route['ceklogin']      = 'Auth/LoginController/ceklogin';
 $route['logout']        = 'Auth/LoginController/logout';

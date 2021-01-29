@@ -68,8 +68,9 @@ class LoginController extends MX_Controller
 	}
 	function resendotp($id)
 	{
-		$email = decrypt_url($id);
-		$respons 			  = $this->SERVER_API->_postAPI('customer/resend-otp/' . $email, '', '');
+		$no_hp = decrypt_url($id);
+		$respons 			  = $this->SERVER_API->_postAPI('customer/resend-aktivasi-noHp/' . $no_hp, '', '');
+		
 		if ($respons->status == "berhasil") {
 			$this->session->set_flashdata('alert', success($respons->pesan));
 			$this->session->set_flashdata('PesanOtp', $respons->pesan);
@@ -78,6 +79,19 @@ class LoginController extends MX_Controller
 			$this->session->set_flashdata('alert', information($respons->pesan));
 		}
 		redirect('otentivikasi');
+	}
+	function resendotpdaftar($id)
+	{
+		$no_hp = decrypt_url($id);
+		$respons 			  = $this->SERVER_API->_postAPI('customer/resend-aktivasi-noHp/' . $no_hp, '', '');
+		if ($respons->status == "berhasil") {
+			$this->session->set_flashdata('alert', success($respons->pesan));
+			$this->session->set_flashdata('PesanOtp', $respons->pesan);
+		} else {
+			$this->session->set_flashdata('PesanOtp', $respons->pesan);
+			$this->session->set_flashdata('alert', information($respons->pesan));
+		}
+		redirect('otentivikasi-daftar');
 	}
 	function resendotpforget($id)
 	{
@@ -105,13 +119,17 @@ class LoginController extends MX_Controller
 			redirect('');
 		}
 	}
+	function otentivikasidaftar()
+	{
+		$this->load->view('Home/Mobile/v2/otp_daftar');
+	}
 
 	function verifikasiotp()
 	{
 		$data = $this->input->post('kode_otp');
-		$email = $this->session->userdata('email');
+		$no_hp = $this->session->userdata('no_hp');
 		$kode_otp['kode_otp'] = $data['0'] . $data['1'] . $data['2'] . $data['3'];
-		$respons 			  = $this->SERVER_API->_postAPI('customer/verifying-otp/' . $email, $kode_otp);
+		$respons 			  = $this->SERVER_API->_postAPI('customer/verifying-otp/' . $no_hp, $kode_otp);
 		if ($respons->status == "berhasil") {
 			foreach ($respons->data as $user) {
 				$token		   =  $user->token;
@@ -126,6 +144,30 @@ class LoginController extends MX_Controller
 			$this->session->set_flashdata('alert', information($respons->pesan));
 			$this->session->set_flashdata('PesanOtp', $respons->pesan);
 			redirect('otentivikasi');
+		}
+	}
+	function verifikasiotpdaftar()
+	{
+		$data = $this->input->post('kode_otp');
+		$no_hp = $this->session->userdata('no_hp');
+		$kode_otp			  = $data['0'] . $data['1'] . $data['2'] . $data['3'];
+		$respons 			  = $this->SERVER_API->_postAPI('customer/aktivasi-noHp/' . $no_hp.'&'. $kode_otp);
+	
+		if ($respons->status == "berhasil") {
+			// foreach ($respons->data as $user) {
+			// 	$token		   =  $user->token;
+			// }
+			// $data = [
+			// 	'token' 		=> $token,
+			// 	'status_login'	=> 'SEDANG_LOGIN'
+			// ];
+			// $this->session->set_userdata($data);
+			$this->session->set_flashdata('alert', success($respons->pesan));
+			redirect('login');
+		} else {
+			$this->session->set_flashdata('alert', information($respons->pesan));
+			$this->session->set_flashdata('PesanOtp', $respons->pesan);
+			redirect('otentivikasi-daftar');
 		}
 	}
 
@@ -326,10 +368,11 @@ class LoginController extends MX_Controller
 	function sendnewpassword()
 	{
 		$kode = $this->input->post('emailornohp');
-		$this->session->set_userdata('emailorpassword', $kode);
+		$this->session->set_userdata('emailornohp', $kode);
 		$respons = $this->SERVER_API->_postAPI('customer/forgot-password/request/' . $kode, '', '');
 		if ($respons->status == "berhasil") {
 			$this->session->set_flashdata('alert', success($respons->pesan));
+			$this->session->set_flashdata('PesanOtp', $respons->pesan);
 			redirect('otpforgetpasswrod');
 		} else {
 			$this->session->set_flashdata('alert', information($respons->pesan));

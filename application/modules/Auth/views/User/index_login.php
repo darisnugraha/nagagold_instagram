@@ -24,12 +24,14 @@
                         <?= form_error('pass_key', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
                         <form method="post" id="form1" action="<?= base_url('ceklogin') ?>" autocomplete="off">
                             <div class="form-group">
-                                <label>Email</label>
-                                <input type="text" name="no_hp_or_email" required placeholder="Masukan No Hp / Email" class="form-control">
+                                <label>Email / No WhatsApp</label>
+                                <input type="text" name="no_hp_or_email" required placeholder="Masukan No Hp / Email"
+                                    class="form-control">
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
-                                <input type="password" name="password" required autocomplate="off" class="form-control" placeholder="Password">
+                                <input type="password" name="password" required autocomplate="off" class="form-control"
+                                    placeholder="Password">
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="button btn-block">Login</button>
@@ -47,7 +49,8 @@
                         <form method="post" id="form1" action="<?= base_url('cekmemberlama') ?>" autocomplete="off">
                             <div class="form-group">
                                 <label>Kode Member</label>
-                                <input type="textx" required name="kode_customer" placeholder="Masukan Kode Member" class="form-control">
+                                <input type="textx" required name="kode_customer" placeholder="Masukan Kode Member"
+                                    class="form-control">
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="button btn-block">Aktivasi Sekarang</button>

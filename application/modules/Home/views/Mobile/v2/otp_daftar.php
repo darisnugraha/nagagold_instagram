@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="icon" href="<?= base_url('assets/logo/fanction.ico') ?>" type="image/x-icon" />
-    <title>OTENTIFIKASI - <?= strtoupper($data->data[0]->nama_perusahaan) ?> </title>
+    <title>OTENTIFIKASI PENDAFTARAN - <?= strtoupper($data->data[0]->nama_perusahaan) ?> </title>
     <link rel="stylesheet" href="<?= base_url('assets/mobile/v2/css/') ?>style.css">
     <link rel="stylesheet" href="<?php echo base_url('assets/theme/js/sweetalert2/sweetalert2.css') ?>">
     <style>
@@ -51,7 +51,7 @@
                     </div>
                     <!-- OTP Verify Form-->
                     <div class="otp-verify-form mt-5 px-4">
-                        <form action="<?= base_url('verifikasi-otp') ?>" method="POST" class="digit-group"
+                        <form action="<?= base_url('verifikasi-otp-daftar') ?>" method="POST" class="digit-group"
                             data-group-name="digits" data-autosubmit="false" autocomplete="off">
                             <div class="form-group d-flex justify-content-between mb-5">
                                 <input class="form-control" autofocus required name="kode_otp[]" id="digit-1"
@@ -75,6 +75,7 @@
                                     oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                                     type="number" value="" placeholder="-" maxlength="1">
                             </div>
+
                             <button class="btn btn-login btn-lg w-100" id="otp_5" type="submit">Verifikasi
                                 Sekarang</button>
                         </form>
@@ -83,9 +84,9 @@
                     <div class="login-meta-data px-4">
                         <p class="mt-3 mb-0">Don't received the OTP?
                         <div id="tampilkan" class="text-white"></div> <span class="otp-sec ml-1 text-white"
-                            style="display: none;" id="resendOTP">
+                            id="resendOTP">
                             <a class="text-white ml-2"
-                                href="<?= base_url('resend-otp/' . encrypt_url($this->session->userdata('no_hp'))) ?>">Kirim
+                                href="<?= base_url('resend-otp-daftar/' . encrypt_url($this->session->userdata('no_hp'))) ?>">Kirim
                                 ulang</a></span></p>
                     </div>
                 </div>
