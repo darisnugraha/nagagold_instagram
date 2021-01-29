@@ -389,7 +389,7 @@ class LoginController extends MX_Controller
 	function verifikasiotppassword()
 	{
 		$data = $this->input->post('kode_otp');
-		$email = $this->session->userdata('emailorpassword');
+		$email = $this->session->userdata('emailornohp');
 		$kode_otp['kode_otp'] = $data['0'] . $data['1'] . $data['2'] . $data['3'];
 		$respons 			  = $this->SERVER_API->_postAPI('customer/verifying-otp/' . $email, $kode_otp);
 		if ($respons->status == "berhasil") {
@@ -403,6 +403,7 @@ class LoginController extends MX_Controller
 			$this->session->set_flashdata('alert', success('Kode Otp Berhasil Diverifikasi'));
 			redirect('new-password');
 		} else {
+			$this->session->set_flashdata('PesanOtp', $respons->pesan);
 			$this->session->set_flashdata('alert', success($respons->pesan));
 			redirect('otpforgetpasswrod');
 		}
@@ -410,7 +411,7 @@ class LoginController extends MX_Controller
 
 	function newpassword()
 	{
-		if ($this->session->userdata('emailorpassword')) {
+		if ($this->session->userdata('emailornohp')) {
 			$respons['nama_form']  		  	  = 'VERIFIKASI KATASANDI BARU';
 			$this->template->displayauth('Home/Mobile/v2/ForgetPassword/newpassword', $respons);
 		} else {
@@ -429,6 +430,6 @@ class LoginController extends MX_Controller
 		} else {
 			$this->session->set_flashdata('alert', information($respons->pesan));
 		}
-		redirect('');
+		redirect('login');
 	}
 }

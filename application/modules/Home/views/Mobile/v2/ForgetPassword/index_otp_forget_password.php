@@ -12,19 +12,19 @@
     <link rel="stylesheet" href="<?= base_url('assets/mobile/v2/css/') ?>style.css">
     <link rel="stylesheet" href="<?php echo base_url('assets/theme/js/sweetalert2/sweetalert2.css') ?>">
     <style>
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
 
-        input[type="number"] {
-            -moz-appearance: textfield;
-        }
+    input[type="number"] {
+        -moz-appearance: textfield;
+    }
 
-        #resendOTP {
-            cursor: pointer;
-        }
+    #resendOTP {
+        cursor: pointer;
+    }
     </style>
 </head>
 
@@ -48,20 +48,42 @@
                     </div>
                     <!-- OTP Verify Form-->
                     <div class="otp-verify-form mt-5 px-4">
-                        <form action="<?= base_url('verifikasi-otp-password') ?>" method="POST" class="digit-group" data-group-name="digits" data-autosubmit="false" autocomplete="off">
+                        <form action="<?= base_url('verifikasi-otp-password') ?>" method="POST" class="digit-group"
+                            data-group-name="digits" data-autosubmit="false" autocomplete="off">
                             <div class="form-group d-flex justify-content-between mb-5">
-                                <input class="form-control" autofocus required name="kode_otp[]" id="digit-1" name="digit-1" data-next="digit-2" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==1) return false;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="number" value="" placeholder="-" maxlength="1">
-                                <input class="form-control" required name="kode_otp[]" id="digit-2" name="digit-2" data-next="digit-3" data-previous="digit-1" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==1) return false;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="number" value="" placeholder="-" maxlength="1">
-                                <input class="form-control" required name="kode_otp[]" id="digit-3" name="digit-3" data-next="digit-4" data-previous="digit-2" data-previous="digit-2" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==1) return false;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="number" value="" placeholder="-" maxlength="1">
-                                <input class="form-control" required name="kode_otp[]" id="digit-4" name="digit-4" data-previous="digit-3" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==1) return false;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="number" value="" placeholder="-" maxlength="1">
+                                <input class="form-control" autofocus required name="kode_otp[]" id="digit-1"
+                                    name="digit-1" data-next="digit-2" pattern="/^-?\d+\.?\d*$/"
+                                    onKeyPress="if(this.value.length==1) return false;"
+                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                    type="number" value="" placeholder="-" maxlength="1">
+                                <input class="form-control" required name="kode_otp[]" id="digit-2" name="digit-2"
+                                    data-next="digit-3" data-previous="digit-1" pattern="/^-?\d+\.?\d*$/"
+                                    onKeyPress="if(this.value.length==1) return false;"
+                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                    type="number" value="" placeholder="-" maxlength="1">
+                                <input class="form-control" required name="kode_otp[]" id="digit-3" name="digit-3"
+                                    data-next="digit-4" data-previous="digit-2" data-previous="digit-2"
+                                    pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==1) return false;"
+                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                    type="number" value="" placeholder="-" maxlength="1">
+                                <input class="form-control" required name="kode_otp[]" id="digit-4" name="digit-4"
+                                    data-previous="digit-3" pattern="/^-?\d+\.?\d*$/"
+                                    onKeyPress="if(this.value.length==1) return false;"
+                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                    type="number" value="" placeholder="-" maxlength="1">
                             </div>
-                            <button class="btn btn-login btn-lg w-100" id="otp_5" type="submit">Verifikasi Sekarang</button>
+                            <button class="btn btn-login btn-lg w-100" id="otp_5" type="submit">Verifikasi
+                                Sekarang</button>
                         </form>
                     </div>
                     <!-- Term & Privacy Info-->
                     <div class="login-meta-data px-4">
-                        <p class="mt-3 mb-0">Don't received the OTP? <div id="tampilkan" class="text-white"></div> <span class="otp-sec ml-1 text-white" style="display: none;" id="resendOTP">
-                                <a class="text-white ml-2" href="<?= base_url('resendotpforget/' . encrypt_url($this->session->userdata('emailorpassword'))) ?>">Kirim ulang</a></span></p>
+                        <p class="mt-3 mb-0">Don't received the OTP?
+                        <div id="tampilkan" class="text-white"></div> <span class="otp-sec ml-1 text-white"
+                            style="display: none;" id="resendOTP">
+                            <a class="text-white ml-2"
+                                href="<?= base_url('resendotpforget/' . encrypt_url($this->session->userdata('emailornohp'))) ?>">Kirim
+                                ulang</a></span></p>
                     </div>
                 </div>
             </div>
@@ -87,79 +109,81 @@
         echo $this->session->flashdata('alert');
     } ?>
     <script>
-        $(window).on('load', function() {
-            $('.loader-screen').delay(1000).fadeOut(function() {
-                $(this).remove()
+    $(window).on('load', function() {
+        $('.loader-screen').delay(1000).fadeOut(function() {
+            $(this).remove()
+        });
+    });
+    $(document).ready(function() {
+
+        $('.digit-group').find('input').each(function() {
+            $(this).attr('maxlength', 1);
+            $(this).on('keyup', function(e) {
+                var parent = $($(this).parent());
+
+                if (e.keyCode === 8 || e.keyCode === 37) {
+                    var prev = parent.find('input#' + $(this).data('previous'));
+
+                    if (prev.length) {
+                        $(prev).select();
+                    }
+                } else if ((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 65 && e
+                        .keyCode <= 90) || (e.keyCode >= 96 && e.keyCode <= 105) || e
+                    .keyCode === 39) {
+                    var next = parent.find('input#' + $(this).data('next'));
+
+                    if (next.length) {
+                        $(next).select();
+                    } else {
+                        if (parent.data('autosubmit')) {
+                            parent.submit();
+                        }
+                    }
+                }
             });
         });
-        $(document).ready(function() {
+        // $('#otp_1').on('keyup',function(){
+        //   $('#otp_2').focus();
+        // })
 
-            $('.digit-group').find('input').each(function() {
-                $(this).attr('maxlength', 1);
-                $(this).on('keyup', function(e) {
-                    var parent = $($(this).parent());
-
-                    if (e.keyCode === 8 || e.keyCode === 37) {
-                        var prev = parent.find('input#' + $(this).data('previous'));
-
-                        if (prev.length) {
-                            $(prev).select();
-                        }
-                    } else if ((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 65 && e.keyCode <= 90) || (e.keyCode >= 96 && e.keyCode <= 105) || e.keyCode === 39) {
-                        var next = parent.find('input#' + $(this).data('next'));
-
-                        if (next.length) {
-                            $(next).select();
-                        } else {
-                            if (parent.data('autosubmit')) {
-                                parent.submit();
-                            }
-                        }
-                    }
-                });
-            });
-            // $('#otp_1').on('keyup',function(){
-            //   $('#otp_2').focus();
-            // })
-
-            // $('#otp_2').on('keyup',function(){
-            //   $('#otp_3').focus();
-            // })
-            // $('#otp_3').on('keyup',function(){
-            //   $('#otp_4').focus();
-            // })
-            // $('#otp_4').on('keyup',function(){
-            //   $('#otp_5').focus();
-            // })
+        // $('#otp_2').on('keyup',function(){
+        //   $('#otp_3').focus();
+        // })
+        // $('#otp_3').on('keyup',function(){
+        //   $('#otp_4').focus();
+        // })
+        // $('#otp_4').on('keyup',function(){
+        //   $('#otp_5').focus();
+        // })
 
 
 
 
-            var detik = 59;
-            var menit = 0;
+        var detik = 59;
+        var menit = 0;
 
-            function hitung() {
-                setTimeout(hitung, 1000);
-                // console.log(detik);
-                if (detik == 0) {
-                    // console.log('kesini');
-                    $('#resendOTP').show();
-                    $('#tampilkan').hide();
-                }
-                // $('#tampilkan').html( '' + menit + ' menit ' + detik + ' detik ');
-                $('#tampilkan').html('Tunggu ' + detik + ' detik ');
-                detik--;
-                if (detik < 0) {
-                    detik = 59;
-                    menit--;
-                    if (menit < 0) {
-                        menit = 0;
-                        detik = 0;
-                    }
+        function hitung() {
+            setTimeout(hitung, 1000);
+            // console.log(detik);
+            if (detik == 0) {
+                // console.log('kesini');
+                $('#resendOTP').show();
+                $('#tampilkan').hide();
+            }
+            // $('#tampilkan').html( '' + menit + ' menit ' + detik + ' detik ');
+            $('#tampilkan').html('Tunggu ' + detik + ' detik ');
+            detik--;
+            if (detik < 0) {
+                detik = 59;
+                menit--;
+                if (menit < 0) {
+                    menit = 0;
+                    detik = 0;
                 }
             }
-            hitung();
-        });
+        }
+        hitung();
+    });
     </script>
 
 </html>
