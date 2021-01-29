@@ -404,7 +404,7 @@ class LoginController extends MX_Controller
 			redirect('new-password');
 		} else {
 			$this->session->set_flashdata('PesanOtp', $respons->pesan);
-			$this->session->set_flashdata('alert', success($respons->pesan));
+			$this->session->set_flashdata('alert', information($respons->pesan));
 			redirect('otpforgetpasswrod');
 		}
 	}

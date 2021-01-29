@@ -11,10 +11,10 @@
                 <!-- Register Form-->
                 <div class="register-form mt-5 px-4">
                     <h3><span>Forget Password</span></h3>
-                    <form action="<?= base_url('send-new-password') ?>" method="POST">
+                    <form action="<?= base_url('send-new-password') ?>" method="POST" id="FormValidasi">
                         <div class="form-group text-left mb-4"><span>No WhatsApp</span>
                             <label for="username"><i class="lni lni-user"></i></label>
-                            <input class="form-control" name="emailornohp" type="number"
+                            <input class="form-control" name="emailornohp" required type="number"
                                 placeholder="Masukan No WhatsApp">
                         </div>
                         <button class="btn btn-login btn-lg w-100" type="submit">Kirim</button>
@@ -29,3 +29,15 @@
         </div>
     </div>
 </div>
+
+<script>
+function FormValidasi() {
+    var applicationForm = document.getElementById("FormValidasi");
+    if (applicationForm.checkValidity()) {
+        $(".loaderform").show();
+        applicationForm.submit();
+    } else {
+        applicationForm.reportValidity();
+    }
+}
+</script>
