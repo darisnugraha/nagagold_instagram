@@ -64,7 +64,7 @@ class RegisterController extends MX_Controller{
 
         $data['kode_pos']            = $this->input->post('kode_pos');
         $data['no_hp']               = $this->input->post('no_hp');
-        $data['email']               = "-";
+        $data['email']               = strval($this->input->post('email'));
         $data['password']            = $this->input->post('password');
         $data['retype_password']     = $this->input->post('retype_password');
         $data['tgl_lahir']           = date('Y-m-d',strtotime($this->input->post('tgl_lahir')));
