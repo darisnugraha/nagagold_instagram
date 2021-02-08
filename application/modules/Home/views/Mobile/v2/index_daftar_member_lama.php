@@ -29,10 +29,10 @@
                                 value="<?= $this->session->userdata('no_hp_lama'); ?>" required name="no_hp"
                                 placeholder="Masukan No Hp" class="form-control no_hp">
                         </div>
-                        <div class="form-group text-left mb-4"><span>Email</span>
+                        <div class="form-group text-left mb-4"><span>Nik</span>
                             <label for="password"><i class="lni lni-inbox"></i></label>
-                            <input type="email" value="<?= $this->session->userdata('email_lama'); ?>" required
-                                name="email" required placeholder="Masukan Email" class="form-control">
+                            <input type="number" value="<?= $this->session->userdata('nik_lama'); ?>" required
+                                name="nik" required placeholder="Masukan NIK" class="form-control">
                         </div>
                         <div class="form-group text-left mb-4"><span>Tanggal Lahir</span>
                             <label for="password"><i class="lni lni-timer"></i></label>

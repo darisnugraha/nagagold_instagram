@@ -64,7 +64,7 @@ class RegisterController extends MX_Controller{
 
         $data['kode_pos']            = $this->input->post('kode_pos');
         $data['no_hp']               = $this->input->post('no_hp');
-        $data['email']               = strtolower($this->input->post('email'));
+        $data['email']               = "-";
         $data['password']            = $this->input->post('password');
         $data['retype_password']     = $this->input->post('retype_password');
         $data['tgl_lahir']           = date('Y-m-d',strtotime($this->input->post('tgl_lahir')));
@@ -75,7 +75,7 @@ class RegisterController extends MX_Controller{
         $data['kode_kecamatan']      =  explode('-',$this->input->post('kecamatan'))[0];
         $data['nama_kecamatan']      =  explode('-',$this->input->post('kecamatan'))[1];
 
-        $data['no_ktp']              = '-';
+        $data['no_ktp']              = $this->input->post('nik');
 
         if($this->input->post('status_form')=="MEMBERBARU"){
             $respons 			         = $this->SERVER_API->_postAPI('customer/register-customer/',$data);
@@ -95,6 +95,7 @@ class RegisterController extends MX_Controller{
             $this->session->unset_userdata('alamat1_lama');
             $this->session->unset_userdata('provinsi_lama');
             $this->session->unset_userdata('kota_lama');
+            $this->session->unset_userdata('nik_lama');
             $this->session->unset_userdata('kecamatan_lama');
             $this->session->set_userdata('no_hp',$this->input->post('no_hp'));
             $this->session->set_flashdata('status_resend_email', 'Resend');
@@ -106,6 +107,7 @@ class RegisterController extends MX_Controller{
                 'kode_customer_lama' 		=> $this->input->post('kode_customer'),
                 'no_hp_lama' 				=> $this->input->post('no_hp'),
                 'email_lama'				=> $this->input->post('email'),
+                'nik_lama'				=> $this->input->post('nik'),
                 'email_resend'				=> $this->input->post('email'),
                 'tgl_lahir_lama'			=> $this->input->post('tgl_lahir'),
                 'kode_poss_lama'			=> $this->input->post('kode_pos'),

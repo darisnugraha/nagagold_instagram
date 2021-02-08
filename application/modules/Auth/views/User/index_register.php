@@ -43,9 +43,9 @@
                                     required placeholder="Masukan No Hp" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label>Email <span class="required"> * </span></label>
-                                <input type="email" value="<?= $this->session->userdata('email_lama'); ?>" required
-                                    name="email" required placeholder="Masukan Email" class="form-control">
+                                <label>Nik <span class="required"> * </span></label>
+                                <input type="text" value="<?= $this->session->userdata('nik_lama'); ?>" required
+                                    name="nik" required placeholder="Masukan Nik" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label>Tanggal Lahir <span class="required"> * </span></label>
