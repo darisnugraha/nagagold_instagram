@@ -23,10 +23,10 @@
         <div class="card-body">
 
           <form id="FormValidasi" autocomplete="off" action="<?= base_url('update-myacount') ?>" method="POST">
-            <div class="form-group">
+            <!-- <div class="form-group">
               <div class="title mb-2"><i class="lni lni-user"></i><span>No KTP</span></div>
               <input class="form-control" onkeypress="return NumberNoEnter(event)" placeholder="Masukan No Ktp" name="no_ktp" type="number" required value="<?= $this->session->userdata('no_ktp') ?>">
-            </div>
+            </div> -->
             <div class="form-group">
               <div class="title mb-2"><i class="lni lni-user"></i><span>Nama Customer</span></div>
               <input class="form-control" onkeypress="return HurufNoEnter(event)" placeholder="Masukan Nama Depan" name="nama_customer" required type="text" value="<?= $this->session->userdata('nama_customer') ?>">

@@ -62,9 +62,17 @@ class RegisterController extends MX_Controller{
         $data['kode_kota']           = explode('-',$this->input->post('kota'))[0];
         $data['nama_kota']           = explode('-',$this->input->post('kota'))[1];
 
-        $data['kode_pos']            = $this->input->post('kode_pos');
+        if($this->input->post('kode_pos')==""){
+            $data['kode_pos']            = "-";
+        }else{
+            $data['kode_pos']            = $this->input->post('kode_pos');
+        }
         $data['no_hp']               = $this->input->post('no_hp');
-        $data['email']               = strval($this->input->post('email'));
+        if($this->input->post('email')==''){
+            $data['email']               = "-";
+        }else{
+            $data['email']               = strval($this->input->post('email'));
+        }
         $data['password']            = $this->input->post('password');
         $data['retype_password']     = $this->input->post('retype_password');
         $data['tgl_lahir']           = date('Y-m-d',strtotime($this->input->post('tgl_lahir')));

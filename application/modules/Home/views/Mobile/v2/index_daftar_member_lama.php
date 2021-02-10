@@ -37,12 +37,12 @@
                         <div class="form-group text-left mb-4"><span>Email</span>
                         <label for="email"><i class="lni lni-inbox"></i></label>
                             <input type="email" value="<?= $this->session->userdata('email_lama'); ?>" 
-                                name="email" required placeholder="Masukan Email" class="form-control">
+                                name="email" placeholder="Masukan Email" class="form-control">
                             </div>
                         <div class="form-group text-left mb-4"><span>Tanggal Lahir</span>
                             <label for="password"><i class="lni lni-timer"></i></label>
-                            <input type="date" value="<?= $this->session->userdata('tgl_lahir_lama'); ?>" required
-                                name="tgl_lahir" required placeholder="Tanggal Lahir" class="form-control">
+                            <input type="date" value="<?= $this->session->userdata('tgl_lahir_lama'); ?>" id="tanggal_lahir"
+                                name="tgl_lahir"  placeholder="Tanggal Lahir" class="form-control">
                         </div>
                         <div class="form-group text-left mb-4"><span>Pilih Provinsi</span>
                             <label for="password"><i class="lni lni-map-marker"></i></label>
@@ -120,3 +120,15 @@
         </div>
     </div>
 </div>
+
+<script>
+$( document ).ready(function() {
+    var date = new Date();
+    var day = date.getDate();
+    var month = ("0" + (date.getMonth() + 1)).slice(-2)
+    var thisDay = date.getDay();
+    var tahun = date.getFullYear();
+    console.log(tahun+'-'+month+'-'+day);
+    document.getElementById("tanggal_lahir").defaultValue = tahun+'-'+month+'-'+day;
+});
+</script>

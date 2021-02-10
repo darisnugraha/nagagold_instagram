@@ -43,10 +43,10 @@
                                     required placeholder="Masukan No Hp" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label>Email <span class="required"> * </span></label>
+                                <label>Email </label>
                                 <input type="email"
                                     value="<?= $this->session->userdata('email_lama'); ?>"  name="email"
-                                    required placeholder="Masukan Email" class="form-control">
+                                 placeholder="Masukan Email" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label>Nik <span class="required"> * </span></label>
@@ -55,8 +55,8 @@
                             </div>
                             <div class="form-group">
                                 <label>Tanggal Lahir <span class="required"> * </span></label>
-                                <input type="date" value="<?= $this->session->userdata('tgl_lahir_lama'); ?>" required
-                                    name="tgl_lahir" required placeholder="Tanggal Lahir" class="form-control">
+                                <input type="date" id="tanggal_lahir" value="<?= $this->session->userdata('tgl_lahir_lama'); ?>"
+                                    name="tgl_lahir" placeholder="Tanggal Lahir" class="form-control">
                             </div>
 
                             <div class="form-group">
@@ -98,9 +98,9 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Kode Pos <span class="required"> * </span></label>
+                                <label>Kode Pos </label>
                                 <input type="text" value="<?= $this->session->userdata('kode_poss_lama'); ?>" 
-                                    name="kode_pos" required placeholder="Masukan Kode Pos" class="form-control">
+                                    name="kode_pos" placeholder="Masukan Kode Pos" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label>Masukan Alamat Lengkap <span class="required"> * </span></label>
@@ -134,4 +134,15 @@
 
 
 </main><!-- end MAIN -->
+<script>
+$( document ).ready(function() {
+    var date = new Date();
+    var day = date.getDate();
+    var month = ("0" + (date.getMonth() + 1)).slice(-2)
+    var thisDay = date.getDay();
+    var tahun = date.getFullYear();
+    console.log(tahun+'-'+month+'-'+day);
+    document.getElementById("tanggal_lahir").defaultValue = tahun+'-'+month+'-'+day;
+});
+</script>
 <script src="<?= base_url('assets/module/register/app.js') ?>"></script>
