@@ -36,7 +36,7 @@
                         </div>
                         <div class="form-group text-left mb-4"><span>Email</span>
                         <label for="email"><i class="lni lni-inbox"></i></label>
-                            <input type="email" value="<?= $this->session->userdata('email_lama'); ?>" required
+                            <input type="email" value="<?= $this->session->userdata('email_lama'); ?>" 
                                 name="email" required placeholder="Masukan Email" class="form-control">
                             </div>
                         <div class="form-group text-left mb-4"><span>Tanggal Lahir</span>
@@ -79,7 +79,7 @@
                             <label for="password"><i class="lni lni-map-marker"></i></label>
                             <input type="number"
                                 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                                value="<?= $this->session->userdata('kode_poss_lama'); ?>" required name="kode_pos"
+                                value="<?= $this->session->userdata('kode_poss_lama'); ?>"  name="kode_pos"
                                 placeholder="Masukan Kode Pos" class="form-control">
                         </div>
                         <div class="form-group text-left mb-4">

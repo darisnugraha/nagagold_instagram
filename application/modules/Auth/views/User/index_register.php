@@ -45,7 +45,7 @@
                             <div class="form-group">
                                 <label>Email <span class="required"> * </span></label>
                                 <input type="email"
-                                    value="<?= $this->session->userdata('email_lama'); ?>" required name="email"
+                                    value="<?= $this->session->userdata('email_lama'); ?>"  name="email"
                                     required placeholder="Masukan Email" class="form-control">
                             </div>
                             <div class="form-group">
@@ -99,7 +99,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Kode Pos <span class="required"> * </span></label>
-                                <input type="text" value="<?= $this->session->userdata('kode_poss_lama'); ?>" required
+                                <input type="text" value="<?= $this->session->userdata('kode_poss_lama'); ?>" 
                                     name="kode_pos" required placeholder="Masukan Kode Pos" class="form-control">
                             </div>
                             <div class="form-group">
