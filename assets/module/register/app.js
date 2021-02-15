@@ -121,6 +121,7 @@ function validasikonfirmasi() {
 }
 function validasiformdaftar() {
 	var applicationForm = document.getElementById("form-register");
+	console.log(applicationForm.checkValidity());
 	if (applicationForm.checkValidity()) {
 		$(".loaderform").show();
 		applicationForm.submit();

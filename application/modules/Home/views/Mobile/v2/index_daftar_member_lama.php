@@ -36,7 +36,7 @@
                         </div>
                         <div class="form-group text-left mb-4"><span>Email</span>
                         <label for="email"><i class="lni lni-inbox"></i></label>
-                            <input type="email" value="<?= $this->session->userdata('email_lama'); ?>" 
+                            <input type="text" value="<?= $this->session->userdata('email_lama') ? $this->session->userdata('email_lama'): "-"; ?>" 
                                 name="email" placeholder="Masukan Email" class="form-control">
                             </div>
                         <div class="form-group text-left mb-4"><span>Tanggal Lahir</span>
@@ -49,8 +49,8 @@
                             <select id="provinsi" name="provinsi" class="form-control select2" required>
                                 <option value="">Pilih Provinsi</option>
                                 <?php $count = count($Provinsi->data);
-                $dataprovinsi = $Provinsi->data;
-                for ($i = 0; $i < $count; $i++) : ?>
+                                $dataprovinsi = $Provinsi->data;
+                                for ($i = 0; $i < $count; $i++) : ?>
                                 <option
                                     <?= explode('-', $this->session->userdata('provinsi_lama'))[0]  == $dataprovinsi[$i]->province_id ? 'selected' : '' ?>
                                     value="<?= $dataprovinsi[$i]->province_id ?>-<?= $dataprovinsi[$i]->province ?>">
@@ -121,14 +121,3 @@
     </div>
 </div>
 
-<script>
-$( document ).ready(function() {
-    var date = new Date();
-    var day = date.getDate();
-    var month = ("0" + (date.getMonth() + 1)).slice(-2)
-    var thisDay = date.getDay();
-    var tahun = date.getFullYear();
-    console.log(tahun+'-'+month+'-'+day);
-    document.getElementById("tanggal_lahir").defaultValue = tahun+'-'+month+'-'+day;
-});
-</script>

@@ -84,7 +84,7 @@ class RegisterController extends MX_Controller{
         $data['nama_kecamatan']      =  explode('-',$this->input->post('kecamatan'))[1];
 
         $data['no_ktp']              = $this->input->post('nik');
-
+        
         if($this->input->post('status_form')=="MEMBERBARU"){
             $respons 			         = $this->SERVER_API->_postAPI('customer/register-customer/',$data);
         }else{
