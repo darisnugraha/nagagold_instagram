@@ -17,7 +17,7 @@
                             <input class="form-control" name="emailornohp" required type="number"
                                 placeholder="Masukan No WhatsApp">
                         </div>
-                        <button class="btn btn-login btn-lg w-100" type="submit">Kirim</button>
+                        <button class="btn btn-login btn-lg w-100" onclick="$('.loaderform').show();" type="submit">Kirim</button>
                     </form>
                 </div>
                 <!-- Login Meta--><br>
@@ -33,10 +33,12 @@
 <script>
 function FormValidasi() {
     var applicationForm = document.getElementById("FormValidasi");
+    $(".loaderform").show();
     if (applicationForm.checkValidity()) {
-        $(".loaderform").show();
+        $(".loaderform").hide();
         applicationForm.submit();
     } else {
+        $(".loaderform").hide();
         applicationForm.reportValidity();
     }
 }

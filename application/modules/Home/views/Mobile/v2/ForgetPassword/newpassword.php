@@ -10,7 +10,7 @@
                 <!-- Register Form-->
                 <div class="register-form mt-5 px-4">
                     <h3><span>New Passsword</span></h3>
-                    <form action="<?= base_url('save-password-baru') ?>" method="POST">
+                    <form action="<?= base_url('save-password-baru') ?>" method="POST" id="FormValidasi">
                         <div class="form-group text-left mb-4"><span>Password</span>
                             <label for="username"><i class="lni lni-user"></i></label>
                             <input class="form-control" name="password" id="pass1" type="password" placeholder="Masukan Password">
@@ -21,7 +21,7 @@
                         </div>
                         <span style="display: none" id="password_salah1" class="help-block">Password Tidak Sama</span>
                         <span style="display: none" id="password_salah2" class="help-block">Good Job</span>
-                        <button class="btn btn-login btn-lg w-100" type="submit">Kirim</button>
+                        <button class="btn btn-login btn-lg w-100" onclick="$('.loaderform').show();" type="submit">Kirim</button>
                     </form>
                 </div>
                 <!-- Login Meta--><br>
@@ -29,3 +29,16 @@
         </div>
     </div>
 </div>
+<script>
+function FormValidasi() {
+    var applicationForm = document.getElementById("FormValidasi");
+    $(".loaderform").show();
+    if (applicationForm.checkValidity()) {
+        $(".loaderform").hide();
+        applicationForm.submit();
+    } else {
+        $(".loaderform").hide();
+        applicationForm.reportValidity();
+    }
+}
+</script>
