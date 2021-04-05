@@ -46,7 +46,7 @@
                     <div class="text-left px-4">
                         <h5 class="mb-1 text-white">Verifikasi</h5>
                         <p class="mb-4 text-white">
-                            <?= $this->session->flashdata('PesanOtp') ?>
+                            <?= $this->session->userdata('PesanOtp') ?>
                         </p>
                     </div>
                     <!-- OTP Verify Form-->

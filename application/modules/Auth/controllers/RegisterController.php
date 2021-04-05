@@ -56,7 +56,7 @@ class RegisterController extends MX_Controller{
     public function simpanregisteruser()
     {
         $kode                        = $this->input->post('kode_customer');
-        $data['nama_customer']       = $this->input->post('nama_customer');
+        $data['nama_customer']       = str_replace('`','',$this->input->post('nama_customer'));
         $data['alamat_lengkap']      = $this->input->post('alamat1');
         
         $data['kode_kota']           = explode('-',$this->input->post('kota'))[0];
@@ -107,7 +107,8 @@ class RegisterController extends MX_Controller{
             $this->session->unset_userdata('kecamatan_lama');
             $this->session->set_userdata('no_hp',$this->input->post('no_hp'));
             $this->session->set_flashdata('status_resend_email', 'Resend');
-			$this->session->set_flashdata('PesanOtp', 'Masukan Kode Otp');
+			$this->session->set_userdata('PesanOtp', 'Masukan Kode Otp');
+			$this->session->set_userdata('otpaktif', 'true');
             redirect('otentivikasi-daftar');
         }else{
             $data = [

@@ -1,3 +1,6 @@
+<?php if( $this->session->userdata('otpaktif') == "true"){
+  redirect('otentivikasi-daftar');
+} ?>
 <div class="page-content-wrapper">
   <div class="hero-slides owl-carousel">
     <!-- Single Hero Slide-->

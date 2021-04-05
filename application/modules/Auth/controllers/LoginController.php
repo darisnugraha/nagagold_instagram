@@ -86,9 +86,9 @@ class LoginController extends MX_Controller
 		$respons 			  = $this->SERVER_API->_postAPI('customer/resend-aktivasi-noHp/' . $no_hp, '', '');
 		if ($respons->status == "berhasil") {
 			$this->session->set_flashdata('alert', success($respons->pesan));
-			$this->session->set_flashdata('PesanOtp', $respons->pesan);
+			$this->session->set_userdata('PesanOtp', $respons->pesan);
 		} else {
-			$this->session->set_flashdata('PesanOtp', $respons->pesan);
+			$this->session->set_userdata('PesanOtp', $respons->pesan);
 			$this->session->set_flashdata('alert', information($respons->pesan));
 		}
 		redirect('otentivikasi-daftar');
@@ -162,11 +162,12 @@ class LoginController extends MX_Controller
 			// 	'status_login'	=> 'SEDANG_LOGIN'
 			// ];
 			// $this->session->set_userdata($data);
+			$this->session->set_userdata('otpaktif', 'false');
 			$this->session->set_flashdata('alert', success($respons->pesan));
 			redirect('login');
 		} else {
 			$this->session->set_flashdata('alert', information($respons->pesan));
-			$this->session->set_flashdata('PesanOtp', $respons->pesan);
+			$this->session->set_userdata('PesanOtp', $respons->pesan);
 			redirect('otentivikasi-daftar');
 		}
 	}
