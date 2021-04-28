@@ -227,7 +227,7 @@ class Home extends MX_Controller
 						for ($i = 0; $i < 1; $i++) {
 							$output .= '
 							<a class="product-thumbnail d-block" onclick="' . $loading . '" href="' . base_url('produk/' . encrypt_url($barang->kode_barcode)) . '">
-								<img class="mb-2" onError="' . $error . '"  src="' . base_url('assets/images/NsiPic/product/' . $databarang[$i]->lokasi_gambar) . '" alt="">
+								<img class="mb-2" onError="' . $error . '"  src="' . $databarang[$i]->lokasi_gambar . '" alt="">
 							</a>
 							';
 						}
@@ -309,7 +309,7 @@ class Home extends MX_Controller
 				}
 				$databarang = $row->gambar;
 				for ($i = 0; $i < 1; $i++) {
-					$gambar = base_url('assets/images/NsiPic/product/' . $databarang[$i]->lokasi_gambar);
+					$gambar = $databarang[$i]->lokasi_gambar;
 				}
 				$brghasil = $row->harga_jual+$row->ongkos;
 				$harga = strlen(number_format($brghasil)) > 12 ? substr(number_format($brghasil), 0, 10) . '....' : number_format($brghasil);
@@ -408,7 +408,7 @@ class Home extends MX_Controller
 					}
 					$databarang = $row->gambar;
 					for ($i = 0; $i < 1; $i++) {
-						$gambar = base_url('assets/images/NsiPic/product/' . $databarang[$i]->lokasi_gambar);
+						$gambar = $databarang[$i]->lokasi_gambar;
 					}
 					$nama_barang = strlen($row->nama_barang) > 15 ? substr($row->nama_barang, 0, 12) . '....' :  $row->nama_barang;
 					$brghasil = $row->harga_jual+$row->ongkos;
@@ -444,7 +444,7 @@ class Home extends MX_Controller
 				foreach ($data->data as $row) {
 					$databarang = $row->gambar;
 					for ($i = 0; $i < 1; $i++) {
-						$gambar = base_url('assets/images/NsiPic/product/' . $databarang[$i]->lokasi_gambar);
+						$gambar = $databarang[$i]->lokasi_gambar;
 					}
 					if ($this->session->userdata('status_login') == "SEDANG_LOGIN") {
 						$status_login = "";
@@ -531,7 +531,7 @@ class Home extends MX_Controller
 							}
 							$databarang = $row->gambar;
 							for ($i = 0; $i < 1; $i++) {
-								$gambar = base_url('assets/images/NsiPic/product/' . $databarang[$i]->lokasi_gambar);
+								$gambar = $databarang[$i]->lokasi_gambar;
 							}
 							$nama_barang = strlen($row->nama_barang) > 12 ? substr($row->nama_barang, 0, 10) . '....' :  $row->nama_barang;
 							$output .= '
@@ -562,7 +562,7 @@ class Home extends MX_Controller
 						foreach ($data->data as $row) {
 							$databarang = $row->gambar;
 							for ($i = 0; $i < 1; $i++) {
-								$gambar = base_url('assets/images/NsiPic/product/' . $databarang[$i]->lokasi_gambar);
+								$gambar = $databarang[$i]->lokasi_gambar;
 							}
 							if ($this->session->userdata('status_login') == "SEDANG_LOGIN") {
 								$status_login = "";

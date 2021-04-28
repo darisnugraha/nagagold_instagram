@@ -42,7 +42,7 @@
                                                     $gambar = "notfound.png";
                                                 }
                                             ?>
-                                                <td> <img class="mb-2" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= base_url('assets/images/NsiPic/product/' . $databarang[$i]->lokasi_gambar) ?>" alt=""> </td>
+                                                <td> <img class="mb-2" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?=  $databarang[$i]->lokasi_gambar ?>" alt=""> </td>
                                             <?php endfor; ?>
                                             <td nowrap><?= $row->nama_barang ?><br>
                                                 <!-- <small class="cart_ref">Kode Barang : <?= $row->kode_barang ?></small><br> -->

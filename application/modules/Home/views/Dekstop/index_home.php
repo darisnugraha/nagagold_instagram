@@ -111,7 +111,7 @@
                                                     <a class="product-item-img" href="<?= base_url('produk/' . encrypt_url($brgbaru->kode_barcode)) ?>">
                                                         <?php $data_gambar = $brgbaru->gambar;
                                                         for ($i = 0; $i < 1; $i++) : ?>
-                                                            <img alt="product name" width="300" height="200" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= base_url('assets/images/NsiPic/product/') . $data_gambar[$i]->lokasi_gambar ?>"></a>
+                                                            <img alt="product name" width="300" height="200" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?=  $data_gambar[$i]->lokasi_gambar ?>"></a>
                                                 <?php endfor; ?>
                                                 <?php if ($this->session->userdata('status_login') == "SEDANG_LOGIN") : ?>
                                                     <!-- <a type="button" href="<?= base_url('add-cart/' . encrypt_url($brgbaru->kode_barcode)) ?>" class="btn btn-cart"><span>Add to Cart</span></a> -->
@@ -228,7 +228,7 @@
                                                                 <?php $databarang = $barang->gambar;
                                                                 for ($i = 0; $i < 1; $i++) : ?>
                                                                     <a class="product-item-img" href="<?= base_url('produk/' . encrypt_url($barang->kode_barcode)) ?>">
-                                                                        <img width="300" height="300" alt="product name" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= base_url('assets/images/NsiPic/product/') . $databarang[$i]->lokasi_gambar ?>"></a>
+                                                                        <img width="300" height="300" alt="product name" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?=  $databarang[$i]->lokasi_gambar ?>"></a>
                                                                 <?php endfor; ?>
                                                                 <!-- <div class="product-item-actions">
                                                             <a class="btn btn-wishlist" href="#"><span>wishlist</span></a>

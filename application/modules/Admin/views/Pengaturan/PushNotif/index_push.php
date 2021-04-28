@@ -20,7 +20,7 @@
                         </div>
                 <div class="col-span-12">
                     <label>Pesan *</label>
-                    <textarea name="body" required class="input w-full border mt-2 flex-1" placeholder="Masukan No Hp"></textarea>
+                    <textarea name="body" required class="input w-full border mt-2 flex-1" placeholder="Masukan Pesan"></textarea>
                 </div>
                 <div class="col-span-12">
                     <label>Gambar</label>

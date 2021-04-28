@@ -87,7 +87,7 @@
 														<tr>
 															<td class="cart_product">
 																<a href="<?= base_url('DetailProduk/' . encrypt_url($row->kode_toko) . '/' . encrypt_url($row->kode_barcode) . '') ?>">
-																	<img width="300" height="100" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= base_url('assets/images/NsiPic/product/') . $row['gambar'] ?>"></a>
+																	<img width="300" height="100" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= $row['gambar'] ?>"></a>
 															</td>
 															<td class="cart_description">
 																<p class="product-name"><a href="#"><?= $row['nama_barang'] ?> </a></p>

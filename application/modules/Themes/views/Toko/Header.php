@@ -160,7 +160,7 @@ if (isset($cart->data)) {
                                                                 <a class="product-item-photo" href="#" title="The Name Product">
                                                                     <?php $databarang = $row->gambar;
                                                                     for ($i = 0; $i < 1; $i++) : ?>
-                                                                        <img class="product-image-photo" width="300" height="100" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= base_url('assets/images/NsiPic/product/') . $databarang[$i]->lokasi_gambar ?>">
+                                                                        <img class="product-image-photo" width="300" height="100" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= $databarang[$i]->lokasi_gambar ?>">
                                                                     <?php endfor; ?>
                                                                 </a>
                                                                 <div class="product-item-details">
@@ -362,7 +362,7 @@ if (isset($cart->data)) {
                                                             <a class="product-item-photo" href="#" title="The Name Product">
                                                                 <?php $databarang = $row->gambar;
                                                                 for ($i = 0; $i < 1; $i++) : ?>
-                                                                    <img class="product-image-photo" width="300" height="100" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= base_url('assets/images/NsiPic/product/') . $databarang[$i]->lokasi_gambar ?>">
+                                                                    <img class="product-image-photo" width="300" height="100" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?=  $databarang[$i]->lokasi_gambar ?>">
                                                                 <?php endfor; ?>
                                                             </a>
                                                             <div class="product-item-details">

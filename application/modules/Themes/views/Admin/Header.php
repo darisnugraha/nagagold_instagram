@@ -341,6 +341,12 @@ if ($thisPage == "/hidup_retail/wp-user" || $thisPage == "/hidup_retail/wp-user-
                         <div class="side-menu__title"> Batal Penjualan </div>
                     </a>
                 </li>
+                <li>
+                    <a href="<?= base_url('wp-update-harga-emas') ?>" class="side-menu side-menu">
+                        <div class="side-menu__icon"> <i data-feather="dollar-sign"></i> </div>
+                        <div class="side-menu__title"> Update Harga Emas </div>
+                    </a>
+                </li>
                 <!-- <li>
                     <a href="<?= base_url('wp-user') ?>" class="side-menu side-menu<?= $user ?>">
                         <div class="side-menu__icon"> <i data-feather="users"></i> </div>

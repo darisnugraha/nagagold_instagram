@@ -78,7 +78,7 @@
                                     <div>
                                         <div class="image-upload">
                                             <label for="file-input1" class="pointer">
-                                                <img id="<?= $data_gambar[$i]->kode_gambar ?>" width="200" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= base_url('assets/images/NsiPic/product/') . $data_gambar[$i]->lokasi_gambar ?>" alt="image preview" />
+                                                <img id="<?= $data_gambar[$i]->kode_gambar ?>" width="200" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= $data_gambar[$i]->lokasi_gambar ?>" alt="image preview" />
                                             </label>
                                             <input value="<?= $data_gambar[$i]->lokasi_gambar ?>" name="nama_file[]" type="hidden" />
                                             <div class="relative mt-2">

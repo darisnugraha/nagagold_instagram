@@ -65,7 +65,7 @@
               <?php $databarang = $brbaru->gambar;
               for ($i = 0; $i < 1; $i++) : ?>
                 <a class="product-thumbnail d-block" onclick="$('.loaderform').show();" href="<?= base_url('produk/' . encrypt_url($brbaru->kode_barcode)) ?>">
-                  <img class="mb-2" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= base_url('assets/images/NsiPic/product/' . $databarang[$i]->lokasi_gambar) ?>" alt="">
+                  <img class="mb-2" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= $databarang[$i]->lokasi_gambar ?>" alt="">
                 </a>
               <?php endfor; ?>
               <a class="product-title d-block" onclick="$('.loaderform').show();" href="<?= base_url('produk/' . encrypt_url($brbaru->kode_barcode)) ?>">

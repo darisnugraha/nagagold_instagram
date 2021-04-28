@@ -9,7 +9,7 @@ $total_harga_jual = $row->harga_jual+$row->ongkos;
             <!-- Single Hero Slide-->
             <?php foreach ($row->gambar as $gambar) : ?>
                 <div class="single-product-slide">
-                    <img onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= base_url('assets/images/NsiPic/product/' . $gambar->lokasi_gambar) ?>" alt="">
+                    <img onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?=  $gambar->lokasi_gambar ?>" alt="">
                 </div>
             <?php endforeach; ?>
 

@@ -72,7 +72,7 @@
                                             <td>
                                                 <?php $databarang = $HistoryCart->gambar;
                                                 for ($i = 0; $i < 1; $i++) : ?>
-                                                    <img onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= base_url('assets/images/NsiPic/product/') . $databarang[$i]->lokasi_gambar ?>"></a>
+                                                    <img onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= $databarang[$i]->lokasi_gambar ?>"></a>
                                                 <?php endfor; ?>
                                             </td>
                                             <td><?= $row->nama_barang ?></td>
@@ -137,7 +137,7 @@
                                             </td>
                                             <?php $databarang = $detail->gambar;
                                             for ($i = 0; $i < 1; $i++) : ?>
-                                                <td> <img class="mb-2" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= base_url('assets/images/NsiPic/product/' . $databarang[$i]->lokasi_gambar) ?>" alt=""> </td>
+                                                <td> <img class="mb-2" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?=  $databarang[$i]->lokasi_gambar ?>" alt=""> </td>
                                             <?php endfor; ?>
                                             <td>
                                                 <?= $detail->nama_barang ?><br>

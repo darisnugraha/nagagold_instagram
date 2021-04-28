@@ -30,7 +30,7 @@
                                     $gambar = "notfound.png";
                                 }
                             ?>
-                                <img width="80px" style="border-radius: 8%; box-shadow: 0 0px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.10);" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= base_url('assets/images/NsiPic/product/' . $databarang[$i]->lokasi_gambar) ?>"> 
+                                <img width="80px" style="border-radius: 8%; box-shadow: 0 0px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.10);" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= $databarang[$i]->lokasi_gambar ?>"> 
                             <?php endfor; ?>
                             <?php endfor; ?>
                         </div>
@@ -62,7 +62,7 @@
                                     $gambar = "notfound.png";
                                 }
                             ?>
-                                <img width="80px" style="border-radius: 8%; box-shadow: 0 0px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.10);" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= base_url('assets/images/NsiPic/product/' . $databarang[$i]->lokasi_gambar) ?>"> 
+                                <img width="80px" style="border-radius: 8%; box-shadow: 0 0px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.10);" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= $databarang[$i]->lokasi_gambar ?>"> 
                             <?php endfor; ?>
                             <?php endfor; ?>
                         </div>

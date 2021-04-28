@@ -38,7 +38,7 @@
                                                         <div class="product-item-photo">
                                                             <?php $data_barang = $brgbaru->gambar;
                                                             for ($i = 0; $i < 1; $i++) : ?>
-                                                                    <img onError="this.onerror=null;this.src='<?php echo base_url('assets/notfound.png') ?>';" src="<?= base_url('assets/images/NsiPic/product/') . $data_barang[$i]->lokasi_gambar ?>" alt="product name"></a>
+                                                                    <img onError="this.onerror=null;this.src='<?php echo base_url('assets/notfound.png') ?>';" src="<?= $databarang[$i]->lokasi_gambar ?>" alt="product name"></a>
                                                                 <?php endfor; ?>
                                                             <?php if ($this->session->userdata('status_login') == "SEDANG_LOGIN") : ?>
                                                                 <form action="<?= base_url('cart/add_to_cart') ?>" method="POST">

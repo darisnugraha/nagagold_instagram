@@ -58,7 +58,7 @@
                                                             $gambar = "notfound.png";
                                                         }
                                                     ?>
-                                                        <img width="300" height="100" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= base_url('assets/images/NsiPic/product/') . $databarang[$i]->lokasi_gambar ?>"></a>
+                                                        <img width="300" height="100" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?=  $databarang[$i]->lokasi_gambar ?>"></a>
                                             <?php endfor; ?>
                                             </td>
                                             <td class="cart_description">

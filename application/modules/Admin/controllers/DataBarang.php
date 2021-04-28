@@ -144,7 +144,7 @@ class DataBarang extends MX_Controller
                         $this->image_lib->initialize($config1);
                         $this->image_lib->resize();
                         $data1[$z]['kode_gambar'] = $nama;
-                        $data1[$z]['lokasi_gambar'] = $uploadData['file_name'];
+                        $data1[$z]['lokasi_gambar'] = base_url('assets/images/NsiPic/product/').$uploadData['file_name'];
                         $z++;
                 }
             } elseif ($_FILES['photo' . $i]['name'] == '' && $nama_file[$y] <> "") {
@@ -344,6 +344,9 @@ class DataBarang extends MX_Controller
             $this->session->set_flashdata('alert', information($respons->pesan));
             redirect('wp-kategori-barang');
         }
+    }
+    function updateHargaEmas(){
+        $this->template->display_admin('UpdateHargaEmas/index');
     }
     function editkategori()
     {

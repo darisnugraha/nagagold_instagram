@@ -196,7 +196,7 @@
                                                     </td>
                                                     <?php $databarang = $detail->gambar;
                                                     for ($i = 0; $i < 1; $i++) : ?>
-                                                        <td> <img class="mb-2" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= base_url('assets/images/NsiPic/product/' . $databarang[$i]->lokasi_gambar) ?>" alt=""> </td>
+                                                        <td> <img class="mb-2" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= $databarang[$i]->lokasi_gambar?>" alt=""> </td>
                                                     <?php endfor; ?>
                                                     <td >
                                                         <?= $detail->nama_barang ?><br>
@@ -325,7 +325,7 @@
                                                     </td>
                                                     <?php $databarang = $detailmenunggukonfirmasi->gambar;
                                                     for ($i = 0; $i < 1; $i++) : ?>
-                                                        <td> <img class="mb-2" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= base_url('assets/images/NsiPic/product/' . $databarang[$i]->lokasi_gambar) ?>" alt=""> </td>
+                                                        <td> <img class="mb-2" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?=  $databarang[$i]->lokasi_gambar?>" alt=""> </td>
                                                     <?php endfor; ?>
                                                     <td>
                                                         <?= $detailmenunggukonfirmasi->nama_barang ?><br>
@@ -453,7 +453,7 @@
                                                     </td>
                                                     <?php $databarang = $detailproses->gambar;
                                                     for ($i = 0; $i < 1; $i++) : ?>
-                                                        <td> <img class="mb-2" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= base_url('assets/images/NsiPic/product/' . $databarang[$i]->lokasi_gambar) ?>" alt=""> </td>
+                                                        <td> <img class="mb-2" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?=  $databarang[$i]->lokasi_gambar ?>" alt=""> </td>
                                                     <?php endfor; ?>
                                                     <td>
                                                         <?= $detailproses->nama_barang ?><br>
@@ -585,7 +585,7 @@
                                                     </td>
                                                     <?php $databarang = $detailkirim->gambar;
                                                     for ($i = 0; $i < 1; $i++) : ?>
-                                                        <td> <img class="mb-2" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= base_url('assets/images/NsiPic/product/' . $databarang[$i]->lokasi_gambar) ?>" alt=""> </td>
+                                                        <td> <img class="mb-2" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= $databarang[$i]->lokasi_gambar ?>" alt=""> </td>
                                                     <?php endfor; ?>
                                                     <td>
                                                         <?= $detailkirim->nama_barang ?><br>
@@ -762,7 +762,7 @@
                                                     </td>
                                                     <?php $databarang = $detaiselesai->gambar;
                                                     for ($i = 0; $i < 1; $i++) : ?>
-                                                        <td> <img class="mb-2" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= base_url('assets/images/NsiPic/product/' . $databarang[$i]->lokasi_gambar) ?>" alt=""> </td>
+                                                        <td> <img class="mb-2" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= $databarang[$i]->lokasi_gambar ?>" alt=""> </td>
                                                     <?php endfor; ?>
                                                     <td>
                                                         <?= $detaiselesai->nama_barang ?><br>

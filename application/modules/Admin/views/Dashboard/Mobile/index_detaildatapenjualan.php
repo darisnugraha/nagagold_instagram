@@ -44,7 +44,7 @@
                                         ?>
                                     <tr>
                                         <td><?= $no ?></td>
-                                        <td><img onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= base_url('assets/images/NsiPic/product/' . $databarang[$i]->lokasi_gambar) ?>"></td>
+                                        <td><img onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= $databarang[$i]->lokasi_gambar ?>"></td>
                                         <td><?= $detailBarang[$d]->nama_barang ?> </td>
                                         <td>1</td>
                                         <td><?= number_format($detailBarang[$d]->harga) ?></td>
@@ -53,25 +53,7 @@
                                 <?php $no++; endfor; ?>
                                 <?php else: ?>
                                 <?php endif; ?>
-                                    <!-- <tr>
-                                        <td>1 </td>
-                                        <td><img src="https://hidupbanjaran.com/assets/images/NsiPic/product/2643f561c2b747415c5698466f7ff48f.jpeg"></td>
-                                        <td>GIWANG TUSUK PAKU 375 </td>
-                                        <td>1</td>
-                                        <td>1.250.000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2 </td>
-                                        <td><img src="https://hidupbanjaran.com/assets/images/NsiPic/product/2643f561c2b747415c5698466f7ff48f.jpeg"></td>
-                                        <td>GIWANG TUSUK PAKU 375 </td>
-                                        <td>1</td>
-                                        <td>1.250.000</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="3" nowrap> Total</td>
-                                        <td> 2 </td>
-                                        <td colspan="3" align="right">2.500.000</td>
-                                    </tr> -->
+                                   
                                 <?php endforeach; ?>
                                     <tr>
                                         <td colspan="3" nowrap> Total Transaksi</td>

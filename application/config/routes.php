@@ -153,6 +153,7 @@ $route['export-exel-laporan-batal-penjualan'] = 'Admin/Laporan/exportexllaporanb
 $route['wp-laporan']               = 'Admin/Laporan/laporanbarang';
 $route['export-laporan-stock']     = 'Admin/Laporan/exportLaporanstock';
 
+$route['wp-update-harga-emas']               = 'Admin/DataBarang/updateHargaEmas';
 
 //Kategori
 $route['wp-kategori-barang']                 = 'Admin/DataBarang/kategoribarang';

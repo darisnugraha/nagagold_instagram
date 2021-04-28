@@ -31,7 +31,7 @@ foreach ($DetailBarang->data  as $row) :
                                     <?php
                                     $data_gambar = $row->gambar;
                                     for ($i = 0; $i < 1; $i++) : ?>
-                                        <img id="img_zoom" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" data-zoom-image="<?= base_url('assets/images/NsiPic/product/') . $data_gambar[$i]->lokasi_gambar ?>" src="<?= base_url('assets/images/NsiPic/product/') . $data_gambar[$i]->lokasi_gambar ?>" alt="">
+                                        <img id="img_zoom" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" data-zoom-image="<?= $data_gambar[$i]->lokasi_gambar ?>" src="<?= $data_gambar[$i]->lokasi_gambar ?>" alt="">
                                         <button class="btn-zoom open_qv"><span>zoom</span></button>
                                     <?php endfor; ?>
 
@@ -39,8 +39,8 @@ foreach ($DetailBarang->data  as $row) :
                                 <div class="product_preview images-small">
                                     <div class="owl-carousel thumbnails_carousel" id="thumbnails" data-nav="true" data-dots="false" data-margin="10" data-responsive='{"0":{"items":3},"480":{"items":4},"600":{"items":5},"768":{"items":3}}'>
                                         <?php foreach ($row->gambar  as $gambar) : ?>
-                                            <a href="#" data-image="<?= base_url('assets/images/NsiPic/product/') . $gambar->lokasi_gambar ?>" data-zoom-image="<?= base_url('assets/images/NsiPic/product/') . $gambar->lokasi_gambar ?>">
-                                                <img onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= base_url('assets/images/NsiPic/product/') . $gambar->lokasi_gambar ?>" data-large-image="<?= base_url('assets/images/NsiPic/product/') . $gambar->lokasi_gambar ?>" alt="">
+                                            <a href="#" data-image="<?=  $gambar->lokasi_gambar ?>" data-zoom-image="<?=  $gambar->lokasi_gambar ?>">
+                                                <img onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?=  $gambar->lokasi_gambar ?>" data-large-image="<?= $gambar->lokasi_gambar ?>" alt="">
                                             </a>
                                         <?php endforeach; ?>
                                     </div>
@@ -233,7 +233,7 @@ foreach ($DetailBarang->data  as $row) :
                                                         <?php $data_gambar = $barang->gambar;
                                                         for ($i = 0; $i < 1; $i++) : ?>
                                                             <a href="<?= base_url('produk/' . encrypt_url($barang->kode_barcode)) ?>" class="product-item-img">
-                                                                <img width="300" height="200" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= base_url('assets/images/NsiPic/product/') . $data_gambar[$i]->lokasi_gambar ?>"></a>
+                                                                <img width="300" height="200" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?=  $data_gambar[$i]->lokasi_gambar ?>"></a>
                                                         <?php endfor; ?>
 
                                                         <!-- <div class="product-item-actions">
@@ -478,7 +478,7 @@ foreach ($DetailBarang->data  as $row) :
                                                             <a class="product-item-img" href="<?= base_url('produk/' . encrypt_url($brgbaru->kode_barcode)) ?>">
                                                                 <?php $data_gambar = $brgbaru->gambar;
                                                                 for ($i = 0; $i < 1; $i++) : ?>
-                                                                    <img alt="product name" width="150" height="100" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= base_url('assets/images/NsiPic/product/') . $data_gambar[$i]->lokasi_gambar ?>">
+                                                                    <img alt="product name" width="150" height="100" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= $data_gambar[$i]->lokasi_gambar ?>">
                                                                 <?php endfor; ?>
                                                             </a>
                                                         </div>

@@ -64,14 +64,15 @@ class Shop extends MX_Controller
 					foreach ($data->data as $row) {
 						$totalongkos = $row->harga_jual+$row->ongkos;
 						if ($this->session->userdata('status_login') == "SEDANG_LOGIN") {
-							$status_login = '<a onclick="' . $loading . '" class="add-cart-btn btn btn-success" href="' . base_url('add-cart/' . encrypt_url($row->kode_barcode)) . '"> <i class="lni lni-plus"></i></a>';
+							// $status_login = '<a onclick="' . $loading . '" class="add-cart-btn btn btn-success" href="' . base_url('add-cart/' . encrypt_url($row->kode_barcode)) . '"> <i class="lni lni-plus"></i></a>';
+							$status_login = '';
 						} else {
-							$status_login = '<a onclick="' . $click . '" class="btn btn-success btn-sm add2cart-notify" href="#"> <i class="lni lni-plus"></i>
-								</a>';
+							// $status_login = '<a onclick="' . $click . '" class="btn btn-success btn-sm add2cart-notify" href="#"> <i class="lni lni-plus"></i></a>';
+							$status_login = '';
 						}
 						$databarang = $row->gambar;
 						for ($i = 0; $i < 1; $i++) {
-							$gambar = base_url('assets/images/NsiPic/product/' . $databarang[$i]->lokasi_gambar);
+							$gambar = $databarang[$i]->lokasi_gambar;
 						}
 						$brghasil = $row->harga_jual+$row->ongkos;
 						$harga = strlen(number_format($brghasil)) > 12 ? substr(number_format($brghasil), 0, 10) . '....' : number_format($brghasil);
@@ -107,15 +108,16 @@ class Shop extends MX_Controller
 					foreach ($data->data as $row) {
 						$databarang = $row->gambar;
 						for ($i = 0; $i < 1; $i++) {
-							$gambar = base_url('assets/images/NsiPic/product/' . $databarang[$i]->lokasi_gambar);
+							$gambar = $databarang[$i]->lokasi_gambar;
 						}
 						if ($this->session->userdata('status_login') == "SEDANG_LOGIN") {
 							$status_login = '<a onclick="' . $click . '" class="add-cart-btn btn btn-success" href="' . base_url('tambah-kekeranjang/'
 								. encrypt_url($row->kode_barcode) . '/'
 								. encrypt_url($row->nama_barang) . '/'
 								. encrypt_url($row->harga) . '/'
-								. encrypt_url('1')) . '"> <i class="lni lni-plus"></i>
+								. encrypt_url('1')) . '">
 										</a>';
+										// <i class="lni lni-plus"></i>
 						} else {
 							$status_login = '<button type="button"  onclick="' . $click . '" class="btn btn-cart"><span>Add to Cart</span></button>';
 						}
