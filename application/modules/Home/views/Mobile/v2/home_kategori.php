@@ -8,7 +8,7 @@
                 <div class="row">
                     <?php foreach($DataKategori->data  as $kategori ): ?>
                     <div class="col-12">
-                        <div class="card mb-4 catagory-card">
+                        <div class="mb-4">
                         <a onclick="$('.loaderform').show()" href="<?= base_url('carikategori/' . encrypt_url($kategori->kode_kategori) . '/' . encrypt_url($kategori->nama_kategori)) ?>">
                             <img class="card" alt="<?= $kategori->nama_kategori ?>" onerror="this.onerror=null;this.src='<?= base_url('assets/images/slidenotfound.jpg') ?>';" src="<?= $kategori->banner ?>">
 						</a>
