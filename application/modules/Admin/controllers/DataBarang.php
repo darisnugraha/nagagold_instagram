@@ -8,7 +8,7 @@ class DataBarang extends MX_Controller
     {
         parent::__construct();
         is_logged_in_admin();
-        $this->load->library('upload');
+        // $this->load->library('upload');
         $this->token =  $this->session->userdata('Admintoken');
         $this->load->library('Pdf');
         $this->load->helper('tgl_indo');
@@ -313,7 +313,7 @@ class DataBarang extends MX_Controller
         // $nmfile =  $filename;
         // $config['file_name']            = $filename;
 
-        $this->upload->initialize($config);
+        // $this->upload->initialize($config);
 
         $this->load->library('upload', $config);
 
@@ -371,7 +371,7 @@ class DataBarang extends MX_Controller
             // $nmfile =  $filename;
             // $config['file_name']            = $filename;
 
-            $this->upload->initialize($config);
+            // $this->upload->initialize($config);
 
             $this->load->library('upload', $config);
 
