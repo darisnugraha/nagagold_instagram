@@ -48,9 +48,9 @@ $total_harga_jual = $row->harga_jual+$row->ongkos;
                         <div class="row">
                             <div class="col-12">
                                 <?php if ($this->session->userdata('status_login') == "SEDANG_LOGIN") : ?>
-                                    <button onclick="$('.loaderform').show(); location.href='<?= base_url('detail-add-cart/' . encrypt_url($row->kode_barcode)); ?>'" class="btn btn-success btn-lg btn-block" type="submit">Add to cart</button>
+                                    <!-- <button onclick="$('.loaderform').show(); location.href='<?= base_url('detail-add-cart/' . encrypt_url($row->kode_barcode)); ?>'" class="btn btn-success btn-lg btn-block" type="submit">Add to cart</button> -->
                                 <?php else : ?>
-                                    <button onclick="Swal.fire( 'Opps!!!', 'Silahkan Login Terlebih Dahulu', 'info' )" class="btn btn-success btn-lg btn-block" type="submit">Add to cart</button>
+                                    <!-- <button onclick="Swal.fire( 'Opps!!!', 'Silahkan Login Terlebih Dahulu', 'info' )" class="btn btn-success btn-lg btn-block" type="submit">Add to cart</button> -->
                                 <?php endif; ?>
                             </div>
                         </div>
