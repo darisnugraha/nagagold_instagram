@@ -7,7 +7,7 @@
                         Tambah Kategori
                     </h2>
                 </div>
-                <form action="<?= base_url('simpan-kategori') ?>" method="POST">
+                <form action="<?= base_url('simpan-kategori') ?>" method="POST" enctype="multipart/form-data">
                     <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
                         <div class="col-span-12 sm:col-span-6">
                             <label>Kode Kategori</label>
@@ -31,6 +31,14 @@
                                 <option value="setelan">Setelan</option>
                                 <option value="lainnya">Lainnya</option>
                             </select>
+                        </div>
+                        <div class="col-span-12">
+                        <label>Ukuran File 1280px x 810px</label>
+                            <img width="570" height="250" id="output2" class="viewimages" src="<?= base_url('assets/images/slidenotfound.jpg') ?>">
+                        </div>
+                        <div class="col-span-12">
+                            <!-- <label>Foto Slider</label> -->
+                            <input type="file" onchange="document.getElementById('output2').src = window.URL.createObjectURL(this.files[0])" type="file" name="photo" class="input w-full border mt-2 flex-1" placeholder="Masukan Nama Jenis">
                         </div>
                     </div>
                     <div class="px-5 py-3 text-right border-t border-gray-200">

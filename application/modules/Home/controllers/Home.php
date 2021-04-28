@@ -24,13 +24,15 @@ class Home extends MX_Controller
 			$this->load->view('Error/index_error');
 		} else {
 			$respons['KategoriBarang'] = $this->SERVER_API->_getAPI('kategori/jenis', $this->token);
+			$respons['DataKategori']   = $this->SERVER_API->_getAPI('kategori', $this->token);
 			$respons['Slider'] 		   = $this->SERVER_API->_getAPI('slide/all', $this->token);
 			$respons['DataBarangBaru'] = $this->SERVER_API->_getAPI('barang/all-new/1&20', '');
 			$respons['DataBarang']     = $this->SERVER_API->_getAPI('barang/kategori-jenis-active', $this->token);
 			if ($this->mobile === true) {
 				$this->session->set_userdata('title', 'Home');
 				$this->session->set_userdata('status_header', 'Home');
-				$this->template->v2('Mobile/v2/index_home', $respons);
+				// $this->template->v2('Mobile/v2/index_home', $respons);
+				$this->template->v2('Mobile/v2/home_kategori', $respons);
 			} else {
 				$this->template->display_toko('Dekstop/index_home', $respons);
 			}

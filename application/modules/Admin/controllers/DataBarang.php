@@ -8,6 +8,7 @@ class DataBarang extends MX_Controller
     {
         parent::__construct();
         is_logged_in_admin();
+        $this->load->library('upload');
         $this->token =  $this->session->userdata('Admintoken');
         $this->load->library('Pdf');
         $this->load->helper('tgl_indo');
@@ -296,10 +297,46 @@ class DataBarang extends MX_Controller
     }
     function simpankategori()
     {
+        $info = pathinfo($_FILES['photo']['name']);
+        $filename = $info['basename'];
+        $directory = "./assets/images/NsiPic/banner/";
+        if (!is_dir($directory)) {
+            mkdir($directory, 0777, true);
+        }
+        $config['quality']          = '50%';
+        $config['remove_spaces'] = TRUE;
+        $config['overwrite']     = TRUE;
+        $config['encrypt_name'] = TRUE;
+        $config['upload_path']   = $directory;
+        $config['allowed_types'] = 'jpg|png|jpeg'; //type yang dapat diakses bisa anda sesuaikan
+        $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
+        // $nmfile =  $filename;
+        // $config['file_name']            = $filename;
+
+        $this->upload->initialize($config);
+
+        $this->load->library('upload', $config);
+
+        if ($_FILES['photo']) {
+            $this->upload->do_upload('photo');
+            $uploadData = $this->upload->data();
+            $config1['image_library'] = 'gd2';
+            $config1['source_image'] = './assets/images/NsiPic/banner/' . $uploadData['file_name'];
+            $config1['create_thumb'] = FALSE;
+            $config1['maintain_ratio'] = TRUE;
+            $config1['quality'] = '70%';
+            $config1['width'] = 1280;
+            $config1['height'] = 810;
+            $config1['new_image'] = './assets/images/NsiPic/banner/' . $uploadData['file_name'];
+            $this->load->library('image_lib', $config1);
+            $this->image_lib->initialize($config1);
+            $this->image_lib->resize();
+            $data['banner'] = base_url('assets/images/NsiPic/banner/').$uploadData['file_name'];
+        }
         $data['kode_kategori']      = $this->input->post('kode_kategori');
         $data['nama_kategori']      = $this->input->post('nama_kategori');
         $data['icon']               = $this->input->post('icon');
-        $respons                     = $this->SERVER_API->_postAPI('kategori', $data, $this->token);
+        $respons                    = $this->SERVER_API->_postAPI('kategori', $data, $this->token);
         if ($respons->status == "berhasil") {
             $this->session->set_flashdata('alert', success($respons->pesan));
             redirect('wp-kategori-barang');
@@ -310,6 +347,51 @@ class DataBarang extends MX_Controller
     }
     function editkategori()
     {
+        $file_asli				= $this->input->post('banner_lama');
+		$file_baru				= $_FILES['photo']['name'];
+
+        if($file_baru == ""){
+			$data["banner"]			= $file_asli;
+		}else{
+            unlink($file_asli);
+            $info = pathinfo($_FILES['photo']['name']);
+            $filename = $info['basename'];
+            $directory = "./assets/images/NsiPic/banner/";
+
+            if (!is_dir($directory)) {
+                mkdir($directory, 0777, true);
+            }
+            $config['quality']          = '50%';
+            $config['remove_spaces'] = TRUE;
+            $config['overwrite']     = TRUE;
+            $config['encrypt_name'] = TRUE;
+            $config['upload_path']   = $directory;
+            $config['allowed_types'] = 'jpg|png|jpeg'; //type yang dapat diakses bisa anda sesuaikan
+            $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
+            // $nmfile =  $filename;
+            // $config['file_name']            = $filename;
+
+            $this->upload->initialize($config);
+
+            $this->load->library('upload', $config);
+
+            if ($_FILES['photo']) {
+                $this->upload->do_upload('photo');
+                $uploadData = $this->upload->data();
+                $config1['image_library'] = 'gd2';
+                $config1['source_image'] = './assets/images/NsiPic/banner/' . $uploadData['file_name'];
+                $config1['create_thumb'] = FALSE;
+                $config1['maintain_ratio'] = TRUE;
+                $config1['quality'] = '70%';
+                $config1['width'] = 1280;
+                $config1['height'] = 810;
+                $config1['new_image'] = './assets/images/NsiPic/banner/' . $uploadData['file_name'];
+                $this->load->library('image_lib', $config1);
+                $this->image_lib->initialize($config1);
+                $this->image_lib->resize();
+                $data['banner'] = base_url('assets/images/NsiPic/banner/').$uploadData['file_name'];
+            }
+        }
         $kode                       = $this->input->post('kode_kategori');
         $data['nama_kategori']      = $this->input->post('nama_kategori');
         $data['icon']               = $this->input->post('icon');
