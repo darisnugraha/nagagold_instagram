@@ -31,8 +31,8 @@ class Home extends MX_Controller
 			if ($this->mobile === true) {
 				$this->session->set_userdata('title', 'Home');
 				$this->session->set_userdata('status_header', 'Home');
-				// $this->template->v2('Mobile/v2/index_home', $respons);
-				$this->template->v2('Mobile/v2/home_kategori', $respons);
+				$this->template->v2('Mobile/v2/index_home', $respons);
+				// $this->template->v2('Mobile/v2/home_kategori', $respons);
 			} else {
 				$this->template->display_toko('Dekstop/index_home', $respons);
 			}
