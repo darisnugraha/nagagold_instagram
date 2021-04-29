@@ -605,7 +605,7 @@ class Home extends MX_Controller
 				}
 			}else{
 				if($startindex==0){
-					echo 'Data Barang Kosong';
+					echo 'data_kosong';
 				}else{
 					echo 'sudah_melampaui_batas';
 				}

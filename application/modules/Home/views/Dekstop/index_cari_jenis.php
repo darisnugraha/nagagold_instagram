@@ -73,6 +73,22 @@
                         </div>
                     </div><br>`);
                         action = 'active';
+                    }else if(data == "data_kosong"){
+                        $('#load_data_message').html(`
+                        <div class="card weekly-product-card mb-3">
+                            <div class="card-body d-flex align-items-center">
+                                Data Barang Kosong !!!<br>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        `);
+                        action = 'active';
                     } else {
                         $('#load_data').append(data);
                         $('#load_data_message').html("");
