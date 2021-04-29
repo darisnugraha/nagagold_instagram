@@ -140,7 +140,7 @@
                         <br>
                     `);
                         action = 'active';
-                    }else if (data == 'sudah_melampaui_batas') {
+                    }else if (data == 'sudah_melampaui_batas' || data=="") {
                         $('#load_data_message').html(`
                         <div class="card weekly-product-card mb-3">
                             <div class="card-body d-flex align-items-center">

@@ -118,8 +118,9 @@ class Shop extends MX_Controller
 								. encrypt_url('1')) . '">
 										</a>';
 										// <i class="lni lni-plus"></i>
-						} else {
-							$status_login = '<button type="button"  onclick="' . $click . '" class="btn btn-cart"><span>Add to Cart</span></button>';
+									} else {
+							// $status_login = '<button type="button"  onclick="' . $click . '" class="btn btn-cart"><span>Add to Cart</span></button>';
+							$status_login = '';
 						}
 						$totalongkos = $row->harga_jual+$row->ongkos;  
 						$output .= '

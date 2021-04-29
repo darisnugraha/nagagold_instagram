@@ -14,6 +14,8 @@
             <div id="load_data_message"></div>
         </div>
     </div>
+<br>
+<br>
 </div>
 <script>
     $(document).ready(function() {
@@ -57,16 +59,20 @@
                 },
                 cache: false,
                 success: function(data) {
+                    console.log(data);
                     if (data == 'data_kosong') {
                         $('#load_data_message').html(`
                         <div class="card weekly-product-card mb-3">
                         <div class="card-body d-flex align-items-center">
                            Mohon maaf data barang dengan kategori `+nama_kategori+` masih kosong !!!<br>
                         </div>
+                        <br>
+                        <br>
+                        <br>
                     </div>
                     `);
                         action = 'active';
-                    }else if (data == 'sudah_melampaui_batas') {
+                    }else if (data == 'sudah_melampaui_batas' || data=="") {
                         $('#load_data_message').html(`
                         <div class="card weekly-product-card mb-3">
                             <div class="card-body d-flex align-items-center">
@@ -95,9 +101,9 @@
                 lazzy_loader(limit);
                 action = 'active';
                 start = start + limit;
-                setTimeout(function() {
+                // setTimeout(function() {
                     load_data(limit, start);
-                }, 1000);
+                // }, 1000);
             }
         });
 

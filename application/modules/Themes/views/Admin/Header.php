@@ -58,6 +58,12 @@ if ($thisPage == "/hidup_retail/wp-user" || $thisPage == "/hidup_retail/wp-user-
     $kelolauser = "tooltipstered side-menu--open side-menu--active";
     $datausers = "side-menu__sub-open";
 }
+$KelolaHargaEmas = "";
+$dataHargaEmas = "";
+if ($thisPage == "/hidup_retail/data-kelompok" || $thisPage == "/hidup_retail/data-jenis") {
+    $KelolaHargaEmas = "tooltipstered side-menu--open side-menu--active";
+    $dataHargaEmas = "side-menu__sub-open";
+}
 
 ?>
 <html lang="en">
@@ -341,11 +347,31 @@ if ($thisPage == "/hidup_retail/wp-user" || $thisPage == "/hidup_retail/wp-user-
                         <div class="side-menu__title"> Batal Penjualan </div>
                     </a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="<?= base_url('wp-update-harga-emas') ?>" class="side-menu side-menu">
                         <div class="side-menu__icon"> <i data-feather="dollar-sign"></i> </div>
                         <div class="side-menu__title"> Update Harga Emas </div>
                     </a>
+                </li> -->
+                <li>
+                    <a href="javascript:;" class="side-menu <?= $KelolaHargaEmas ?>">
+                        <div class="side-menu__icon"> <i data-feather="dollar-sign"></i> </div>
+                        <div class="side-menu__title"> Update Harga Emas <i data-feather="chevron-down" class="side-menu__sub-icon"></i> </div>
+                    </a>
+                    <ul class="<?= $dataHargaEmas ?>">
+                        <li>
+                            <a href="<?= base_url('data-kelompok') ?>" class="side-menu">
+                                <div class="side-menu__icon"> <i data-feather="circle"></i> </div>
+                                <div class="side-menu__title"> Data Kelompok </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= base_url('data-jenis') ?>" class="side-menu">
+                                <div class="side-menu__icon"> <i data-feather="circle"></i> </div>
+                                <div class="side-menu__title"> Data Jenis </div>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <!-- <li>
                     <a href="<?= base_url('wp-user') ?>" class="side-menu side-menu<?= $user ?>">

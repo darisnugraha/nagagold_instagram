@@ -345,8 +345,38 @@ class DataBarang extends MX_Controller
             redirect('wp-kategori-barang');
         }
     }
-    function updateHargaEmas(){
-        $this->template->display_admin('UpdateHargaEmas/index');
+    function datajenis(){
+        $this->session->set_userdata('title', 'Data Jenis Kelompok');
+        $this->template->display_admin('UpdateHargaEmas/DataJenis/index');
+    }
+    function simpanjenishargaemas(){
+        $data['kode_jenis'] = $this->input->post('kode_jenis');
+        $data['nama_jenis'] = $this->input->post('nama_jenis');
+        $data['harga'] = $this->input->post('harga');
+        $respons                    = $this->SERVER_API->_postAPI('jenis', $data, $this->token);
+        if ($respons->status == "berhasil") {
+            $this->session->set_flashdata('alert', success($respons->pesan));
+            redirect('data-kelompok');
+        } else {
+            $this->session->set_flashdata('alert', information($respons->pesan));
+            redirect('data-kelompok');
+        }
+    }
+    function datakelompok(){
+        $this->session->set_userdata('title', 'Data Kelompok');
+        $this->template->display_admin('UpdateHargaEmas/Datakelompok/index');
+    }
+    function simpankelompok(){
+        $data['kode_kelompok'] = $this->input->post('kode_kelompok');
+        $data['nama_kelompok'] = $this->input->post('nama_kelompok');
+        $respons                    = $this->SERVER_API->_postAPI('kelompok', $data, $this->token);
+        if ($respons->status == "berhasil") {
+            $this->session->set_flashdata('alert', success($respons->pesan));
+            redirect('data-kelompok');
+        } else {
+            $this->session->set_flashdata('alert', information($respons->pesan));
+            redirect('data-kelompok');
+        }
     }
     function editkategori()
     {
