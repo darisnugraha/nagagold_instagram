@@ -292,7 +292,7 @@ if (isset($cart->data)) {
                                             <?php else : ?>
                                                 <span class="toggle-submenu"></span>
                                                 <div class="submenu">
-                                                    <ul>
+                                                    <ul dir="ltr"  style="width: auto; height: 200px; overflow: auto;scrollbar-width: thin; ">
                                                         <?php foreach ($ktgori->jenis  as $rowdetaimenu) : ?>
                                                             <li>
                                                                 <strong class="title"><a href="<?= base_url('carijenis/' . encrypt_url($rowdetaimenu->kode_jenis) . '/' . encrypt_url($rowdetaimenu->nama_jenis)) ?>"><?= $rowdetaimenu->nama_jenis ?></a></strong>

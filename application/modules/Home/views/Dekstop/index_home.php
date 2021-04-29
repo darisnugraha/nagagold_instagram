@@ -27,7 +27,7 @@
                                     <?php else : ?>
                                         <span class="toggle-submenu"></span>
                                         <div class="submenu">
-                                            <ul>
+                                            <ul dir="ltr"  style="width: auto; height: 200px; overflow: auto;scrollbar-width: thin; ">
                                                 <?php foreach ($kategori[$i]->jenis  as $rowdetaimenu) : ?>
                                                     <li>
                                                         <strong class="title">
