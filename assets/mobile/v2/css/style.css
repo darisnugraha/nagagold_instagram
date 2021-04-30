@@ -93,7 +93,7 @@ html {
 	font-family: "Roboto", sans-serif;
 	color: #747794;
 	overflow-x: hidden;
-	background-color: #e7eaf5;
+	background-color: #FFFFFF;
 	-webkit-transition-duration: 500ms;
 	-o-transition-duration: 500ms;
 	transition-duration: 500ms;
@@ -469,7 +469,7 @@ textarea:invalid {
 .card {
 	border-color: transparent !important;
 	border-radius: 0.75rem;
-	box-shadow: 0 1px 1px 0px #d7def4;
+	box-shadow: 1px 1px 5px 1px #d7def4;
 }
 .card .card-body {
 	padding: 1rem;
@@ -3799,7 +3799,7 @@ textarea:invalid {
 	padding-top: 1rem;
 	padding-bottom: 1rem;
 	overflow-x: hidden;
-	background-color: #e7eaf5;
+	background-color: #FFFFFF;
 }
 
 .contact-form {
@@ -4136,10 +4136,10 @@ textarea:invalid {
 
 /* Night Mode */
 #previewPage[data-theme="dark"] {
-	background-color: #e7eaf5;
+	background-color: #FFFFFF;
 }
 #previewPage[data-theme="dark"] body {
-	background-color: #e7eaf5;
+	background-color: #FFFFFF;
 }
 #previewPage[data-theme="dark"]
 	.preview-iframe-wrapper

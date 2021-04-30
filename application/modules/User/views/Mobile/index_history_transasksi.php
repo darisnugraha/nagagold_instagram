@@ -127,10 +127,21 @@
                 cache: false,
                 success: function(data) {
                     // console.log(data);
-                    if (data == '') {
+                    if (data == 'transaksi_tidak_ada') {
                         $('#load_data_message').html(`
-                    <br>
-                   `);
+                    <div class="card weekly-product-card mb-3">
+                        <div class="card-body d-flex align-items-center">
+                        Belum Ada Transaksi.
+                        </div>
+                    </div><br> `);
+                        action = 'active';
+                    }else if(data===""){
+                        $('#load_data_message').html(`
+                    <div class="card weekly-product-card mb-3">
+                        <div class="card-body d-flex align-items-center">
+                        Transaksi Sudah Mencapai Batas.
+                        </div>
+                    </div><br> `);
                         action = 'active';
                     } else {
                         $('#load_data').append(data);

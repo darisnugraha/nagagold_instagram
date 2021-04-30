@@ -376,7 +376,15 @@ class UserController extends MX_Controller
 			// $startindex		= '0';
 			$output = '';
 			$data     					= $this->SERVER_API->_getAPI('customer/history-transaksi/' . $startindex . '&' . $limit,$this->token);
-
+			// echo $data->count;
+			if ($data->count == 0) {
+				echo "transaksi_tidak_ada";
+				die;
+			}
+			if ($data->data == null) {
+				echo $output;
+				die;
+			}
 			if ($data->count > $this->input->post('start')) {
 				foreach ($data->data as $row) {
 					$output .= ' 

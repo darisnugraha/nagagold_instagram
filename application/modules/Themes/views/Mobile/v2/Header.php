@@ -21,16 +21,11 @@
   <!-- Favicon-->
   <link rel="icon" href="<?= base_url('assets/logo/fanction.ico') ?>" type="image/x-icon" />
   <!-- Stylesheet-->
-  <link rel="stylesheet" href="<?= base_url('assets/mobile/v2/css/') ?>style.min.css?v1.3">
+  <link rel="stylesheet" href="<?= base_url('assets/mobile/v2/css/') ?>style-min.css?v1.4">
   <script src="<?= base_url('assets/mobile/v2/js/') ?>jquery.min.js"></script>
   <script>
     var base_url = '<?= base_url() ?>';
   </script>
-    <style>
-        body{
-            background-color :#FFFFFF !important
-        }
-    </style>
 </head>
 
 <body>
