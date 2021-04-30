@@ -26,6 +26,11 @@
   <script>
     var base_url = '<?= base_url() ?>';
   </script>
+    <style>
+        body{
+            background-color :#FFFFFF !important
+        }
+    </style>
 </head>
 
 <body>
