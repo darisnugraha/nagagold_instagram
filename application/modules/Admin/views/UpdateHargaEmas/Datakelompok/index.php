@@ -50,6 +50,6 @@
         </table>
     </div>
     <?= $this->load->view('Admin/UpdateHargaEmas/Datakelompok/tambahKelompok'); ?>
-    <?= $this->load->view('Admin/UpdateHargaEmas/Datakelompok/editkelompok'); ?>
+    <?= $this->load->view('Admin/UpdateHargaEmas/Datakelompok/editKelompok'); ?>
 
 </div>
