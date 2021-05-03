@@ -39,7 +39,7 @@
                         <?= $row->nama_jenis ?>
                     </td>
                     <td>
-                        <?= $row->harga ?>
+                        <?= number_format($row->harga) ?>
                     </td>
                     <td class="border-b-2 text-center whitespace-no-wrap">
                         <div class="flex sm:justify-center items-center">

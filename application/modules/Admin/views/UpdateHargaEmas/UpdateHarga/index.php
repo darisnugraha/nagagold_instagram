@@ -57,7 +57,7 @@
                     </td>
                     <td>
                        <input type="hidden" name="kode_jenis[]" class="form-control" value="<?= $row->kode_jenis ?>">
-                       <input type="text" autocomplete="off" required name="harga[]"class="form-control rupiah" value="<?= number_format($row->harga) ?>">
+                       <input type="text" autocomplete="off" style="border: 1px solid black;" required name="harga[]"class="form-control rupiah" value="<?= number_format($row->harga) ?>">
                     </td>
                 </tr>
                 <?php endforeach; ?>

@@ -411,7 +411,7 @@ class DataBarang extends MX_Controller
         $data['kode_kelompok'] = $this->input->post('kode_kelompok');
         $data['kode_jenis'] = $this->input->post('kode_jenis');
         $data['nama_jenis'] = $this->input->post('nama_jenis');
-        $data['harga'] = intval($this->input->post('harga'));
+        $data['harga'] = intval(str_replace(',','',$this->input->post('harga')));
         $respons                    = $this->SERVER_API->_postAPI('jenis-kelompok/add', $data, $this->token);
         if ($respons->status == "berhasil") {
             $this->session->set_flashdata('alert', success($respons->pesan));
