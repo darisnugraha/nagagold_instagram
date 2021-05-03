@@ -345,15 +345,112 @@ class DataBarang extends MX_Controller
             redirect('wp-kategori-barang');
         }
     }
+    function carikodekelompok(){
+        $respons['data']                    = $this->SERVER_API->_getAPI('jenis-kelompok/kelompok/'. $this->input->post('kode_kelompok'),$this->token);
+        $respons['DataKelompok']            = $this->SERVER_API->_getAPI('kelompok/all');
+        $respons['kode'] =  $this->input->post('kode_kelompok');
+        $this->session->set_userdata('title', 'Cari Kode Kelompok');
+        $this->template->display_admin('UpdateHargaEmas/UpdateHarga/index',$respons);
+    }
+    function simpanupdateemas(){
+        // $data['data_jenis'] = 
+        // [
+        //     'kode_jenis' => $this->input->post('kode_jenis'),
+        //     'harga' => intval($this->input->post('harga'))
+        // ];
+
+        $harga = $this->input->post('harga');
+        $kode_jenis = $this->input->post('kode_jenis');
+        for ($i=0; $i <count($harga); $i++) { 
+            $data['data_jenis'][$i]['harga'] = intval(str_replace(',','',$harga[$i]));
+            $data['data_jenis'][$i]['kode_jenis'] = $kode_jenis[$i];
+        }
+
+        $hasil                   = $this->SERVER_API->_putAPI('jenis-kelompok/update-harga/'. $this->input->post('kode_kelompok'),$data,$this->token);
+        // $respons['DataKelompok']            = $this->SERVER_API->_getAPI('kelompok/all');
+        // $respons['kode'] =  $this->input->post('kode_kelompok');
+        // $respons['data']                    = $this->SERVER_API->_getAPI('jenis-kelompok/kelompok/'. $this->input->post('kode_kelompok'),$this->token);
+        if ($hasil->status == "berhasil") {
+            $this->session->set_flashdata('alert', success($hasil->pesan));
+            // $this->template->display_admin('UpdateHargaEmas/UpdateHarga/index',$respons);
+            redirect('update-harga-emas');
+        }else{
+            $this->session->set_flashdata('alert', information($hasil->pesan));
+            redirect('update-harga-emas');
+            // $this->template->display_admin('UpdateHargaEmas/UpdateHarga/index',$respons);
+        }
+    }
+    function updatehargaemas(){
+        $respons['data']                    = [];
+        $response['kode'] = [];
+        $respons['DataKelompok']            = $this->SERVER_API->_getAPI('kelompok/all');
+        $this->session->set_userdata('title', 'Upddate Harga Emas');
+        $this->template->display_admin('UpdateHargaEmas/UpdateHarga/index',$respons);
+    }
     function datajenis(){
+        $respons['data']                    = $this->SERVER_API->_getAPI('jenis-kelompok/all', $data, $this->token);
+        $respons['datakelompok']            = $this->SERVER_API->_getAPI('kelompok/all', $this->token);
         $this->session->set_userdata('title', 'Data Jenis Kelompok');
-        $this->template->display_admin('UpdateHargaEmas/DataJenis/index');
+        $this->template->display_admin('UpdateHargaEmas/DataJenis/index',$respons);
+    }
+    function simpaneditjenishargaemas(){
+        // $data['kode_kelompok'] = $this->input->post('kode_kelompok');
+        // $data['kode_jenis'] = $this->input->post('kode_jenis');
+        $data['nama_jenis'] = $this->input->post('nama_jenis');
+        // $data['harga'] = intval($this->input->post('harga'));
+        $respons                    = $this->SERVER_API->_putAPI('jenis-kelompok/update/'.$this->input->post('kode_jenis'), $data, $this->token);
+        if ($respons->status == "berhasil") {
+            $this->session->set_flashdata('alert', success($respons->pesan));
+            redirect('data-jenis');
+        } else {
+            $this->session->set_flashdata('alert', information($respons->pesan));
+            redirect('data-jenis');
+        }
     }
     function simpanjenishargaemas(){
+        $data['kode_kelompok'] = $this->input->post('kode_kelompok');
         $data['kode_jenis'] = $this->input->post('kode_jenis');
         $data['nama_jenis'] = $this->input->post('nama_jenis');
-        $data['harga'] = $this->input->post('harga');
-        $respons                    = $this->SERVER_API->_postAPI('jenis', $data, $this->token);
+        $data['harga'] = intval($this->input->post('harga'));
+        $respons                    = $this->SERVER_API->_postAPI('jenis-kelompok/add', $data, $this->token);
+        if ($respons->status == "berhasil") {
+            $this->session->set_flashdata('alert', success($respons->pesan));
+            redirect('data-jenis');
+        } else {
+            $this->session->set_flashdata('alert', information($respons->pesan));
+            redirect('data-jenis');
+        }
+    }
+    function datakelompok(){
+        $this->session->set_userdata('title', 'Data Kelompok');
+        $respons['data'] = $this->SERVER_API->_getAPI('kelompok/all');
+        $this->template->display_admin('UpdateHargaEmas/Datakelompok/index',$respons);
+    }
+    function hapusjeniskelompok($id){
+        $respons = $this->SERVER_API->_deletetAPI('jenis-kelompok/delete/'.$id,$this->token);
+        if ($respons->status == "berhasil") {
+            $this->session->set_flashdata('alert', success($respons->pesan));
+            redirect('data-jenis');
+        } else {
+            $this->session->set_flashdata('alert', information($respons->pesan));
+            redirect('data-jenis');
+        }
+
+    }
+    function hapuskelompok($id){
+        $respons = $this->SERVER_API->_deletetAPI('kelompok/delete/'.$id,$this->token);
+        if ($respons->status == "berhasil") {
+            $this->session->set_flashdata('alert', success($respons->pesan));
+            redirect('data-kelompok');
+        } else {
+            $this->session->set_flashdata('alert', information($respons->pesan));
+            redirect('data-kelompok');
+        }
+
+    }
+    function updateKelompok(){
+        $data['nama_kelompok'] = $this->input->post('nama_kelompok');
+        $respons                    = $this->SERVER_API->_putAPI('kelompok/update/'.$this->input->post('kode_kelompok'), $data, $this->token);
         if ($respons->status == "berhasil") {
             $this->session->set_flashdata('alert', success($respons->pesan));
             redirect('data-kelompok');
@@ -362,14 +459,10 @@ class DataBarang extends MX_Controller
             redirect('data-kelompok');
         }
     }
-    function datakelompok(){
-        $this->session->set_userdata('title', 'Data Kelompok');
-        $this->template->display_admin('UpdateHargaEmas/Datakelompok/index');
-    }
     function simpankelompok(){
         $data['kode_kelompok'] = $this->input->post('kode_kelompok');
         $data['nama_kelompok'] = $this->input->post('nama_kelompok');
-        $respons                    = $this->SERVER_API->_postAPI('kelompok', $data, $this->token);
+        $respons                    = $this->SERVER_API->_postAPI('kelompok/add', $data, $this->token);
         if ($respons->status == "berhasil") {
             $this->session->set_flashdata('alert', success($respons->pesan));
             redirect('data-kelompok');

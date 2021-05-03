@@ -60,7 +60,7 @@ if ($thisPage == "/hidup_retail/wp-user" || $thisPage == "/hidup_retail/wp-user-
 }
 $KelolaHargaEmas = "";
 $dataHargaEmas = "";
-if ($thisPage == "/hidup_retail/data-kelompok" || $thisPage == "/hidup_retail/data-jenis") {
+if ($thisPage == "/hidup_retail/data-kelompok" || $thisPage == "/hidup_retail/data-jenis" || $thisPage == "/hidup_retail/update-harga-emas" || $thisPage == "/hidup_retail/cari-kode-kelompok") {
     $KelolaHargaEmas = "tooltipstered side-menu--open side-menu--active";
     $dataHargaEmas = "side-menu__sub-open";
 }
@@ -369,6 +369,12 @@ if ($thisPage == "/hidup_retail/data-kelompok" || $thisPage == "/hidup_retail/da
                             <a href="<?= base_url('data-jenis') ?>" class="side-menu">
                                 <div class="side-menu__icon"> <i data-feather="circle"></i> </div>
                                 <div class="side-menu__title"> Data Jenis </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= base_url('update-harga-emas') ?>" class="side-menu">
+                                <div class="side-menu__icon"> <i data-feather="circle"></i> </div>
+                                <div class="side-menu__title"> Update Harga Emas </div>
                             </a>
                         </li>
                     </ul>

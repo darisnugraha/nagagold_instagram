@@ -2,12 +2,15 @@
 </div>
 
 <script src="<?php echo base_url('assets/theme/js/sweetalert2/sweetalert2.min.js') ?>"></script>
+<script src="<?php echo base_url('assets/admin/js/simple.money.format.js') ?>"></script>
 <?php
 if ($this->session->flashdata('alert')) {
     echo $this->session->flashdata('alert');
 }
 ?>
 <script>
+    
+    $('.rupiah').simpleMoneyFormat();
     function hapusconfirm(url) {
         Swal.fire({
             title: 'Konfirmasi Hapus Data!',

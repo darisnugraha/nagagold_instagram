@@ -154,10 +154,18 @@ $route['wp-laporan']               = 'Admin/Laporan/laporanbarang';
 $route['export-laporan-stock']     = 'Admin/Laporan/exportLaporanstock';
 
 $route['data-jenis']               = 'Admin/DataBarang/datajenis';
-$route['simpan-jenis']               = 'Admin/DataBarang/simpanjenishargaemas';
+$route['simpan-jenis-kelompok']    = 'Admin/DataBarang/simpanjenishargaemas';
+$route['simpan-edit-jenis-kelompok']    = 'Admin/DataBarang/simpaneditjenishargaemas';
+$route['hapus-jenis-kelompok/(:any)']       = 'Admin/DataBarang/hapusjeniskelompok/$1';
+
+$route['update-harga-emas']               = 'Admin/DataBarang/updatehargaemas';
+$route['cari-kode-kelompok']              = 'Admin/DataBarang/carikodekelompok';
+$route['simpan-update-emas']              = 'Admin/DataBarang/simpanupdateemas';
 
 $route['data-kelompok']               = 'Admin/DataBarang/datakelompok';
-$route['simpan-kelompok']               = 'Admin/DataBarang/simpankelompok';
+$route['simpan-edit-kelompok']        = 'Admin/DataBarang/updateKelompok';
+$route['hapus-kelompok/(:any)']       = 'Admin/DataBarang/hapuskelompok/$1';
+$route['simpan-kelompok']             = 'Admin/DataBarang/simpankelompok';
 
 //Kategori
 $route['wp-kategori-barang']                 = 'Admin/DataBarang/kategoribarang';

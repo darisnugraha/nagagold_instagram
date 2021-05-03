@@ -1,33 +1,23 @@
+<?php $no=1; foreach($data->data  as $row ): ?>
 <div class="p-5" id="header-footer-modal">
     <div class="preview">
-        <div class="modal" id="tambahjeniskelompok">
+        <div class="modal" id="editkelompok<?=  $row->kode_kelompok ?>">
             <div class="modal__content">
                 <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200">
                     <h2 class="font-medium text-base mr-auto">
-                        Tambah Jenis Kelompok
+                        Edit Kelompok
                     </h2>
                 </div>
-                <form action="<?= base_url('simpan-jenis-kelompok') ?>" method="POST">
+                <form action="<?= base_url('simpan-edit-kelompok') ?>" method="POST">
                     <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
                         <div class="col-span-12 sm:col-span-12">
                             <label>Kode Kelompok</label>
-                            <select name="kode_kelompok" style="width:100%" class="select2 w-full input w-full border mt-2 flex-1">
-                                <?php foreach ($datakelompok->data  as $kategori) : ?>
-                                    <option value="<?= $kategori->kode_kelompok ?>"><?= $kategori->nama_kelompok ?></option>
-                                <?php endforeach; ?>
-                            </select>
+                            <input type="hidden" value="<?= $row->kode_kelompok ?>" required onkeypress="return event.keyCode != 13;" name="kode_kelompok" class="input w-full border mt-2 flex-1" placeholder="Masukan Kode Kelompok">
+                            <input type="text" disabled value="<?= $row->kode_kelompok ?>" required onkeypress="return event.keyCode != 13;" name="kode_kelompok" class="input w-full border mt-2 flex-1" placeholder="Masukan Kode Kelompok">
                         </div>
                         <div class="col-span-12 sm:col-span-12">
-                            <label>Kode Jenis</label>
-                            <input type="text" required onkeypress="return event.keyCode != 13;" name="kode_jenis" class="input w-full border mt-2 flex-1" placeholder="Masukan Kode Jenis">
-                        </div>
-                        <div class="col-span-12 sm:col-span-12">
-                            <label>Nama Jenis</label>
-                            <input type="text" required onkeypress="return event.keyCode != 13;" name="nama_jenis" class="input w-full border mt-2 flex-1" placeholder="Masukan Nama Jenis">
-                        </div>
-                        <div class="col-span-12 sm:col-span-12">
-                            <label>Harga</label>
-                            <input type="text" required onkeypress="return event.keyCode != 13;" name="harga" class="input w-full border mt-2 flex-1" placeholder="Masukan Harga">
+                            <label>Nama Kelompok</label>
+                            <input type="text" value="<?= $row->nama_kelompok ?>" required onkeypress="return event.keyCode != 13;" name="nama_kelompok" class="input w-full border mt-2 flex-1" placeholder="Masukan Nama Kelompok">
                         </div>
                     </div>
                     <div class="px-5 py-3 text-right border-t border-gray-200">
@@ -45,3 +35,4 @@
         </div>
     </div>
 </div>
+<?php endforeach; ?>
