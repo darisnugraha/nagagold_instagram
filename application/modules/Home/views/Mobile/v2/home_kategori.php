@@ -121,35 +121,43 @@
         </div>
     </div>
 
-    <!-- <div class="product-catagories-wrapper pt-3">
+    <div class="product-catagories-wrapper pt-3">
         <div class="container">
             <div class="text-center">
+                <?php if($DataKelompok->data != null): ?>
                 <h6 class="ml-1">Harga Emas Hari Ini</h6>
+                <?php endif; ?>
             </div>
             <div class="product-catagory-wrap">
                 <div class="row">
                     <div class="table-responsive container">
                         <div class="ignielHorizontal">
                             <ul>
-                                <li><button onclick="openCity('menunggupembayaran','Menunggu Pembayaran','tab1')"
-                                        id="tab1" class="buttonku activeku"> UBS
-                                        <?= $notifmenunggupembayaran ?> </button></li>
-                                <li><button onclick="openCity('menunggukonfirmasi','Menunggu Konfirmasi','tab2')"
-                                        id="tab2" class="buttonku">Mini Logam Mulia
-                                        <?= $notifmenunggukonfirmasi ?></button></li>
-                                <li><button onclick="openCity('pesanandalamproses','Pesanan Dalam Proses','tab3')"
-                                        id="tab3" class="buttonku">KING HALIM<?= $notifproses ?></button>
-                                </li>
-                                <li><button class="buttonku"
-                                        onclick="openCity('pesanandalampengiriman','Pesanan Sedang Dikirim','tab4')"
-                                        id="tab4">UBS DISNEY <?= $notiffinish ?></button></li>
+                                <?php $no=1; foreach($DataKelompok->data  as $kelompok ): ?>
+                                    <?php if($kelompok->jenisKelompok != null): ?>
+                                <li><button onclick="openCity('<?= $kelompok->kode_kelompok ?>','<?= $kelompok->kode_kelompok ?>','tab<?=$no ?>')"
+                                        id="tab<?=$no ?>" class="buttonku" > <?= $kelompok->nama_kelompok ?> </button></li>
+                                <?php endif; ?>
+                                <?php $no++; endforeach; ?>
                             </ul>
                         </div>
-                        <div id="menunggupembayaran" class="city">
+                        <!-- <div class="city" style="display:block">
+                            <div class="card mb-3">
+                                <div class="card bg-success">
+                                    <div class="card-body">
+                                        <h6 class="text-center mb-0 text-white">Informasi Update Harga
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <?php $n2=1; foreach($DataKelompok->data  as $detailkelompok ): ?>
+                        <?php if($detailkelompok->jenisKelompok != null): ?>
+                        <div id="<?= $detailkelompok->kode_kelompok ?>" class="city" style="display:none">
                             <div class="cart-table card mb-3">
                                 <div class="card shipping-method-choose-title-card bg-success">
                                     <div class="card-body">
-                                        <h6 class="text-center mb-0 text-white">Harga Emas UBS
+                                        <h6 class="text-center mb-0 text-white">UPDATE HARGA <?= $detailkelompok->nama_kelompok ?>
                                         </h6>
                                     </div>
                                 </div>
@@ -161,34 +169,24 @@
                                                 <th>Jenis</th>
                                                 <th nowrap>Harga</th>
                                             </tr>
+                                            <?php $nomerna=1; foreach($detailkelompok->jenisKelompok  as $brg ): ?>
                                             <tr>
-                                                <td> 1 </td>
-                                                <td> Mini Logam Mulia
-                                                    @0,1gr </td>
-                                                <td> 112.000 </td>
+                                                <td> <?= $nomerna++ ?> </td>
+                                                <td> <?= $brg->nama_jenis ?></td>
+                                                <td> <?= number_format($brg->harga) ?> </td>
                                             </tr>
-                                            <tr>
-                                                <td> 2 </td>
-                                                <td> Mini Logam Mulia
-                                                    @0,1gr </td>
-                                                <td> 112.000 </td>
-                                            </tr>
-                                            <tr>
-                                                <td> 3 </td>
-                                                <td> Mini Logam Mulia
-                                                    @0,1gr </td>
-                                                <td> 112.000 </td>
-                                            </tr>
-                                          
+                                            <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
+                        <?php endif; ?>
+                        <?php $n2++; endforeach; ?>
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
     </div>
     <style>
     .owl-dots {
@@ -201,6 +199,29 @@
     </style>
 
     <?= $this->session->flashdata('alertcart') ?>
+    <script>
+        // $( document ).ready(function() {
+        //     $('')
+        // });
+        function openCity(cityName, titlemenu, tab) {
+        for (var t = 1; t < <?= count($DataKategori->data) ?>; t++) {
+            if (tab == "tab" + t) {
+                $('.titlemenu').html('');
+                $('.titlemenu').append(titlemenu);
+                $('#' + tab).addClass('activeku');
+            } else {
+                $('#tab' + t).removeClass('activeku');
+            }
+        }
+
+        var i;
+        var x = document.getElementsByClassName("city");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        document.getElementById(cityName).style.display = "block";
+    }
+    </script>
 </div>
 <br>
 <br>

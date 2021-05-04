@@ -388,7 +388,7 @@ class DataBarang extends MX_Controller
         $this->template->display_admin('UpdateHargaEmas/UpdateHarga/index',$respons);
     }
     function datajenis(){
-        $respons['data']                    = $this->SERVER_API->_getAPI('jenis-kelompok/all', $data, $this->token);
+        $respons['data']                    = $this->SERVER_API->_getAPI('jenis-kelompok/all',$this->token);
         $respons['datakelompok']            = $this->SERVER_API->_getAPI('kelompok/all', $this->token);
         $this->session->set_userdata('title', 'Data Jenis Kelompok');
         $this->template->display_admin('UpdateHargaEmas/DataJenis/index',$respons);

@@ -28,6 +28,8 @@ class Home extends MX_Controller
 			$respons['Slider'] 		   = $this->SERVER_API->_getAPI('slide/all', $this->token);
 			$respons['DataBarangBaru'] = $this->SERVER_API->_getAPI('barang/all-new/1&20', '');
 			$respons['DataBarang']     = $this->SERVER_API->_getAPI('barang/kategori-jenis-active', $this->token);
+			$respons['DataKelompok']   = $this->SERVER_API->_getAPI('kelompok/jenis',$this->token);
+
 			if ($this->mobile === true) {
 				$this->session->set_userdata('title', 'Home');
 				$this->session->set_userdata('status_header', 'Home');
