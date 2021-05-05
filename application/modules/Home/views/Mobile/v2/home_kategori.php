@@ -99,7 +99,31 @@
 }
 </style>
 <div class="page-content-wrapper">
+<div class="hero-slides owl-carousel">
+    <!-- Single Hero Slide-->
 
+    <?php if ($Slider->data == null) : ?>
+      <div class="single-hero-slide" style="background-image: url('<?= base_url('assets/images/slidenotfound.jpg') ?>'); background-size: cover;">
+        <div class="slide-content h-100 d-flex align-items-center">
+          <!-- <div class="container">
+              <h4 class="text-white mb-0" data-animation="fadeInUp" data-delay="100ms" data-wow-duration="1000ms">Amazon Echo</h4>
+              <p class="text-white" data-animation="fadeInUp" data-delay="400ms" data-wow-duration="1000ms">3rd Generation, Charcoal</p><a class="btn btn-primary btn-sm" href="#" data-animation="fadeInUp" data-delay="800ms" data-wow-duration="1000ms">Buy Now</a>
+            </div> -->
+        </div>
+      </div>
+    <?php else : ?>
+      <?php foreach ($Slider->data as $row) : ?>
+        <div class="single-hero-slide" style="background-image: url('<?= base_url('assets/images/NsiPic/sliderpromo/' . $row->lokasi_gambar) ?>'); background-size: cover;">
+          <div class="slide-content h-100 d-flex align-items-center">
+            <!-- <div class="container">
+              <h4 class="text-white mb-0" data-animation="fadeInUp" data-delay="100ms" data-wow-duration="1000ms">Amazon Echo</h4>
+              <p class="text-white" data-animation="fadeInUp" data-delay="400ms" data-wow-duration="1000ms">3rd Generation, Charcoal</p><a class="btn btn-primary btn-sm" href="#" data-animation="fadeInUp" data-delay="800ms" data-wow-duration="1000ms">Buy Now</a>
+            </div> -->
+          </div>
+        </div>
+      <?php endforeach; ?>
+    <?php endif; ?>
+  </div>
     <div class="product-catagories-wrapper pt-3">
         <div class="container">
             <div class="product-catagory-wrap">
