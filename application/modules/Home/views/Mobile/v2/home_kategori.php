@@ -99,32 +99,34 @@
 }
 </style>
 <div class="page-content-wrapper">
-<div class="hero-slides owl-carousel">
-    <!-- Single Hero Slide-->
+    <div class="hero-slides owl-carousel">
+        <!-- Single Hero Slide-->
 
-    <?php if ($Slider->data == null) : ?>
-      <div class="single-hero-slide" style="background-image: url('<?= base_url('assets/images/slidenotfound.jpg') ?>'); background-size: cover;">
-        <div class="slide-content h-100 d-flex align-items-center">
-          <!-- <div class="container">
+        <?php if ($Slider->data == null) : ?>
+        <div class="single-hero-slide"
+            style="background-image: url('<?= base_url('assets/images/slidenotfound.jpg') ?>'); background-size: cover;">
+            <div class="slide-content h-100 d-flex align-items-center">
+                <!-- <div class="container">
               <h4 class="text-white mb-0" data-animation="fadeInUp" data-delay="100ms" data-wow-duration="1000ms">Amazon Echo</h4>
               <p class="text-white" data-animation="fadeInUp" data-delay="400ms" data-wow-duration="1000ms">3rd Generation, Charcoal</p><a class="btn btn-primary btn-sm" href="#" data-animation="fadeInUp" data-delay="800ms" data-wow-duration="1000ms">Buy Now</a>
             </div> -->
+            </div>
         </div>
-      </div>
-    <?php else : ?>
-      <?php foreach ($Slider->data as $row) : ?>
-        <div class="single-hero-slide" style="background-image: url('<?= base_url('assets/images/NsiPic/sliderpromo/' . $row->lokasi_gambar) ?>'); background-size: cover;">
-          <div class="slide-content h-100 d-flex align-items-center">
-            <!-- <div class="container">
+        <?php else : ?>
+        <?php foreach ($Slider->data as $row) : ?>
+        <div class="single-hero-slide"
+            style="background-image: url('<?=  $row->lokasi_gambar ?>'); background-size: cover;">
+            <div class="slide-content h-100 d-flex align-items-center">
+                <!-- <div class="container">
               <h4 class="text-white mb-0" data-animation="fadeInUp" data-delay="100ms" data-wow-duration="1000ms">Amazon Echo</h4>
               <p class="text-white" data-animation="fadeInUp" data-delay="400ms" data-wow-duration="1000ms">3rd Generation, Charcoal</p><a class="btn btn-primary btn-sm" href="#" data-animation="fadeInUp" data-delay="800ms" data-wow-duration="1000ms">Buy Now</a>
             </div> -->
-          </div>
+            </div>
         </div>
-      <?php endforeach; ?>
-    <?php endif; ?>
-  </div>
-    <div class="product-catagories-wrapper pt-3">
+        <?php endforeach; ?>
+        <?php endif; ?>
+    </div>
+    <!-- <div class="product-catagories-wrapper pt-3">
         <div class="container">
             <div class="product-catagory-wrap">
                 <div class="row">
@@ -143,7 +145,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <div class="product-catagories-wrapper pt-3">
         <div class="container">
@@ -158,9 +160,11 @@
                         <div class="ignielHorizontal">
                             <ul>
                                 <?php $no=1; foreach($DataKelompok->data  as $kelompok ): ?>
-                                    <?php if($kelompok->jenisKelompok != null): ?>
-                                <li><button onclick="openCity('<?= $kelompok->kode_kelompok ?>','<?= $kelompok->kode_kelompok ?>','tab<?=$no ?>')"
-                                        id="tab<?=$no ?>" class="buttonku" > <?= $kelompok->nama_kelompok ?> </button></li>
+                                <?php if($kelompok->jenisKelompok != null): ?>
+                                <li><button
+                                        onclick="openCity('<?= $kelompok->kode_kelompok ?>','<?= $kelompok->kode_kelompok ?>','tab<?=$no ?>')"
+                                        id="tab<?=$no ?>" class="buttonku"> <?= $kelompok->nama_kelompok ?> </button>
+                                </li>
                                 <?php endif; ?>
                                 <?php $no++; endforeach; ?>
                             </ul>
@@ -181,7 +185,8 @@
                             <div class="cart-table card mb-3">
                                 <div class="card shipping-method-choose-title-card bg-success">
                                     <div class="card-body">
-                                        <h6 class="text-center mb-0 text-white">UPDATE HARGA <?= $detailkelompok->nama_kelompok ?>
+                                        <h6 class="text-center mb-0 text-white">UPDATE HARGA
+                                            <?= $detailkelompok->nama_kelompok ?>
                                         </h6>
                                     </div>
                                 </div>
@@ -211,41 +216,71 @@
                 </div>
             </div>
         </div>
+        <div class="product-catagories-wrapper pt-3">
+            <div class="container">
+                <div class="section-heading d-flex align-items-center justify-content-between">
+                    <h6 class="ml-1">Kategori Barang</h6><a class="btn btn-primary btn-sm"
+                        onclick="$('.loaderform').show();" href="<?= base_url('listkategori') ?>">View All</a>
+                </div>
+                <div class="product-catagory-wrap">
+                    <div class="row" id="load_data_kategori">
+                        <div id="pesan_kategori"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="top-products-area clearfix">
+                <div class="container" id="loaderbarangbaru">
+
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Top Products-->
+        <?= $this->session->flashdata('alertcart') ?>
+        <div class="top-products-area clearfix">
+            <div class="container" id="databarangkategori">
+
+
+            </div>
+        </div>
     </div>
-    <style>
-    .owl-dots {
-        display: none;
-    }
+</div>
+</div>
+<style>
+.owl-dots {
+    display: none;
+}
 
-    .owl-nav {
-        display: none;
-    }
-    </style>
+.owl-nav {
+    display: none;
+}
+</style>
 
-    <?= $this->session->flashdata('alertcart') ?>
-    <script>
-        // $( document ).ready(function() {
-        //     $('')
-        // });
-        function openCity(cityName, titlemenu, tab) {
-        for (var t = 1; t < <?= count($DataKategori->data) ?>; t++) {
-            if (tab == "tab" + t) {
-                $('.titlemenu').html('');
-                $('.titlemenu').append(titlemenu);
-                $('#' + tab).addClass('activeku');
-            } else {
-                $('#tab' + t).removeClass('activeku');
-            }
+<?= $this->session->flashdata('alertcart') ?>
+<script>
+// $( document ).ready(function() {
+//     $('')
+// });
+function openCity(cityName, titlemenu, tab) {
+    for (var t = 1; t < <?= count($DataKategori->data) ?>; t++) {
+        if (tab == "tab" + t) {
+            $('.titlemenu').html('');
+            $('.titlemenu').append(titlemenu);
+            $('#' + tab).addClass('activeku');
+        } else {
+            $('#tab' + t).removeClass('activeku');
         }
-
-        var i;
-        var x = document.getElementsByClassName("city");
-        for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
-        }
-        document.getElementById(cityName).style.display = "block";
     }
-    </script>
+
+    var i;
+    var x = document.getElementsByClassName("city");
+    for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+    }
+    document.getElementById(cityName).style.display = "block";
+}
+</script>
 </div>
 <br>
 <br>

@@ -39,31 +39,30 @@ foreach ($DataKategori->data as $row) : ?>
                                 'lainnya' => "lainnya",
                             );
                             ?>
-                        <div class="col-span-12 sm:col-span-12">
-                            <label>Pilih Icon</label>
-                            <select style="width:100%" required class="form-control js-example-templating" name="icon">
-                                <?php foreach ($icon  as $i) : ?>
-                                <option <?php if (strtolower($row->icon) == $i) {
-                                                    echo 'selected';
-                                                } else {
-                                                    echo '';
-                                                } ?> value="<?= $i ?>"><?= $i ?> </option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                        <input type="hidden" name="banner_lama" value="<?= $row->banner ?>">
+                        
+                        <input type="hidden" name="banner_lama" value="<?= $row->icon ?>">
                         <div class="col-span-12">
+                            <div class="relative mt-2"> <input type="file"  onchange="document.getElementById('output<?=$row->kode_kategori ?>').src = window.URL.createObjectURL(this.files[0])"
+                                name="photo"  class="input pr-12 w-full border col-span-4"
+                                    placeholder="Price">
+                                <div
+                                    class="absolute top-0 right-0 rounded-r w-10 h-full flex items-center justify-center bg-gray-100 border text-gray-600">
+                                    <img width="570" height="250" onerror="this.onerror=null;this.src='<?= base_url('assets/images/slidenotfound.jpg') ?>';" id="output<?=$row->kode_kategori ?>" class="viewimages"
+                                        src="<?= $row->icon ?>">
+                                    </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-span-12">
                             <label>Ukuran File 1280px x 810px</label>
                             <img width="570" height="250" onerror="this.onerror=null;this.src='<?= base_url('assets/images/slidenotfound.jpg') ?>';" id="output<?=$row->kode_kategori ?>" class="viewimages"
                                 src="<?= $row->banner ?>">
                         </div>
                         <div class="col-span-12">
-                            <!-- <label>Foto Slider</label> -->
                             <input type="file"
                                 onchange="document.getElementById('output<?=$row->kode_kategori ?>').src = window.URL.createObjectURL(this.files[0])"
                                 type="file" name="photo" class="input w-full border mt-2 flex-1"
                                 placeholder="Masukan Nama Jenis">
-                        </div>
+                        </div> -->
                     </div>
                     <div class="px-5 py-3 text-right border-t border-gray-200">
                         <button type="button" data-dismiss="modal"

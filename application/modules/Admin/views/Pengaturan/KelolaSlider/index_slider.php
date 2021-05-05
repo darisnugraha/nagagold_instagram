@@ -26,7 +26,7 @@
                 foreach ($Slider->data  as $row) :  ?>
                     <tr>
                         <td class="border-b-2 whitespace-no-wrap"><?= $no++ ?></td>
-                        <td class="border-b-2 text-center whitespace-no-wrap"><img src="<?= base_url('assets/images/NsiPic/sliderpromo/' . $row->lokasi_gambar) ?>"></td>
+                        <td class="border-b-2 text-center whitespace-no-wrap"><img src="<?= $row->lokasi_gambar ?>"></td>
                         <td class="border-b-2 text-center whitespace-no-wrap">
                             <a class="flex items-center mr-3 pointer" onclick="hapusconfirm('<?= base_url('hapus-slider/' . $row->_id); ?>')"> <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>
                         </td>

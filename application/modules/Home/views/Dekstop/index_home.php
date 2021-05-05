@@ -20,7 +20,7 @@
                             for ($i = 0; $i < count($KategoriBarang->data); $i++) : ?>
                                 <li class="parent">
                                     <a href="<?= base_url('carikategori/' . encrypt_url($kategori[$i]->kode_kategori) . '/' . encrypt_url($kategori[$i]->nama_kategori)) ?>">
-                                        <span class="icon"><img src="<?= base_url() ?>/assets/icon/<?= strtolower($kategori[$i]->icon) ?>.png" alt="nav-cat"></span>
+                                        <span class="icon"><img onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= $kategori[$i]->icon ?>" alt="nav-cat"></span>
                                         <?= $kategori[$i]->nama_kategori ?>
                                     </a>
                                     <?php if ($kategori[$i]->jenis == NULL) : ?>
@@ -64,7 +64,7 @@
                         <?php else : ?>
                             <?php foreach ($Slider->data as $row) : ?>
                                 <div class="item">
-                                    <img width="1280px" height="530px" onError="this.onerror=null;this.src='<?php echo base_url('assets/slidenotfound.jpg') ?>';" src="<?= base_url('assets/images/NsiPic/sliderpromo/' . $row->lokasi_gambar) ?>" alt="slide1" class="img-slide">
+                                    <img width="1280px" height="530px" onError="this.onerror=null;this.src='<?php echo base_url('assets/slidenotfound.jpg') ?>';" src="<?= $row->lokasi_gambar ?>" alt="slide1" class="img-slide">
                                 </div>
                             <?php endforeach; ?>
                         <?php endif; ?>
@@ -162,7 +162,7 @@
                 <div class="block-floor-products block-floor-products-opt1 floor-products1" id="floor0-1">
                     <div class="container">
                         <div class="block-title ">
-                            <span class="title"><img alt="img" height="20px" src="<?= base_url('/assets/icon/' . strtolower($row->icon) . '.png') ?>"><?= $row->nama_kategori ?></span>
+                            <span class="title"><img alt="img" height="20px" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= $row->icon ?>"><?= $row->nama_kategori ?></span>
                             <div class="links dropdown">
                                 <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fa fa-bars" aria-hidden="true"></i>

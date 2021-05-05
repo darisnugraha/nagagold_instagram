@@ -351,14 +351,16 @@ class Home extends MX_Controller
 			$jml = count($data);
 			for ($i = 0; $i < 9; $i++) {
 				if ($data[$i] != null) {
-					$url = base_url('assets/icon/' . strtolower($data[$i]->icon));
+					$url = $data[$i]->icon;
 					$click = "$('.loaderform').show()";
+					$error = "this.onerror=null;this.src='" . base_url() . "/assets/images/notfound.png';";
+
 					$output = '
 					<div class="col-4">
 					<div class="card mb-4 catagory-card">
 						<div class="card-body">
 						<a onclick="' . $click . '" href="' . base_url('carikategori/' . encrypt_url($data[$i]->kode_kategori) . '/' . encrypt_url($data[$i]->nama_kategori)) . '">
-							<img src="' . $url . '.png" width="20px"><span>' . $data[$i]->nama_kategori . '</span>
+							<img onError="' . $error . '" src="' . $url . '" width="20px"><span>' . $data[$i]->nama_kategori . '</span>
 						</a>
 						</div>
 					</div>

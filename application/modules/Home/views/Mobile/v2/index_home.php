@@ -16,7 +16,7 @@
       </div>
     <?php else : ?>
       <?php foreach ($Slider->data as $row) : ?>
-        <div class="single-hero-slide" style="background-image: url('<?= base_url('assets/images/NsiPic/sliderpromo/' . $row->lokasi_gambar) ?>'); background-size: cover;">
+        <div class="single-hero-slide" style="background-image: url('<?=  $row->lokasi_gambar ?>'); background-size: cover;">
           <div class="slide-content h-100 d-flex align-items-center">
             <!-- <div class="container">
               <h4 class="text-white mb-0" data-animation="fadeInUp" data-delay="100ms" data-wow-duration="1000ms">Amazon Echo</h4>

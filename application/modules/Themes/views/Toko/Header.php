@@ -285,7 +285,7 @@ if (isset($cart->data)) {
                                     <?php foreach ($kategori->data as $ktgori) : ?>
                                         <li class="parent">
                                             <a href="<?= base_url('carikategori/' . encrypt_url($ktgori->kode_kategori) . '/' . encrypt_url($ktgori->nama_kategori)) ?>">
-                                                <span class="icon"><img src="<?= base_url() ?>/assets/icon/<?= strtolower($ktgori->icon) ?>.png" alt="nav-cat"></span>
+                                                <span class="icon"><img onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?= $ktgori->icon ?>" alt="nav-cat"></span>
                                                 <?= $ktgori->nama_kategori ?>
                                             </a>
                                             <?php if ($ktgori->jenis == NULL) : ?>

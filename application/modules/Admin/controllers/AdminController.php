@@ -371,7 +371,7 @@ class AdminController extends MX_Controller
             $this->load->library('image_lib', $config1);
             $this->image_lib->initialize($config1);
             $this->image_lib->resize();
-            $data['lokasi_gambar'] = $uploadData['file_name'];
+            $data['lokasi_gambar'] = base_url('assets/images/NsiPic/sliderpromo/').$uploadData['file_name'];
         }
         $respons = $this->SERVER_API->_postAPI('slide', $data, $this->token);
         if ($respons->status == "berhasil") {

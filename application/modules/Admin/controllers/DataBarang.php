@@ -299,7 +299,7 @@ class DataBarang extends MX_Controller
     {
         $info = pathinfo($_FILES['photo']['name']);
         $filename = $info['basename'];
-        $directory = "./assets/images/NsiPic/banner/";
+        $directory = "./assets/images/NsiPic/icon/";
         if (!is_dir($directory)) {
             mkdir($directory, 0777, true);
         }
@@ -321,21 +321,21 @@ class DataBarang extends MX_Controller
             $this->upload->do_upload('photo');
             $uploadData = $this->upload->data();
             $config1['image_library'] = 'gd2';
-            $config1['source_image'] = './assets/images/NsiPic/banner/' . $uploadData['file_name'];
+            $config1['source_image'] = './assets/images/NsiPic/icon/' . $uploadData['file_name'];
             $config1['create_thumb'] = FALSE;
             $config1['maintain_ratio'] = TRUE;
             $config1['quality'] = '70%';
-            $config1['width'] = 1280;
-            $config1['height'] = 810;
-            $config1['new_image'] = './assets/images/NsiPic/banner/' . $uploadData['file_name'];
+            // $config1['width'] = 1280;
+            // $config1['height'] = 810;
+            $config1['new_image'] = './assets/images/NsiPic/icon/' . $uploadData['file_name'];
             $this->load->library('image_lib', $config1);
             $this->image_lib->initialize($config1);
             $this->image_lib->resize();
-            $data['banner'] = base_url('assets/images/NsiPic/banner/').$uploadData['file_name'];
+            $data['icon'] = base_url('assets/images/NsiPic/icon/').$uploadData['file_name'];
+            $data['banner'] = base_url('assets/images/NsiPic/icon/').$uploadData['file_name'];
         }
         $data['kode_kategori']      = $this->input->post('kode_kategori');
         $data['nama_kategori']      = $this->input->post('nama_kategori');
-        $data['icon']               = $this->input->post('icon');
         $respons                    = $this->SERVER_API->_postAPI('kategori', $data, $this->token);
         if ($respons->status == "berhasil") {
             $this->session->set_flashdata('alert', success($respons->pesan));
@@ -482,7 +482,7 @@ class DataBarang extends MX_Controller
             unlink($file_asli);
             $info = pathinfo($_FILES['photo']['name']);
             $filename = $info['basename'];
-            $directory = "./assets/images/NsiPic/banner/";
+            $directory = "./assets/images/NsiPic/icon/";
 
             if (!is_dir($directory)) {
                 mkdir($directory, 0777, true);
@@ -505,22 +505,22 @@ class DataBarang extends MX_Controller
                 $this->upload->do_upload('photo');
                 $uploadData = $this->upload->data();
                 $config1['image_library'] = 'gd2';
-                $config1['source_image'] = './assets/images/NsiPic/banner/' . $uploadData['file_name'];
+                $config1['source_image'] = './assets/images/NsiPic/icon/' . $uploadData['file_name'];
                 $config1['create_thumb'] = FALSE;
                 $config1['maintain_ratio'] = TRUE;
                 $config1['quality'] = '70%';
                 $config1['width'] = 1280;
                 $config1['height'] = 810;
-                $config1['new_image'] = './assets/images/NsiPic/banner/' . $uploadData['file_name'];
+                $config1['new_image'] = './assets/images/NsiPic/icon/' . $uploadData['file_name'];
                 $this->load->library('image_lib', $config1);
                 $this->image_lib->initialize($config1);
                 $this->image_lib->resize();
-                $data['banner'] = base_url('assets/images/NsiPic/banner/').$uploadData['file_name'];
+                $data['icon']               =  base_url('assets/images/NsiPic/icon/').$uploadData['file_name'];
+                $data['banner'] = base_url('assets/images/NsiPic/icon/').$uploadData['file_name'];
             }
         }
         $kode                       = $this->input->post('kode_kategori');
         $data['nama_kategori']      = $this->input->post('nama_kategori');
-        $data['icon']               = $this->input->post('icon');
         $respons                     = $this->SERVER_API->_putAPI('kategori/1/' . $kode, $data, $this->token);
         if ($respons->status == "berhasil") {
             $this->session->set_flashdata('alert', success($respons->pesan));
