@@ -42,6 +42,7 @@ foreach ($DataKategori->data as $row) : ?>
                         
                         <input type="hidden" name="banner_lama" value="<?= $row->icon ?>">
                         <div class="col-span-12">
+                        <label>Ukuran File 32px x 32px</label>
                             <div class="relative mt-2"> <input type="file"  onchange="document.getElementById('output<?=$row->kode_kategori ?>').src = window.URL.createObjectURL(this.files[0])"
                                 name="photo"  class="input pr-12 w-full border col-span-4"
                                     placeholder="Price">
