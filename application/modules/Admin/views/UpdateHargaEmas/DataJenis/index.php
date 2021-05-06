@@ -19,12 +19,13 @@
                     <th class="border-b-2 whitespace-no-wrap">Kode Kelompok</th>
                     <th class="border-b-2 whitespace-no-wrap">Kode Jenis</th>
                     <th class="border-b-2 whitespace-no-wrap">Nama Jenis</th>
-                    <th class="border-b-2 whitespace-no-wrap">Harga</th>
+                    <!-- <th class="border-b-2 whitespace-no-wrap">Harga</th> -->
                     <th class="border-b-2 text-center whitespace-no-wrap">Action</th>
                 </tr>
             </thead>
             <tbody>
-            <?php $no=1; foreach($data->data  as $row ): ?>
+            <?php 
+            $no=1; foreach($data->data  as $row ): ?>
                 <tr>
                     <td>
                         <?= $no++  ?>
@@ -38,9 +39,9 @@
                     <td>
                         <?= $row->nama_jenis ?>
                     </td>
-                    <td>
+                    <!-- <td>
                         <?= number_format($row->harga) ?>
-                    </td>
+                    </td> -->
                     <td class="border-b-2 text-center whitespace-no-wrap">
                         <div class="flex sm:justify-center items-center">
                             <a class="flex items-center mr-3 pointer" data-toggle="modal"
