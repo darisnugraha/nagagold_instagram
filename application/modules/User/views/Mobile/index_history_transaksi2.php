@@ -558,7 +558,7 @@
                                     <h6 class="text-center mb-0 text-white">No Transaksi <br><?= $pesanankirim->id_trx ?></h6>
                                 </div>
                             </div>
-                            <div class="table-responsive container">
+                            <div class="table-responsive">
                                 <table class="table mb-0">
                                     <tbody>
                                         <div class="row">
@@ -697,20 +697,23 @@
                                             <?php endif; ?>
 
                                 </table>
-                                    <table class="table table-striped tbl_detail_kirim-<?= $pesanankirim->no_resi ?>" style="display: none;">
-                                        <thead>
-                                        <tr>
-                                            <td colspan="2" align="center" > <div class="kurir-<?= $pesanankirim->no_resi ?>"></div></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tanggal</td>
-                                            <td>Keterangan</td>
-                                        </tr>
-                                        </thead>
-                                        <tbody class="body_detail_kirim-<?= $pesanankirim->no_resi ?>">
-                                       
-                                        </tbody>
-                                    </table>
+                            </div>
+                            <div class="table-responsive container">
+
+                                <table class="table table-striped tbl_detail_kirim-<?= $pesanankirim->no_resi ?>" style="display: none;">
+                                    <thead>
+                                    <tr>
+                                        <td colspan="2" align="center" > <div class="kurir-<?= $pesanankirim->no_resi ?>"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tanggal</td>
+                                        <td>Keterangan</td>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="body_detail_kirim-<?= $pesanankirim->no_resi ?>">
+                                    
+                                    </tbody>
+                                </table>
                                
                             </div>
                         </div>
