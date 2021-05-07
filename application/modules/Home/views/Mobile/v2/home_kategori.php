@@ -76,7 +76,7 @@
     display: inline-block;
     font-size: 11px;
     /* margin: 15px 2px; */
-    margin: 6px 5px;
+    margin: 6px 10px;
     cursor: pointer;
     /* border-radius: 30px; */
     border-radius: 10px;
@@ -185,6 +185,7 @@
                                 </div>
                             </div>
                         </div> -->
+                        <br>
                         <?php $n2=1; foreach($DataKelompok->data  as $detailkelompok ): ?>
                         <?php if($detailkelompok->jenisKelompok != null): ?>
                         <div id="<?= $detailkelompok->kode_kelompok ?>" class="city" style="display:none">
