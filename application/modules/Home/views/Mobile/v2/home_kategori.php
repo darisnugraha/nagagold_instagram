@@ -75,9 +75,11 @@
     text-decoration: none;
     display: inline-block;
     font-size: 11px;
-    margin: 15px 2px;
+    /* margin: 15px 2px; */
+    margin: 6px 5px;
     cursor: pointer;
-    border-radius: 30px;
+    /* border-radius: 30px; */
+    border-radius: 10px;
 }
 
 .activeku,
@@ -157,18 +159,22 @@
             <div class="product-catagory-wrap">
                 <div class="row">
                     <div class="table-responsive container">
-                        <div class="ignielHorizontal">
-                            <ul>
+                        <!-- <div class="ignielHorizontal"> -->
+                            <!-- <ul> -->
+                                    <div class="row">
                                 <?php $no=1; foreach($DataKelompok->data  as $kelompok ): ?>
                                 <?php if($kelompok->jenisKelompok != null): ?>
-                                <li><button
+                                <div>
+                                <button
                                         onclick="openCity('<?= $kelompok->kode_kelompok ?>','<?= $kelompok->kode_kelompok ?>','tab<?=$no ?>')"
                                         id="tab<?=$no ?>" class="buttonku"> <?= $kelompok->nama_kelompok ?> </button>
-                                </li>
+                                <!-- </li> -->
+                                </div>
                                 <?php endif; ?>
                                 <?php $no++; endforeach; ?>
-                            </ul>
-                        </div>
+                                </div>
+                            <!-- </ul> -->
+                        <!-- </div> -->
                         <!-- <div class="city" style="display:block">
                             <div class="card mb-3">
                                 <div class="card bg-success">
