@@ -263,7 +263,7 @@
 //     $('')
 // });
 function openCity(cityName, titlemenu, tab) {
-    for (var t = 1; t < <?= count($DataKategori->data) ?>; t++) {
+    for (var t = 1; t <= <?= count($DataKelompok->data) ?>; t++) {
         if (tab == "tab" + t) {
             $('.titlemenu').html('');
             $('.titlemenu').append(titlemenu);
