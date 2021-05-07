@@ -64,11 +64,11 @@ class Shop extends MX_Controller
 					foreach ($data->data as $row) {
 						$totalongkos = $row->harga_jual+$row->ongkos;
 						if ($this->session->userdata('status_login') == "SEDANG_LOGIN") {
-							$status_login = '<a onclick="' . $loading . '" class="add-cart-btn btn btn-success" href="' . base_url('add-cart/' . encrypt_url($row->kode_barcode)) . '"> <i class="lni lni-plus"></i></a>';
-							// $status_login = '';
+							// $status_login = '<a onclick="' . $loading . '" class="add-cart-btn btn btn-success" href="' . base_url('add-cart/' . encrypt_url($row->kode_barcode)) . '"> <i class="lni lni-plus"></i></a>';
+							$status_login = '';
 						} else {
-							$status_login = '<a onclick="' . $click . '" class="btn btn-success btn-sm add2cart-notify" href="#"> <i class="lni lni-plus"></i></a>';
-							// $status_login = '';
+							// $status_login = '<a onclick="' . $click . '" class="btn btn-success btn-sm add2cart-notify" href="#"> <i class="lni lni-plus"></i></a>';
+							$status_login = '';
 						}
 						$databarang = $row->gambar;
 						for ($i = 0; $i < 1; $i++) {
@@ -119,8 +119,8 @@ class Shop extends MX_Controller
 										</a>';
 										// <i class="lni lni-plus"></i>
 									} else {
-							$status_login = '<button type="button"  onclick="' . $click . '" class="btn btn-cart"><span>Add to Cart</span></button>';
-							// $status_login = '';
+							// $status_login = '<button type="button"  onclick="' . $click . '" class="btn btn-cart"><span>Add to Cart</span></button>';
+							$status_login = '';
 						}
 						$totalongkos = $row->harga_jual+$row->ongkos;  
 						$output .= '
