@@ -2583,7 +2583,7 @@ textarea:invalid {
 	background-position: center center;
 	background-size: cover;
 }
-@media only screen and (min-width: 480px) and (max-width: 767px) {
+/* @media only screen and (min-width: 480px) and (max-width: 767px) {
 	.single-product-slide,
 	.blog-details-post-thumbnail {
 		height: 450px;
@@ -2606,7 +2606,7 @@ textarea:invalid {
 	.blog-details-post-thumbnail {
 		height: 600px;
 	}
-}
+} */
 
 .catagory-single-img {
 	position: relative;

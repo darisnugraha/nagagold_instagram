@@ -21,7 +21,7 @@
   <!-- Favicon-->
   <link rel="icon" href="<?= base_url('assets/logo/fanction.ico') ?>" type="image/x-icon" />
   <!-- Stylesheet-->
-  <link rel="stylesheet" href="<?= base_url('assets/mobile/v2/css/') ?>style-min.css?v1.9">
+  <link rel="stylesheet" href="<?= base_url('assets/mobile/v2/css/') ?>style-min.css?v2.0">
   <script src="<?= base_url('assets/mobile/v2/js/') ?>jquery.min.js"></script>
   <script>
     var base_url = '<?= base_url() ?>';

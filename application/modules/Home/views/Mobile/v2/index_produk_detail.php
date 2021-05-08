@@ -17,6 +17,7 @@ $total_harga_jual = $row->harga_jual+$row->ongkos;
         <br>
         <br>
         <div class="product-description pb-3">
+        <hr>
             <!-- Product Title & Meta Data-->
             <!-- <div class="product-title-meta-data bg-white mb-3 py-3"> -->
             <div class="product-title-meta bg-white">
