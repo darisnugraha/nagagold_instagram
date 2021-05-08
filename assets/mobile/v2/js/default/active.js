@@ -57,10 +57,10 @@
 			items: 1,
 			loop: true,
 			autoplay: true,
-			dots: true,
+			dots: false,
 			center: true,
 			margin: 0,
-			nav: true,
+			nav: false,
 			navText: [
 				'<i class="lni lni-chevron-left"></i>',
 				'<i class="lni lni-chevron-right"></i>',
@@ -105,26 +105,27 @@
 		var flashSlide = $(".flash-sale-slide");
 		flashSlide.owlCarousel({
 			items: 3,
-			margin: 16,
+			margin: 10,
 			loop: false,
 			autoplay: true,
 			smartSpeed: 800,
+            autoplayTimeout: 5000,
 			dots: false,
 			nav: false,
-			responsive: {
-				1500: {
-					items: 7,
-				},
-				992: {
-					items: 6,
-				},
-				768: {
-					items: 4,
-				},
-				480: {
-					items: 4,
-				},
-			},
+			// responsive: {
+			// 	1500: {
+			// 		items: 7,
+			// 	},
+			// 	992: {
+			// 		items: 6,
+			// 	},
+			// 	768: {
+			// 		items: 4,
+			// 	},
+			// 	480: {
+			// 		items: 4,
+			// 	},
+			// },
 		});
 	}
 

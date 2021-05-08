@@ -68,6 +68,8 @@ if ($this->session->flashdata('alert')) {
             templateResult: formatState
         });
     });
+
+
 </script>
 <script src="<?= base_url('assets/admin/') ?>js/app.js"></script>
 <!-- END: JS Assets-->

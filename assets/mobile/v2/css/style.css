@@ -1589,11 +1589,15 @@ textarea:invalid {
 	position: relative;
 	z-index: 1;
 	width: 100%;
-	height: 200px;
-	background-position: center center;
-	background-size: cover;
 }
-@media only screen and (min-width: 480px) and (max-width: 767px) {
+.single-hero-slide .slide-content {
+	position: absolute;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 10;
+}
+/* @media only screen and (min-width: 480px) and (max-width: 767px) {
 	.single-hero-slide {
 		height: 220px;
 	}
@@ -1654,7 +1658,7 @@ textarea:invalid {
 	.single-hero-slide .slide-content p {
 		font-size: 1.25rem;
 	}
-}
+} */
 
 .catagory-card {
 	position: relative;

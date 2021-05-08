@@ -54,6 +54,17 @@
                             </select>
                         </div>
                     </div>
+                    <div class="mt-3">
+                                <div>
+                                    <label>Kode Kelompok</label>
+                                    <select class="input w-full border mt-2 select2 sub_jenis" name="kode_kelompok" required style="width: 100%">
+                                            <option value="">Pilih Kode Kelompok</option>
+                                        <?php foreach($DataKelompok->data as $kmp ): ?>
+                                            <option <?= $row->kode_kelompok == $kmp->kode_kelompok ? 'selected' : ''; ?> value="<?= $kmp->kode_kelompok ?>"> <?= $kmp->nama_kelompok ?> </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </div>
                     <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
                         <h2 class="text-lg font-medium mr-auto">
 

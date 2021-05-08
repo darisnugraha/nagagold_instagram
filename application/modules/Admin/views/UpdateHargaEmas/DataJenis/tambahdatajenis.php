@@ -7,7 +7,7 @@
                         Tambah Jenis Kelompok
                     </h2>
                 </div>
-                <form action="<?= base_url('simpan-jenis-kelompok') ?>" method="POST">
+                <form action="<?= base_url('simpan-jenis-kelompok') ?>" method="POST" autocomplete="off">
                     <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
                         <div class="col-span-12 sm:col-span-12">
                             <label>Kode Kelompok</label>
@@ -19,7 +19,7 @@
                         </div>
                         <div class="col-span-12 sm:col-span-12">
                             <label>Kode Jenis</label>
-                            <input type="text" required onkeypress="return event.keyCode != 13;" name="kode_jenis" class="input w-full border mt-2 flex-1" placeholder="Masukan Kode Jenis">
+                            <input type="text" required aut onkeypress="return event.keyCode != 13;" name="kode_jenis" class="input w-full border mt-2 flex-1 textnumberonly" placeholder="Masukan Kode Jenis">
                         </div>
                         <div class="col-span-12 sm:col-span-12">
                             <label>Nama Jenis</label>
@@ -27,7 +27,7 @@
                         </div>
                         <div class="col-span-12 sm:col-span-12">
                             <label>Harga</label>
-                            <input type="text" required onkeypress="return event.keyCode != 13;" name="harga" autocomplete="off" class="rupiah input w-full border mt-2 flex-1" placeholder="Masukan Harga">
+                            <input type="text" required onpaste="return false" onkeypress="return event.keyCode != 13;" name="harga" autocomplete="off" class="rupiah input w-full border mt-2 flex-1" placeholder="Masukan Harga">
                         </div>
                     </div>
                     <div class="px-5 py-3 text-right border-t border-gray-200">

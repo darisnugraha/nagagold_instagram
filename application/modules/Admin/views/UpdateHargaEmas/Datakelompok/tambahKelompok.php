@@ -11,7 +11,11 @@
                     <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
                         <div class="col-span-12 sm:col-span-12">
                             <label>Kode Kelompok</label>
-                            <input type="text" required onkeypress="return event.keyCode != 13;" name="kode_kelompok" class="input w-full border mt-2 flex-1" placeholder="Masukan Kode Kelompok">
+                            <input type="text" required onkeypress="return event.keyCode != 13;" name="kode_kelompok" class="input w-full border mt-2 flex-1 textnumberonly"  placeholder="Masukan Kode Kelompok">
+                        </div>
+                        <div class="col-span-12 sm:col-span-12">
+                            <label>Posisi</label>
+                            <input type="text" onkeypress="return NumberNoEnter(event)" required onkeypress="return event.keyCode != 13;" name="posisi" class="input w-full border mt-2 flex-1" placeholder="Masukan Posisi">
                         </div>
                         <div class="col-span-12 sm:col-span-12">
                             <label>Nama Kelompok</label>

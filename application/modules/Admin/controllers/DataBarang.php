@@ -51,6 +51,8 @@ class DataBarang extends MX_Controller
         $respons['DataJenis']      = $this->SERVER_API->_getAPI('jenis', $this->token);
         $respons['DataKategori']   = $this->SERVER_API->_getAPI('kategori', $this->token);
         $respons['DetailBarang']     = $this->SERVER_API->_getAPI('barang/barcode/' . decrypt_url($id), $this->token);
+        $respons['DataKelompok']            = $this->SERVER_API->_getAPI('kelompok/all');
+
         $this->template->display_admin('DataBarang/index_editbarang', $respons);
     }
     function editbarangactive($id, $status)
@@ -59,6 +61,7 @@ class DataBarang extends MX_Controller
         $respons['title']            = 'Edit Barang Active';
         $respons['DataJenis']        = $this->SERVER_API->_getAPI('jenis', $this->token);
         $respons['DataKategori']     = $this->SERVER_API->_getAPI('kategori', $this->token);
+        $respons['DataKelompok']            = $this->SERVER_API->_getAPI('kelompok/all');
         $respons['DetailBarang']     = $this->SERVER_API->_getAPI('barang/barcode/' . decrypt_url($id), $this->token);
         $this->template->display_admin('DataBarang/edit-barang-active', $respons);
     }
@@ -109,7 +112,8 @@ class DataBarang extends MX_Controller
         $data['nama_barang']    = decrypt_url($this->input->post('nama_barang'));
         $data['nama_atribut']   = decrypt_url($this->input->post('nama_atribut'));
         $data['kode_kategori']  = $this->input->post('kode_kategori');
-        $data['kode_jenis']        = $this->input->post('kode_jenis');
+        $data['kode_jenis']     = $this->input->post('kode_jenis');
+        $data['kode_kelompok']  = $this->input->post('kode_kelompok');
         $data['kadar_cetak']    = intval(decrypt_url($this->input->post('kadar_cetak')));
         $data['harga_atribut']  = intval(decrypt_url($this->input->post('harga_atribut')));
         $data['ongkos']            = intval(decrypt_url($this->input->post('ongkos')));
@@ -450,6 +454,7 @@ class DataBarang extends MX_Controller
     }
     function updateKelompok(){
         $data['nama_kelompok'] = $this->input->post('nama_kelompok');
+        $data['posisi']        = $this->input->post('posisi');
         $respons                    = $this->SERVER_API->_putAPI('kelompok/update/'.$this->input->post('kode_kelompok'), $data, $this->token);
         if ($respons->status == "berhasil") {
             $this->session->set_flashdata('alert', success($respons->pesan));
@@ -462,6 +467,7 @@ class DataBarang extends MX_Controller
     function simpankelompok(){
         $data['kode_kelompok'] = $this->input->post('kode_kelompok');
         $data['nama_kelompok'] = $this->input->post('nama_kelompok');
+        $data['posisi']        = $this->input->post('posisi');
         $respons                    = $this->SERVER_API->_postAPI('kelompok/add', $data, $this->token);
         if ($respons->status == "berhasil") {
             $this->session->set_flashdata('alert', success($respons->pesan));

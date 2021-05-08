@@ -105,8 +105,8 @@
         <!-- Single Hero Slide-->
 
         <?php if ($Slider->data == null) : ?>
-        <div class="single-hero-slide"
-            style="background-image: url('<?= base_url('assets/images/slidenotfound.jpg') ?>'); background-size: cover;">
+        <div class="single-hero-slide">
+            <img hight="450" src="<?= base_url('assets/images/slidenotfound.jpg') ?>" alt=""></div>
             <div class="slide-content h-100 d-flex align-items-center">
                 <!-- <div class="container">
               <h4 class="text-white mb-0" data-animation="fadeInUp" data-delay="100ms" data-wow-duration="1000ms">Amazon Echo</h4>
@@ -116,15 +116,23 @@
         </div>
         <?php else : ?>
         <?php foreach ($Slider->data as $row) : ?>
-        <div class="single-hero-slide"
-            style="background-image: url('<?=  $row->lokasi_gambar ?>'); background-size: cover;">
+            <div class="single-hero-slide">
+                    <div class="slide-img">
+                        <img hight="450" onError="this.onerror=null;this.src='<?php echo base_url('assets/no_slider.jpg') ?>';" src="<?= $row->lokasi_gambar ?>" alt=""></div>
+                    <div class="slide-content h-100 d-flex align-items-center">
+                        <div class="container">
+                        
+                        </div>
+                    </div>
+                </div>
+        <!-- <div class="single-hero-slide">
+        <div class="slide-img">
+            <img hight="450" src="<?=  $row->lokasi_gambar ?>" alt=""></div>
             <div class="slide-content h-100 d-flex align-items-center">
-                <!-- <div class="container">
-              <h4 class="text-white mb-0" data-animation="fadeInUp" data-delay="100ms" data-wow-duration="1000ms">Amazon Echo</h4>
-              <p class="text-white" data-animation="fadeInUp" data-delay="400ms" data-wow-duration="1000ms">3rd Generation, Charcoal</p><a class="btn btn-primary btn-sm" href="#" data-animation="fadeInUp" data-delay="800ms" data-wow-duration="1000ms">Buy Now</a>
-            </div> -->
+            
             </div>
         </div>
+        </div> -->
         <?php endforeach; ?>
         <?php endif; ?>
     </div>
@@ -163,11 +171,16 @@
                             <!-- <ul> -->
                                     <div class="row">
                                 <?php $no=1; foreach($DataKelompok->data  as $kelompok ): ?>
-                                <?php if($kelompok->jenisKelompok != null): ?>
+                                <?php if($kelompok->jenisKelompok != null): 
+                                    $activeKu = "";
+                                    if($no == 1){
+                                        $activeKu = " activeku";
+                                    }
+                                    ?>
                                 <div>
                                 <button
                                         onclick="openCity('<?= $kelompok->kode_kelompok ?>','<?= $kelompok->kode_kelompok ?>','tab<?=$no ?>')"
-                                        id="tab<?=$no ?>" class="buttonku"> <?= $kelompok->nama_kelompok ?> </button>
+                                        id="tab<?=$no ?>" class="buttonku<?= $activeKu ?>"> <?= $kelompok->nama_kelompok ?> </button>
                                 <!-- </li> -->
                                 </div>
                                 <?php endif; ?>
@@ -186,9 +199,16 @@
                             </div>
                         </div> -->
                         <br>
-                        <?php $n2=1; foreach($DataKelompok->data  as $detailkelompok ): ?>
-                        <?php if($detailkelompok->jenisKelompok != null): ?>
-                        <div id="<?= $detailkelompok->kode_kelompok ?>" class="city" style="display:none">
+                        <?php $n2=1; $no = 1; foreach($DataKelompok->data  as $detailkelompok ): ?>
+                        <?php 
+                        if($detailkelompok->jenisKelompok != null): 
+                            $style = "display:none";
+                            if($no == 1){
+                                $style = "display:block";
+                            }
+                            $no = $no + 1;
+                            ?>
+                        <div id="<?= $detailkelompok->kode_kelompok ?>" class="city" style="<?= $style ?>">
                             <div class="cart-table card mb-3">
                                 <div class="card shipping-method-choose-title-card bg-success">
                                     <div class="card-body">
