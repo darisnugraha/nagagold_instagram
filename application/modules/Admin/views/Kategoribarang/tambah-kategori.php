@@ -37,7 +37,7 @@
                             </select>
                         </div> -->
                         <div class="col-span-12">
-                        <label>Ukuran File 32px x 32px</label>
+                        <label>Ukuran File 640px x 640px</label>
                             <div class="relative mt-2"> <input type="file" onchange="document.getElementById('output2').src = window.URL.createObjectURL(this.files[0])" type="file" name="photo" class="input pr-12 w-full border col-span-4"
                                     placeholder="Price">
                                 <div
