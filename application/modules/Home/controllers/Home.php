@@ -360,7 +360,7 @@ class Home extends MX_Controller
 					<div class="card mb-4 catagory-card">
 						<div class="card-body">
 						<a onclick="' . $click . '" href="' . base_url('carikategori/' . encrypt_url($data[$i]->kode_kategori) . '/' . encrypt_url($data[$i]->nama_kategori)) . '">
-							<img onError="' . $error . '" src="' . $url . '" width="20px"><span>' . $data[$i]->nama_kategori . '</span>
+							<img onError="' . $error . '" src="' . $url . '" width="100px"><br><span>' . $data[$i]->nama_kategori . '</span>
 						</a>
 						</div>
 					</div>

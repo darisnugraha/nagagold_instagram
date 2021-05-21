@@ -16,7 +16,7 @@
                             <div class="card-body">
                                 <a onclick="$('.loaderform').show();"
                                     href="<?= base_url('carikategori/' . encrypt_url($data[$i]->kode_kategori).'/'. encrypt_url($data[$i]->nama_kategori)) ?>">
-                                    <img src="<?= $data[$i]->icon?>" width="20px"><span><?= $data[$i]->nama_kategori ?></span>
+                                    <img src="<?= $data[$i]->icon?>" width="100px"><span><?= $data[$i]->nama_kategori ?></span>
                                 </a>
                             </div>
                         </div>
