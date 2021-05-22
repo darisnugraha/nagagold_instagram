@@ -29,6 +29,8 @@ class Home extends MX_Controller
 			$respons['DataBarangBaru'] = $this->SERVER_API->_getAPI('barang/all-new/1&20', '');
 			$respons['DataBarang']     = $this->SERVER_API->_getAPI('barang/kategori-jenis-active', $this->token);
 			$respons['DataKelompok']   = $this->SERVER_API->_getAPI('kelompok/jenis',$this->token);
+			$respons['DataBarang']     = $this->SERVER_API->_getAPI('barang/kategori-jenis-active', $this->token);
+
 
 			if ($this->mobile === true) {
 				$this->session->set_userdata('title', 'Home');
@@ -201,6 +203,7 @@ class Home extends MX_Controller
 		$this->template->display_toko('Dekstop/index_kontak', $data);
 	}
 
+	//INI
 	function loaddatabarangperkategori()
 	{
 		if ($_POST['status']) {

@@ -265,11 +265,63 @@
 
         <!-- Top Products-->
         <?= $this->session->flashdata('alertcart') ?>
-        <div class="top-products-area clearfix">
+        <!-- <div class="top-products-area clearfix">
             <div class="container" id="databarangkategori">
 
 
             </div>
+        </div> -->
+        <div class="flash-sale-wrapper pb-3">
+        <div class="container" >
+        <?php 
+       foreach ($DataBarang as $row) :
+        $error = "this.onerror=null;this.src='" . base_url() . "/assets/images/notfound.png';";
+        $output .= '';
+        ?>
+
+        <div class="section-heading d-flex align-items-center justify-content-between">
+        <h6 class="ml-1"> <?= $row->nama_kategori ?> </h6>
+        <!-- <a onclick="$('.loaderform').show();" class="btn btn-primary btn-sm"  href="<?= base_url('carikategori/' . encrypt_url($row->kode_kategori) . '/' . encrypt_url($row->nama_kategori))  ?>">View All</a> -->
+
+        </div>
+		  <!-- Flash Sale Slide-->
+		  <div class="flash-sale-slide owl-carousel">
+          <?php 
+            foreach ($row->jenis  as $jenis) :
+                $a = 0;
+                foreach ($jenis->barang  as $barang) : 
+            ?>
+			<!-- Single Flash Sale Card-->
+			<div class="card top-product-card mb-3 flash-sale-card">
+                <div class="card-body"><a href="<?=  base_url('produk/' . encrypt_url($barang->kode_barcode)) ?>">
+                    <?php $databarang = $barang->gambar;
+						for ($i = 0; $i < 1; $i++) : ?>
+                    <img src="<?=  $databarang[$i]->lokasi_gambar ?>" alt="">
+                    <?php endfor; ?>
+                    <?php $nama_barang = strlen($barang->nama_barang) > 12 ? substr($barang->nama_barang, 0, 10) . '....' :  $barang->nama_barang;
+						$brghasil = $barang->harga_jual+$barang->ongkos;
+						$harga = strlen(number_format($brghasil)) > 12 ? substr(number_format($brghasil), 0, 10) . '....' : number_format($brghasil); ?>
+                    <span class="product-title"><?= $nama_barang ?></span>
+                   <span class="sale-price"><?= $harga ?></span>
+                   <div class="product-rating">
+										Kadar: <?= $barang->kadar_cetak ?><br>
+										Berat : <?= $barang->berat ?> Gram<br>
+										</div>
+                </a>
+                </div>
+			</div>
+		  
+            <?php endforeach; ?>
+            
+            <?php endforeach; ?>
+            <div style="margin-top:118px; margin-left:20px"><a href="single-product.html">
+                 <a onclick="$('.loaderform').show();" class="btn btn-primary btn-sm"  href="<?= base_url('carikategori/' . encrypt_url($row->kode_kategori) . '/' . encrypt_url($row->nama_kategori))  ?>"> <i class="lni lni-chevron-right"></i></a>
+            </div>
+          </div>
+		  </div>
+
+        </div>
+        <?php endforeach; ?>
         </div>
     </div>
 </div>

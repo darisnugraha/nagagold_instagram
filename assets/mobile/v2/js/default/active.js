@@ -104,28 +104,35 @@
 	if ($.fn.owlCarousel) {
 		var flashSlide = $(".flash-sale-slide");
 		flashSlide.owlCarousel({
-			items: 3,
-			margin: 10,
-			loop: false,
-			autoplay: true,
+			// items: 3,
+			// margin: 8,
+			// loop: false,
+			// autoplay: true,
 			smartSpeed: 800,
             autoplayTimeout: 5000,
+			// dots: false,
+			// nav: false,
+			items: 3,
+			loop: false,
+			margin: 10,
+			autoplay: true,
 			dots: false,
+			left: false,
 			nav: false,
-			// responsive: {
-			// 	1500: {
-			// 		items: 7,
-			// 	},
-			// 	992: {
-			// 		items: 6,
-			// 	},
-			// 	768: {
-			// 		items: 4,
-			// 	},
-			// 	480: {
-			// 		items: 4,
-			// 	},
-			// },
+			responsive: {
+				1500: {
+					items: 7,
+				},
+				992: {
+					items: 6,
+				},
+				768: {
+					items: 4,
+				},
+				480: {
+					items: 4,
+				},
+			},
 		});
 	}
 
