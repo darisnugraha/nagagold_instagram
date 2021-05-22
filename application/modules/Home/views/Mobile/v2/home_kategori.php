@@ -314,7 +314,7 @@
             <?php endforeach; ?>
             
             <?php endforeach; ?>
-            <div style="margin-top:118px; margin-left:20px"><a href="single-product.html">
+            <div style="margin-top:100px; margin-left:3px"><a href="single-product.html">
                  <a onclick="$('.loaderform').show();" class="btn btn-primary btn-sm"  href="<?= base_url('carikategori/' . encrypt_url($row->kode_kategori) . '/' . encrypt_url($row->nama_kategori))  ?>"> <i class="lni lni-chevron-right"></i></a>
             </div>
           </div>
