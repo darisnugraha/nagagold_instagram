@@ -272,12 +272,12 @@
             </div>
         </div> -->
         <div class="flash-sale-wrapper pb-3">
-        <div class="container" >
-        <?php 
+            <?php 
        foreach ($DataBarang as $row) :
         $error = "this.onerror=null;this.src='" . base_url() . "/assets/images/notfound.png';";
         $output .= '';
         ?>
+        <div class="container" >
 
         <div class="section-heading d-flex align-items-center justify-content-between">
         <h6 class="ml-1"> <?= $row->nama_kategori ?> </h6>
@@ -296,7 +296,7 @@
                 <div class="card-body"><a href="<?=  base_url('produk/' . encrypt_url($barang->kode_barcode)) ?>">
                     <?php $databarang = $barang->gambar;
 						for ($i = 0; $i < 1; $i++) : ?>
-                    <img src="<?=  $databarang[$i]->lokasi_gambar ?>" alt="">
+                    <img onError="<?= $error  ?>" src="<?=  $databarang[$i]->lokasi_gambar ?>" alt="">
                     <?php endfor; ?>
                     <?php $nama_barang = strlen($barang->nama_barang) > 12 ? substr($barang->nama_barang, 0, 10) . '....' :  $barang->nama_barang;
 						$brghasil = $barang->harga_jual+$barang->ongkos;
@@ -321,8 +321,8 @@
 		  </div>
 
         </div>
+    </div>
         <?php endforeach; ?>
-        </div>
     </div>
 </div>
 </div>
