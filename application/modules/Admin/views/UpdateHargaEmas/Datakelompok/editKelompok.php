@@ -17,7 +17,7 @@
                         </div>
                         <div class="col-span-12 sm:col-span-12">
                             <label>Posisi</label>
-                            <input type="text" value="<?= $row->posisi ?>" onkeypress="return NumberNoEnter(event)" required onkeypress="return event.keyCode != 13;" name="posisi" class="input w-full border mt-2 flex-1" placeholder="Masukan Posisi">
+                            <input type="text" value="<?= $row->position ?>" onkeypress="return NumberNoEnter(event)" required onkeypress="return event.keyCode != 13;" name="posisi" class="input w-full border mt-2 flex-1" placeholder="Masukan Posisi">
                         </div>
                         <div class="col-span-12 sm:col-span-12">
                             <label>Nama Kelompok</label>

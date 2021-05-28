@@ -54,7 +54,7 @@
                             <div class="mt-3">
                                 <div>
                                     <label>Kode Kelompok</label>
-                                    <select class="input w-full border mt-2 select2 sub_jenis" name="kode_kelompok" required style="width: 100%">
+                                    <select class="input w-full border mt-2 select2 id_kelompok" name="kode_kelompok" required style="width: 100%">
                                             <option value="">Pilih Kode Kelompok</option>
                                         <?php foreach($DataKelompok->data as $row ): ?>
                                             <option value="<?= $row->kode_kelompok ?>"><?= $row->nama_kelompok ?></option>
@@ -62,6 +62,14 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="mt-3">
+                        <div>
+                            <label>Jenis Kelompok</label>
+                            <select class="input w-full border mt-2 select2 id_jenis" name="jenis_kelompok" required style="width: 100%">
+                                    <option value="">Pilih Kode jenis</option>
+                            </select>
+                        </div>
+                    </div>
                             <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
                                 <h2 class="text-lg font-medium mr-auto">
                                         
@@ -146,7 +154,42 @@
         $('.jml_gambar').val(count-1);
     });
 
-   
+    $('.id_kelompok').on('change', function() {
+            var id = $(this).val();
+            $.ajax({
+                url: base_url + "/cari-jenis-kelompok",
+                dataType: 'json',
+                type: 'POST',
+                data: {
+                    kode_kelompok: id
+                },
+                beforeSend: function(e) {
+                    if (e && e.overrideMimeType) {
+                        e.overrideMimeType('application/jsoncharset=utf-8')
+                    }
+                },
+                error: function(e) {
+                    console.log(e);
+                },
+                complete: function(respons) {
+                    var feedback = respons.responseJSON;
+                    console.log(feedback);
+                    if (feedback.status == "berhasil") {
+                        $.each(feedback.data, function(index, element) {
+                            $('.id_jenis').html('');
+                            $('.id_jenis').append(`
+                                <option value="` + element.kode_jenis + `"> ` + element.nama_jenis + ` </option>
+                        `);
+                        })
+                    } else {
+                        $('.id_jenis').html('');
+                        $('.id_jenis').append(`
+                        <option value=""> Pilih Kode Jenis </option>
+                    `);
+                    }
+                }
+            })
+        })
 
     $('.kategori').on('change', function() {
         var id = $(this).val();

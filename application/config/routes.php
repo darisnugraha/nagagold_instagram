@@ -123,6 +123,7 @@ $route['edit-barang/(:any)']           = 'Admin/DataBarang/edibarang/$1';
 $route['edit-barang-active/(:any)/(:any)']    = 'Admin/DataBarang/editbarangactive/$1/$2';
 $route['simpan-edit-barang']    = 'Admin/DataBarang/simpaneditbarang';
 $route['cari-jenis']            = 'Admin/DataBarang/cariJenis';
+$route['cari-jenis-kelompok']            = 'Admin/DataBarang/cariJeniskelompok';
 $route['wp-hancur-barang']         = 'Admin/DataBarang/hancurbarang';
 $route['wp-barang-online']         = 'Admin/DataBarang/barangonline';
 $route['wp-batal-penjualan']       = 'Admin/DataBarang/batalpenjualan';

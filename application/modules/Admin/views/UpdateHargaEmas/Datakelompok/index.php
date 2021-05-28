@@ -16,7 +16,7 @@
         <table class="table table-report table-report--bordered display datatable w-full">
             <thead>
                 <tr>
-                    <th class="border-b-2 whitespace-no-wrap">No</th>
+                    <th class="border-b-2 whitespace-no-wrap">Posisi</th>
                     <th class="border-b-2 whitespace-no-wrap">Kode Kelompok</th>
                     <th class="border-b-2 whitespace-no-wrap">Nama Kelompok</th>
                     <th class="border-b-2 text-center whitespace-no-wrap">Action</th>
@@ -26,7 +26,7 @@
                 <?php $no=1; foreach($data->data  as $row ): ?>
                 <tr>
                     <td>
-                        <?= $no++  ?>
+                        <?= $row->position  ?>
                     </td>
                     <td>
                         <?= $row->kode_kelompok ?>
