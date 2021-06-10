@@ -29,22 +29,25 @@
         </div>
     </div>
     <div class="intro-y datatable-wrapper box p-5 mt-5">
-        <form action="<?= base_url('save-news') ?>" enctype="multipart/form-data" method="POST">
+        <form action="<?= base_url('save-edit-news') ?>" enctype="multipart/form-data" method="POST">
+        <?php foreach($news->data  as $row ): ?>
             <div class="container">
                 <div class="row">
                     <div class="col-9">
                         <div class="card">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label>Judul</label> <input type="text" id="judul" name="judul" class="input w-full border mt-2" placeholder="Masukan Judul"> 
+                                    <label>Judul</label> <input type="text" value="<?= $row->judul ?>" id="judul" name="judul" class="input w-full border mt-2" placeholder="Masukan Judul"> 
 
                                 </div>
                                 <div class="form-group">
-                                    <label>Gambar</label>  <input type="file"
-                                            onchange="document.getElementById('output1').src = window.URL.createObjectURL(this.files[0])"
+                                    <label>Gambar</label>  
+                                    <input type="hidden" value="<?= $row->_id ?>" class="file-image d-none" name="id">
+                                    <input type="hidden" value="<?= $row->lokasi_gambar ?>" class="file-image d-none" name="file_gambar_lama">
+                                    <input type="file" onchange="document.getElementById('output1').src = window.URL.createObjectURL(this.files[0])"
                                             type="file" name="photo" class="input w-full border mt-2 flex-1"
                                             placeholder="Masukan Nama Jenis">
-                                            <small style="color:red">* Ukuran File 1280px x 810px </small>
+                                            <small style="color:red">* Kosongkan Jika Tidak Ingin Mengedit Gambar </small>
                                 </div>
                                 <div class="form-group">
                                     <label>Tautan</label>
@@ -52,13 +55,13 @@
                                         <span class="input-group-addon">
                                             <?= base_url('/') ?>
                                         </span>
-                                        <input type="text" class="input border" name="slug" id="slug" value="" readonly>
+                                        <input type="text" value="<?= $row->slug ?>" class="input border" name="slug" id="slug" value="" readonly>
                                     </div>
 
                                 </div>
                                 <div class="form-group">
                                     <label>Deskripsi</label>
-                                    <textarea rows="4" cols="50" id="editor" name="isi"></textarea>
+                                    <textarea rows="4" cols="50" id="editor" name="isi"><?= $row->deskripsi ?></textarea>
                                 </div>
                                 <br>
                                 <div class="form-group">
@@ -69,6 +72,7 @@
                     </div>
                 </div>
             </div>
+            <?php endforeach; ?>
         </form>
     </div>
 

@@ -12,6 +12,10 @@ class Home extends MX_Controller
 		$this->mobile = detect_mobile();
 		$this->token =  $this->session->userdata('token');
 	}
+	function editnews($id){
+        $respons['news'] = $this->SERVER_API->_getAPI('news/get-by-id/' . $id, $this->token);
+        $this->template->display_admin('news/edit_news',$respons);
+    }
 	public function index()
 	{
 		// $this->input->ip_address()
@@ -30,6 +34,8 @@ class Home extends MX_Controller
 			$respons['DataBarang']     = $this->SERVER_API->_getAPI('barang/kategori-jenis-active', $this->token);
 			$respons['DataKelompok']   = $this->SERVER_API->_getAPI('kelompok/jenis',$this->token);
 			$respons['DataBarang']     = $this->SERVER_API->_getAPI('barang/kategori-jenis-active', $this->token);
+			$respons['news'] = $this->SERVER_API->_getAPI('news/all', $this->token);
+
 
 
 			if ($this->mobile === true) {

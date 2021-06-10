@@ -229,18 +229,141 @@ class AdminController extends MX_Controller
     }
 
     function indexnews(){
-        $this->template->display_admin('news/index');
+       $respons['news'] = $this->SERVER_API->_getAPI('news/all', $this->token);
+        $this->template->display_admin('news/index',$respons);
     }
     function addnews(){
         $this->template->display_admin('news/add_news');
     }
-    function savenews(){
-       $data['judul'] = $this->input->post('judul');
-       $data['slug'] = $this->input->post('slug');
-       $data['photo'] = $this->input->post('photo');
-       $data['isi'] = $this->input->post('isi');
+    function hapusnews($id){
+        $respons             = $this->SERVER_API->_deletetAPI('news/delete/' . $id, $this->token);
+        if ($respons->status == "berhasil") {
+            $this->session->set_flashdata('alert', success('Slider Berhasil Dihapus'));
+            redirect('wp-news');
+        } else {
+            $this->session->set_flashdata('alert', information('News Gagal Dihapus'));
+            redirect('wp-news');
+        }
+    }
+    function editnews($id){
+        $respons['news'] = $this->SERVER_API->_getAPI('news/get-by-id/' . $id, $this->token);
+        $this->template->display_admin('news/edit_news',$respons);
+    }
+    function saveedit(){
+        if ($_FILES['photo']['name'] == "") {
+			$data['judul'] 		    = $this->input->post('judul');
+			$data['slug'] 		    = $this->input->post('slug');
+			$data['deskripsi']      = $this->input->post('isi');
+			$data['lokasi_gambar']  = $this->input->post('file_gambar_lama');
+			$insert = $this->SERVER_API->_putAPI('news/update/'.$this->input->post('id'), $data,$this->token);
+			if ($insert) {
+				$this->session->set_flashdata('alert', success('Berhasil Disimpan'));
+				redirect('wp-news');
+			} else {
+				$this->session->set_flashdata('alert', info('Gagal Disimpan'));
+				redirect('wp-news');
+			}
+		} else {
+            $info = pathinfo($_FILES['photo']['name']);
+            $filename = $info['basename'];
+            $directory = "./assets/images/NsiPic/news/";
+            if (!is_dir($directory)) {
+                mkdir($directory, 0777, true);
+            }
+            $config['quality']          = '50%';
+            $config['remove_spaces'] = TRUE;
+            $config['overwrite']     = TRUE;
+            $config['encrypt_name'] = TRUE;
+            $config['upload_path']   = $directory;
+            $config['allowed_types'] = 'jpg|png|jpeg'; //type yang dapat diakses bisa anda sesuaikan
+            $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
 
-       var_dump($data);
+            $this->upload->initialize($config);
+
+			if (!$this->upload->do_upload('photo')) {
+                $this->session->set_flashdata('alert', information($this->upload->display_errors()));
+				redirect('wp-news');
+			} else {
+                $this->load->library('upload', $config);
+                $nama = str_replace(base_url('assets/images/NsiPic/news/'),'',$this->input->post('file_gambar_lama'));
+				unlink('assets/images/NsiPic/news/'.$nama);
+				$uploadData 		    = $this->upload->data();
+				$data['judul'] 		    = $this->input->post('judul');
+                $data['slug'] 		    = $this->input->post('slug');
+                $data['deskripsi']      = $this->input->post('isi');
+                $data['lokasi_gambar'] = base_url('assets/images/NsiPic/news/').$uploadData['file_name'];
+
+				// $data['foto']  		    = $upload_data['file_name'];
+                $config1['image_library'] = 'gd2';
+                $config1['source_image'] = './assets/images/NsiPic/news/' . $uploadData['file_name'];
+                $config1['create_thumb'] = FALSE;
+                $config1['maintain_ratio'] = TRUE;
+                $config1['quality'] = '70%';
+                $config1['width'] = 1280;
+                $config1['height'] = 810;
+                $config1['new_image'] = './assets/images/NsiPic/news/' . $uploadData['file_name'];
+                $this->load->library('image_lib', $config1);
+                $this->image_lib->initialize($config1);
+                $this->image_lib->resize();
+                $data['lokasi_gambar'] = base_url('assets/images/NsiPic/news/').$uploadData['file_name'];
+
+				$insert = $this->SERVER_API->_putAPI('news/update/'.$this->input->post('id'), $data,$this->token);
+				if ($insert) {
+					$this->session->set_flashdata('alert', success('Berhasil Disimpan'));
+					redirect('wp-news');
+				} else {
+					$this->session->set_flashdata('alert', info('Gagal Disimpan'));
+					redirect('wp-news');
+				}
+			}
+		}
+    }
+    function savenews(){
+        $data['judul'] = $this->input->post('judul');
+        $data['slug'] = $this->input->post('slug');
+        $data['deskripsi'] = $this->input->post('isi');
+       $info = pathinfo($_FILES['photo']['name']);
+       $filename = $info['basename'];
+       $directory = "./assets/images/NsiPic/news/";
+       if (!is_dir($directory)) {
+           mkdir($directory, 0777, true);
+       }
+       $config['quality']          = '50%';
+       $config['remove_spaces'] = TRUE;
+       $config['overwrite']     = TRUE;
+       $config['encrypt_name'] = TRUE;
+       $config['upload_path']   = $directory;
+       $config['allowed_types'] = 'jpg|png|jpeg'; //type yang dapat diakses bisa anda sesuaikan
+       $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
+       // $nmfile =  $filename;
+       // $config['file_name']            = $filename;
+       $this->upload->initialize($config);
+       $this->load->library('upload', $config);
+
+       if ($_FILES['photo']) {
+        $this->upload->do_upload('photo');
+        $uploadData = $this->upload->data();
+           $config1['image_library'] = 'gd2';
+           $config1['source_image'] = './assets/images/NsiPic/news/' . $uploadData['file_name'];
+           $config1['create_thumb'] = FALSE;
+           $config1['maintain_ratio'] = TRUE;
+           $config1['quality'] = '70%';
+           $config1['width'] = 1280;
+           $config1['height'] = 810;
+           $config1['new_image'] = './assets/images/NsiPic/news/' . $uploadData['file_name'];
+           $this->load->library('image_lib', $config1);
+           $this->image_lib->initialize($config1);
+           $this->image_lib->resize();
+           $data['lokasi_gambar'] = base_url('assets/images/NsiPic/news/').$uploadData['file_name'];
+       }
+       $respons = $this->SERVER_API->_postAPI('news/add', $data, $this->token);
+       if ($respons->status == "berhasil") {
+           $this->session->set_flashdata('alert', success('News Berhasil Ditambahkan'));
+           redirect('wp-news');
+       } else {
+           $this->session->set_flashdata('alert', information($respons->pesan));
+           redirect('wp-news');
+       }
     }
     function userlist()
     {
@@ -404,7 +527,7 @@ class AdminController extends MX_Controller
             $this->session->set_flashdata('alert', success('Slider Berhasil Dihapus'));
             redirect('wp-slider');
         } else {
-            $this->session->set_flashdata('alert', information('Slider Berhasil Dihapus'));
+            $this->session->set_flashdata('alert', information('Slider Gagal Dihapus'));
             redirect('wp-slider');
         }
     }

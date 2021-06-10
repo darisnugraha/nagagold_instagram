@@ -286,8 +286,11 @@ $route['carijenis/(:any)/(:any)']            = 'Home/Home/carijenis/$1/$2';
 $route['getKategori']                        = 'Admin/DataBarang/getKategori';
 $route['admin/loaddashboard']                = 'Admin/AdminController/loaddashboard';
 $route['wp-news']                            = 'Admin/AdminController/indexnews';
-$route['add-news']                            = 'Admin/AdminController/addnews';
-$route['save-news']                            = 'Admin/AdminController/savenews';
+$route['add-news']                           = 'Admin/AdminController/addnews';
+$route['save-news']                          = 'Admin/AdminController/savenews';
+$route['hapus-news/(:any)']                  = 'Admin/AdminController/hapusnews/$1';
+$route['edit-news/(:any)']                  = 'Admin/AdminController/editnews/$1';
+$route['save-edit-news']                  = 'Admin/AdminController/saveedit';
 
 $route['estimasi-harga-penjualan']           = 'Home/Home/index_pengajuanpenjualan';
 $route['loadkategorimobile']                 = 'Home/Home/loaddatakategorimobile';
