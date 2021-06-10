@@ -16,8 +16,8 @@ foreach ($news->data  as $row) :
             <div class="product-title-meta bg-white">
 
                 <div class="p-specification bg-white mb-3 py-3">
-                    <h2> <?= $row->judul ?> </h2>
                     <div class="container">
+                    <h2> <?= $row->judul ?> </h2>
                        <?= $row->deskripsi ?>
                     </div>
                     <br>
