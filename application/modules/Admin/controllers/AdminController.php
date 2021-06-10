@@ -227,6 +227,21 @@ class AdminController extends MX_Controller
 			// }
 		// }
     }
+
+    function indexnews(){
+        $this->template->display_admin('news/index');
+    }
+    function addnews(){
+        $this->template->display_admin('news/add_news');
+    }
+    function savenews(){
+       $data['judul'] = $this->input->post('judul');
+       $data['slug'] = $this->input->post('slug');
+       $data['photo'] = $this->input->post('photo');
+       $data['isi'] = $this->input->post('isi');
+
+       var_dump($data);
+    }
     function userlist()
     {
         $this->session->set_userdata('title', 'Kelola User');

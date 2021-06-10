@@ -1,27 +1,5 @@
     <!-- Footer Nav-->
-    <style>
-      .item {
-
-        /* padding-right:8px; */
-        padding-top: 2px;
-        position: relative;
-        /* position:relative;
-        padding-top:20px;
-        display:inline-block; */
-      }
-
-      .notify-badge {
-        position: absolute;
-        right: 10px;
-        top: -3px;
-        background: red;
-        text-align: center;
-        border-radius: 50px 50px 50px 50px;
-        color: white;
-        padding: 5px 5px;
-        font-size: 10px;
-      }
-    </style>
+  
     <?php $data  = $this->SERVER_API->_getAPI('cart/count', $this->session->userdata('token'));
     //  die;
     ?>
@@ -32,12 +10,12 @@
             <?php if ($this->session->userdata('status_login') == "SEDANG_LOGIN") : ?>
               <li class="<?= $this->session->userdata('title') == "Home" ? 'active' : '' ?>"><a onclick="$('.loaderform').show();" href="<?= base_url() ?>"><i class="lni lni-home"></i>Home</a></li>
               <li class="<?= $this->session->userdata('title') == "Shop" ? 'active' : '' ?>"><a onclick="$('.loaderform').show();" href="<?= base_url('shop') ?>"><i class="lni lni-shopping-basket"></i>Shop</a></li>
-              <li class="<?= $this->session->userdata('title') == "Cart" ? 'active' : '' ?>"><a onclick="$('.loaderform').show();" href="<?= base_url('cart') ?>">
+              <!-- <li class="<?= $this->session->userdata('title') == "Cart" ? 'active' : '' ?>"><a onclick="$('.loaderform').show();" href="<?= base_url('cart') ?>">
                   <?php if ($data->data != null) : ?>
                     <div class="item"><span class="notify-badge"><?= $data->data[0]->count_item ?></span></div>
                   <?php endif; ?>
-                  <i class="lni lni-cart"></i>Cart</a></li>
-              <li class="<?= $this->session->userdata('title') == "Profile" ? 'active' : '' ?>"><a onclick="$('.loaderform').show();" href="<?= base_url('wp-dashboard-user') ?>"><i class="lni lni-grid-alt"></i>Lainnya</a></li>
+                  <i class="lni lni-cart"></i>Cart</a></li> -->
+              <li class="<?= $this->session->userdata('title') == "Profile" ? 'active' : '' ?>"><a onclick="$('.loaderform').show();" href="<?= base_url('wp-dashboard-user') ?>"><i class="lni lni-user"></i>Profil</a></li>
             <?php else : ?>
               <li class="<?= $this->session->userdata('title') == "Home" ? 'active' : '' ?>"><a onclick="$('.loaderform').show();" href="<?= base_url() ?>"><i class="lni lni-home"></i>Home</a></li>
               <li class="<?= $this->session->userdata('title') == "Shop" ? 'active' : '' ?>"><a onclick="$('.loaderform').show();" href="<?= base_url('shop') ?>"><i class="lni lni-shopping-basket"></i>Shop</a></li>

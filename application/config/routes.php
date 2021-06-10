@@ -285,6 +285,9 @@ $route['carikategori/(:any)/(:any)']         = 'Home/Home/carikategori/$1/$2';
 $route['carijenis/(:any)/(:any)']            = 'Home/Home/carijenis/$1/$2';
 $route['getKategori']                        = 'Admin/DataBarang/getKategori';
 $route['admin/loaddashboard']                = 'Admin/AdminController/loaddashboard';
+$route['wp-news']                            = 'Admin/AdminController/indexnews';
+$route['add-news']                            = 'Admin/AdminController/addnews';
+$route['save-news']                            = 'Admin/AdminController/savenews';
 
 $route['estimasi-harga-penjualan']           = 'Home/Home/index_pengajuanpenjualan';
 $route['loadkategorimobile']                 = 'Home/Home/loaddatakategorimobile';

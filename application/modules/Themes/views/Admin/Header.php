@@ -85,6 +85,8 @@ if ($thisPage == "/hidup_retail/data-kelompok" || $thisPage == "/hidup_retail/da
     <link href="<?= base_url('assets/admin/css') ?>/select2-bootstrap.css" rel="stylesheet" />
     <link rel="stylesheet" href="<?php echo base_url('assets/theme/js/sweetalert2/sweetalert2.css') ?>">
     <script src="<?= base_url('assets/mobile/v2/js/') ?>jquery.min.js"></script>
+    <script src="<?= base_url('assets/ckeditor.js') ?>">
+    </script>
     <style>
         .pointer {
             cursor: pointer;
@@ -409,6 +411,13 @@ if ($thisPage == "/hidup_retail/data-kelompok" || $thisPage == "/hidup_retail/da
                     <a href="<?= base_url('wp-hadiah') ?>" class="side-menu side-menu<?= $hadiah ?>">
                         <div class="side-menu__icon"> <i data-feather="archive"></i> </div>
                         <div class="side-menu__title"> Kelola Hadiah </div>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="<?= base_url('wp-news') ?>" class="side-menu side-menu">
+                        <div class="side-menu__icon"> <i data-feather="send"></i> </div>
+                        <div class="side-menu__title"> News </div>
                     </a>
                 </li>
                 

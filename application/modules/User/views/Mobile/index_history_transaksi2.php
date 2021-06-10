@@ -116,7 +116,7 @@
                             $jum_FINISH =0;
                             // $counbarang ='0';
                             foreach($CountItem->data as $jumlahnya){
-                                    $counbarang = count($jumlahnya->detail_barang);
+                                    $counbarang = count($jumlahnya->status_trx);
                                     if($jumlahnya->status_trx=="OPEN"){
                                         $jum_open = $jum_open + $counbarang; 
                                     }else if($jumlahnya->status_trx=="BAYAR"){

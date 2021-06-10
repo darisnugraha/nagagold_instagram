@@ -110,11 +110,11 @@ foreach ($DetailBarang->data  as $row) :
 
                                         <div class="actions">
                                             <?php if ($this->session->userdata('status_login') == "SEDANG_LOGIN") : ?>
-                                                <!-- <button onclick="$('.loaderform').show(); location.href='<?= base_url('detail-add-cart/' . encrypt_url($row->kode_barcode)); ?>'" type="submit" title="Add to Cart" class="action btn-cart"><span>Add to Cart</span></button> -->
+                                                <button onclick="$('.loaderform').show(); location.href='<?= base_url('detail-add-cart/' . encrypt_url($row->kode_barcode)); ?>'" type="submit" title="Add to Cart" class="action btn-cart"><span>Add to Cart</span></button>
                                             <?php elseif ($this->session->userdata('status_login') == "SEDANG_LOGIN_ADMIN") : ?>
-                                                <!-- <button onclick="Swal.fire('Oopss!','Admin tidak bisa menambahkan barang!','warning')" type="button" title="Add to Cart" class="action btn-cart"><span>Add to Cart</span></button> -->
+                                                <button onclick="Swal.fire('Oopss!','Admin tidak bisa menambahkan barang!','warning')" type="button" title="Add to Cart" class="action btn-cart"><span>Add to Cart</span></button>
                                             <?php else : ?>
-                                                <!-- <button onclick="Swal.fire('Oopss!','Silahkan login terlebih dahulu!','info')" type="button" title="Add to Cart" class="action btn-cart"><span>Add to Cart</span></button> -->
+                                                <button onclick="Swal.fire('Oopss!','Silahkan login terlebih dahulu!','info')" type="button" title="Add to Cart" class="action btn-cart"><span>Add to Cart</span></button>
                                             <?php endif; ?>
                                             <!-- <div class="product-addto-links">
 
@@ -242,11 +242,11 @@ foreach ($DetailBarang->data  as $row) :
                                                             <a href="#" class="btn btn-quickview"><span>quickview</span></a>
                                                         </div> -->
                                                         <?php if ($this->session->userdata('status_login') == "SEDANG_LOGIN") : ?>
-                                                                <!-- <button onclick="$('.loaderform').show(); location.href='<?= base_url('detail-add-cart/' . encrypt_url($barang->kode_barcode)); ?>'" class="btn btn-cart" type="button"><span>Add to Cart</span></button> -->
+                                                                <button onclick="$('.loaderform').show(); location.href='<?= base_url('detail-add-cart/' . encrypt_url($barang->kode_barcode)); ?>'" class="btn btn-cart" type="button"><span>Add to Cart</span></button>
                                                         <?php elseif ($this->session->userdata('status_login') == "SEDANG_LOGIN_ADMIN") : ?>
-                                                            <!-- <button onclick="alert('Anda Harus Login Terlebih Dahulu')" class="btn btn-cart" type="button"><span>Add to Cart</span></button> -->
+                                                            <button onclick="Swal.fire( 'Opps!!!', 'Silahkan Login Terlebih Dahulu', 'info' )" class="btn btn-cart" type="button"><span>Add to Cart</span></button>
                                                         <?php else : ?>
-                                                            <!-- <button onclick="alert('Anda Harus Login Terlebih Dahulu')" class="btn btn-cart" type="button"><span>Add to Cart</span></button> -->
+                                                            <button onclick="Swal.fire( 'Opps!!!', 'Silahkan Login Terlebih Dahulu', 'info' )" class="btn btn-cart" type="button"><span>Add to Cart</span></button>
                                                         <?php endif; ?>
 
                                                     </div>

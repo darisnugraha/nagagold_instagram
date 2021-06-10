@@ -26,7 +26,31 @@
   <script>
     var base_url = '<?= base_url() ?>';
   </script>
+  <style>
+   .item {
+
+/* padding-right:8px; */
+padding-top: 2px;
+position: relative;
+/* position:relative;
+padding-top:20px;
+display:inline-block; */
+}
+
+.notify-badge {
+position: absolute;
+right: 10px;
+top: -3px;
+background: red;
+text-align: center;
+border-radius: 50px 50px 50px 50px;
+color: white;
+padding: 1px 5px;
+font-size: 10px;
+}
+  </style>
 </head>
+<?php $datacart  = $this->SERVER_API->_getAPI('cart/count', $this->session->userdata('token')); ?>
 
 <body>
   <div class="errorLogin" style="display: none;">
@@ -51,6 +75,14 @@
             <button type="submit"><i class="fa fa-search"></i></button>
           </form>
         </div>
+        <div class="<?= $this->session->userdata('title') == "Cart" ? 'active' : '' ?>"><a onclick="$('.loaderform').show();" href="<?= base_url('cart') ?>">
+                 
+                  <?php if ($datacart->data[0]->count_item == null) : ?>
+                    <div class="item"></div>
+                    <?php else: ?>
+                    <div class="item"><span class="notify-badge"><?= $datacart->data[0]->count_item ?></span></div>
+                  <?php endif; ?>
+                  <i class="lni lni-cart"></i></a></div>
         <!-- Navbar Toggler-->
         <?php if ($this->session->userdata('status_login') == "SEDANG_LOGIN") : ?>
           <div class="suha-navbar-toggler d-flex flex-wrap" id="suhaNavbarToggler"><span></span><span></span><span></span></div>
@@ -124,5 +156,6 @@
 
     <!-- Side Nav Wrapper-->
   <?php endif; ?>
+
   <br>
   <!-- Side Nav Wrapper-->

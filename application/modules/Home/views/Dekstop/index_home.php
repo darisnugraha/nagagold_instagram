@@ -114,11 +114,11 @@
                                                             <img alt="product name" width="300" height="200" onError="this.onerror=null;this.src='<?php echo base_url('assets/images/notfound.png') ?>';" src="<?=  $data_gambar[$i]->lokasi_gambar ?>"></a>
                                                 <?php endfor; ?>
                                                 <?php if ($this->session->userdata('status_login') == "SEDANG_LOGIN") : ?>
-                                                    <!-- <a type="button" href="<?= base_url('add-cart/' . encrypt_url($brgbaru->kode_barcode)) ?>" class="btn btn-cart"><span>Add to Cart</span></a> -->
+                                                    <a type="button" href="<?= base_url('add-cart/' . encrypt_url($brgbaru->kode_barcode)) ?>" class="btn btn-cart"><span>Add to Cart</span></a>
                                                 <?php elseif ($this->session->userdata('status_login') == "SEDANG_LOGIN_ADMIN") : ?>
-                                                    <!-- <button type="button" onclick="Swal.fire('Oopss!','Admin tidak bisa menambahka barang!','info')" class="btn btn-cart"><span>Add to Cart</span></button> -->
+                                                    <button type="button" onclick="Swal.fire('Oopss!','Admin tidak bisa menambahka barang!','info')" class="btn btn-cart"><span>Add to Cart</span></button>
                                                 <?php else : ?>
-                                                    <!-- <button type="button" onclick="Swal.fire('Oopss!','Silahkan login terlebih dahulu!','info')" class="btn btn-cart"><span>Add to Cart</span></button> -->
+                                                    <button type="button" onclick="Swal.fire('Oopss!','Silahkan login terlebih dahulu!','info')" class="btn btn-cart"><span>Add to Cart</span></button>
                                                 <?php endif; ?>
                                                 </div>
                                                 <div class="product-item-detail">
@@ -236,11 +236,11 @@
                                                             <a class="btn btn-quickview" href="#"><span>quickview</span></a>
                                                         </div> -->
                                                                 <?php if ($this->session->userdata('status_login') == "SEDANG_LOGIN") : ?>
-                                                                    <!-- <a type="button" href="<?= base_url('add-cart/' . encrypt_url($barang->kode_barcode)) ?>" class="btn btn-cart"><span>Add to Cart</span></a> -->
+                                                                    <a type="button" href="<?= base_url('add-cart/' . encrypt_url($barang->kode_barcode)) ?>" class="btn btn-cart"><span>Add to Cart</span></a>
                                                                 <?php elseif ($this->session->userdata('status_login') == "SEDANG_LOGIN_ADMIN") : ?>
-                                                                    <!-- <button type="button" onclick="Swal.fire('Oopss!','Admin tidak bisa menambahkan barang!','warning')" class="btn btn-cart"><span>Add to Cart</span></button> -->
+                                                                    <button type="button" onclick="Swal.fire('Oopss!','Admin tidak bisa menambahkan barang!','warning')" class="btn btn-cart"><span>Add to Cart</span></button>
                                                                 <?php else : ?>
-                                                                    <!-- <button type="button" onclick="Swal.fire('Oopss!','Silahkan login terlebih dahulu!','info')" class="btn btn-cart"><span>Add to Cart</span></button> -->
+                                                                    <button type="button" onclick="Swal.fire('Oopss!','Silahkan login terlebih dahulu!','info')" class="btn btn-cart"><span>Add to Cart</span></button>
                                                                 <?php endif; ?>
                                                                 <!-- <button type="button" class="btn btn-cart"><span>Add to Cart</span></button> -->
                                                                 <!-- <span class="product-item-label label-price">30% <span>off</span></span> -->
