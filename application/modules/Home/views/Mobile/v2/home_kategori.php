@@ -366,7 +366,7 @@
 
                     <div style="margin-top:100px; margin-left:3px"><a href="single-product.html">
                             <a onclick="$('.loaderform').show();" class="btn btn-primary btn-sm"
-                                href="<?= base_url('carikategori/' . encrypt_url($row->kode_kategori) . '/' . encrypt_url($row->nama_kategori))  ?>">
+                                href="<?= base_url('shop')  ?>">
                                 <i class="lni lni-chevron-right"></i></a>
                     </div>
                 </div>
