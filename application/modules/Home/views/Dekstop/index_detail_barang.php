@@ -90,8 +90,8 @@ foreach ($DetailBarang->data  as $row) :
                                     </div>
                                 </div>
                                 <div class="product-condition">
-                                    Kadar: <?= $row->kadar_cetak ?><br>
-                                    Berat : <?= $row->berat ?> Gram<br>
+                                    Kadar: <?= number_format($row->kadar_cetak,2) ?><br>
+                                    Berat : <?= number_format($row->berat,3) ?> <br>
                                     Harga Barang : <?= number_format($row->harga_jual) ?> <br>
                                     Ongkos Produksi : <?= number_format($row->ongkos) ?> <br>
                                     <!-- Harga Emas : Rp.<?= number_format($row->harga_barang) ?><br> -->

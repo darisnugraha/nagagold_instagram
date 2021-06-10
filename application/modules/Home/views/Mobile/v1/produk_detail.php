@@ -30,7 +30,7 @@
 
             <p class="text-secondary">
             <p>Deskripsi Produk</p>
-                Berat Emas : <?= $row->berat ?> Gram<br>
+                Berat Emas : <?= number_format($row->berat,3)?> <br>
                 Harga Emas : Rp.<?= number_format($row->harga_barang) ?><br>
                 Nama Atribut : <?= $row->nama_atribut ?><br>
                 Harga Atribut : Rp.<?= number_format($row->harga_atribut) ?><br>

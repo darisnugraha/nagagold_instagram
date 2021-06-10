@@ -408,8 +408,8 @@ class UserController extends MX_Controller
 
 										<td>'.$row->nama_barang.' <br>
 										Kode Barcode : '.$row->kode_barang.'<br>
-										Kadar Cetak: '.$row->kadar_cetak.'<br>
-										Berat :'.$row->berat_jual.' Gram<br>
+										Kadar Cetak: '.number_format($row->kadar_cetak,2).'<br>
+										Berat :'.number_format($row->berat_jual,3).'<br>
 										</td>
 										<td style="vertical-align:text-top;">Rp '.number_format($row->jual_rp).' </td>
 									</tr>

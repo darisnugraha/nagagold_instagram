@@ -28,7 +28,7 @@
                   </p>
                   <div class="product-rating">
                     Kadar: <?= $barang->kadar ?><br>
-                    Berat : <?= $barang->berat ?> Gram<br>
+                    Berat : <?= $barang->berat ?> <br>
                     <!-- <i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i><i class="lni lni-star-filled"></i> -->
                   </div>
                   <?php if ($this->session->userdata('status_login') == "SEDANG_LOGIN") : ?>

@@ -89,8 +89,8 @@ class Shop extends MX_Controller
 											Rp.' . $harga . '
 										</p>
 										<div class="product-rating">
-										Kadar: ' . $row->kadar_cetak . '<br>
-										Berat : ' . $row->berat . 'Gram<br>
+										Kadar: ' . number_format($row->kadar_cetak,2) . '<br>
+										Berat : ' . number_format($row->berat,3) . '<br>
 										</div>
 										' . $status_login . '
 									</div>

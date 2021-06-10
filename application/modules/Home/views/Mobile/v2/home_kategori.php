@@ -342,8 +342,8 @@
                                 <span class="product-title"><?= $nama_barang ?></span>
                                 <span class="sale-price"><?= $harga ?></span>
                                 <div class="product-rating">
-                                    Kadar: <?= $barang->kadar_cetak ?><br>
-                                    Berat : <?= $barang->berat ?> Gram<br>
+                                    Kadar: <?= number_format($barang->kadar_cetak,2) ?><br>
+                                    Berat : <?= number_format($barang->berat,3) ?> <br>
                                 </div>
                             </a>
                             <?php if ($this->session->userdata('status_login') == "SEDANG_LOGIN") : ?>
@@ -410,8 +410,8 @@
                             <span class="product-title"><?= $nama_barang ?></span>
                             <span class="sale-price"><?= $harga ?></span>
                             <div class="product-rating">
-                                Kadar: <?= $barang->kadar_cetak ?><br>
-                                Berat : <?= $barang->berat ?> Gram<br>
+                                Kadar: <?= number_format($barang->kadar_cetak,2) ?><br>
+                                Berat : <?= number_format($barang->berat,3) ?> <br>
                             </div>
                         </a>
                         <?php if ($this->session->userdata('status_login') == "SEDANG_LOGIN") : ?>

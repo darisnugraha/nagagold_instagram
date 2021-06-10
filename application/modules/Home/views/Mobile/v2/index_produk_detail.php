@@ -37,8 +37,8 @@ $total_harga_jual = $row->harga_jual+$row->ongkos;
                 <div class="p-specification bg-white mb-3 py-3">
                     <div class="container">
                         <h6>Deskripsi Produk</h6>
-                        Kadar: <?= $row->kadar_cetak ?><br>
-                        Berat : <?= $row->berat ?> Gram<br>
+                        Kadar: <?= number_format($row->kadar_cetak,2) ?><br>
+                        Berat : <?= number_format($row->berat,3) ?><br>
                         Ongkos Produksi : <?= number_format($row->ongkos) ?> <br>
                         Harga Barang : <?= number_format($row->harga_jual) ?>
                         <!-- Harga Emas : Rp.<?= number_format($row->harga_barang) ?><br> -->
