@@ -248,34 +248,44 @@
         </div>
     </div>
     <div class="page-content-wrapper">
-    <div class="hero-slides owl-carousel">
-        <!-- Single Hero Slide-->
-
-        <?php if ($news->data == null) : ?>
-        <div class="single-hero-slide">
-            <img hight="450" src="<?= base_url('assets/images/slidenotfound.jpg') ?>" alt="">
+        <div class="container">
+            <div class="section-heading d-flex align-items-center justify-content-between">
+                <h6 class="ml-1">News</h6>
+                <!-- <a class="btn btn-primary btn-sm" onclick="$('.loaderform').show();"
+                    href="<?= base_url('news') ?>">View All</a> -->
+            </div>
         </div>
-        <div class="slide-content h-100 d-flex align-items-center">
-            <!-- <div class="container">
+        <div class="hero-slides owl-carousel">
+            <!-- Single Hero Slide-->
+
+            <?php if ($news->data == null) : ?>
+            <div class="single-hero-slide">
+                <img hight="450" src="<?= base_url('assets/images/slidenotfound.jpg') ?>" alt="">
+            </div>
+            <div class="slide-content h-100 d-flex align-items-center">
+                <!-- <div class="container">
               <h4 class="text-white mb-0" data-animation="fadeInUp" data-delay="100ms" data-wow-duration="1000ms">Amazon Echo</h4>
               <p class="text-white" data-animation="fadeInUp" data-delay="400ms" data-wow-duration="1000ms">3rd Generation, Charcoal</p><a class="btn btn-primary btn-sm" href="#" data-animation="fadeInUp" data-delay="800ms" data-wow-duration="1000ms">Buy Now</a>
             </div> -->
-        </div>
-    </div>
-    <?php else : ?>
-    <?php foreach ($news->data as $row) : ?>
-    <div class="single-hero-slide">
-        <div class="slide-img">
-            <img hight="450" onError="this.onerror=null;this.src='<?php echo base_url('assets/no_slider.jpg') ?>';"
-                src="<?= $row->lokasi_gambar ?>" alt="">
-        </div>
-        <div class="slide-content h-100 d-flex align-items-center">
-            <div class="container">
-
             </div>
         </div>
-    </div>
-    <!-- <div class="single-hero-slide">
+        <?php else : ?>
+        <?php foreach ($news->data as $row) : ?>
+        <div class="single-hero-slide">
+            <a href="<?= base_url('detail-news/'.$row->_id) ?>">
+                <div class="slide-img">
+                    <img hight="450"
+                        onError="this.onerror=null;this.src='<?php echo base_url('assets/no_slider.jpg') ?>';"
+                        src="<?= $row->lokasi_gambar ?>" alt="">
+                </div>
+                <div class="slide-content h-100 d-flex align-items-center">
+                    <div class="container">
+
+                    </div>
+                </div>
+            </a>
+        </div>
+        <!-- <div class="single-hero-slide">
         <div class="slide-img">
             <img hight="450" src="<?=  $row->lokasi_gambar ?>" alt=""></div>
             <div class="slide-content h-100 d-flex align-items-center">
@@ -283,9 +293,9 @@
             </div>
         </div>
         </div> -->
-    <?php endforeach; ?>
-    <?php endif; ?>
-</div>
+        <?php endforeach; ?>
+        <?php endif; ?>
+    </div>
     <div class="product-catagories-wrapper pt-3">
         <div class="container">
             <div class="section-heading d-flex align-items-center justify-content-between">

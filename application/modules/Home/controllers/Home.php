@@ -12,9 +12,9 @@ class Home extends MX_Controller
 		$this->mobile = detect_mobile();
 		$this->token =  $this->session->userdata('token');
 	}
-	function editnews($id){
+	function detailnews($id){
         $respons['news'] = $this->SERVER_API->_getAPI('news/get-by-id/' . $id, $this->token);
-        $this->template->display_admin('news/edit_news',$respons);
+        $this->template->v2('Mobile/v2/index_news',$respons);
     }
 	public function index()
 	{

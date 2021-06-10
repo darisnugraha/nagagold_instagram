@@ -296,6 +296,7 @@ $route['estimasi-harga-penjualan']           = 'Home/Home/index_pengajuanpenjual
 $route['loadkategorimobile']                 = 'Home/Home/loaddatakategorimobile';
 $route['listkategori']                       = 'Home/Home/listkategori';
 $route['kontak']                             = 'Home/Home/kontak';
+$route['detail-news/(:any)']                 = 'Home/Home/detailnews/$1';
 //
 
 //
