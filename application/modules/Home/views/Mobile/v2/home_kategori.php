@@ -272,7 +272,7 @@
         <?php else : ?>
         <?php foreach ($news->data as $row) : ?>
         <div class="single-hero-slide">
-            <a href="<?= base_url('detail-news/'.$row->_id) ?>">
+            <a onclick="$('.loaderform').show();" href="<?= base_url('detail-news/'.$row->_id) ?>">
                 <div class="slide-img">
                     <img hight="450"
                         onError="this.onerror=null;this.src='<?php echo base_url('assets/no_slider.jpg') ?>';"
