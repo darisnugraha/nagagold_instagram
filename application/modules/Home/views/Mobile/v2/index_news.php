@@ -18,6 +18,7 @@ foreach ($news->data  as $row) :
                 <div class="p-specification bg-white mb-3 py-3">
                     <div class="container">
                     <h2> <?= $row->judul ?> </h2>
+                    <hr/>
                        <?= $row->deskripsi ?>
                     </div>
                     <br>
