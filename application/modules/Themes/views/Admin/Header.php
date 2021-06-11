@@ -85,7 +85,7 @@ if ($thisPage == "/hidup_retail/data-kelompok" || $thisPage == "/hidup_retail/da
     <link href="<?= base_url('assets/admin/css') ?>/select2-bootstrap.css" rel="stylesheet" />
     <link rel="stylesheet" href="<?php echo base_url('assets/theme/js/sweetalert2/sweetalert2.css') ?>">
     <script src="<?= base_url('assets/mobile/v2/js/') ?>jquery.min.js"></script>
-    <script src="<?= base_url('assets/ckeditor.js') ?>">
+    <script src="<?= base_url('assets/admin/tinymce/tinymce.min.js') ?>">
     </script>
     <style>
         .pointer {

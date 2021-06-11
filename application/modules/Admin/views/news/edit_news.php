@@ -47,6 +47,7 @@
                                     <input type="file" onchange="document.getElementById('output1').src = window.URL.createObjectURL(this.files[0])"
                                             type="file" name="photo" class="input w-full border mt-2 flex-1"
                                             placeholder="Masukan Nama Jenis">
+                                            <small style="color:red">* Ukuran File 1280px x 810px </small>
                                             <small style="color:red">* Kosongkan Jika Tidak Ingin Mengedit Gambar </small>
                                 </div>
                                 <div class="form-group">
@@ -78,7 +79,20 @@
 
 </div>
 
-
+<script type='text/javascript'> 
+tinymce.init({
+		selector: "#editor",
+        mode: "specific_textareas",
+		plugins: [
+			 "advlist autolink lists link charmap print preview hr anchor pagebreak",
+			 "searchreplace wordcount visualblocks visualchars code fullscreen",
+			 "insertdatetime nonbreaking save table contextmenu directionality",
+			 "emoticons template paste textcolor colorpicker textpattern"
+		],
+		toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link ",
+		automatic_uploads: true,
+   });
+</script>
 <script>
 $("#judul").on('keyup', function() {
     let id = $(this).val();
@@ -86,33 +100,33 @@ $("#judul").on('keyup', function() {
     $('#slug').val(res.toLowerCase());
 });
 $('.ui-title').css('display', 'none');
-ClassicEditor
-    // .create(document.querySelector('#editor'))
-    .create(document.querySelector('#editor'), {
-        toolbar: [
-            'heading', '|',
-            'fontfamily', 'fontsize', '|',
-            'alignment', '|',
-            'fontColor', 'fontBackgroundColor', '|',
-            'bold', 'italic', 'strikethrough', 'underline', 'subscript', 'superscript', '|',
-            'link', '|',
-            'outdent', 'indent', '|', 'JustifyLeft',
-            'bulletedList', 'numberedList', 'todoList', '|',
-            'code', 'codeBlock', '|',
-            'insertTable', '|',
-            'blockQuote', '|',
-            'undo', 'redo',
-        ],
+// ClassicEditor
+//     // .create(document.querySelector('#editor'))
+//     .create(document.querySelector('#editor'), {
+//         toolbar: [
+//             'heading', '|',
+//             'fontfamily', 'fontsize', '|',
+//             'alignment', '|',
+//             'fontColor', 'fontBackgroundColor', '|',
+//             'bold', 'italic', 'strikethrough', 'underline', 'subscript', 'superscript', '|',
+//             'link', '|',
+//             'outdent', 'indent', '|', 'JustifyLeft',
+//             'bulletedList', 'numberedList', 'todoList', '|',
+//             'code', 'codeBlock', '|',
+//             'insertTable', '|',
+//             'blockQuote', '|',
+//             'undo', 'redo',
+//         ],
 
-        ckfinder: {
-            uploadUrl: base_url +
-                'assets/admin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json'
-        }
-    })
-    .then(editor => {
-        editor.ui.view.editable.element.style.height = '500px';
-    })
-    .catch(error => {
-        // console.error(error);
-    });
+//         ckfinder: {
+//             uploadUrl: base_url +
+//                 'assets/admin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json'
+//         }
+//     })
+//     .then(editor => {
+//         editor.ui.view.editable.element.style.height = '500px';
+//     })
+//     .catch(error => {
+//         // console.error(error);
+//     });
 </script>

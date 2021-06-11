@@ -297,6 +297,7 @@ $route['loadkategorimobile']                 = 'Home/Home/loaddatakategorimobile
 $route['listkategori']                       = 'Home/Home/listkategori';
 $route['kontak']                             = 'Home/Home/kontak';
 $route['detail-news/(:any)']                 = 'Home/Home/detailnews/$1';
+$route['uploadimages']                       = 'Admin/AdminController/uploadimages';
 //
 
 //
