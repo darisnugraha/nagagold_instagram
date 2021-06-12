@@ -18,50 +18,79 @@
                     <label>Parameter Point / Gram</label>
                 </div>
                 <?php if(count($ParameterPoint->data) == 0): ?>
-                    <div class="col-span-4">
-                        <div class="relative mt-2">
-                            <input type="text" onkeypress="return NumberNoEnter(event)" autocomplete="off" id="rupiah" value="<?= $data->poin ?>" name="point" class="input pr-12 w-full border col-span-4" placeholder="Point">
-                        </div>
+                <div class="col-span-4">
+                    <div class="relative mt-2">
+                        <input type="text" onkeypress="return NumberNoEnter(event)" autocomplete="off" id="rupiah"
+                            value="<?= $data->poin ?>" name="point" class="input pr-12 w-full border col-span-4"
+                            placeholder="Point">
                     </div>
-                    <div class="col-span-4">
-                        <div class="relative mt-2">
-                            <select class="select2 w-full" name="status">
-                                <option value="RP" > RP </option>
-                                <option value="GR" > GR </option>
-                            </select>
-                        </div>
+                </div>
+                <div class="col-span-4">
+                    <div class="relative mt-2">
+                        <select class="select2 w-full" name="status">
+                            <option value="RP"> RP </option>
+                            <option value="GR"> GR </option>
+                        </select>
                     </div>
-                    <div class="col-span-4">
-                        <div class="relative mt-2">
-                            <input type="submit" value="Simpan Perubahan" class="button bg-theme-1 text-white input w-full border">
-                        </div>
+                </div>
+                <div class="col-span-4">
+                    <label>Kode Kelompok</label>
+                    <select name="kode_kelompok" id="kode_kelompok" style="width:100%"
+                        class="select2 w-full input w-full border mt-2 flex-1">
+                        <?php foreach ($DataKelompok->data  as $kategori) : ?>
+                        <option value="<?= $kategori->kode_kelompok ?>"><?= $kategori->nama_kelompok ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="col-span-12">
+                    <div class="relative mt-2">
+                        <input type="submit" value="Simpan Perubahan"
+                            class="button bg-theme-1 text-white input w-full border">
                     </div>
+                </div>
                 <?php else: ?>
                 <?php foreach ($ParameterPoint->data  as $data) : ?>
-                    <div class="col-span-4">
-                        <div class="relative mt-2">
-                            <input type="text" onkeypress="return NumberNoEnter(event)" autocomplete="off" id="rupiah" value="<?= $data->poin ?>" name="point" class="input pr-12 w-full border col-span-4" placeholder="Point">
-                            <div class="absolute top-0 right-0 rounded-r w-10 h-full flex items-center justify-center bg-gray-100 border text-gray-600"><?= $data->status ?></div>
-                        </div>
+                <div class="col-span-4">
+                    <label>&nbsp;</label>
+                    <div class="relative mt-2">
+                        <input type="text" onkeypress="return NumberNoEnter(event)" autocomplete="off" id="rupiah"
+                            value="<?= $data->poin ?>" name="point" class="input pr-12 w-full border col-span-4"
+                            placeholder="Point">
+                        <div
+                            class="absolute top-0 right-0 rounded-r w-10 h-full flex items-center justify-center bg-gray-100 border text-gray-600">
+                            <?= $data->status ?></div>
                     </div>
-                    <div class="col-span-4">
-                        <div class="relative mt-2">
-                            <select class="select2 w-full" name="status">
-                                <?php if ($data->status == "RP") : ?>
-                                    <option value="RP" selected> RP </option>
-                                    <option value="GR"> GR </option>
-                                <?php else : ?>
-                                    <option value="RP"> RP </option>
-                                    <option value="GR" selected> GR </option>
-                                <?php endif; ?>
-                            </select>
-                        </div>
+                </div>
+                <div class="col-span-4">
+                    <label>&nbsp;</label>
+                    <div class="relative mt-2">
+                        <select class="select2 w-full" name="status">
+                            <?php if ($data->status == "RP") : ?>
+                            <option value="RP" selected> RP </option>
+                            <option value="GR"> GR </option>
+                            <?php else : ?>
+                            <option value="RP"> RP </option>
+                            <option value="GR" selected> GR </option>
+                            <?php endif; ?>
+                        </select>
                     </div>
-                    <div class="col-span-4">
-                        <div class="relative mt-2">
-                            <input type="submit" value="Simpan Perubahan" class="button bg-theme-1 text-white input w-full border">
-                        </div>
+                </div>
+                <div class="col-span-4">
+                    <label>Kode Kelompok</label>
+                    <div class="relative mt-2">
+                        <select name="kode_kelompok" id="kode_kelompok" class="select2 w-full">
+                            <?php foreach ($DataKelompok->data  as $kategori) : ?>
+                            <option <?= $data->kode_kelompok == $kategori->kode_kelompok ? 'selected' : '' ?> value="<?= $kategori->kode_kelompok ?>"><?= $kategori->nama_kelompok ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
+                </div>
+                <div class="col-span-12 text-right">
+                    <div class="relative mt-2" >
+                        <input type="submit" value="Simpan Perubahan"
+                            class="button bg-theme-1 text-white input w-full border">
+                    </div>
+                </div>
                 <?php endforeach; ?>
                 <?php endif; ?>
 
@@ -71,32 +100,32 @@
     </div>
 </div>
 <script>
-    $(document).ready(function() {
-        var rupiah1 = $('#rupiah').val();
-        console.log(rupiah1);
-        $('#rupiah').val(formatRupiah(rupiah1));
-        // console.log();
-    })
-    var rupiah = document.getElementById('rupiah');
-    rupiah.addEventListener('keyup', function(e) {
-        // tambahkan 'Rp.' pada saat form di ketik
-        // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-        rupiah.value = formatRupiah(this.value, '');
-    });
-    /* Fungsi formatRupiah */
-    function formatRupiah(angka, prefix) {
-        var number_string = angka.replace(/[^,\d]/g, '').toString(),
-            split = number_string.split(','),
-            sisa = split[0].length % 3,
-            rupiah = split[0].substr(0, sisa),
-            ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+$(document).ready(function() {
+    var rupiah1 = $('#rupiah').val();
+    console.log(rupiah1);
+    $('#rupiah').val(formatRupiah(rupiah1));
+    // console.log();
+})
+var rupiah = document.getElementById('rupiah');
+rupiah.addEventListener('keyup', function(e) {
+    // tambahkan 'Rp.' pada saat form di ketik
+    // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+    rupiah.value = formatRupiah(this.value, '');
+});
+/* Fungsi formatRupiah */
+function formatRupiah(angka, prefix) {
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+        split = number_string.split(','),
+        sisa = split[0].length % 3,
+        rupiah = split[0].substr(0, sisa),
+        ribuan = split[0].substr(sisa).match(/\d{3}/gi);
 
-        // tambahkan titik jika yang di input sudah menjadi angka ribuan
-        if (ribuan) {
-            separator = sisa ? '.' : '';
-            rupiah += separator + ribuan.join('.');
-        }
-        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-        return prefix == undefined ? rupiah : (rupiah ? '' + rupiah : '');
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if (ribuan) {
+        separator = sisa ? '.' : '';
+        rupiah += separator + ribuan.join('.');
     }
+    rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+    return prefix == undefined ? rupiah : (rupiah ? '' + rupiah : '');
+}
 </script>

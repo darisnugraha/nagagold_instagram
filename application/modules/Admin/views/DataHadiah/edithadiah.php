@@ -10,13 +10,15 @@ foreach ($DataHadiah->data as $row) : ?>
                             Edit Hadiah
                         </h2>
                     </div>
-                    <form action="<?= base_url('edit-hadiah') ?>" method="POST">
+                    <form action="<?= base_url('edit-hadiah') ?>" method="POST" enctype="multipart/form-data">
                         <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
                             <input type="hidden" name="kode_hadiah" value="<?= $row->kode_hadiah ?>" class="input w-full border mt-2 flex-1" placeholder="Masukan Kode Hadiah">
                             <div class="col-span-12 sm:col-span-12">
                                 <label>Nama Hadiah</label>
                                 <input type="text" name="nama_hadiah" onkeypress="return event.keyCode != 13;" value="<?= $row->nama_hadiah ?>" class="input w-full border mt-2 flex-1" placeholder="Masukan Nama Hadiah">
                             </div>
+                        <input type="hidden" name="gambar_lama" value="<?= $row->lokasi_gambar ?>">
+
                             <!-- <div class="col-span-12 sm:col-span-12">
                                 <label>Stock</label>
                                 <input type="text" name="stock" onkeypress="return NumberNoEnter(event)" value="<?= $row->qty ?>" class="input w-full border mt-2 flex-1" placeholder="Masukan Stock Hadiah">
@@ -25,6 +27,14 @@ foreach ($DataHadiah->data as $row) : ?>
                                 <label>Point</label>
                                 <input type="text" name="point" onkeypress="return NumberNoEnter(event)" value="<?= $row->poin ?>" class="input w-full border mt-2 flex-1" placeholder="Masukan Stock Hadiah">
                             </div>
+                            <div class="col-span-12">
+                            <img width="570" height="250" id="output<?=$row->kode_hadiah ?>" class="viewimages" onerror="this.onerror=null;this.src='<?= base_url('assets/images/slidenotfound.jpg') ?>';" id="output<?=$row->kode_hadiah ?>" class="viewimages"
+                                        src="<?= $row->lokasi_gambar ?>">
+                        </div>
+                        <div class="col-span-12">
+                            <!-- <label>Foto Slider</label> -->
+                            <input type="file" onchange="document.getElementById('output<?=$row->kode_hadiah ?>').src = window.URL.createObjectURL(this.files[0])" type="file" name="photo" class="input w-full border mt-2 flex-1" placeholder="Masukan Nama Jenis">
+                        </div>
 
                         </div>
                         <div class="px-5 py-3 text-right border-t border-gray-200">

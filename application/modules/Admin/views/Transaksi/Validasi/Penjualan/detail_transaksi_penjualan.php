@@ -162,8 +162,8 @@
                             <div class="text-lg text-theme-1 font-medium mt-2"><?= $buktitf->from_atas_nama ?></div>
                             <div class="mt-1">Nama Bank : <?= $buktitf->from_nama_bank ?></div>
                             <div class="mt-1">No Rek : <?= $buktitf->from_no_rek ?></div>
-                            <a href="<?= base_url('assets/images/NsiPic/buktitransfer/' . strtolower($buktitf->bukti_transfer)) ?>" target="_blank">
-                                <img width="100px" height="100px" src="<?= base_url('assets/images/NsiPic/buktitransfer/' . strtolower($buktitf->bukti_transfer)) ?>"></a>
+                            <a href="#" target="_blank">
+                                <img width="100px" height="100px" src="<?= $buktitf->bukti_transfer ?>"></a>
                         <?php endforeach; ?>
                     </div>
                     <div class="text-center sm:text-right sm:ml-auto">

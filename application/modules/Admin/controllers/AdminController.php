@@ -481,6 +481,7 @@ class AdminController extends MX_Controller
         $this->session->set_userdata('title', 'Parameter Poin');
         $respons['title']           = 'Kelola Parameter';
         $respons['ParameterPoint']  = $this->SERVER_API->_getAPI('poin', $this->token);
+        $respons['DataKelompok']    = $this->SERVER_API->_getAPI('kelompok/all');
         $this->template->display_admin('Admin/Pengaturan/index_parameter_point', $respons);
     }
 
@@ -639,6 +640,7 @@ class AdminController extends MX_Controller
     {
         $data['poin']           = intval(str_replace('.','',$this->input->post('point')));
         $data['status']           = $this->input->post('status');
+        $data['kode_kelompok']   = $this->input->post('kode_kelompok');
         $respons                 = $this->SERVER_API->_putAPI('poin/update', $data, $this->token);
         if ($respons->status == "berhasil") {
             $this->session->set_flashdata('alert', success($respons->pesan));

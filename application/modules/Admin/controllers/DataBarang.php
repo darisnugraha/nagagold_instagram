@@ -27,6 +27,94 @@ class DataBarang extends MX_Controller
             $this->load->view('Error/index_error');
         }
     }
+
+    public function simpantambahbarang()
+    {
+        $jml_gambar                = $this->input->post('jml_gambar');
+        $nama_file                = $this->input->post('nama_file');
+
+        $directory = './assets/images/NsiPic/product/';
+        if (!is_dir($directory)) {
+            mkdir($directory, 0755, true);
+        }
+        
+        $data['kode_barang']  = $this->input->post('kode_barang');
+        $data['kode_barcode'] = $this->input->post('kode_barcode');
+        $data['kode_intern']  = $this->input->post('kode_intern');
+        $data['nama_barang']  = $this->input->post('nama_barang');
+        $data['nama_atribut']  = $this->input->post('nama_atribut');
+        $data['harga_atribut']  = intval($this->input->post('harga_atribut'));
+        $data['ongkos']  = intval($this->input->post('ongkos'));
+        $data['kode_kategori']  = $this->input->post('kode_kategori');
+        $data['kode_jenis']  = $this->input->post('kode_jenis');
+        $data['kode_kelompok']  = $this->input->post('kode_kelompok');
+        $data['kode_jenis_kelompok']  = $this->input->post('jenis_kelompok');
+        $data['kadar']  = intval($this->input->post('kadar'));
+        $data['kadar_cetak']  = intval($this->input->post('kadar_cetak'));
+        $data['berat']  = intval($this->input->post('berat'));
+        $data['berat_asli']  = intval($this->input->post('berat_asli'));
+        $data['stock']  = intval($this->input->post('stock'));
+
+        $config['quality']          = '50%';
+        $config['upload_path']   =  $directory; //path folder
+        $config['overwrite']     = TRUE;
+        $config['encrypt_name']  = TRUE;
+        $config['remove_spaces'] = TRUE;
+        $config['allowed_types'] = 'jpg|png|jpeg'; //type yang dapat diakses bisa anda sesuaikan
+        $this->load->library('upload', $config);
+        $y = 0;
+        $z = 0;
+        $jml = 0;
+        for ($i = 0; $i <= $jml_gambar; $i++) {
+            $jml = $jml + 1;
+            $nama = sprintf('%04s', $jml);
+            if ($_FILES['photo' . $i]['name'] != '') {
+                if (!empty($_FILES['photo' . $i]['name'])) {
+                    if (!$this->upload->do_upload('photo' . $i))
+                        $this->session->set_flashdata('alert', success($this->upload->display_errors()));
+                        $uploadData = $this->upload->data();
+                        $uploadData = $this->upload->data();
+                        $config1['image_library'] = 'gd2';
+                        $config1['source_image'] = './assets/images/NsiPic/product/' . $uploadData['file_name'];
+                        $config1['create_thumb'] = FALSE;
+                        $config1['maintain_ratio'] = TRUE;
+                        $config1['quality'] = '70%';
+                        $config1['width'] = 700;
+                        $config1['height'] = 700;
+                        $config1['new_image'] = './assets/images/NsiPic/product/' . $uploadData['file_name'];
+                        $this->load->library('image_lib', $config1);
+                        $this->image_lib->initialize($config1);
+                        $this->image_lib->resize();
+                        $data1[$z]['kode_gambar'] = $nama;
+                        $data1[$z]['lokasi_gambar'] = base_url('assets/images/NsiPic/product/').$uploadData['file_name'];
+                        $z++;
+                }
+            } elseif ($_FILES['photo' . $i]['name'] == '' && $nama_file[$y] <> "") {
+            // } elseif ($nama_file[$y] <> "") {
+                $data1[$z]['kode_gambar'] = $nama;
+                $data1[$z]['lokasi_gambar'] = $nama_file[$y];
+                $y++;
+                $z++;
+            }
+        }
+        $data['gambar'] = $data1;
+        $respons                     = $this->SERVER_API->_postAPI('barang/simpan-barang-online', $data, $this->token);
+        if ($respons->status == "berhasil") {
+            $this->session->set_flashdata('alert', success($respons->pesan));
+        } else {
+            $this->session->set_flashdata('alert', information($respons->pesan));
+        }
+
+        redirect('wp-tambah-barang-online');
+     
+    }
+    function tambahbarangonline(){
+        $respons['DataJenis']      = $this->SERVER_API->_getAPI('jenis', $this->token);
+        $respons['DataKategori']   = $this->SERVER_API->_getAPI('kategori', $this->token);
+        $respons['DetailBarang']     = $this->SERVER_API->_getAPI('barang/barcode/' . decrypt_url($id), $this->token);
+        $respons['DataKelompok']            = $this->SERVER_API->_getAPI('kelompok/all');
+        $this->template->display_admin('DataBarang/TambahBarang/index_tambahbarang',$respons);
+    }
     public function barangonline()
     {
         $respons['DataKategori']   = $this->SERVER_API->_getAPI('kategori', $this->token);
@@ -127,6 +215,7 @@ class DataBarang extends MX_Controller
         $data['kadar_cetak']    = intval(decrypt_url($this->input->post('kadar_cetak')));
         $data['harga_atribut']  = intval(decrypt_url($this->input->post('harga_atribut')));
         $data['ongkos']            = intval(decrypt_url($this->input->post('ongkos')));
+        
         $config['quality']          = '50%';
         $config['upload_path']   =  $directory; //path folder
         $config['overwrite']     = TRUE;
@@ -495,7 +584,9 @@ class DataBarang extends MX_Controller
         if($file_baru == ""){
 			$data["banner"]			= $file_asli;
 		}else{
-            unlink($file_asli);
+            // unlink($file_asli);
+            $nama = str_replace(base_url('assets/images/NsiPic/icon/'),'',$this->input->post('banner_lama'));
+            unlink('assets/images/NsiPic/icon/'.$nama);
             $info = pathinfo($_FILES['photo']['name']);
             $filename = $info['basename'];
             $directory = "./assets/images/NsiPic/icon/";
@@ -656,6 +747,41 @@ class DataBarang extends MX_Controller
         $data['kode_hadiah']         = $this->input->post('kode_hadiah');
         $data['nama_hadiah']         = $this->input->post('nama_hadiah');
         $data['poin']               = intval($this->input->post('point'));
+       
+        $info = pathinfo($_FILES['photo']['name']);
+        $filename = $info['basename'];
+        $directory = "./assets/images/NsiPic/datahadiah/";
+
+        if (!is_dir($directory)) {
+            mkdir($directory, 0777, true);
+        }
+        $config['quality']          = '50%';
+        $config['remove_spaces'] = TRUE;
+        $config['overwrite']     = TRUE;
+        $config['encrypt_name'] = TRUE;
+        $config['upload_path']   = $directory;
+        $config['allowed_types'] = 'jpg|png|jpeg'; //type yang dapat diakses bisa anda sesuaikan
+        $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
+
+        $this->load->library('upload', $config);
+
+        if ($_FILES['photo']) {
+            $this->upload->do_upload('photo');
+            $uploadData = $this->upload->data();
+            $config1['image_library'] = 'gd2';
+            $config1['source_image'] = './assets/images/NsiPic/datahadiah/' . $uploadData['file_name'];
+            $config1['create_thumb'] = FALSE;
+            $config1['maintain_ratio'] = TRUE;
+            $config1['quality'] = '70%';
+            $config1['width'] = 1280;
+            $config1['height'] = 810;
+            $config1['new_image'] = './assets/images/NsiPic/datahadiah/' . $uploadData['file_name'];
+            $this->load->library('image_lib', $config1);
+            $this->image_lib->initialize($config1);
+            $this->image_lib->resize();
+            $data['lokasi_gambar']               =  base_url('assets/images/NsiPic/datahadiah/').$uploadData['file_name'];
+        }
+        
         $respons                     = $this->SERVER_API->_postAPI('hadiah', $data, $this->token);
         if ($respons->status == "berhasil") {
             $this->session->set_flashdata('alert', success($respons->pesan));
@@ -679,6 +805,57 @@ class DataBarang extends MX_Controller
     }
     function edithadiah()
     {
+        $file_asli				= $this->input->post('gambar_lama');
+		$file_baru				= $_FILES['photo']['name'];
+        if($file_baru == ""){
+			$data["lokasi_gambar"]			= $file_asli;
+		}else{
+            // unlink($file_asli);
+            $nama = str_replace(base_url('assets/images/NsiPic/datahadiah/'),'',$this->input->post('gambar_lama'));
+
+            unlink('assets/images/NsiPic/datahadiah/'.$nama);
+            // var_dump($nama);
+            // die;
+
+            $info = pathinfo($_FILES['photo']['name']);
+            $filename = $info['basename'];
+            $directory = "./assets/images/NsiPic/datahadiah/";
+
+            if (!is_dir($directory)) {
+                mkdir($directory, 0777, true);
+            }
+            $config['quality']          = '50%';
+            $config['remove_spaces'] = TRUE;
+            $config['overwrite']     = TRUE;
+            $config['encrypt_name'] = TRUE;
+            $config['upload_path']   = $directory;
+            $config['allowed_types'] = 'jpg|png|jpeg'; //type yang dapat diakses bisa anda sesuaikan
+            $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
+            // $nmfile =  $filename;
+            // $config['file_name']            = $filename;
+
+            // $this->upload->initialize($config);
+
+            $this->load->library('upload', $config);
+
+            if ($_FILES['photo']) {
+                $this->upload->do_upload('photo');
+                $uploadData = $this->upload->data();
+                $config1['image_library'] = 'gd2';
+                $config1['source_image'] = './assets/images/NsiPic/datahadiah/' . $uploadData['file_name'];
+                $config1['create_thumb'] = FALSE;
+                $config1['maintain_ratio'] = TRUE;
+                $config1['quality'] = '70%';
+                $config1['width'] = 1280;
+                $config1['height'] = 810;
+                $config1['new_image'] = './assets/images/NsiPic/datahadiah/' . $uploadData['file_name'];
+                $this->load->library('image_lib', $config1);
+                $this->image_lib->initialize($config1);
+                $this->image_lib->resize();
+                $data['lokasi_gambar']               =  base_url('assets/images/NsiPic/datahadiah/').$uploadData['file_name'];
+            }
+        }
+       
         $kode                       = $this->input->post('kode_hadiah');
         $data['poin']               = intval($this->input->post('point'));
         $data['nama_hadiah']         = $this->input->post('nama_hadiah');

@@ -340,7 +340,7 @@ class UserController extends MX_Controller
 				$this->load->library('image_lib', $config1);
 				$this->image_lib->initialize($config1);
 				$this->image_lib->resize();
-				$data['bukti_transfer'] = $uploadData['file_name'];
+				$data['bukti_transfer'] = base_url('assets/images/NsiPic/buktitransfer/').$uploadData['file_name'];
 			}
 			$response			  = $this->SERVER_API->_postAPI('penjualan/payment-confirm/' . trim($datapesanan['0']), $data, $this->token);
 

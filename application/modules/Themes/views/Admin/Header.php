@@ -248,6 +248,12 @@ if ($thisPage == "/hidup_retail/data-kelompok" || $thisPage == "/hidup_retail/da
                     </a>
                     <ul class="<?= $kelolakategori ?>">
                         <li>
+                            <a href="<?= base_url('wp-tambah-barang-online') ?>" class="side-menu">
+                                <div class="side-menu__icon"> <i data-feather="circle"></i> </div>
+                                <div class="side-menu__title"> Tambah Barang </div>
+                            </a>
+                        </li>
+                        <li>
                             <a href="<?= base_url('wp-kategori-barang') ?>" class="side-menu">
                                 <div class="side-menu__icon"> <i data-feather="circle"></i> </div>
                                 <div class="side-menu__title"> Kelola Kategori </div>
@@ -259,12 +265,12 @@ if ($thisPage == "/hidup_retail/data-kelompok" || $thisPage == "/hidup_retail/da
                                 <div class="side-menu__title"> Kelola Jenis </div>
                             </a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="<?= base_url('wp-barang') ?>" class="side-menu">
                                 <div class="side-menu__icon"> <i data-feather="circle"></i> </div>
                                 <div class="side-menu__title"> Lihat Barang Upload </div>
                             </a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href="<?= base_url('wp-barang-online') ?>" class="side-menu">
                                 <div class="side-menu__icon"> <i data-feather="circle"></i> </div>
@@ -441,12 +447,12 @@ if ($thisPage == "/hidup_retail/data-kelompok" || $thisPage == "/hidup_retail/da
                             </a>
                         </li>
 
-                        <li>
+                        <!-- <li>
                             <a href="<?= base_url('wp-parameter-harga-emas') ?>" class="side-menu">
                                 <div class="side-menu__icon"> <i data-feather="circle"></i> </div>
                                 <div class="side-menu__title"> Parameter Harga Emas </div>
                             </a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href="<?= base_url('wp-kurir') ?>" class="side-menu">
                                 <div class="side-menu__icon"> <i data-feather="circle"></i> </div>

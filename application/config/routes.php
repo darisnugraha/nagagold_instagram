@@ -154,6 +154,8 @@ $route['export-exel-laporan-batal-penjualan'] = 'Admin/Laporan/exportexllaporanb
 $route['wp-laporan']               = 'Admin/Laporan/laporanbarang';
 $route['export-laporan-stock']     = 'Admin/Laporan/exportLaporanstock';
 
+$route['wp-tambah-barang-online']  = 'Admin/DataBarang/tambahbarangonline';
+$route['simpan-tambah-barang']     = 'Admin/DataBarang/simpantambahbarang';
 $route['data-jenis']               = 'Admin/DataBarang/datajenis';
 $route['simpan-jenis-kelompok']    = 'Admin/DataBarang/simpanjenishargaemas';
 $route['simpan-edit-jenis-kelompok']    = 'Admin/DataBarang/simpaneditjenishargaemas';
