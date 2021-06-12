@@ -23,10 +23,14 @@
                     <div class="form-group">
                         <label>Email</label>
                         <div class="input-group mb-3">
-                            <input type="text" name="email" id="email" type="email" value="<?= $this->session->userdata('email') ?>" class="form-control" placeholder="Masukan Email Baru">
+                            <input type="text" name="email" id="email" type="email"
+                                value="<?= $this->session->userdata('email') ?>" class="form-control"
+                                placeholder="Masukan Email Baru">
                             <div class="input-group-append">
                                 <button class="btn btn-success verifikasi_email" type="button">Verifikasi Email</button>
-                                <button class="btn btn-success btn-loading-email" style="cursor: not-allowed; display:none" type="button"> <i class="fa fa-spinner fa-spin"></i> </button>
+                                <button class="btn btn-success btn-loading-email"
+                                    style="cursor: not-allowed; display:none" type="button"> <i
+                                        class="fa fa-spinner fa-spin"></i> </button>
 
                             </div>
                         </div>
@@ -34,15 +38,48 @@
                     <div class="form-group">
                         <label>No Hp</label>
                         <div class="input-group mb-3">
-                            <input type="text" name="no_hp" id="no_hp" type="number" value="<?= $this->session->userdata('no_hp') ?>" class="form-control" placeholder="Masukan No Hp">
+                            <input type="text" name="no_hp" id="no_hp" type="number"
+                                value="<?= $this->session->userdata('no_hp') ?>" class="form-control"
+                                placeholder="Masukan No Hp">
                             <div class="input-group-append">
                                 <!-- <button class="btn btn-success" data-toggle="modal" data-target="#modalkonfirmasi_otp" type="button">Ganti No Hp</button> -->
-                                <button class="btn btn-success verifikasi_no_hp" style="display: block;" type="button">Verifikasi No Hp</button>
-                                <button class="btn btn-success btn-loading-no-hp" style="cursor: not-allowed; display:none" type="button"> <i class="fa fa-spinner fa-spin"></i> </button>
+                                <button class="btn btn-success verifikasi_no_hp" style="display: block;"
+                                    type="button">Verifikasi No Hp</button>
+                                <button class="btn btn-success btn-loading-no-hp"
+                                    style="cursor: not-allowed; display:none" type="button"> <i
+                                        class="fa fa-spinner fa-spin"></i> </button>
 
                             </div>
                         </div>
                     </div>
+                    <form id="formEditPassword" autocomplete="off" method="POST">
+
+                        <div class="form-group">
+                            <label>Password Lama</label>
+                            <div class="input-group mb-3">
+                                <input type="password" name="password_lama" value="" class="form-control"
+                                    placeholder="Masukan Password Lama">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Password Baru</label>
+                            <div class="input-group mb-3">
+                                <input type="password" name="password_baru" value="" class="form-control"
+                                    placeholder="Masukan Password Baru">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Ulangi Passowrd</label>
+                            <div class="input-group mb-3">
+                                <input type="password" name="ulangi_password" value="" class="form-control"
+                                    placeholder="Ulangi Password">
+                            </div>
+                        </div>
+                        <button class="btn btn-success w-100 btn-click1" style="display: block;" type="submit">Update
+                            Password</button>
+                        <button class="btn btn-success btn-block btn-loading1" style="cursor: not-allowed; display:none"
+                            type="button"> <i class="fa fa-spinner fa-spin"></i> </button>
+                    </form>
                 </div>
             </div>
             <br>
@@ -53,7 +90,8 @@
 <br>
 <br>
 
-<div class="modal fade" id="modalkonfirmasi_otp_hp" tabindex="-1" role="dialog" aria-labelledby="modalcekuserLabel" aria-hidden="true">
+<div class="modal fade" id="modalkonfirmasi_otp_hp" tabindex="-1" role="dialog" aria-labelledby="modalcekuserLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -63,24 +101,31 @@
                 </button>
             </div>
             <!-- <form action="#" method="POST"> -->
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Konfirmasi OTP</label>
-                        <input type="number" id="kode_otp_hp" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form-control" placeholder="Masukan OTP">
-                        <input type="hidden" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form-control" id="no_hp_verifikasi">
-                    </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Konfirmasi OTP</label>
+                    <input type="number" id="kode_otp_hp"
+                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                        class="form-control" placeholder="Masukan OTP">
+                    <input type="hidden"
+                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                        class="form-control" id="no_hp_verifikasi">
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <button type="button" class="kirim_verifikasi_no_hp btn btn-primary" tyle="display: block;">Konfirmasi</button>
-                    <button class="button btn btn-primary btn-loading-no_hp" style="cursor: not-allowed; display:none" type="button"> <i class="fa fa-spinner fa-spin"></i> </button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button type="button" class="kirim_verifikasi_no_hp btn btn-primary"
+                    tyle="display: block;">Konfirmasi</button>
+                <button class="button btn btn-primary btn-loading-no_hp" style="cursor: not-allowed; display:none"
+                    type="button"> <i class="fa fa-spinner fa-spin"></i> </button>
 
-                </div>
+            </div>
             <!-- </form> -->
         </div>
     </div>
 </div>
-<div class="modal fade" id="modalkonfirmasi_otp_email" tabindex="-1" role="dialog" aria-labelledby="modalcekuserLabel" aria-hidden="true">
+<div class="modal fade" id="modalkonfirmasi_otp_email" tabindex="-1" role="dialog" aria-labelledby="modalcekuserLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -90,45 +135,91 @@
                 </button>
             </div>
             <!-- <form action="#" method="POST"> -->
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Konfirmasi OTP</label>
-                        <input type="number" id="kode_otp_email" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form-control" placeholder="Masukan OTP">
-                        <input type="hidden"  class="form-control" id="email_verifikasi">
-                    </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Konfirmasi OTP</label>
+                    <input type="number" id="kode_otp_email"
+                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                        class="form-control" placeholder="Masukan OTP">
+                    <input type="hidden" class="form-control" id="email_verifikasi">
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <button type="button" class="kirim_verifikasi_email btn btn-primary" style="display: block;">Konfirmasi</button>
-                    <button class="button btn btn-primary btn-loading-verifikasiemail" style="cursor: not-allowed; display:none" type="button"> <i class="fa fa-spinner fa-spin"></i> </button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button type="button" class="kirim_verifikasi_email btn btn-primary"
+                    style="display: block;">Konfirmasi</button>
+                <button class="button btn btn-primary btn-loading-verifikasiemail"
+                    style="cursor: not-allowed; display:none" type="button"> <i class="fa fa-spinner fa-spin"></i>
+                </button>
 
-                </div>
+            </div>
             <!-- </form> -->
         </div>
     </div>
 </div>
-
-<script>
-window.history.replaceState('','',window.location.href);
-// Verifikasi Email 
-    $('.verifikasi_email').on('click',function(){
-        var id= $('#email').val();
-        // console.log(id);
-        $('.verifikasi_email').hide();
-        $('.btn-loading-email').show();
-        $('#kode_otp_email').val('');
-
+<script type="text/javascript">
+$('#formEditPassword').submit(function(e) {
+    e.preventDefault();
+    $('.btn-click1').hide();
+    $('.btn-loading1').show();
+    setTimeout(() => {
         $.ajax({
-            url: base_url + "verifikasi-email",
-            dataType: 'json',
-            method: 'POST',
-            data: {
-                email: id
-            },
-            success: function(respons) {
-                // console.log(respons);
-                if(respons.status=="berhasil"){
+            url: base_url + '/update-password',
+            type: "post",
+            data: new FormData(this),
+            processData: false,
+            contentType: false,
+            cache: false,
+            async: false,
+            success: function(data) {
+                console.log(data);
+                if (data.status == "berhasil") {
                     Swal.fire({
+                        title: 'Good Job',
+                        text: data.pesan,
+                        type: "success",
+                        showCancelButton: false,
+                        confirmButtonText: "Ok",
+                        reverseButtons: true,
+                    })
+                    $('.btn-click1').show();
+                    $('.btn-loading1').hide();
+                } else {
+                    Swal.fire(
+                        'Opps!',
+                        '' + data.pesan + '',
+                        'info'
+                    )
+                    $('.btn-click1').show();
+                    $('.btn-loading1').hide();
+                }
+            }
+        });
+    }, 3000);
+
+});
+</script>
+<script>
+window.history.replaceState('', '', window.location.href);
+// Verifikasi Email 
+$('.verifikasi_email').on('click', function() {
+    var id = $('#email').val();
+    // console.log(id);
+    $('.verifikasi_email').hide();
+    $('.btn-loading-email').show();
+    $('#kode_otp_email').val('');
+
+    $.ajax({
+        url: base_url + "verifikasi-email",
+        dataType: 'json',
+        method: 'POST',
+        data: {
+            email: id
+        },
+        success: function(respons) {
+            // console.log(respons);
+            if (respons.status == "berhasil") {
+                Swal.fire({
                     title: "Success !",
                     text: respons.pesan,
                     type: "success",
@@ -145,37 +236,37 @@ window.history.replaceState('','',window.location.href);
                 $('.verifikasi_email').show();
 
                 $('#email_verifikasi').val(id);
-                }else{
-                    Swal.fire(
-                        'Opps!',
-                        ''+respons.pesan+'',
-                        'info'
-                    )   
-                    $('.btn-loading-email').hide();
-                    $('.verifikasi_email').show(); 
-                }
+            } else {
+                Swal.fire(
+                    'Opps!',
+                    '' + respons.pesan + '',
+                    'info'
+                )
+                $('.btn-loading-email').hide();
+                $('.verifikasi_email').show();
             }
-        })
+        }
     })
+})
 
-    $('.kirim_verifikasi_email').on('click', function(){
-        $('.kirim_verifikasi_email').hide();
-        $('.btn-loading-verifikasiemail').show();
-        var kode_otp = $('#kode_otp_email').val();
-        var email    = $('#email_verifikasi').val();
-        $.ajax({
-            url: base_url + "validasi-otp",
-            dataType: 'json',
-            method: 'POST',
-            data: {
-                email: email,
-                kode_otp: kode_otp,
-                type: "email"
-            },
-            success: function(respons) {
-                // console.log(respons);
-                if(respons.status=="berhasil"){
-                    Swal.fire({
+$('.kirim_verifikasi_email').on('click', function() {
+    $('.kirim_verifikasi_email').hide();
+    $('.btn-loading-verifikasiemail').show();
+    var kode_otp = $('#kode_otp_email').val();
+    var email = $('#email_verifikasi').val();
+    $.ajax({
+        url: base_url + "validasi-otp",
+        dataType: 'json',
+        method: 'POST',
+        data: {
+            email: email,
+            kode_otp: kode_otp,
+            type: "email"
+        },
+        success: function(respons) {
+            // console.log(respons);
+            if (respons.status == "berhasil") {
+                Swal.fire({
                     title: "Success !",
                     text: respons.pesan,
                     type: "success",
@@ -187,41 +278,41 @@ window.history.replaceState('','',window.location.href);
                     if (result.value) {
                         $('#modalkonfirmasi_otp_email').modal('hide');
                         $('.kirim_verifikasi_email').show();
-                         $('.btn-loading-verifikasiemail').hide();
+                        $('.btn-loading-verifikasiemail').hide();
                     }
                 });
-                }else{
-                    $('.kirim_verifikasi_email').show();
-                    $('.btn-loading-verifikasiemail').hide();
-                    Swal.fire(
-                        'Opps!',
-                        ''+respons.pesan+'',
-                        'info'
-                    )    
-                }
+            } else {
+                $('.kirim_verifikasi_email').show();
+                $('.btn-loading-verifikasiemail').hide();
+                Swal.fire(
+                    'Opps!',
+                    '' + respons.pesan + '',
+                    'info'
+                )
             }
-        });
-    })
+        }
+    });
+})
 
 // verifikasi No HP
-    $('.verifikasi_no_hp').on('click',function(){
-        $('#kode_otp_email').val('');
-        var id= $('#no_hp').val();
-        // console.log(id);
-        $('.verifikasi_no_hp').hide();
-        $('.btn-loading-no-hp').show();
+$('.verifikasi_no_hp').on('click', function() {
+    $('#kode_otp_email').val('');
+    var id = $('#no_hp').val();
+    // console.log(id);
+    $('.verifikasi_no_hp').hide();
+    $('.btn-loading-no-hp').show();
 
-        $.ajax({
-            url: base_url + "verifikasi-no-hp",
-            dataType: 'json',
-            method: 'POST',
-            data: {
-                no_hp: id
-            },
-            success: function(respons) {
-                // console.log(respons);
-                if(respons.status=="berhasil"){
-                    Swal.fire({
+    $.ajax({
+        url: base_url + "verifikasi-no-hp",
+        dataType: 'json',
+        method: 'POST',
+        data: {
+            no_hp: id
+        },
+        success: function(respons) {
+            // console.log(respons);
+            if (respons.status == "berhasil") {
+                Swal.fire({
                     title: "Success !",
                     text: respons.pesan,
                     type: "success",
@@ -237,41 +328,41 @@ window.history.replaceState('','',window.location.href);
                 $('.btn-loading-no-hp').hide();
                 $('.verifikasi_no_hp').show();
                 $('#no_hp_verifikasi').val(id);
-                  
-                }else{
-                    Swal.fire(
-                        'Opps!',
-                        ''+respons.pesan+'',
-                        'info'
-                    )    
-                    $('.btn-loading-no-hp').hide();
-                    $('.verifikasi_no_hp').show();
 
-                }
+            } else {
+                Swal.fire(
+                    'Opps!',
+                    '' + respons.pesan + '',
+                    'info'
+                )
+                $('.btn-loading-no-hp').hide();
+                $('.verifikasi_no_hp').show();
+
             }
-        })
+        }
     })
+})
 
-    $('.kirim_verifikasi_no_hp').on('click', function(){
-        var kode_otp = $('#kode_otp_hp').val();
-        var no_hp    = $('#no_hp_verifikasi').val();
-        // console.log(kode_otp);
-        // console.log(no_hp);
-        $('.kirim_verifikasi_no_hp').hide();
-        $('.btn-loading-no_hp').show();
-        $.ajax({
-            url: base_url + "validasi-otp",
-            dataType: 'json',
-            method: 'POST',
-            data: {
-                no_hp: no_hp,
-                kode_otp: kode_otp,
-                type: "no_hp"
-            },
-            success: function(respons) {
-                // console.log(respons);
-                if(respons.status=="berhasil"){
-                    Swal.fire({
+$('.kirim_verifikasi_no_hp').on('click', function() {
+    var kode_otp = $('#kode_otp_hp').val();
+    var no_hp = $('#no_hp_verifikasi').val();
+    // console.log(kode_otp);
+    // console.log(no_hp);
+    $('.kirim_verifikasi_no_hp').hide();
+    $('.btn-loading-no_hp').show();
+    $.ajax({
+        url: base_url + "validasi-otp",
+        dataType: 'json',
+        method: 'POST',
+        data: {
+            no_hp: no_hp,
+            kode_otp: kode_otp,
+            type: "no_hp"
+        },
+        success: function(respons) {
+            // console.log(respons);
+            if (respons.status == "berhasil") {
+                Swal.fire({
                     title: "Success !",
                     text: respons.pesan,
                     type: "success",
@@ -287,17 +378,16 @@ window.history.replaceState('','',window.location.href);
                         $('.btn-loading-no_hp').hide();
                     }
                 });
-                }else{
-                    $('.kirim_verifikasi_no_hp').show();
-                    $('.btn-loading-no_hp').hide();
-                    Swal.fire(
-                        'Opps!',
-                        ''+respons.pesan+'',
-                        'info'
-                    )    
-                }
+            } else {
+                $('.kirim_verifikasi_no_hp').show();
+                $('.btn-loading-no_hp').hide();
+                Swal.fire(
+                    'Opps!',
+                    '' + respons.pesan + '',
+                    'info'
+                )
             }
-        });
-    })
-    
+        }
+    });
+})
 </script>

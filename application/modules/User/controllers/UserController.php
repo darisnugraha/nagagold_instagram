@@ -266,6 +266,7 @@ class UserController extends MX_Controller
 		$data['nama_customer'] 	  = $this->input->post('nama_customer');
 		$data['no_ktp'] 	  	  = $this->input->post('no_ktp');
 		$data['tgl_lahir'] 	  	  = $this->input->post('tgl_lahir');
+
 		$respons 			  = $this->SERVER_API->_putAPI('customer/edit-profile', $data, $this->token);
 		if ($respons->status == "berhasil") {
 			$dataEdit = [
@@ -279,6 +280,18 @@ class UserController extends MX_Controller
 			$this->session->set_flashdata('alert', information($respons->pesan));
 		}
 		redirect('wp-edit-user-profile');
+	}
+	function updatepassword()
+	{
+		$data['password'] 	    = $this->input->post('password_lama');
+		$data['new_password'] 	= $this->input->post('password_baru');
+		$data['retype_password'] = $this->input->post('ulangi_password');
+
+		$respons 			  = $this->SERVER_API->_postAPI('customer/change-password', $data, $this->token);
+		$this->output->set_status_header(200);
+		$this->output->set_content_type('application/json', 'utf-8');
+		return $this->output->set_output(json_encode($respons));
+		
 	}
 
 

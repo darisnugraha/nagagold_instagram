@@ -37,14 +37,18 @@ class LoginController extends MX_Controller
 				$tgl_lahir	   =  $user->tgl_lahir;
 				$email		   =  $user->email;
 				$no_hp		   =  $user->no_hp;
+				$no_ktp		   =  $user->no_ktp;
 			}
 			$data = [
+				'no_ktp' => $no_ktp,
 				'nama_customer' => $nama_customer,
 				'kode_customer' => $kode_customer,
 				'tgl_lahir' 	=> $tgl_lahir,
 				'email' 		=> $email,
 				'no_hp' 		=> $no_hp
 			];
+
+		
 			$this->session->set_userdata($data);
 			$this->session->set_flashdata('PesanOtp', $respons->pesan);
 			redirect('otentivikasi');

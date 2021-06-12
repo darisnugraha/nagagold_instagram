@@ -23,10 +23,10 @@
         <div class="card-body">
 
           <form id="FormValidasi" autocomplete="off" action="<?= base_url('update-myacount') ?>" method="POST">
-            <!-- <div class="form-group">
+            <div class="form-group">
               <div class="title mb-2"><i class="lni lni-user"></i><span>No KTP</span></div>
               <input class="form-control" onkeypress="return NumberNoEnter(event)" placeholder="Masukan No Ktp" name="no_ktp" type="number" required value="<?= $this->session->userdata('no_ktp') ?>">
-            </div> -->
+            </div>
             <div class="form-group">
               <div class="title mb-2"><i class="lni lni-user"></i><span>Nama Customer</span></div>
               <input class="form-control" onkeypress="return HurufNoEnter(event)" placeholder="Masukan Nama Depan" name="nama_customer" required type="text" value="<?= $this->session->userdata('nama_customer') ?>">
@@ -51,16 +51,7 @@
               <input class="form-control" name="pass_key" type="password" placeholder="Masukan Password Lama">
               <small class="form-text text-muted">Kosongkan Jika Tidak Ingin Mengganti  Passsword.</small>
             </div> -->
-            <div class="form-group">
-              <div class="title mb-2"><i class="lni lni-key"></i><span>Password Baru</span></div>
-              <input class="form-control" name="pass_key" type="password" placeholder="Masukan Password">
-              <small class="form-text text-muted">Kosongkan Jika Tidak Ingin Mengganti Passsword.</small>
-            </div>
-            <div class="form-group">
-              <div class="title mb-2"><i class="lni lni-key"></i><span>Ulangi Password Baru</span></div>
-              <input class="form-control" name="pass_key" type="password" placeholder="Ulangi Password Baru">
-              <!-- <small class="form-text text-muted">Kosongkan Jika Tidak Ingin Mengganti Passsword.</small> -->
-            </div>
+           
             <button onclick="FormValidasi();" class="btn btn-success w-100" type="submit">Simpan Perubahan</button>
           </form>
 

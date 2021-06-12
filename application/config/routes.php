@@ -238,6 +238,7 @@ $route['hapus-hadiah/(:any)']                  = 'Admin/DataBarang/hapushadiah/$
 //Hadiah
 
 // User
+$route['update-password']                       = 'User/UserController/updatepassword';
 $route['wp-dashboard-user']                     = 'User/UserController/index';
 $route['loaddatahistory']                       = 'User/UserController/loaddatahistory';
 $route['cek-status-pesanan/(:any)/(:any)']      = 'User/UserController/cekstatuspesanan/$1/$2';

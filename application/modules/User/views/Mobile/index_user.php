@@ -103,7 +103,7 @@
                     <div class="single-profile-data d-flex align-items-center justify-content-between">
                         <div class="title" style="white-space: nowrap; cursor: pointer;">
                         <a data-toggle="modal" data-target="#modalcekuser">
-                            <i class="lni lni-lock"></i><span>Verifikasi No Hp / Email</span>
+                            <i class="lni lni-lock"></i><span>Verifikasi No Hp / Email / Ganti Password</span>
                         </a>
                         </div>
                         <div class="data-content">
