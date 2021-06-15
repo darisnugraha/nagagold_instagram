@@ -18,6 +18,7 @@ class AdminController extends MX_Controller
         $respons['BarangTerjual'] = $this->SERVER_API->_getAPI('penjualan/count-jual/'.date('Y-m-d'), $this->token);
         $respons['TotalBarangOnline'] = $this->SERVER_API->_getAPI('barang/barang-online', $this->token);
         $respons['OrderanBaru'] = $this->SERVER_API->_getAPI('penjualan/count-new-order', $this->token);
+        $respons['title']      = 'Dashboard';
         if ($this->session->userdata('Admintoken')) {
             if ($this->mobile === true) {
 				$this->session->set_userdata('status_header', 'ADMIN');
@@ -31,6 +32,10 @@ class AdminController extends MX_Controller
         }
     }
 
+    function index_chat (){
+        $respons['title']      = 'Chat';
+        $this->template->display_admin('Chat/index_chat',$respons);
+    }
     function gantipasswordusertoko(){
         $data['password']          = $this->input->post('password');
         $data['new_password']      = $this->input->post('new_password');
@@ -229,7 +234,8 @@ class AdminController extends MX_Controller
     }
 
     function indexnews(){
-       $respons['news'] = $this->SERVER_API->_getAPI('news/all', $this->token);
+        $respons['title']      = 'News';
+        $respons['news'] = $this->SERVER_API->_getAPI('news/all', $this->token);
         $this->template->display_admin('news/index',$respons);
     }
     function addnews(){
@@ -340,7 +346,8 @@ class AdminController extends MX_Controller
         $data['judul'] = $this->input->post('judul');
         $data['slug'] = $this->input->post('slug');
         $data['deskripsi'] = $this->input->post('isi');
-       $info = pathinfo($_FILES['photo']['name']);
+      
+        $info = pathinfo($_FILES['photo']['name']);
        $filename = $info['basename'];
        $directory = "./assets/images/NsiPic/news/";
        if (!is_dir($directory)) {

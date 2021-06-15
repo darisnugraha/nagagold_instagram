@@ -41,6 +41,7 @@ $route['resend-email/(:any)']        = 'Auth/LoginController/resendemail/$1';
 //End
 
 //Administrator
+
 $route['wp-login']              = 'Auth/LoginController/index_admin';
 $route['wp-daftar-member']      = 'Auth/LoginController/daftar_member';
 $route['edit-profile-user']     = 'Auth/AdminController/edit_user_admin';
@@ -65,6 +66,8 @@ $route['audio']        = 'Auth/RegisterController/audio';
 $route['wp-dashboard']          = 'Admin/AdminController/index';
 $route['wp-pushnotif']          = 'Admin/AdminController/pushnotif';
 $route['kirimnotif']            = 'Admin/AdminController/kirimnotif';
+$route['wp-chat']              = 'Admin/AdminController/index_chat';
+
 
 $route['wp-parameter-poin']      = 'Admin/AdminController/parameterpoint';
 $route['wp-profile-admin']       = 'Admin/AdminController/profileadmin';
@@ -238,6 +241,8 @@ $route['hapus-hadiah/(:any)']                  = 'Admin/DataBarang/hapushadiah/$
 //Hadiah
 
 // User
+$route['wp-tukar-point']                        = 'User/UserController/wptukarpoint';
+$route['chat']                                  = 'User/UserController/chat';
 $route['update-password']                       = 'User/UserController/updatepassword';
 $route['wp-dashboard-user']                     = 'User/UserController/index';
 $route['loaddatahistory']                       = 'User/UserController/loaddatahistory';
@@ -317,6 +322,7 @@ $route['cekongkir']                           = 'Home/Shop/cekongkir';
 $route['wp-hapus-old-order/(:any)']           = 'Home/Keranjang/hapushistoryorder/$1';
 $route['wp-terima-pesanan']                   = 'User/UserController/konfirmasipenerimaanbarang';
 $route['set-batal-penjualan']                  = 'User/UserController/batal_penjualan';
+$route['listbarangtukar']                     = 'User/UserController/listbarangtukar';
 // $route['wp-terima-pesanan/(:any)']            = 'User/UserController/konfirmasipenerimaanbarang/$1';
 
 $route['getBarcodePengajuanPenjualan']         = 'Home/Home/getBarcodePengajuanPenjualan';

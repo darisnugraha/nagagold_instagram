@@ -69,6 +69,18 @@
                                 <i class="lni lni-chevron-right"></i></a>
                         </div>
                     </div>
+                    <div class="single-profile-data d-flex align-items-center justify-content-between">
+                        <div class="title" style="white-space: nowrap;cursor: pointer;">
+                        <a onclick="$('.loaderform').show();" href="<?= base_url('wp-tukar-point') ?>">
+                            <i class="lni lni-gift"></i>
+                            <span>List Hadiah</span>
+                        </a>
+                        </div>
+                        <div class="data-content">
+                            <a onclick="$('.loaderform').show();" href="<?= base_url('wp-tukar-point') ?>">
+                                <i class="lni lni-chevron-right"></i></a>
+                        </div>
+                    </div>
                     <!-- <div class="single-profile-data d-flex align-items-center justify-content-between">
                         <div class="title" style="white-space: nowrap">
                             <i class="lni lni-eye"></i>

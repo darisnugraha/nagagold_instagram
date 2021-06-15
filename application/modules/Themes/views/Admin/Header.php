@@ -229,7 +229,7 @@ if ($thisPage == "/hidup_retail/data-kelompok" || $thisPage == "/hidup_retail/da
     <div class="flex">
         <!-- BEGIN: Side Menu -->
         <nav class="side-nav">
-            <a href="" class="intro-x flex items-center pl-5 pt-4">
+            <a href="<?= base_url('wp-dashboard') ?>" class="intro-x flex items-center pl-5 pt-4">
                 <img width="150px" src="<?= $data->data[0]->logo ?>">
                 <!-- <span class="hidden xl:block text-white text-lg ml-3"> Mid<span class="font-medium">one</span> </span -->
             </a>
@@ -424,6 +424,12 @@ if ($thisPage == "/hidup_retail/data-kelompok" || $thisPage == "/hidup_retail/da
                     <a href="<?= base_url('wp-news') ?>" class="side-menu side-menu">
                         <div class="side-menu__icon"> <i data-feather="send"></i> </div>
                         <div class="side-menu__title"> News </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= base_url('wp-chat') ?>" class="side-menu side-menu">
+                        <div class="side-menu__icon"> <i data-feather="message-square"></i> </div>
+                        <div class="side-menu__title"> Chat </div>
                     </a>
                 </li>
                 

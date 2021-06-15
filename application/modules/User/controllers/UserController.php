@@ -294,7 +294,16 @@ class UserController extends MX_Controller
 		
 	}
 
-
+	function chat(){
+		$this->session->set_userdata('status_header', '');
+		$this->session->set_userdata('title', 'Live Chat');
+		$this->template->v2('Mobile/index_chat');
+	}
+	function wptukarpoint(){
+		$this->session->set_userdata('status_header', '');
+		$this->session->set_userdata('title', 'List Hadiah');
+		$this->template->v2('Mobile/tukarpoint');
+	}
 	function formeditemailhp()
 	{
 		$this->template->v2('Mobile/index_form_edit_email_password');
@@ -469,4 +478,71 @@ class UserController extends MX_Controller
 	// 		redirect('wp-dashboard-user');
 	// 	}
 	// }
+	
+function listbarangtukar()
+{
+	if ($_POST['limit']) {
+		$limit 			= $this->input->post('limit');
+		$startindex		= $this->input->post('start');
+		// $id   			= 'CC';
+		// $limit 			= '2';
+		// $startindex		= '0';
+		$output = '';
+		$data     					= $this->SERVER_API->_getAPI('barang/all/' . $startindex . '&' . $limit, '');
+
+		if ($data->count > $this->input->post('start')) {
+			$click = "Swal.fire( 'Opps!!!', 'Silahkan Login Terlebih Dahulu', 'info' )";
+			$loading = "$('.loaderform').show();";
+			$error = "this.onerror=null;this.src='" . base_url() . "/assets/images/notfound.png';";
+			if ($_POST['device'] == "mobile") {
+				$output .= '
+				<div class="row">';
+				foreach ($data->data as $row) {
+					$totalongkos = $row->harga_jual+$row->ongkos;
+					if ($this->session->userdata('status_login') == "SEDANG_LOGIN") {
+						// $status_login = '<a onclick="' . $loading . '" class="add-cart-btn btn btn-success" href="' . base_url('add-cart/' . encrypt_url($row->kode_barcode)) . '"> <i class="lni lni-plus"></i></a>';
+						$status_login = '';
+					} else {
+						// $status_login = '<a onclick="' . $click . '" class="btn btn-success btn-sm add2cart-notify" href="#"> <i class="lni lni-plus"></i></a>';
+						$status_login = '';
+					}
+					$databarang = $row->gambar;
+					for ($i = 0; $i < 1; $i++) {
+						$gambar = $databarang[$i]->lokasi_gambar;
+					}
+					$brghasil = $row->harga_jual+$row->ongkos;
+					$harga = strlen(number_format($brghasil)) > 12 ? substr(number_format($brghasil), 0, 10) . '....' : number_format($brghasil);
+					$nama_barang = strlen($row->nama_barang) > 12 ? substr($row->nama_barang, 0, 10) . '....' :  $row->nama_barang;
+					$output .= '
+							<div class="col-6 col-sm-4">
+								<div class="card top-product-card mb-3">
+								<div class="card-body"> 
+									<a onclick="' . $loading . '" class="product-thumbnail d-block" href="' . base_url('produk/' . encrypt_url($row->kode_barcode)) . '">
+									<img onError="' . $error . '" class="mb-2" src="' . $gambar . '" alt=""></a>
+									<a onclick="' . $loading . '" class="product-title d-block" href="' . base_url('produk/' . encrypt_url($row->kode_barcode)) . '">
+									' . $nama_barang . '</a>
+									<p class="sale-price">
+										Rp.' . $harga . '
+									</p>
+									<div class="product-rating">
+									Kadar: ' . number_format($row->kadar_cetak,2) . '<br>
+									Berat : ' . number_format($row->berat,3) . '<br>
+									</div>
+									' . $status_login . '
+								</div>
+							</div>
+						</div>
+						';
+				}
+				$output .= '</div>';
+
+				echo $output;
+			} 
+		}
+	} else {
+		redirect('');
+	}
 }
+}
+
+
