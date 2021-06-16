@@ -130,7 +130,7 @@
                 <div class="col-span-4">
                     <div>
                         <label>Ongkos</label>
-                        <input name="ongkos" required type="text"class="input w-full border"
+                        <input name="ongkos" type="text"class="input w-full border"
                             placeholder="Masukan Ongkos">
                     </div>
                 </div>

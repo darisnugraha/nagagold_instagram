@@ -42,17 +42,17 @@ class DataBarang extends MX_Controller
         $data['kode_barcode'] = $this->input->post('kode_barcode');
         $data['kode_intern']  = $this->input->post('kode_intern');
         $data['nama_barang']  = $this->input->post('nama_barang');
-        $data['nama_atribut']  = $this->input->post('nama_atribut');
-        $data['harga_atribut']  = intval($this->input->post('harga_atribut'));
+        $data['nama_atribut']  = $this->input->post('nama_atribut') ? $this->input->post('nama_atribut') : '-';
+        $data['harga_atribut']  = intval($this->input->post('harga_atribut')) ? intval($this->input->post('harga_atribut')) : 0;
         $data['ongkos']  = intval($this->input->post('ongkos'));
         $data['kode_kategori']  = $this->input->post('kode_kategori');
         $data['kode_jenis']  = $this->input->post('kode_jenis');
         $data['kode_kelompok']  = $this->input->post('kode_kelompok');
         $data['kode_jenis_kelompok']  = $this->input->post('jenis_kelompok');
-        $data['kadar']  = intval($this->input->post('kadar'));
-        $data['kadar_cetak']  = intval($this->input->post('kadar_cetak'));
-        $data['berat']  = intval($this->input->post('berat'));
-        $data['berat_asli']  = intval($this->input->post('berat_asli'));
+        $data['kadar']  = floatval($this->input->post('kadar'));
+        $data['kadar_cetak']  = floatval($this->input->post('kadar_cetak'));
+        $data['berat']  = floatval($this->input->post('berat'));
+        $data['berat_asli']  = floatval($this->input->post('berat_asli'));
         $data['stock']  = intval($this->input->post('stock'));
 
         $config['quality']          = '50%';
@@ -85,28 +85,31 @@ class DataBarang extends MX_Controller
                         $this->load->library('image_lib', $config1);
                         $this->image_lib->initialize($config1);
                         $this->image_lib->resize();
-                        $data1[$z]['kode_gambar'] = $nama;
-                        $data1[$z]['lokasi_gambar'] = base_url('assets/images/NsiPic/product/').$uploadData['file_name'];
+                        $data1[$z]['kode_gambar'] = $nama ? $nama : '-';
+                        $data1[$z]['lokasi_gambar'] = base_url('assets/images/NsiPic/product/').$uploadData['file_name'] ? base_url('assets/images/NsiPic/product/').$uploadData['file_name'] : '-';
                         $z++;
                 }
             } elseif ($_FILES['photo' . $i]['name'] == '' && $nama_file[$y] <> "") {
             // } elseif ($nama_file[$y] <> "") {
-                $data1[$z]['kode_gambar'] = $nama;
-                $data1[$z]['lokasi_gambar'] = $nama_file[$y];
+                $data1[$z]['kode_gambar'] = $nama ? $nama : '-';
+                $data1[$z]['lokasi_gambar'] = $nama_file[$y] ? $nama_file[$y] : '-';
                 $y++;
                 $z++;
+            }else{
+                $data1[$z]['kode_gambar'] = '-';
+                $data1[$z]['lokasi_gambar'] = $nama_file[$y] ? $nama_file[$y] : '-';
             }
         }
         $data['gambar'] = $data1;
+        // var_dump($data1);
+        // die;
         $respons                     = $this->SERVER_API->_postAPI('barang/simpan-barang-online', $data, $this->token);
         if ($respons->status == "berhasil") {
             $this->session->set_flashdata('alert', success($respons->pesan));
+            redirect('wp-tambah-barang-online');
         } else {
             $this->session->set_flashdata('alert', information($respons->pesan));
         }
-
-        redirect('wp-tambah-barang-online');
-     
     }
     function tambahbarangonline(){
         $respons['DataJenis']      = $this->SERVER_API->_getAPI('jenis', $this->token);
