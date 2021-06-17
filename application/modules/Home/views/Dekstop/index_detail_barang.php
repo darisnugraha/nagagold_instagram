@@ -369,7 +369,7 @@ foreach ($DetailBarang->data  as $row) :
                             </div>
                         </div>   -->
 
-                    <div class="block-related">
+                    <!-- <div class="block-related">
                         <div class="block-title">
                             <strong class="title">Diskusi (0)</strong>
                         </div>
@@ -379,7 +379,7 @@ foreach ($DetailBarang->data  as $row) :
                             </div>
                             <div class="col-sm-12 col-md-12 col-lg-12">
                             <div class="box-authentication">
-                                <!-- Chat -->
+                                Chat
                                 <div class="page-content-wrapper">
                                     <div class="live-chat-intro mb-3">
                                         <p>Nama Saya Lisa Admin <br> Toko Mas Hidup</p>
@@ -408,11 +408,11 @@ foreach ($DetailBarang->data  as $row) :
                                     </div>
                                 </form>
                             </div>
-                                <!-- End Chat -->
+                                End Chat
                             </div>    
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- block-related product -->
                     <div class="block-related ">

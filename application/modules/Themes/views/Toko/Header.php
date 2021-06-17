@@ -32,15 +32,7 @@ if ($thisPage == "/nagagold_store/shop") {
     $shop = "active";
 }
 $data      = $this->SERVER_API->_getAPI('system-perusahaan');
-$poin = $this->SERVER_API->_getAPI('poin', $this->session->userdata('token'));
 $point=0;
-if ($poin) {
-    foreach ($poin->data as $value) {
-        $point = $point + $value->poin;
-    }
-}else{
-    $point = 0;
-}
 $kategori = $this->SERVER_API->_getAPI('kategori/jenis');
 $cart      = $this->SERVER_API->_getAPI('cart', $this->session->userdata('token'));
 $jml_cart = $this->SERVER_API->_getAPI('cart/count', $this->session->userdata('token'));
