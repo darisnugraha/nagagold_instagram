@@ -100,6 +100,7 @@ if (isset($cart->data)) {
                     <!-- nav-right -->
                     <ul class=" nav-right">
                         <?php if ($this->session->userdata('status_login') == "SEDANG_LOGIN") : ?>
+                            <li><a href="">Point : 0 </a></li>
                             <li class="dropdown setting">
                                 <a data-toggle="dropdown" role="button" href="#" class="dropdown-toggle "><span>My Account</span> <i aria-hidden="true" class="fa fa-angle-down"></i></a>
                                 <div class="dropdown-menu  ">
