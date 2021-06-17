@@ -32,6 +32,15 @@ if ($thisPage == "/nagagold_store/shop") {
     $shop = "active";
 }
 $data      = $this->SERVER_API->_getAPI('system-perusahaan');
+$poin = $this->SERVER_API->_getAPI('poin', $this->session->userdata('token'));
+$point=0;
+if ($poin) {
+    foreach ($poin->data as $value) {
+        $point = $point + $value->poin;
+    }
+}else{
+    $point = 0;
+}
 $kategori = $this->SERVER_API->_getAPI('kategori/jenis');
 $cart      = $this->SERVER_API->_getAPI('cart', $this->session->userdata('token'));
 $jml_cart = $this->SERVER_API->_getAPI('cart/count', $this->session->userdata('token'));
@@ -100,7 +109,7 @@ if (isset($cart->data)) {
                     <!-- nav-right -->
                     <ul class=" nav-right">
                         <?php if ($this->session->userdata('status_login') == "SEDANG_LOGIN") : ?>
-                            <li><a href="">Point : 0 </a></li>
+                            <li><a href="#">Point : <?= $point?> </a></li>
                             <li class="dropdown setting">
                                 <a data-toggle="dropdown" role="button" href="#" class="dropdown-toggle "><span>My Account</span> <i aria-hidden="true" class="fa fa-angle-down"></i></a>
                                 <div class="dropdown-menu  ">
