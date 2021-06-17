@@ -46,23 +46,24 @@
                                             <?php endfor; ?>
                                             <td nowrap><?= $row->nama_barang ?><br>
                                                 <!-- <small class="cart_ref">Kode Barang : <?= $row->kode_barang ?></small><br> -->
-                                                <small>Berat : <?= $row->berat ?></small><br>
-                                                <small> Kadar: <?= $row->kadar ?></small><br>
+                                                <small>Berat : <?= number_format($row->berat,3,'.','.') ?></small><br>
+                                                <small> Kadar: <?= number_format($row->kadar,3,'.','.') ?></small><br>
                                                 <small> Harga Barang: <?= number_format($row->harga_jual) ?></small><br>
                                                 <small> Ongkos Produksi: <?= number_format($row->ongkos) ?></small>
                                             </td>
                                             <td>1</td>
                                             <td><?= number_format($totalhargajual) ?></td>
-                                            <td><input onclick="hitungtotal('<?= $row->kode_barcode ?>','<?= $totalhargajual ?>');" id="kode_barcode-<?= $row->kode_barcode ?>" value="<?= $row->kode_barcode ?>~<?= $totalhargajual ?>~<?= $row->nama_barang ?>~<?= $gambar ?>~<?= $row->berat ?>~<?= $row->ongkos ?>~<?=$row->kadar ?>" type="checkbox" checked name="kode_barcode[]"> </td>
+                                            <td><input onclick="hitungtotal('<?= $row->kode_barcode ?>','<?= $totalhargajual ?>','<?= $row->berat?>');" id="kode_barcode-<?= $row->kode_barcode ?>" value="<?= $row->kode_barcode ?>~<?= $totalhargajual ?>~<?= $row->nama_barang ?>~<?= $gambar ?>~<?= $row->berat ?>~<?= $row->ongkos ?>~<?=$row->kadar ?>" type="checkbox" checked name="kode_barcode[]"> </td>
                                         </tr>
 
                                         <input class="harga_jual-<?= $totalhargajual ?>" value="<?= $totalhargajual ?>" type="hidden" checked name="harga_jual[]">
                                     <?php endforeach; ?>
                                     <input type="hidden" class="tot_harga" value="" name="total_harga">
+                                    <input type="hidden" class="tot_berat" value="<?=$totalberat?>" name="total_berat">
                                     <tr>
                                         <td colspan="3" nowrap> Total Berat</td>
                                         <td> </td>
-                                        <td colspan="3" align="right"><span> <?= $totalberat ?> G</span></td>
+                                        <td colspan="3" align="right"><span> <div class="view_tot_berat"></div> </span></td>
                                     </tr>
                                     <tr>
                                         <td colspan="3" nowrap> Total</td>
@@ -86,28 +87,44 @@
                             var tot_harga = '<?= $totharga ?>';
                             $('.view_tot_harga').append(`Rp.` + tot_harga.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ``);
                             $('.tot_harga').val(tot_harga);
+                            var berat = '<?=$totalberat?>';
+                            var tot_berat = parseFloat(berat).toFixed(3);
+                            $('.view_tot_berat').append(tot_berat);
                         })
 
-                        function hitungtotal(barcode, harga) {
+                        function hitungtotal(barcode, harga, berat) {
+                            // console.log(berat);
                             var hagra_total = $('.tot_harga').val();
+                            var berat_total = $('.tot_berat').val();
                             var hasil;
+                            var hasilberat;
                             var elm = document.getElementById('kode_barcode-' + barcode + '');
                             if (elm.checked == true) {
                                 hasil = parseFloat(hagra_total) + parseFloat(harga);
+                                hasilberat = parseFloat(berat_total) + parseFloat(berat);
                                 // console.log(hasil);
                                 // console.log('cek');
                                 $('.tot_harga').val(hasil);
                                 $('.view_tot_harga').html(``);
                                 $('.view_tot_harga').append(`Rp.` + hasil.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ``);
+
+                                $('.tot_berat').val(hasilberat.toFixed(3));
+                                $('.view_tot_berat').empty();
+                                $('.view_tot_berat').append(hasilberat.toFixed(3).toString());
                             } else {
                                 hasil = parseFloat(hagra_total) - parseFloat(harga);
+                                hasilberat = parseFloat(berat_total) - parseFloat(berat);
                                 // console.log(hasil);
                                 // console.log('cek');
                                 $('.tot_harga').val(hasil);
                                 $('.view_tot_harga').html(``);
                                 $('.view_tot_harga').append(`Rp.` + hasil.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ``);
                                 // console.log('nocek');
+                                $('.tot_berat').val(hasilberat.toFixed(3));
+                                $('.view_tot_berat').empty();
+                                $('.view_tot_berat').append(hasilberat.toFixed(3).toString());
                             }
+                            // console.log(hasilberat);
                         }
                     </script>
     </div>
