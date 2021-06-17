@@ -213,6 +213,15 @@
                                         </option>
                                     <?php endforeach; ?>
                                 </select>
+                                <!-- <table border="1">
+                                    <?php foreach($DataBank->data as $bank) : ?>
+                                        <tr>
+                                            <td>
+                                                <?= $bank->no_rek ?> - <?= $bank->atas_nama ?> - <?= $bank->nama_bank ?>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </table> -->
                                 <!-- <button class="btn btn-primary applycoucher" type="button">Apply</button> -->
                                 <!-- </form> -->
                             </div>
@@ -369,7 +378,8 @@
                     console.log('NULL KAN');
                 } else {
                     if (respons.status == "berhasil") {
-                        //     $('.tampilpengiriman').html("");
+                        
+                        $('.tampilpengiriman').html("");
                         //     $('.tampilpengiriman').append(`
                         // <label><input  id="toko" onclick="funtoko()"  name="type_pengambilan" type="radio"  value="Ambil Ditoko" name="selector">
                         //     Ambil Ditoko ?</label>
@@ -403,7 +413,7 @@
                                     } else {
                                         service = detail.service;
                                     }
-
+                                    
                                     $('.tampilpengiriman').append(`
                                 <label><input type="radio" required onclick="funchitungtotal('` + element.code + `','` +
                                         detailharga.value + `')" data="` + service + `"   value="Ambil Ditoko" name="selector">
