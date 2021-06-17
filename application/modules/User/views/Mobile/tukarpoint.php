@@ -60,16 +60,11 @@
 
         function load_data(limit, start) {
             $.ajax({
-                url: base_url + "listbarangtukar",
-                method: "POST",
-                data: {
-                    limit: limit,
-                    start: start,
-                    device: 'mobile'
-
-                },
+                url: 'http://54.151.162.118:3753/api/hadiah/all/'+start+"&"+limit,
+                method: "GET",
                 cache: false,
                 success: function(data) {
+                    // console.log(data);
                     if (data == '') {
                         $('#load_data_message').html(`
                     <br>
@@ -80,7 +75,34 @@
                     </div><br>`);
                         action = 'active';
                     } else {
-                        $('#load_data').append(data);
+                        var _display = '';
+
+                        _display += '<div class="row">';
+
+                        data.data.forEach(element => {
+                        console.log(element);
+                        _display += `
+                        <div class="col-6 col-sm-4">
+                            <div class="card top-product-card mb-3">
+                                <div class="card-body">
+                                    <a onclick="" class="product-thumbnail d-block" href="#">
+									<img onError="this.onerror=null;this.src='http://localhost/hidup_retail//assets/images/notfound.png'" class="mb-2" src="${element.lokasi_gambar}" alt=""></a>
+									<a onclick="" class="product-title d-block" href="#">
+									${element.nama_hadiah}</a>
+									<p class="sale-price">
+									</p>
+									<div class="product-rating">
+									    Poin : ${element.poin}<br>
+									    Qty : ${element.qty}<br>
+									</div>
+                                </div>
+                            </div>
+                        </div>
+                        `;
+                        });
+                        _display += '</div>';
+
+                        $('#load_data').html(_display);
                         $('#load_data_message').html("");
                         action = 'inactive';
                     }
