@@ -65,7 +65,8 @@
                 cache: false,
                 success: function(data) {
                     // console.log(data);
-                    if (data == '') {
+                    var _display = '';
+                    if (data.data.length < 0) {
                         $('#load_data_message').html(`
                     <br>
                     <div class="card weekly-product-card mb-3">
@@ -75,12 +76,10 @@
                     </div><br>`);
                         action = 'active';
                     } else {
-                        var _display = '';
-
                         _display += '<div class="row">';
 
                         data.data.forEach(element => {
-                        console.log(element);
+                        // console.log(element);
                         _display += `
                         <div class="col-6 col-sm-4">
                             <div class="card top-product-card mb-3">
@@ -95,6 +94,7 @@
 									    Poin : ${element.poin}<br>
 									    Qty : ${element.qty}<br>
 									</div>
+                                    <a onclick="$('.loaderform').show();" class="add-cart-btn btn btn-success" href="http://localhost/hidup_retail/add-cart/ZDRQeUdsSUQrR0cvSGlzUmpTTEFoUT09"> <i class="lni lni-plus"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -120,7 +120,6 @@
                 'inactive') {
                 lazzy_loader(limit);
                 action = 'active';
-                start = start + limit;
                 setTimeout(function() {
                     load_data(limit, start);
                 }, 1000);
