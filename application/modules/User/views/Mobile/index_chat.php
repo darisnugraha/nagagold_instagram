@@ -1,3 +1,33 @@
+<style>
+.btnchoose {
+    position: absolute;
+    width: 40px;
+    height: 55px;
+    top: 0;
+    right: 0;
+    z-index: 30;
+    border: 0;
+    background-color: #ffffff;
+    font-size: 1rem;
+    color: #020310;
+    outline: none !important;
+}
+.btnsearch {
+    position: absolute;
+    width: 55px;
+    height: 50px;
+    margin-top: 15px;
+    border-radius: 10px;
+    top: 0;
+    right: 0;
+    z-index: 30;
+    border: 1;
+    background-color: #ffffff;
+    font-size: 1rem;
+    color: #020310;
+    outline: none !important;
+}
+</style>
 <div class="page-content-wrapper">
     <div class="live-chat-intro mb-3">
         <img src="<?= base_url('assets/mobile/v2/img/bg-img/9.jpg') ?>" alt="">
@@ -14,14 +44,46 @@
 <br>
 <div id="down"></div>
 <div class="type-text-form">
+<button onClick="" class="btnchoose" style="left : 20px !important" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i></button>
     <form id="form-chat" method="POST">
-        <textarea class="form-control" name="message" id="message" cols="30" rows="10"
-            placeholder="Type your message ..."></textarea>
+        <textarea class="form-control" style="margin-left:30px;" name="message" id="message" cols="30" rows="10"
+            placeholder="Type your message ..." required></textarea>
         <button type="submit" style="right : 20px !important"><i class="fa fa-paper-plane-o"></i></button>
     </form>
 </div>
 
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Pilih Barang</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="cari-barang">
+          <form id="form-search" method="POST">
+            <input class="form-control" id="cari" type="search" placeholder="Enter your keyword">
+            <button type="submit" style="right : 20px !important" class="btnsearch"><i class="fa fa-search"></i></button>
+          </form>
+          </div>
+        <div id="load_data" style="margin-top: 20px;"></div>
+        <div id="load_data_message"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
+    var limit = 2;
+    var start = 0;
+    var action = 'inactive';
+
 $(document).ready(function() {
     $('#livechat').append(`
     <div class="live-chat-wrapper">
@@ -90,4 +152,105 @@ $('#form-chat').submit(function(e) {
     // }, 3000);
 
 });
+
+        function load_data(start, limit, nama_barang) {
+            $.ajax({
+                url: 'http://54.151.162.118:3753/api/barang/regexp-name-active/'+nama_barang+ '&'+start+'&'+limit,
+                method: "GET",
+                cache: false,
+                success: function(data) {
+                    // console.log(data);
+                    var _display = '';
+                    _display += '<div class="row">';
+
+                    data.data.forEach(element => {
+                    // console.log(element);
+                    _display += `
+                        <div class="col-6 col-sm-4">
+                            <div class="card top-product-card mb-3">
+                                <div class="card-body">
+                                    <a onclick="" class="product-thumbnail d-block" href="#">
+									<img onError="this.onerror=null;this.src='http://localhost/hidup_retail//assets/images/notfound.png'" class="mb-2" src="${element.gambar[0].lokasi_gambar}" alt=""></a>
+									<a onclick="" class="product-title d-block" href="#">
+									${element.nama_barang}</a>
+									<p class="sale-price">
+                                    ${element.harga_jual.toLocaleString('id-ID', {currency: 'IDR', style: 'currency'})}
+									</p>
+									<div class="product-rating">
+									    Kadar : ${element.kadar.toFixed(2)}<br>
+									    Berat : ${element.berat.toFixed(2)}<br>
+									</div>
+                                    <a onclick="$('.loaderform').show();" class="add-cart-btn btn btn-success" href="http://localhost/hidup_retail/add-cart/ZDRQeUdsSUQrR0cvSGlzUmpTTEFoUT09"> <i class="lni lni-plus"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        `;
+                        });
+                    _display += '</div>';
+
+                    $('#load_data').html(_display);
+                    $('#load_data_message').html("");
+                    action = 'inactive';
+                },
+                error: function (request, error) {
+                    action = 'active';
+                    $('#load_data_message').html(`
+                    <br>
+                    <div class="card weekly-product-card mb-3">
+                        <div class="card-body d-flex align-items-center">
+                           Mohon maaf barang yang anda cari tidak ada !!!<br>
+                        </div>
+                    </div>
+                    <br><br>
+                    `);
+                } 
+            })
+        }
+        function lazzy_loader(limit) {
+            var output = '';
+
+            output += '<div class="row">';
+            for (var count = 0; count < limit; count++) {
+                output += '<div class="col-6 col-sm-4">';
+                output += '<div class="card top-product-card mb-3">';
+                output += '<div class="card-body">';
+                output +=
+                    '<p><span class="content-placeholder" style="width:100%; height: 100px;">&nbsp;</span></p>';
+                output +=
+                    '<p><span class="content-placeholder" style="width:100%; height: 30px;">&nbsp;</span></p>';
+                output += '</div>';
+                output += '</div>';
+                output += '</div>';
+            }
+            output += '</div>';
+            $('#load_data_message').html(output);
+        }
+
+    $('#form-search').submit(function(e) {
+        var nama_barang = $('#cari').val();
+        e.preventDefault();
+        $('#load_data').empty();
+        $('#load_data_message').html("");
+        lazzy_loader(limit);
+        load_data(start,limit,nama_barang);
+
+        if (action == 'inactive') {
+            lazzy_loader(limit);
+            action = 'active';
+            load_data(start,limit,nama_barang);
+        }
+    });
+
+    
+
+// function listBarang() {
+//     $('#load_data').empty();
+//     $('#load_data_message').html("");
+//     lazzy_loader(limit);
+//     load_data(start,limit);
+//     if (action == 'inactive') {
+//         action = 'active';
+//         load_data(limit, start);
+//     }
+// }
 </script>

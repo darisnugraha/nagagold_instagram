@@ -13,7 +13,7 @@ class Keranjang extends MX_Controller
     }
     function index()
     {
-        $data['DataKeranjang']      = $this->SERVER_API->_getAPI('cart', $this->token);
+        $data['DataKeranjang']      = $this->SERVER_API->_getAPI('cart/new', $this->token);
         if ($this->session->userdata('token')) {
             if ($this->mobile === true) {
                 $this->session->set_userdata('status_header', '');
@@ -30,8 +30,9 @@ class Keranjang extends MX_Controller
 
     function savetochcekout()
     {
-
-        if ($this->input->post('total_harga') == "0") {
+        // var_dump($this->input->post('total_berat'));
+        // die;
+        if ($this->input->post('total_harga') == "0" && $this->input->post('total_berat') == '0') {
             if ($this->mobile === true) {
                 $this->session->set_flashdata('alert', '<div class="error-notification animated fadeIn">Mohon Pilih Barang Untuk Di Checkout</div>');
             } else {
@@ -175,10 +176,33 @@ class Keranjang extends MX_Controller
         }
     }
 
+    function tambahkeranjanghadiah($kode)
+    {
+        $respons               = $this->SERVER_API->_postAPI('tukar-poin/add-new/' . $kode.'&'.'1', '', $this->token);
+        // var_dump($kode);
+        // die;
+        if ($respons->status == "berhasil") {
+            if ($this->mobile === true) {
+                $this->session->set_flashdata('alert', '<div class="add2cart-notification animated fadeIn">' . $respons->pesan . '</div>');
+            } else {
+                $this->session->set_flashdata('alert', success($respons->pesan));
+            }
+        } else {
+            if ($this->mobile === true) {
+                $this->session->set_flashdata('alert', '<div class="error-notification animated fadeIn">' . $respons->pesan . '</div>');
+            } else {
+                $this->session->set_flashdata('alert', information($respons->pesan));
+            }
+        }
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+
     function tambahkeranjang($kode)
     {
         $data = decrypt_url($kode);
         $respons               = $this->SERVER_API->_postAPI('cart/add/' . $data, '', $this->token);
+        // var_dump($respons);
+        // die;
         if ($respons->status == "berhasil") {
             if ($this->mobile === true) {
                 $this->session->set_flashdata('alert', '<div class="add2cart-notification animated fadeIn">' . $respons->pesan . '</div>');

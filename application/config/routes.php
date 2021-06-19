@@ -310,7 +310,8 @@ $route['uploadimages']                       = 'Admin/AdminController/uploadimag
 
 //
 $route['add-cart/(:any)']                     = 'Home/Keranjang/tambahkeranjang/$1';
-$route['detail-add-cart/(:any)']             = 'Home/Keranjang/tambahkeranjangdetail/$1';
+$route['add-cart-hadiah/(:any)']              = 'Home/Keranjang/tambahkeranjanghadiah/$1';
+$route['detail-add-cart/(:any)']              = 'Home/Keranjang/tambahkeranjangdetail/$1';
 
 $route['loadjmlkeranjang']                    = 'Home/Keranjang/loadjmlkeranjang';
 $route['delete-cart/(:any)']                  = 'Home/Keranjang/deletecart/$1';

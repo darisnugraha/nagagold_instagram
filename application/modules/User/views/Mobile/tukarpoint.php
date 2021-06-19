@@ -60,12 +60,14 @@
 
         function load_data(limit, start) {
             $.ajax({
-                url: 'http://54.151.162.118:3753/api/hadiah/all/'+start+"&"+limit,
+                url: 'http://54.151.162.118:3753/api/hadiah/get-data-all-new/'+start+"&"+limit,
                 method: "GET",
                 cache: false,
                 success: function(data) {
                     // console.log(data);
                     var _display = '';
+                    var base_url = '<?php echo base_url('add-cart-hadiah/') ?>';
+                    console.log(base_url);
                     if (data.data.length < 0) {
                         $('#load_data_message').html(`
                     <br>
@@ -85,7 +87,7 @@
                             <div class="card top-product-card mb-3">
                                 <div class="card-body">
                                     <a onclick="" class="product-thumbnail d-block" href="#">
-									<img onError="this.onerror=null;this.src='http://localhost/hidup_retail//assets/images/notfound.png'" class="mb-2" src="${element.lokasi_gambar}" alt=""></a>
+									<img onError="this.onerror=null;this.src='<?= base_url('assets/images/notfound.png')?>'" class="mb-2" src="${element.lokasi_gambar}" alt=""></a>
 									<a onclick="" class="product-title d-block" href="#">
 									${element.nama_hadiah}</a>
 									<p class="sale-price">
@@ -94,7 +96,10 @@
 									    Poin : ${element.poin}<br>
 									    Qty : ${element.qty}<br>
 									</div>
-                                    <a onclick="$('.loaderform').show();" class="add-cart-btn btn btn-success" href="http://localhost/hidup_retail/add-cart/ZDRQeUdsSUQrR0cvSGlzUmpTTEFoUT09"> <i class="lni lni-plus"></i></a>
+                                    <form name="form" action="" method="get">
+                                        <input type="hidden" name="subject" id="subject" value="${element.kode_hadiah}">
+                                        <a onclick="$('.loaderform').show();" class="add-cart-btn btn btn-success" href="${base_url+element.kode_hadiah}"> <i class="lni lni-plus"></i></a>
+                                    </form>
                                 </div>
                             </div>
                         </div>

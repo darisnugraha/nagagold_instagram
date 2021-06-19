@@ -409,7 +409,10 @@ class UserController extends MX_Controller
 			}
 			if ($data->count > $this->input->post('start')) {
 				foreach ($data->data as $row) {
-					$output .= ' 
+					if ($row->kategori === "TUKAR POIN") {
+						$output = "transaksi_tidak_ada";
+					}else{
+						$output .= ' 
 					<div class="cart-wrapper-area">
 						<div class="cart-table card mb-3">
 							<div class="card shipping-method-choose-title-card bg-success">
@@ -459,6 +462,7 @@ class UserController extends MX_Controller
 						</div>
 					</div>
 					';
+					}
 				}
 				echo $output;
 			}

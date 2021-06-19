@@ -64,8 +64,8 @@
                                             <td class="cart_description">
                                                 <p class="product-name"><a href="#"><?= $row->nama_barang ?> </a></p>
                                                 <small class="cart_ref">Kode Barang : <?= $row->kode_barang ?></small><br>
-                                                <small><a href="#">Berat : <?= $row->berat ?></a></small><br>
-                                                <small><a href="#"> Kadar: <?= $row->kadar ?></a></small><br>
+                                                <small><a href="#">Berat : <?= number_format($row->berat,3,'.','.') ?></a></small><br>
+                                                <small><a href="#"> Kadar: <?= number_format($row->kadar,3,'.','.') ?></a></small><br>
                                                 <small><a href="#"> Ongkos Produksi: <?= number_format($row->ongkos)?></a></small><br>
                                                 <small><a href="#"> Harga Barang : <?= number_format($row->harga_jual) ?></a></small>
                                             </td>
