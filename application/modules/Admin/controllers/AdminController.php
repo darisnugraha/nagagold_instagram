@@ -34,6 +34,7 @@ class AdminController extends MX_Controller
 
     function index_chat (){
         $respons['title']      = 'Chat';
+        $respons['ChatData'] = $this->SERVER_API->_getAPI('chat/all', $this->token);
         $this->template->display_admin('Chat/index_chat',$respons);
     }
     function gantipasswordusertoko(){

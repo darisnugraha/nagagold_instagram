@@ -10,7 +10,7 @@
             <?php if ($this->session->userdata('status_login') == "SEDANG_LOGIN") : ?>
               <li class="<?= $this->session->userdata('title') == "Home" ? 'active' : '' ?>"><a onclick="$('.loaderform').show();" href="<?= base_url() ?>"><i class="lni lni-home"></i>Home</a></li>
               <li class="<?= $this->session->userdata('title') == "Shop" ? 'active' : '' ?>"><a onclick="$('.loaderform').show();" href="<?= base_url('shop') ?>"><i class="lni lni-shopping-basket"></i>Shop</a></li>
-              <li class="<?= $this->session->userdata('title') == "LiveChat" ? 'active' : '' ?>"><a onclick="$('.loaderform').show();" href="<?= base_url('chat') ?>"><i class="lni lni-wechat"></i>Chat</a></li>
+              <!-- <li class="<?= $this->session->userdata('title') == "LiveChat" ? 'active' : '' ?>"><a onclick="$('.loaderform').show();" href="<?= base_url('chat') ?>"><i class="lni lni-wechat"></i>Chat</a></li> -->
               <!-- <li class="<?= $this->session->userdata('title') == "Cart" ? 'active' : '' ?>"><a onclick="$('.loaderform').show();" href="<?= base_url('cart') ?>">
                   <?php if ($data->data != null) : ?>
                     <div class="item"><span class="notify-badge"><?= $data->data[0]->count_item ?></span></div>

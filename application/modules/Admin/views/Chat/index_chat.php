@@ -33,7 +33,9 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="chat__chat-list overflow-y-auto scrollbar-hidden pr-1 pt-1 mt-4">
+                    <?php $no=1; foreach($ChatData->data as $row ): ?>
                         <div class="intro-x cursor-pointer box relative flex items-center p-5 ">
                             <div class="w-12 h-12 flex-none image-fit mr-1">
                                 <img alt="Midone Tailwind HTML Admin Template" class="rounded-full"
@@ -44,17 +46,22 @@
                             </div>
                             <div class="ml-2 overflow-hidden">
                                 <div class="flex items-center">
-                                    <a href="javascript:;" class="font-medium">Sylvester Stallone</a>
-                                    <div class="text-xs text-gray-500 ml-auto">01:10 PM</div>
+                                    <a href="javascript:;" class="font-medium"><?= $row->nama_customer?></a>
+                                    <div class="text-xs text-gray-500 ml-6">01:10 PM</div>
                                 </div>
-                                <div class="w-full truncate text-gray-600">Contrary to popular belief, Lorem Ipsum is
-                                    not simply random text. It has roots in a piece of classical Latin literature from
-                                    45 BC, making it over 20</div>
+                                <div class="w-full truncate text-gray-600"><?= $row->detail[0]->pesan?></div>
                             </div>
+                            <?php if ($row->count_message_open) {
+                                $status_read = '0';
+                            }else{
+                                $status_read = '1';
+                            }?>
                             <div
                                 class="w-5 h-5 flex items-center justify-center absolute top-0 right-0 text-xs text-white rounded-full bg-theme-1 font-medium -mt-1 -mr-1">
-                                6</div>
+                                <?= $status_read?></div>
                         </div>
+                        <br>
+                        <?php endforeach;?>
                     </div>
                 </div>
 
@@ -89,7 +96,7 @@
                             </div>
                             <div class="ml-3 mr-auto">
                                 <div class="font-medium text-base">Sylvester Stallone</div>
-                                <div class="text-gray-600 text-xs sm:text-sm">Hey, I am using chat <span
+                                <div class="text-gray-600 text-xs sm:text-sm"> <span
                                         class="mx-1">•</span> Online</div>
                             </div>
                         </div>
@@ -151,7 +158,7 @@ $(document).ready(function() {
                                             <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="<?= base_url('assets/admin/images/profile-3.jpg') ?>">
                                         </div>
                                         <div class="bg-gray-200 px-4 py-3 text-gray-700 rounded-r-md rounded-t-md">
-                                            Lorem ipsum sit amen dolor, lorem ipsum sit amen dolor 
+                                            Lorem ipsum sit amen dolor, lorem ipsum sit amen dolor
                                             <div class="mt-1 text-xs text-gray-600">2 mins ago</div>
                                         </div>
                                         
