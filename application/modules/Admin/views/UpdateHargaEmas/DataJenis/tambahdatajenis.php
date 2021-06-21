@@ -19,7 +19,7 @@
                         </div>
                         <div class="col-span-12 sm:col-span-12">
                             <label>Kode Jenis</label>
-                            <input type="text" required aut onkeypress="return event.keyCode != 13;" name="kode_jenis" class="input w-full border mt-2 flex-1 textnumberonly" placeholder="Masukan Kode Jenis">
+                            <input type="text" required aut onkeypress="return event.keyCode != 13;" name="kode_jenis" class="input w-full border mt-2 flex-1" placeholder="Masukan Kode Jenis">
                         </div>
                         <div class="col-span-12 sm:col-span-12">
                             <label>Nama Jenis</label>
