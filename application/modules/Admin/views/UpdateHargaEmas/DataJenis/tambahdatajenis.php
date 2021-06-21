@@ -27,7 +27,7 @@
                         </div>
                         <div class="col-span-12 sm:col-span-12">
                             <label>Harga</label>
-                            <input type="text" required onpaste="return false" onkeypress="return event.keyCode != 13;" name="harga" autocomplete="off" class="rupiah input w-full border mt-2 flex-1" placeholder="Masukan Harga">
+                            <input type="number" required onkeypress="return event.keyCode != 13;" name="harga" autocomplete="off" class="input w-full border mt-2 flex-1" placeholder="Masukan Harga">
                         </div>
                     </div>
                     <div class="px-5 py-3 text-right border-t border-gray-200">
