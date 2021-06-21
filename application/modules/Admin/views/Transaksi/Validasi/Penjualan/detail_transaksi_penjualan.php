@@ -162,7 +162,7 @@
                             <div class="text-lg text-theme-1 font-medium mt-2"><?= $buktitf->from_atas_nama ?></div>
                             <div class="mt-1">Nama Bank : <?= $buktitf->from_nama_bank ?></div>
                             <div class="mt-1">No Rek : <?= $buktitf->from_no_rek ?></div>
-                            <a href="#" target="_blank">
+                            <a href="<?= $buktitf->bukti_transfer ?>" target="_blank">
                                 <img width="100px" height="100px" src="<?= $buktitf->bukti_transfer ?>"></a>
                         <?php endforeach; ?>
                     </div>
