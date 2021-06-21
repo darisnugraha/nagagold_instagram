@@ -67,7 +67,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td colspan="3" nowrap><p class="warna"> Sisa Yang Harus dibayar</p></td>
+                                        <td colspan="3" nowrap><p class="warna"> Sisa Yang Harus Dibayar</p></td>
                                         <td> </td>
                                         <td colspan="3"><p class="warna"><?= number_format($total_transaksi / 2) ?> </p></td>
                                     </tr>
@@ -81,7 +81,7 @@
                    <div class="container text-center"> Form Pengambilan</div>
                    <form method="POST" id="formValidasiPenjualan" class="loadingkonfimasi" enctype="multipart/form-data">
                         <div class="card-body">
-                            <label class="title mb-2"> Kode CUstomer </label>
+                            <label class="title mb-2"> Kode Customer </label>
                             <div class="input-group mb-3">
                                 <input type="hidden" value="<?= $id_transaksi ?>" name="id_transaksi" class="form-control id_transaksi" onkeypress="return event.keyCode!=13" placeholder="Masukan Kode Customer" >
                                 <input type="text"  onkeypress="return NumberNoEnter(event)" autocomplete="off" name="kode_customer" required class="form-control id_customer" onkeypress="return event.keyCode!=13" placeholder="Masukan Kode Customer" >
@@ -160,7 +160,7 @@
                                     <textarea class="form-control alamat" required onkeypress="return event.keyCode!=13" placeholder="Masukan Email" name="alamat" required value="">`+element._id.alamat+`</textarea>
                                 </div>
                                 <div class="form-group">
-                                    <div class="title mb-2"><span>Foto Bukti Pengambialan</span>
+                                    <div class="title mb-2"><span>Foto Bukti Pengambilan</span>
                                     <input class="form-control" required  placeholder="Masukan No Hp" name="bukti_ambil" required type="file" accept="image/*;capture=camera">
                                 </div>
                             <button class="btn btn-success w-100" type="submit">Validasi Penjualan</button>

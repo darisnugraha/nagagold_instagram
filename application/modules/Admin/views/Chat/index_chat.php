@@ -46,6 +46,7 @@
                             </div>
                             <div class="ml-2 overflow-hidden">
                                 <div class="flex items-center">
+                                    <input type="hidden" id="kode" value="<?=$row->kode_customer?>"/>
                                     <a href="javascript:;" class="font-medium"><?= $row->nama_customer?></a>
                                     <div class="text-xs text-gray-500 ml-6">01:10 PM</div>
                                 </div>
@@ -95,7 +96,7 @@
                                     src="<?= base_url('assets/admin/images/profile-3.jpg') ?>">
                             </div>
                             <div class="ml-3 mr-auto">
-                                <div class="font-medium text-base">Sylvester Stallone</div>
+                                <div class="font-medium text-base"><span id="nama_customer">Nama Customer</span></div>
                                 <div class="text-gray-600 text-xs sm:text-sm"> <span
                                         class="mx-1">•</span> Online</div>
                             </div>
@@ -151,7 +152,14 @@
     </div>
 </div>
 <script>
+let data;
+data = '<?= json_encode($ChatData->data)?>';
+let chatdata = JSON.parse(data);
 $(document).ready(function() {
+    let chat = chatdata.find(function (item) {
+       return item.kode_customer === 'HO00000010';
+    });
+    console.log(chat);
     $('#livechat').append(`
     <div class="chat__box__text-box flex items-end float-left mb-4">
                                         <div class="w-10 h-10 hidden sm:block flex-none image-fit relative mr-5">
