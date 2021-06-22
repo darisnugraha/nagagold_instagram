@@ -426,12 +426,12 @@ if ($thisPage == "/hidup_retail/data-kelompok" || $thisPage == "/hidup_retail/da
                         <div class="side-menu__title"> News </div>
                     </a>
                 </li>
-                <!-- <li>
+                <li>
                     <a href="<?= base_url('wp-chat') ?>" class="side-menu side-menu">
                         <div class="side-menu__icon"> <i data-feather="message-square"></i> </div>
                         <div class="side-menu__title"> Chat </div>
                     </a>
-                </li> -->
+                </li>
                 
 
                 <li>

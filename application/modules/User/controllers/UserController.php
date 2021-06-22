@@ -297,8 +297,26 @@ class UserController extends MX_Controller
 	function chat(){
 		$this->session->set_userdata('status_header', '');
 		$this->session->set_userdata('title', 'Live Chat');
-		$this->template->v2('Mobile/index_chat');
+		$data['ChatData'] = $this->SERVER_API->_getAPI('chat/getCustomer', $this->token);
+		$this->template->v2('Mobile/index_chat', $data);
 	}
+
+	function tambahchat(){
+		$data['pesan'] = $this->input->post('pesan');
+		$data['jenis_pesan'] = $this->input->post('jenis_pesan');
+		$data['nama_file'] = "-";
+		$respons = $this->SERVER_API->_postAPI('chat/add-message-cust', $data, $this->token);
+		$this->output->set_status_header(200);
+		$this->output->set_content_type('application/json', 'utf-8');
+		return $this->output->set_output(json_encode($respons));
+	}
+
+	function link(){
+		$data = $this->input->post('kode_barcode');
+		$link = base_url('produk/' .encrypt_url($data));
+		return $this->output->set_output(json_encode($link));
+	}
+
 	function wptukarpoint(){
 		$this->session->set_userdata('status_header', '');
 		$this->session->set_userdata('title', 'List Hadiah');

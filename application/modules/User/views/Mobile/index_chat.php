@@ -30,12 +30,15 @@
 </style>
 <div class="page-content-wrapper">
     <div class="live-chat-intro mb-3">
-        <img src="<?= base_url('assets/mobile/v2/img/bg-img/9.jpg') ?>" alt="">
-        <p>Nama Saya Lisa Admin <br> Toko Mas Hidup</p>
+        <img src="<?= base_url('assets/mobile/v2/img/bg-img/profile-9.png') ?>" alt="">
+        <p>Admin <br> Toko Mas Hidup</p>
     </div>
     <div class="support-wrapper py-3">
         <div class="container">
-            <div id="livechat"></div>
+            <div id="chat">
+                <div id="livechat"></div>
+                <div id="livechat2"></div>
+            </div>
         </div>
     </div>
 </div>
@@ -80,48 +83,74 @@
 </div>
 
 <script>
+    let data;
+    data = '<?= json_encode($ChatData->data)?>';
+    let chatdata = JSON.parse(data);
+
     var limit = 2;
     var start = 0;
     var action = 'inactive';
 
+    let type_message = '-';
+
 $(document).ready(function() {
-    $('#livechat').append(`
-    <div class="live-chat-wrapper">
+    // console.log('<?php echo base_url('add/chat') ?>');
+    // console.log(chatdata);
+    if (chatdata.length > 0) {
+        chatdata[0].detail.forEach(element => {
+            let Tanggal = new Date(element.input_date).getDate();
+            // console.log(Tanggal);
+            let Jam = new Date(element.input_date).getHours();
+            let Menit = new Date(element.input_date).getMinutes();
+            if (element.input_by === "CUSTOMER") {
+                $('#chat').append(`
+                <div>
+                <div class="live-chat-wrapper">
                 <div class="agent-message-content d-flex align-items-center">
-                    <div class="agent-thumbnail mr-2"><img src="<?= base_url('assets/mobile/v2/img/bg-img/9.jpg') ?>"
-                            alt=""></div>
-                    <div class="agent-message-text">
-                        <p>Selmat siang Saya Lisa, Apakah ada yang bisa saya bantu ???</p>
-                        <span>12:00</span>
-                    </div>
+                    
                 </div>
                 <div class="user-message-content">
                     <div class="user-message-text">
-                        <p> Okey Mantap!</p><span>12:09</span>
+                    ${element.jenis_pesan === "Link" ? "<a href = '"+element.pesan+"' target='_blank'>":""}
+                        <p> ${element.pesan}</p>
+                    ${element.jenis_pesan === "Link" ? "</a>":""}
+                        <span>${Jam}:${Menit}</span>
                     </div>
                 </div>
+                </div>
+                </div>
+                `)
+            }else{
+                $('#chat').append(`
+                <div>
+                <div class="live-chat-wrapper">
+                <div class="agent-message-content d-flex align-items-center">
+                    <div class="agent-thumbnail mr-2"><img src="<?= base_url('assets/mobile/v2/img/bg-img/profile-9.png') ?>"
+                            alt=""></div>
+                    <div class="agent-message-text">
+                        <p>${element.pesan}</p>
+                        <span>${Jam}:${Menit}</span>
+                    </div>
+                </div>
+                <div class="user-message-content">
+                   
+                </div>
+                </div>
+                </div>
+                `)
+            }
+            
+        });
+        
+    }else{
+        $('#livechat').append(`
+        <div class="live-chat-wrapper">
+                <p style="text-align:center;">Belum Ada Pesan!</p>
             </div>
-    `)
+        `)
+    }
+   
 });
-
-// $("#message").keypress(function(e) {
-//     if (e.which == 13) {
-//         //submit form via ajax, this is not JS but server side scripting so not showing here
-//         let data = $("#message").val();
-//         // setTimeout(() => {
-//         let Jam = new Date().getHours();
-//         let Menit = new Date().getMinutes();
-//         $('#livechat').append(`
-//          <div class="user-message-content">
-//                     <div class="user-message-text">
-//                         <p> ` + data + `</p><span>` + Jam + `:` + Menit + `</span>
-//                     </div>
-//                 </div>
-//     `)
-//         $("#message").val("");
-//         window.scrollTo(0, document.body.scrollHeight);
-//     }
-// });
 
 $('#form-chat').submit(function(e) {
     e.preventDefault();
@@ -129,29 +158,43 @@ $('#form-chat').submit(function(e) {
     // setTimeout(() => {
     let Jam = new Date().getHours();
     let Menit = new Date().getMinutes();
-    $('#livechat').append(`
+    $('#chat').append(`
+    <div>
          <div class="user-message-content">
                     <div class="user-message-text">
                         <p> ` + data + `</p><span>` + Jam + `:` + Menit + `</span>
                     </div>
                 </div>
+    </div>
     `)
+
     $("#message").val("");
     window.scrollTo(0, document.body.scrollHeight);
-    // $.ajax({
-    //     url: base_url + '/save-konfirmasi',
-    //     type: "post",
-    //     data: new FormData(this),
-    //     processData: false,
-    //     contentType: false,
-    //     cache: false,
-    //     async: false,
-    //     success: function(data) {
-    //     }               
-    // });
-    // }, 3000);
-
-});
+    
+        $.ajax({
+            url: base_url + 'add/chat',
+            method: "POST",
+            dataType : "json",
+            data: { 
+                pesan : data,
+                jenis_pesan : type_message
+                },
+            cache: false,
+            beforeSend: function(e) {
+                if (e && e.overrideMimeType) {
+                    e.overrideMimeType('application/jsoncharset=utf-8')
+                }
+            },
+            error: function(e) {
+                console.log(e);
+            },
+            complete: function(respons) {
+                console.log(respons);
+                type_message = 'Text';
+                location.reload();
+            },
+        })
+    });
 
         function load_data(start, limit, nama_barang) {
             $.ajax({
@@ -180,7 +223,7 @@ $('#form-chat').submit(function(e) {
 									    Kadar : ${element.kadar.toFixed(2)}<br>
 									    Berat : ${element.berat.toFixed(2)}<br>
 									</div>
-                                    <a onclick="$('.loaderform').show();" class="add-cart-btn btn btn-success" href="http://localhost/hidup_retail/add-cart/ZDRQeUdsSUQrR0cvSGlzUmpTTEFoUT09"> <i class="lni lni-plus"></i></a>
+                                    <a onclick="addlink('${element.kode_barcode}','${element.nama_barang}')" class="add-cart-btn btn btn-success" href="#"> <i class="lni lni-plus"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -206,6 +249,34 @@ $('#form-chat').submit(function(e) {
                 } 
             })
         }
+
+        function addlink(kode, nama) {
+            var base_url = '<?php echo base_url() ?>';
+            let link = '';
+            // console.log(base_url);
+            $.ajax({
+                url: base_url + 'link',
+                method: "POST",
+                dataType : "json",
+                data: {kode_barcode:kode},
+                cache: false,
+                beforeSend: function(e) {
+                    if (e && e.overrideMimeType) {
+                        e.overrideMimeType('application/jsoncharset=utf-8')
+                    }
+                },
+                error: function(e) {
+                    console.log(e);
+                },
+                complete: function(respons) {
+                    // console.log(respons.responseJSON);
+                    link = respons.responseJSON;
+                    document.getElementById('message').value = link;
+                    type_message = 'Link';
+                },
+            })
+        }
+
         function lazzy_loader(limit) {
             var output = '';
 
@@ -240,17 +311,4 @@ $('#form-chat').submit(function(e) {
             load_data(start,limit,nama_barang);
         }
     });
-
-    
-
-// function listBarang() {
-//     $('#load_data').empty();
-//     $('#load_data_message').html("");
-//     lazzy_loader(limit);
-//     load_data(start,limit);
-//     if (action == 'inactive') {
-//         action = 'active';
-//         load_data(limit, start);
-//     }
-// }
 </script>

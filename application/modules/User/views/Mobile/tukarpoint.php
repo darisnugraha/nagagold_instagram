@@ -67,7 +67,7 @@
                     // console.log(data);
                     var _display = '';
                     var base_url = '<?php echo base_url('add-cart-hadiah/') ?>';
-                    console.log(base_url);
+                    // console.log(base_url);
                     if (data.data.length < 0) {
                         $('#load_data_message').html(`
                     <br>

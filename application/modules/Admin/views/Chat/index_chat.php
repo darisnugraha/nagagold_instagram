@@ -46,20 +46,14 @@
                             </div>
                             <div class="ml-2 overflow-hidden">
                                 <div class="flex items-center">
-                                    <input type="hidden" id="kode" value="<?=$row->kode_customer?>"/>
-                                    <a href="javascript:;" class="font-medium"><?= $row->nama_customer?></a>
+                                    <a href="#" onclick="pilihChat('<?=$row->kode_customer?>'); return false;" class="font-medium"><?= $row->nama_customer?></a>
                                     <div class="text-xs text-gray-500 ml-6">01:10 PM</div>
                                 </div>
                                 <div class="w-full truncate text-gray-600"><?= $row->detail[0]->pesan?></div>
                             </div>
-                            <?php if ($row->count_message_open) {
-                                $status_read = '0';
-                            }else{
-                                $status_read = '1';
-                            }?>
                             <div
                                 class="w-5 h-5 flex items-center justify-center absolute top-0 right-0 text-xs text-white rounded-full bg-theme-1 font-medium -mt-1 -mr-1">
-                                <?= $status_read?></div>
+                                <?= $row->count_message_open?></div>
                         </div>
                         <br>
                         <?php endforeach;?>
@@ -96,7 +90,7 @@
                                     src="<?= base_url('assets/admin/images/profile-3.jpg') ?>">
                             </div>
                             <div class="ml-3 mr-auto">
-                                <div class="font-medium text-base"><span id="nama_customer">Nama Customer</span></div>
+                                <div class="font-medium text-base"><span id="nama_customer"></span></div>
                                 <div class="text-gray-600 text-xs sm:text-sm"> <span
                                         class="mx-1">•</span> Online</div>
                             </div>
@@ -119,10 +113,13 @@
                         </div>
                     </div>
                     <div class="overflow-y-scroll px-5 pt-5 flex-1">
-                        <div id="livechat"></div>
+                        <div id="chat">
+                            <div id="livechat" ></div>
+                            <div id="livechat2" ></div>
+                        </div>
                     </div>
                     <form action="#" id="form-chat">
-                        <div class="pt-4 pb-10 sm:py-4 flex items-center border-t border-gray-200">
+                        <div class="pt-4 pb-10 sm:py-4 flex items-center border-t border-gray-200" style="margin: top 100px;">
                             <textarea id="message"
                                 class="chat__box__input input w-full h-16 resize-none border-transparent px-5 py-3 focus:shadow-none"
                                 rows="1" placeholder="Type your message..."></textarea>
@@ -155,34 +152,87 @@
 let data;
 data = '<?= json_encode($ChatData->data)?>';
 let chatdata = JSON.parse(data);
-$(document).ready(function() {
+let kode_cust = '';
+
+function pilihChat(kode) {
+    // $.ajax({
+    //     url: base_url + 'confirm/wp-chat/' + kode,
+    //     method: "POST",
+    //     dataType : "json",
+    //     cache: false,
+    //     beforeSend: function(e) {
+    //         if (e && e.overrideMimeType) {
+    //             e.overrideMimeType('application/jsoncharset=utf-8')
+    //         }
+    //     },
+    //     error: function(e) {
+    //         console.log(e);
+    //     },
+    //     complete: function(respons) {
+    //         if (respons.responseJSON.status === "error") {
+    //             Swal.fire({
+    //                 title: 'Opps!!!',
+    //                 text: respons.responseJSON.pesan,
+    //                 type: 'warning',
+    //                 reverseButtons: true
+    //             })
+    //         }else{
+    //             console.log(respons);
+    //         }
+    //     },
+    // })
     let chat = chatdata.find(function (item) {
-       return item.kode_customer === 'HO00000010';
+       return item.kode_customer === kode;
     });
-    console.log(chat);
-    $('#livechat').append(`
-    <div class="chat__box__text-box flex items-end float-left mb-4">
-                                        <div class="w-10 h-10 hidden sm:block flex-none image-fit relative mr-5">
-                                            <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="<?= base_url('assets/admin/images/profile-3.jpg') ?>">
-                                        </div>
-                                        <div class="bg-gray-200 px-4 py-3 text-gray-700 rounded-r-md rounded-t-md">
-                                            Lorem ipsum sit amen dolor, lorem ipsum sit amen dolor
-                                            <div class="mt-1 text-xs text-gray-600">2 mins ago</div>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="clear-both"></div>
-                                    <div class="chat__box__text-box flex items-end float-right mb-4">
-                                        <div class="bg-theme-1 px-4 py-3 text-white rounded-l-md rounded-t-md">
-                                            Lorem ipsum sit amen dolor, lorem ipsum sit amen dolor 
-                                            <div class="mt-1 text-xs text-theme-25">1 mins ago</div>
-                                        </div>
-                                        <div class="w-10 h-10 hidden sm:block flex-none image-fit relative ml-5">
-                                            <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="<?= base_url('assets/admin/images/profile-4.jpg') ?>">
-                                        </div>
-                                    </div>
-    `)
-});
+    kode_cust = kode;
+    $('#nama_customer').html(chat.nama_customer);
+    $('#livechat').empty();
+    $('#livechat2').empty();
+    $('#chat').empty();
+        chat.detail.forEach(element => {
+            let Tanggal = new Date(element.input_date).getDate();
+            // console.log(element);
+            let Jam = new Date(element.input_date).getHours();
+            let Menit = new Date(element.input_date).getMinutes();
+            if (element.input_by === "CUSTOMER") {
+                $('#chat').append(`
+            <div>
+            <div class="chat__box__text-box flex items-end float-left mb-4">
+                
+            </div>
+            <div class="clear-both"></div>
+            <div class="chat__box__text-box flex items-end float-right mb-4">
+                <div class="bg-theme-1 px-4 py-3 text-white rounded-l-md rounded-t-md">
+                    <${element.jenis_pesan === "Link" ? "a href = '"+element.pesan+"' target='_blank'":"p"}>${element.pesan.length > 40 ? element.pesan.substring(0,24) + "..." : element.pesan}</${element.jenis_pesan === "Link" ? "a":"p"}>
+                    <div class="mt-1 text-xs text-theme-25">${Jam}:${Menit}</div>
+                </div>
+                <div class="w-10 h-10 hidden sm:block flex-none image-fit relative ml-5">
+                    <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="<?= base_url('assets/admin/images/profile-4.jpg') ?>">
+                </div>
+            </div>
+            </div>
+            `)
+            }else{
+                $('#chat').append(`
+            <div style="margin-top:70px;">
+            <div class="chat__box__text-box flex items-end float-left mb-4">
+                <div class="w-10 h-10 hidden sm:block flex-none image-fit relative mr-5">
+                    <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="<?= base_url('assets/admin/images/profile-3.jpg') ?>">
+                </div>
+                <div class="bg-gray-200 px-4 py-3 text-gray-700 rounded-r-md rounded-t-md">
+                    ${element.pesan}
+                    <div class="mt-1 text-xs text-gray-600">${Jam}:${Menit}</div>
+                </div>
+            </div>
+            <div class="clear-both"></div>
+            <div class="chat__box__text-box flex items-end float-right mb-4">
+               
+            </div>
+            </div>
+            `)
+            }
+        });
+    }
 
 $('#form-chat').submit(function(e) {
     e.preventDefault();
@@ -190,34 +240,51 @@ $('#form-chat').submit(function(e) {
     // setTimeout(() => {
     let Jam = new Date().getHours();
     let Menit = new Date().getMinutes();
-    $('#livechat').append(`
+    $('#chat').append(`
+    <div style="margin-top:60px;">
+    <div class="chat__box__text-box flex items-end float-left mb-4">
+        <div class="w-10 h-10 hidden sm:block flex-none image-fit relative mr-5">
+            <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="<?= base_url('assets/admin/images/profile-3.jpg') ?>">
+        </div>
+        <div class="bg-gray-200 px-4 py-3 text-gray-700 rounded-r-md rounded-t-md">
+            ${data}
+        <div class="mt-1 text-xs text-gray-600">2 mins ago</div>
+    </div>
+    </div>
     <div class="clear-both"></div>
     <div class="chat__box__text-box flex items-end float-right mb-4">
-        <div class="bg-theme-1 px-4 py-3 text-white rounded-l-md rounded-t-md">
-        ` + data + `
-            <div class="mt-1 text-xs text-theme-25">` + Jam + `:` + Menit + `</div>
-        </div>
-        <div class="w-10 h-10 hidden sm:block flex-none image-fit relative ml-5">
-            <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="<?= base_url('assets/admin/images/profile-4.jpg') ?>">
-        </div>
-    </div>
         
+    </div>
+    </div>
     `)
     $("#message").val("");
     window.scrollTo(0,document.body.scrollHeight);
     document.getElementById("message").focus();
-    // $.ajax({
-    //     url: base_url + '/save-konfirmasi',
-    //     type: "post",
-    //     data: new FormData(this),
-    //     processData: false,
-    //     contentType: false,
-    //     cache: false,
-    //     async: false,
-    //     success: function(data) {
-    //     }               
-    // });
-    // }, 3000);
+    
+    $.ajax({
+        url: base_url + 'add/wp-chat',
+        method: "POST",
+        dataType : "json",
+        data: {
+            kode_customer : kode_cust, 
+            pesan : data,
+            jenis_pesan : '-',
+            nama_file : '-',
+            },
+        cache: false,
+        beforeSend: function(e) {
+            if (e && e.overrideMimeType) {
+                e.overrideMimeType('application/jsoncharset=utf-8')
+            }
+        },
+        error: function(e) {
+            console.log(e);
+        },
+        complete: function(respons) {
+            console.log(respons);
+            location.reload();
+        },
+    })
 
 });
 </script>

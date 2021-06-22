@@ -66,7 +66,10 @@ $route['audio']        = 'Auth/RegisterController/audio';
 $route['wp-dashboard']          = 'Admin/AdminController/index';
 $route['wp-pushnotif']          = 'Admin/AdminController/pushnotif';
 $route['kirimnotif']            = 'Admin/AdminController/kirimnotif';
-$route['wp-chat']              = 'Admin/AdminController/index_chat';
+$route['wp-chat']               = 'Admin/AdminController/index_chat';
+$route['add/wp-chat']           = 'Admin/AdminController/tambahchat';
+$route['confirm/wp-chat/(:any)'] = 'Admin/AdminController/confirmchat/$1';
+
 
 
 $route['wp-parameter-poin']      = 'Admin/AdminController/parameterpoint';
@@ -267,8 +270,12 @@ $route['wp-history-transaksi-selesai']           = 'User/UserController/historyt
 $route['verifikasi-no-hp']                      = 'User/UserController/verifikasi_no_hp';
 $route['validasi-otp']                          = 'User/UserController/validasi_otp';
 $route['verifikasi-email']                          = 'User/UserController/verifikasi_email';
+$route['link']                          = 'User/UserController/link';
 
 // end
+
+//Chat
+$route['add/chat']                                  = 'User/UserController/tambahchat';
 
 //Home
 $route['privacy-police']                     = 'Home/Home/privacypolice';

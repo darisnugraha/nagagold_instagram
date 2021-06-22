@@ -37,6 +37,27 @@ class AdminController extends MX_Controller
         $respons['ChatData'] = $this->SERVER_API->_getAPI('chat/all', $this->token);
         $this->template->display_admin('Chat/index_chat',$respons);
     }
+
+    function tambahchat (){
+        $data['kode_customer'] = $this->input->post('kode_customer');
+        $data['pesan'] = $this->input->post('pesan');
+		$data['jenis_pesan'] = $this->input->post('jenis_pesan');
+		$data['nama_file'] = $this->input->post('nama_file');
+        
+		$respons = $this->SERVER_API->_postAPI('chat/add-message-toko', $data, $this->token);
+		$this->output->set_status_header(200);
+		$this->output->set_content_type('application/json', 'utf-8');
+		return $this->output->set_output(json_encode($respons));
+    }
+
+    function confirmchat($kode)
+    {
+        $respons = $this->SERVER_API->_putAPI('chat/update-message-toko/' . $kode , $kode, $this->token);
+        $this->output->set_status_header(200);
+		$this->output->set_content_type('application/json', 'utf-8');
+        return $this->output->set_output(json_encode($respons));
+    }
+
     function gantipasswordusertoko(){
         $data['password']          = $this->input->post('password');
         $data['new_password']      = $this->input->post('new_password');
