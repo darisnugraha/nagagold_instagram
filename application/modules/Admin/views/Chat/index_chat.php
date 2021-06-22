@@ -39,7 +39,7 @@
                         <div class="intro-x cursor-pointer box relative flex items-center p-5 ">
                             <div class="w-12 h-12 flex-none image-fit mr-1">
                                 <img alt="Midone Tailwind HTML Admin Template" class="rounded-full"
-                                    src="<?= base_url('assets/admin/images/profile-3.jpg') ?>">
+                                    src="<?= base_url('assets/admin/images/profile-1.png') ?>">
                                 <div
                                     class="w-3 h-3 bg-theme-9 absolute right-0 bottom-0 rounded-full border-2 border-white">
                                 </div>
@@ -87,7 +87,7 @@
                         <div class="flex items-center">
                             <div class="w-10 h-10 sm:w-12 sm:h-12 flex-none image-fit relative">
                                 <img alt="Midone Tailwind HTML Admin Template" class="rounded-full"
-                                    src="<?= base_url('assets/admin/images/profile-3.jpg') ?>">
+                                    src="<?= base_url('assets/admin/images/profile-1.png') ?>">
                             </div>
                             <div class="ml-3 mr-auto">
                                 <div class="font-medium text-base"><span id="nama_customer"></span></div>
@@ -207,7 +207,7 @@ function pilihChat(kode) {
                     <div class="mt-1 text-xs text-theme-25">${Jam}:${Menit}</div>
                 </div>
                 <div class="w-10 h-10 hidden sm:block flex-none image-fit relative ml-5">
-                    <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="<?= base_url('assets/admin/images/profile-4.jpg') ?>">
+                    <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="<?= base_url('assets/admin/images/profile-1.png') ?>">
                 </div>
             </div>
             </div>
@@ -217,7 +217,7 @@ function pilihChat(kode) {
             <div style="margin-top:70px;">
             <div class="chat__box__text-box flex items-end float-left mb-4">
                 <div class="w-10 h-10 hidden sm:block flex-none image-fit relative mr-5">
-                    <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="<?= base_url('assets/admin/images/profile-3.jpg') ?>">
+                    <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="<?= base_url('assets/admin/images/profile-9.png') ?>">
                 </div>
                 <div class="bg-gray-200 px-4 py-3 text-gray-700 rounded-r-md rounded-t-md">
                     ${element.pesan}
