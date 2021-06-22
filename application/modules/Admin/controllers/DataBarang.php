@@ -38,7 +38,7 @@ class DataBarang extends MX_Controller
             mkdir($directory, 0755, true);
         }
         
-        $data['kode_barang']  = $this->input->post('kode_barang');
+        $data['kode_barang']  = $this->input->post('kode_barcode');
         $data['kode_barcode'] = $this->input->post('kode_barcode');
         $data['kode_intern']  = $this->input->post('kode_intern');
         $data['nama_barang']  = $this->input->post('nama_barang');
@@ -712,6 +712,7 @@ class DataBarang extends MX_Controller
         $respons['DataHadiah']   = $this->SERVER_API->_getAPI('hadiah/all/0&100', $this->token);
         $this->template->display_admin('DataHadiah/index_data_hadiah', $respons);
     }
+    
     function tamnahstockhadiah(){
         $data['kode_hadiah']    = $this->input->post('kode_hadiah');
         $data['qty_tambah']    = intval($this->input->post('qty_tambah'));

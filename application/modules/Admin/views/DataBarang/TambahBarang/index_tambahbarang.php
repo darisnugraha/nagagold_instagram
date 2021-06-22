@@ -11,10 +11,10 @@
         <form role="form" action="<?= base_url('simpan-tambah-barang') ?>" enctype="multipart/form-data" method="POST">
             <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
 
-                <div class="col-span-4">
+                <div class="col-span-4 hidden">
                     <div>
                         <label>Kode Barang</label>
-                        <input type="text" value="" name="kode_barang"  required class="input w-full border "
+                        <input type="text" value="" name="kode_barang" class="input w-full border "
                             placeholder="Kode Barang">
                     </div>
                 </div>
@@ -242,8 +242,9 @@ $(document).ready(function() {
                         <option value=""> Pilih Kode Jenis </option>
                     `);
                     } else {
+                        // console.log(feedback.data);
+                        $('.id_jenis').html('');
                         $.each(feedback.data, function(index, element) {
-                            $('.id_jenis').html('');
                             $('.id_jenis').append(`
                                     <option value="` + element.kode_jenis + `"> ` + element.nama_jenis + ` </option>
                             `);
@@ -286,8 +287,8 @@ $(document).ready(function() {
                         <option value=""> Pilih Kode Jenis </option>
                     `);
                     } else {
+                        $('.sub_jenis').html('');
                         $.each(feedback.data, function(index, element) {
-                            $('.sub_jenis').html('');
                             $('.sub_jenis').append(`
                                 <option value="` + element.kode_jenis + `"> ` + element.nama_jenis + ` </option>
                         `);
