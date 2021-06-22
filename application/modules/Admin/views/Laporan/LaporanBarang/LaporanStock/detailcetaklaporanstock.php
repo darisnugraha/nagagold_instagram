@@ -55,7 +55,7 @@ $html = '
 			<font size="10" face="Times New Roman">
 			<table border="0">
 				<tr>
-					<td width="32.5%" ><img src="' . base_url('assets/logo/LogoHeader.png') . '" width="150px"><br>Raya Utara, Alfalah, Tembok Banjaran, Kec. Adiwerna, Tegal, Jawa Tengah 52194 </td>
+					<td width="32.5%" ><img src="" width="150px"><br>Raya Utara, Alfalah, Tembok Banjaran, Kec. Adiwerna, Tegal, Jawa Tengah 52194 </td>
 					<td align="center" width="36.5%"><b><font size="15px"><br>Laporan Stock ' . ucfirst($type_laporan) . ' Barang <br>Online  </font></b><br></td>
 					<td width="30%"></td>
 				</tr>
