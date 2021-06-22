@@ -179,9 +179,9 @@ class Keranjang extends MX_Controller
     function tambahkeranjanghadiah($kode)
     {
         $respons               = $this->SERVER_API->_postAPI('tukar-poin/add-new/' . $kode.'&'.'1', '', $this->token);
-        // var_dump($kode);
+        // var_dump($respons);
         // die;
-        if ($respons->status == "berhasil") {
+        if ($respons->statusCode == 200) {
             if ($this->mobile === true) {
                 $this->session->set_flashdata('alert', '<div class="add2cart-notification animated fadeIn">' . $respons->pesan . '</div>');
             } else {
