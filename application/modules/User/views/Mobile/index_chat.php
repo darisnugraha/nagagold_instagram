@@ -261,7 +261,7 @@ $('#form-chat').submit(function(e) {
 									    Kadar : ${element.kadar.toFixed(2)}<br>
 									    Berat : ${element.berat.toFixed(2)}<br>
 									</div>
-                                    <a onclick="addlink('${element.kode_barcode}','${element.nama_barang}')" class="add-cart-btn btn btn-success" href="#"> <i class="lni lni-plus"></i></a>
+                                    <a onclick="addlink('${element.kode_barcode}','${element.nama_barang}')" class="add-cart-btn btn btn-success"> <i class="lni lni-plus"></i></a>
                                 </div>
                             </div>
                         </div>
