@@ -114,6 +114,7 @@
                     </div>
                     <div class="overflow-y-scroll px-5 pt-5 flex-1">
                         <div id="chat">
+                            <div id="tanggalchat"></div>
                             <div id="livechat" ></div>
                             <div id="livechat2" ></div>
                         </div>
@@ -197,6 +198,22 @@ function pilihChat(kode) {
 
             let Jam = new Date(element.input_date).getHours();
             let Menit = new Date(element.input_date).getMinutes();
+            let Tanggal = new Date(element.input_date).getDate();
+            let Month = new Date(element.input_date).getMonth();
+            let Year = new Date(element.input_date).getFullYear();;
+            let tgl_chat = Tanggal + ' ' + monthNames[Month] + ' ' + Year;
+            if (tgl === tgl_chat) {
+                $('#chat').append(``);
+            }else{
+                $('#chat').append(`
+                    <div>
+                        <div class="live-chat-wrapper">
+                            <p style="text-align:center;">${tgl_chat}</p>
+                        </div>
+                    </div>
+                `);
+            }
+            tgl = tgl_chat;
             if (element.input_by === "CUSTOMER") {
                 $('#chat').append(`
             <div>
@@ -243,11 +260,27 @@ $('#form-chat').submit(function(e) {
     // setTimeout(() => {
     let Jam = new Date().getHours();
     let Menit = new Date().getMinutes();
+    let Tanggal = new Date().getDate();
+    let Month = new Date().getMonth();
+    let Year = new Date().getFullYear();;
+    let tgl_chat = Tanggal + ' ' + monthNames[Month] + ' ' + Year;
+    if (tgl === tgl_chat) {
+        $('#chat').append(``);
+    }else{
+        $('#chat').append(`
+            <div>
+                <div class="live-chat-wrapper">
+                    <p style="text-align:center;">${tgl_chat}</p>
+                </div>
+            </div>
+        `);
+    }
+    tgl = tgl_chat;
     $('#chat').append(`
     <div style="margin-top:60px;">
     <div class="chat__box__text-box flex items-end float-left mb-4">
         <div class="w-10 h-10 hidden sm:block flex-none image-fit relative mr-5">
-            <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="<?= base_url('assets/admin/images/profile-3.jpg') ?>">
+            <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="<?= base_url('assets/admin/images/profile-9.png') ?>">
         </div>
         <div class="bg-gray-200 px-4 py-3 text-gray-700 rounded-r-md rounded-t-md">
             ${data}
