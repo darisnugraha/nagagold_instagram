@@ -156,10 +156,13 @@ let tgl = '';
 const monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
     ];
+let no = 0;
+let margin = 0;
 
 function pilihChat(kode) {
     tgl = '';
-    let margin = 0;
+    no = 0;
+    margin = 0;
     // $.ajax({
     //     url: base_url + 'confirm/wp-chat/' + kode,
     //     method: "PUT",
@@ -203,6 +206,11 @@ function pilihChat(kode) {
             if (tgl === tgl_chat) {
                 $('#chat').append(``);
             }else{
+                if (no === 0) {
+                    no = 1;
+                }else{
+                    margin += 100;
+                }
                 $('#chat').append(`
                     <div style="margin-top:${margin}px;">
                         <div class="live-chat-wrapper">
@@ -210,9 +218,7 @@ function pilihChat(kode) {
                         </div>
                     </div>
                 `);
-                margin += 100;
             }
-            // margin = 0;
             tgl = tgl_chat;
             if (element.input_by === "CUSTOMER") {
                 $('#chat').append(`
