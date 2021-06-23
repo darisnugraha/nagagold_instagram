@@ -35,6 +35,7 @@
     </div>
     <div class="support-wrapper py-3">
         <div class="container">
+            <div id="tglchat"></div>
             <div id="chat">
                 <div id="livechat"></div>
                 <div id="livechat2"></div>
@@ -92,16 +93,37 @@
     var action = 'inactive';
 
     let type_message = '-';
+    let tgl = '';
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+    ];
 
 $(document).ready(function() {
     // console.log('<?php echo base_url('add/chat') ?>');
     // console.log(chatdata);
+
     if (chatdata.length > 0) {
         chatdata[0].detail.forEach(element => {
-            let Tanggal = new Date(element.input_date).getDate();
-            // console.log(Tanggal);
             let Jam = new Date(element.input_date).getHours();
             let Menit = new Date(element.input_date).getMinutes();
+
+            let Tanggal = new Date(element.input_date).getDate();
+            let Month = new Date(element.input_date).getMonth();
+            let Year = new Date(element.input_date).getFullYear();;
+            let tgl_chat = Tanggal + ' ' + monthNames[Month] + ' ' + Year;
+            if (tgl === tgl_chat) {
+                $('#chat').append(``);
+            }else{
+                $('#chat').append(`
+                <div>
+                <div class="live-chat-wrapper">
+                    <p style="text-align:center;">${tgl_chat}</p>
+                </div>
+                </div>
+                `);
+            }
+            tgl = tgl_chat;
+            
             if (element.input_by === "CUSTOMER") {
                 $('#chat').append(`
                 <div>
@@ -145,8 +167,8 @@ $(document).ready(function() {
     }else{
         $('#livechat').append(`
         <div class="live-chat-wrapper">
-                <p style="text-align:center;">Belum Ada Pesan!</p>
-            </div>
+            <p style="text-align:center;">Belum Ada Pesan!</p>
+        </div>
         `)
     }
    
@@ -158,6 +180,22 @@ $('#form-chat').submit(function(e) {
     // setTimeout(() => {
     let Jam = new Date().getHours();
     let Menit = new Date().getMinutes();
+    let Tanggal = new Date().getDate();
+    let Month = new Date().getMonth();
+    let Year = new Date().getFullYear();;
+    let tgl_chat = Tanggal + ' ' + monthNames[Month] + ' ' + Year;
+    if (tgl === tgl_chat) {
+        $('#chat').append(``);
+    }else{
+        $('#chat').append(`
+            <div>
+                <div class="live-chat-wrapper">
+                    <p style="text-align:center;">${tgl_chat}</p>
+                </div>
+            </div>
+        `);
+    }
+    tgl = tgl_chat;
     $('#chat').append(`
     <div>
          <div class="user-message-content">

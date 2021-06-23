@@ -153,6 +153,10 @@ let data;
 data = '<?= json_encode($ChatData->data)?>';
 let chatdata = JSON.parse(data);
 let kode_cust = '';
+let tgl = '';
+const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+    ];
 
 function pilihChat(kode) {
     // $.ajax({
@@ -190,8 +194,7 @@ function pilihChat(kode) {
     $('#livechat2').empty();
     $('#chat').empty();
         chat.detail.forEach(element => {
-            let Tanggal = new Date(element.input_date).getDate();
-            // console.log(element);
+
             let Jam = new Date(element.input_date).getHours();
             let Menit = new Date(element.input_date).getMinutes();
             if (element.input_by === "CUSTOMER") {
