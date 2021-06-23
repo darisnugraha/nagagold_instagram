@@ -308,6 +308,7 @@ $('#form-chat').submit(function(e) {
                 },
                 complete: function(respons) {
                     // console.log(respons.responseJSON);
+                    $('#exampleModal').modal('hide');
                     link = respons.responseJSON;
                     document.getElementById('message').value = link;
                     type_message = 'Link';
