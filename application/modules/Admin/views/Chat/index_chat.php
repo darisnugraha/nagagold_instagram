@@ -47,7 +47,7 @@
                             <div class="ml-2 overflow-hidden">
                                 <div class="flex items-center">
                                     <a href="#" onclick="pilihChat('<?=$row->kode_customer?>'); return false;" class="font-medium"><?= $row->nama_customer?></a>
-                                    <div class="text-xs text-gray-500 ml-6">01:10 PM</div>
+                                    <div class="text-xs text-gray-500 ml-6"><?= date('H:i',strtotime($row->detail[0]->input_date))?></div>
                                 </div>
                                 <div class="w-full truncate text-gray-600"><?= $row->detail[0]->pesan?></div>
                             </div>
@@ -162,7 +162,7 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
 function pilihChat(kode) {
     // $.ajax({
     //     url: base_url + 'confirm/wp-chat/' + kode,
-    //     method: "POST",
+    //     method: "PUT",
     //     dataType : "json",
     //     cache: false,
     //     beforeSend: function(e) {
