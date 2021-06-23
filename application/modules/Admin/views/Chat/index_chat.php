@@ -114,9 +114,7 @@
                     </div>
                     <div class="overflow-y-scroll px-5 pt-5 flex-1">
                         <div id="chat">
-                            <div id="tanggalchat"></div>
-                            <div id="livechat" ></div>
-                            <div id="livechat2" ></div>
+                            
                         </div>
                     </div>
                     <form action="#" id="form-chat">
@@ -160,6 +158,8 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
     ];
 
 function pilihChat(kode) {
+    tgl = '';
+    let margin = 0;
     // $.ajax({
     //     url: base_url + 'confirm/wp-chat/' + kode,
     //     method: "PUT",
@@ -191,8 +191,6 @@ function pilihChat(kode) {
     });
     kode_cust = kode;
     $('#nama_customer').html(chat.nama_customer);
-    $('#livechat').empty();
-    $('#livechat2').empty();
     $('#chat').empty();
         chat.detail.forEach(element => {
 
@@ -206,13 +204,15 @@ function pilihChat(kode) {
                 $('#chat').append(``);
             }else{
                 $('#chat').append(`
-                    <div>
+                    <div style="margin-top:${margin}px;">
                         <div class="live-chat-wrapper">
                             <p style="text-align:center;">${tgl_chat}</p>
                         </div>
                     </div>
                 `);
+                margin += 100;
             }
+            // margin = 0;
             tgl = tgl_chat;
             if (element.input_by === "CUSTOMER") {
                 $('#chat').append(`
