@@ -153,6 +153,7 @@ data = '<?= json_encode($ChatData->data)?>';
 let chatdata = JSON.parse(data);
 let kode_cust = '';
 let tgl = '';
+let baseurl = '<?php echo base_url()?>';
 const monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
     ];
@@ -164,9 +165,8 @@ function pilihChat(kode) {
     no = 0;
     margin = 0;
     // $.ajax({
-    //     url: base_url + 'confirm/wp-chat/' + kode,
-    //     method: "PUT",
-    //     dataType : "json",
+    //     url: baseurl + 'wp-chat/confirm/' + kode,
+    //     method: "POST",
     //     cache: false,
     //     beforeSend: function(e) {
     //         if (e && e.overrideMimeType) {
@@ -174,19 +174,16 @@ function pilihChat(kode) {
     //         }
     //     },
     //     error: function(e) {
-    //         console.log(e);
-    //     },
-    //     complete: function(respons) {
-    //         if (respons.responseJSON.status === "error") {
-    //             Swal.fire({
+    //         let respone = JSON.parse(e.responseText);
+    //         Swal.fire({
     //                 title: 'Opps!!!',
-    //                 text: respons.responseJSON.pesan,
+    //                 text: respone.pesan,
     //                 type: 'warning',
     //                 reverseButtons: true
     //             })
-    //         }else{
-    //             console.log(respons);
-    //         }
+    //     },
+    //     success: function(respons) {
+    //         console.log(respons);
     //     },
     // })
     let chat = chatdata.find(function (item) {
@@ -209,7 +206,7 @@ function pilihChat(kode) {
                 if (no === 0) {
                     no = 1;
                 }else{
-                    margin += 100;
+                    margin = 100;
                 }
                 $('#chat').append(`
                     <div style="margin-top:${margin}px;">
@@ -220,6 +217,7 @@ function pilihChat(kode) {
                 `);
             }
             tgl = tgl_chat;
+
             if (element.input_by === "CUSTOMER") {
                 $('#chat').append(`
             <div>

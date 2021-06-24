@@ -68,7 +68,7 @@ $route['wp-pushnotif']          = 'Admin/AdminController/pushnotif';
 $route['kirimnotif']            = 'Admin/AdminController/kirimnotif';
 $route['wp-chat']               = 'Admin/AdminController/index_chat';
 $route['add/wp-chat']           = 'Admin/AdminController/tambahchat';
-$route['confirm/wp-chat/(:any)'] = 'Admin/AdminController/confirmchat/$1';
+$route['wp-chat/confirm/(:any)']  = 'Admin/AdminController/confirmchat/$1';
 
 
 

@@ -1,7 +1,9 @@
     <!-- Footer Nav-->
   
-    <?php $data  = $this->SERVER_API->_getAPI('cart/count', $this->session->userdata('token'));
-    //  die;
+    <?php 
+      $data  = $this->SERVER_API->_getAPI('cart/count', $this->session->userdata('token'));
+      $chatdata = $this->SERVER_API->_getAPI('chat/getCustomer', $this->session->userdata('token'));
+      $chatcount = $chatdata->data[0]->count_message_open
     ?>
     <div class="footer-nav-area" id="footerNav">
       <div class="container h-100 px-0">
@@ -10,7 +12,13 @@
             <?php if ($this->session->userdata('status_login') == "SEDANG_LOGIN") : ?>
               <li class="<?= $this->session->userdata('title') == "Home" ? 'active' : '' ?>"><a onclick="$('.loaderform').show();" href="<?= base_url() ?>"><i class="lni lni-home"></i>Home</a></li>
               <li class="<?= $this->session->userdata('title') == "Shop" ? 'active' : '' ?>"><a onclick="$('.loaderform').show();" href="<?= base_url('shop') ?>"><i class="lni lni-shopping-basket"></i>Shop</a></li>
-              <li class="<?= $this->session->userdata('title') == "LiveChat" ? 'active' : '' ?>"><a onclick="$('.loaderform').show();" href="<?= base_url('chat') ?>"><i class="lni lni-wechat"></i>Chat</a></li>
+              <li class="<?= $this->session->userdata('title') == "LiveChat" ? 'active' : '' ?>"><a onclick="$('.loaderform').show();" href="<?= base_url('chat') ?>">
+              <?php if ($chatcount > 0) : ?>
+                <div class="item"><span class="notify-badge"><?=$chatcount?></span></div>
+                <?php else: ?>
+                  <div class="item hidden"><span class="notify-badge"></span></div>
+              <?php endif; ?>
+              <i class="lni lni-wechat"></i>Chat</a></li>
               <!-- <li class="<?= $this->session->userdata('title') == "Cart" ? 'active' : '' ?>"><a onclick="$('.loaderform').show();" href="<?= base_url('cart') ?>">
                   <?php if ($data->data != null) : ?>
                     <div class="item"><span class="notify-badge"><?= $data->data[0]->count_item ?></span></div>
