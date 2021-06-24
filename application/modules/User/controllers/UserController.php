@@ -317,6 +317,24 @@ class UserController extends MX_Controller
 		return $this->output->set_output(json_encode($link));
 	}
 
+	function confirmchat()
+    {
+		$data['data']='';
+        $respons = $this->SERVER_API->_putAPI('chat/update-message-cust', $data , $this->token);
+		$this->output->set_status_header(200);
+		$this->output->set_content_type('application/json', 'utf-8');
+        return $this->output->set_output(json_encode($respons));
+        // if ($respons->status == 'berhasil') {
+        //     $this->output->set_status_header(200);
+		//     $this->output->set_content_type('application/json', 'utf-8');
+        //     return $this->output->set_output(json_encode($respons));
+        // }else{
+        //     $this->output->set_status_header(500);
+		//     $this->output->set_content_type('application/json', 'utf-8');
+        //     return $this->output->set_output(json_encode($respons));
+        // }
+    }
+
 	function wptukarpoint(){
 		$this->session->set_userdata('status_header', '');
 		$this->session->set_userdata('title', 'List Hadiah');

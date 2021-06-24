@@ -53,7 +53,8 @@ class AdminController extends MX_Controller
 
     function confirmchat($kode)
     {
-        $respons = $this->SERVER_API->_putAPI('chat/update-message-toko/' . $kode , $this->token);
+        $data['kode_customer'] = $kode;
+        $respons = $this->SERVER_API->_putAPI('chat/update-message-toko/'.$kode , $data , $this->token);
         if ($respons->status == 'berhasil') {
             $this->output->set_status_header(200);
 		    $this->output->set_content_type('application/json', 'utf-8');

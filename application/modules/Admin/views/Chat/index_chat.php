@@ -164,29 +164,29 @@ function pilihChat(kode) {
     tgl = '';
     no = 0;
     margin = 0;
-    // $.ajax({
-    //     url: baseurl + 'wp-chat/confirm/' + kode,
-    //     method: "POST",
-    //     cache: false,
-    //     beforeSend: function(e) {
-    //         if (e && e.overrideMimeType) {
-    //             e.overrideMimeType('application/jsoncharset=utf-8')
-    //         }
-    //     },
-    //     error: function(e) {
-    //         let respone = JSON.parse(e.responseText);
-    //         Swal.fire({
-    //                 title: 'Opps!!!',
-    //                 text: respone.pesan,
-    //                 type: 'warning',
-    //                 reverseButtons: true
-    //             })
-    //     },
-    //     success: function(respons) {
-    //         console.log(respons);
-    //     },
-    // })
-    let chat = chatdata.find(function (item) {
+    $.ajax({
+        url: baseurl + 'wp-chat/confirm/' + kode,
+        method: "PUT",
+        cache: false,
+        beforeSend: function(e) {
+            if (e && e.overrideMimeType) {
+                e.overrideMimeType('application/jsoncharset=utf-8')
+            }
+        },
+        error: function(e) {
+            console.log(e);
+            let respone = JSON.parse(e.responseText);
+            Swal.fire({
+                    title: 'Opps!!!',
+                    text: respone.pesan,
+                    type: 'warning',
+                    reverseButtons: true
+                })
+        },
+        success: function(respons) {
+            let respone = JSON.parse(respons);
+            if (respone.status === 'berhasil') {
+                let chat = chatdata.find(function (item) {
        return item.kode_customer === kode;
     });
     kode_cust = kode;
@@ -217,7 +217,7 @@ function pilihChat(kode) {
                 `);
             }
             tgl = tgl_chat;
-
+            console.log(element);
             if (element.input_by === "CUSTOMER") {
                 $('#chat').append(`
             <div>
@@ -256,6 +256,11 @@ function pilihChat(kode) {
             `)
             }
         });
+            }else{
+                console.log('gagal');
+            }
+        },
+    })
     }
 
 $('#form-chat').submit(function(e) {

@@ -276,6 +276,7 @@ $route['link']                          = 'User/UserController/link';
 
 //Chat
 $route['add/chat']                                  = 'User/UserController/tambahchat';
+$route['confirm/chat']                              = 'User/UserController/confirmchat';
 
 //Home
 $route['privacy-police']                     = 'Home/Home/privacypolice';
