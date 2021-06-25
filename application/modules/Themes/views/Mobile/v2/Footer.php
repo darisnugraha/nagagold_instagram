@@ -12,13 +12,16 @@
             <?php if ($this->session->userdata('status_login') == "SEDANG_LOGIN") : ?>
               <li class="<?= $this->session->userdata('title') == "Home" ? 'active' : '' ?>"><a onclick="$('.loaderform').show();" href="<?= base_url() ?>"><i class="lni lni-home"></i>Home</a></li>
               <li class="<?= $this->session->userdata('title') == "Shop" ? 'active' : '' ?>"><a onclick="$('.loaderform').show();" href="<?= base_url('shop') ?>"><i class="lni lni-shopping-basket"></i>Shop</a></li>
-              <li class="<?= $this->session->userdata('title') == "LiveChat" ? 'active' : '' ?>"><a onClick='updateChat()'><a onclick="$('.loaderform').show();" href="<?= base_url('chat') ?>">
+              <li class="<?= $this->session->userdata('title') == "LiveChat" ? 'active' : '' ?>"><a onClick='updateChat()'">
+              <!-- <a onclick="$('.loaderform').show();" href="<?= base_url('chat') ?>"> -->
               <?php if ($chatcount > 0) : ?>
                 <div class="item"><span class="notify-badge"><?=$chatcount?></span></div>
                 <?php else: ?>
                   <div></div>
               <?php endif; ?>
-              <i class="lni lni-wechat"></i>Chat</a></a></li>
+              <i class="lni lni-wechat"></i>Chat
+              <!-- </a> -->
+              </a></li>
               <!-- <li class="<?= $this->session->userdata('title') == "Cart" ? 'active' : '' ?>"><a onclick="$('.loaderform').show();" href="<?= base_url('cart') ?>">
                   <?php if ($data->data != null) : ?>
                     <div class="item"><span class="notify-badge"><?= $data->data[0]->count_item ?></span></div>
@@ -120,6 +123,7 @@
     <script>
       let baseurl = '<?php echo base_url()?>';
       function updateChat() {
+        $('.loaderform').show();
         $.ajax({
         url: baseurl + 'confirm/chat',
         method: "PUT",
@@ -140,6 +144,7 @@
                 })
         },
         success: function(respons) {
+          window.location.href = base_url+'chat';
           console.log(respons);
         },
         });
