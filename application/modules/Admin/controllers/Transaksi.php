@@ -8,6 +8,7 @@ class Transaksi extends MX_Controller
     {
         parent::__construct();
         is_logged_in_admin();
+        $this->load->library('Pdf');
         $this->token =  $this->session->userdata('Admintoken');
         $this->connection =  cek_internet();
         // $this->tgl_hari_ini = tanggal_hari_ini();
