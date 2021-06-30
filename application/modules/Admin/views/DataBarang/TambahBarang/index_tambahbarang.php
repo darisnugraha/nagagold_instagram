@@ -14,14 +14,14 @@
                 <div class="col-span-4 hidden">
                     <div>
                         <label>Kode Barang</label>
-                        <input type="text" value="" name="kode_barang" class="input w-full border "
+                        <input type="text" value="<?php echo $kode_barang ?>" name="kode_barang" class="input w-full border "
                             placeholder="Kode Barang">
                     </div>
                 </div>
                 <div class="col-span-4">
                     <div>
                         <label>Kode Barcode</label>
-                        <input type="text" value="" name="kode_barcode"  required class="input w-full border "
+                        <input type="text" value="<?php echo $kode_barang ?>" name="kode_barcode" required class="input w-full border" readonly
                             placeholder="Kode Barcode">
                     </div>
                 </div>
@@ -109,7 +109,7 @@
                     <div>
                         <label>Nama Atribut</label>
                         <input name="nama_atribut" type="text"class="input w-full border"
-                            placeholder="Masukan Berat">
+                            placeholder="Masukan Nama Atribut">
                     </div>
                 </div>
             
@@ -136,9 +136,9 @@
                 </div>
                 <div class="col-span-4">
                     <div>
-                        <label>Kode_intern</label>
-                        <input name="kode_intern" required type="text"class="input w-full border"
-                            placeholder="Masukan Kode_intern">
+                        <label>Kode Intern</label>
+                        <input name="kode_intern" type="text"class="input w-full border"
+                            placeholder="Masukan Kode Intern">
                     </div>
                 </div>
                 <div class="col-span-8">

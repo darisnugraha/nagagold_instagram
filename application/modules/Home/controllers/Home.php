@@ -253,7 +253,7 @@ class Home extends MX_Controller
 							Rp.' . $harga . '
 						</p>
 						<div class="product-rating">
-							Kadar: ' . number_format($barang->kadar_cetak,2) . '<br>
+							Kadar: ' . $barang->kadar_cetak . '<br>
 							Berat : ' . number_format($barang->berat,3) . ' <br>
 						</div>';
 						if ($this->session->userdata('status_login') == "SEDANG_LOGIN") {
@@ -337,7 +337,7 @@ class Home extends MX_Controller
 											Rp.' . $harga . '
 										</p>
 										<div class="product-rating">
-										Kadar: ' . number_format($row->kadar_cetak,2) . '<br>
+										Kadar: ' . $row->kadar_cetak . '<br>
 										Berat : ' . number_format($row->berat,3) . '<br>
 										</div>
 										' . $status_login . '
@@ -438,7 +438,7 @@ class Home extends MX_Controller
 											Rp.' . $harga . '
 										</p>
 									<div class="product-rating">
-									Kadar: ' . number_format($row->kadar_cetak ,2). '<br>
+									Kadar: ' . $row->kadar_cetak. '<br>
 									Berat : ' . number_format($row->berat,3) . '<br>
 									</div>
 									'.$status_login.'
@@ -556,7 +556,7 @@ class Home extends MX_Controller
 											<a onclick="' . $loading . '" class="product-title d-block" href="' . base_url('produk/' . encrypt_url($row->kode_barcode)) . '">
 											' . $nama_barang . '</a>
 											<div class="product-rating">
-											Kadar: ' . number_format($row->kadar_cetak,2) . '<br>
+											Kadar: ' . $row->kadar_cetak . '<br>
 											Berat : ' . number_format($row->berat,3) . '<br>
 											</div>
 											' . $status_login . '

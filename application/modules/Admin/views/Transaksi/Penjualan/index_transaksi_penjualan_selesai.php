@@ -37,7 +37,7 @@
                 <tr>
                     <th class="border-b-2 whitespace-no-wrap">No</th>
                     <th class="border-b-2 text-center whitespace-no-wrap">No Transaksi</th>
-                    <th class="border-b-2 text-left whitespace-no-wrap">Kode Customer</th>
+                    <th class="border-b-2 text-left whitespace-no-wrap">Nama Customer</th>
                     <th class="border-b-2 text-center whitespace-no-wrap">Tipe Pengambilan</th>
                     <th class="border-b-2 text-center whitespace-no-wrap">Total Beli</th>
                     <th class="border-b-2 text-center whitespace-no-wrap">Action</th>
@@ -49,7 +49,7 @@
                     <tr>
                         <td class="border-b-2 whitespace-no-wrap"><?= $no++ ?></td>
                         <td class="border-b-2 text-center whitespace-no-wrap"><?= strtoupper($row->id_trx) ?></td>
-                        <td class="border-b-2 text-left whitespace-no-wrap"><?= $row->kode_customer ?></td>
+                        <td class="border-b-2 text-left whitespace-no-wrap"><?= $row->nama_customer ?></td>
                         <td class="border-b-2 text-center whitespace-no-wrap">
                             <?php if ($row->type_trx == "AMBIL") : ?>
                                 Ambil Ditoko

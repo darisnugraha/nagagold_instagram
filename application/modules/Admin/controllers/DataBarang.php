@@ -40,7 +40,7 @@ class DataBarang extends MX_Controller
         
         $data['kode_barang']  = $this->input->post('kode_barcode');
         $data['kode_barcode'] = $this->input->post('kode_barcode');
-        $data['kode_intern']  = $this->input->post('kode_intern');
+        $data['kode_intern']  = $this->input->post('kode_intern') ? $this->input->post('kode_intern') : '-';
         $data['nama_barang']  = $this->input->post('nama_barang');
         $data['nama_atribut']  = $this->input->post('nama_atribut') ? $this->input->post('nama_atribut') : '-';
         $data['harga_atribut']  = intval($this->input->post('harga_atribut')) ? intval($this->input->post('harga_atribut')) : 0;
@@ -50,7 +50,7 @@ class DataBarang extends MX_Controller
         $data['kode_kelompok']  = $this->input->post('kode_kelompok');
         $data['kode_jenis_kelompok']  = $this->input->post('jenis_kelompok');
         $data['kadar']  = floatval($this->input->post('kadar'));
-        $data['kadar_cetak']  = floatval($this->input->post('kadar_cetak'));
+        $data['kadar_cetak']  = ($this->input->post('kadar_cetak'));
         $data['berat']  = floatval($this->input->post('berat'));
         $data['berat_asli']  = floatval($this->input->post('berat_asli'));
         $data['stock']  = intval($this->input->post('stock'));
@@ -112,10 +112,11 @@ class DataBarang extends MX_Controller
         }
     }
     function tambahbarangonline(){
-        $respons['DataJenis']      = $this->SERVER_API->_getAPI('jenis', $this->token);
-        $respons['DataKategori']   = $this->SERVER_API->_getAPI('kategori', $this->token);
-        $respons['DetailBarang']     = $this->SERVER_API->_getAPI('barang/barcode/' . decrypt_url($id), $this->token);
-        $respons['DataKelompok']            = $this->SERVER_API->_getAPI('kelompok/all');
+        $respons['DataJenis']     = $this->SERVER_API->_getAPI('jenis', $this->token);
+        $respons['DataKategori']  = $this->SERVER_API->_getAPI('kategori', $this->token);
+        $respons['DetailBarang']  = $this->SERVER_API->_getAPI('barang/barcode/' . decrypt_url($id), $this->token);
+        $respons['DataKelompok']  = $this->SERVER_API->_getAPI('kelompok/all');
+        $respons['kode_barang']   = random_int(0,9).random_int(0,9).random_int(0,9).random_int(0,9).random_int(0,9).random_int(0,9).random_int(0,9).random_int(0,9).random_int(0,9).random_int(0,9);
         $this->template->display_admin('DataBarang/TambahBarang/index_tambahbarang',$respons);
     }
     public function barangonline()
