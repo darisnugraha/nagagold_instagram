@@ -10,6 +10,7 @@ class Transaksi extends MX_Controller
         is_logged_in_admin();
         $this->token =  $this->session->userdata('Admintoken');
         $this->connection =  cek_internet();
+        // $this->tgl_hari_ini = tanggal_hari_ini();
     }
 
     //Validasi Penjualan
@@ -78,7 +79,11 @@ class Transaksi extends MX_Controller
     }
     public function printinvoicelihatproses($id)
     {
+        $respons['tgl_sekarang']  = $this->tgl_hari_ini;
+        $respons['jam_sekarang']  = date('H:i:s');
+        $respons['user_export']   = $this->session->userdata('nama_user');
         $respons['DetailTransaksi']  = $this->SERVER_API->_getAPI('penjualan/belum-selesai-filter-transaksi/' . $id, $this->token);
+        // $this->load->view('Transaksi/Penjualan/print_invoice_new', $respons);
         $this->load->view('Transaksi/Penjualan/print_invoice', $respons);
     }
     public function cari_validasi_penjualan()

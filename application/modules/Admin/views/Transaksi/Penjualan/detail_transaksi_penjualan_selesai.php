@@ -64,7 +64,7 @@
                         </div>
                     </div>
                     <div class="mt-10 lg:mt-0 lg:ml-auto lg:text-right">
-                        <div class="text-base text-gray-600">Id Transaksi</div>
+                        <div class="text-base text-gray-600">Nomor Transaksi</div>
                         <div class="text-lg text-theme-1 font-medium mt-2">#<?= $row->id_trx ?></div>
                         <!-- <div class="mt-1">Jan 02, 2021</div> -->
                     </div>
@@ -78,6 +78,7 @@
                                     <th class="border-b-2 whitespace-no-wrap">NAMA BARANG</th>
                                     <th class="border-b-2 text-right whitespace-no-wrap">QTY</th>
                                     <th class="border-b-2 text-right whitespace-no-wrap">HARGA</th>
+                                    <th class="border-b-2 text-right whitespace-no-wrap">ONGKOS</th>
                                     <th class="border-b-2 text-right whitespace-no-wrap">TOTAL</th>
                                 </tr>
                             </thead>
@@ -104,11 +105,10 @@
                                         </td>
                                         <td class="text-right border-b w-32">1</td>
                                         <td class="text-right border-b w-32"><?= number_format($detailbarang->harga) ?></td>
-
+                                        <td class="text-right border-b w-32"><?= number_format($detailbarang->ongkos) ?></td>
                                         <td class="text-right border-b w-32 font-medium"><?= number_format($detailbarang->harga) ?></td>
                                     </tr>
                                 <?php endforeach; ?>
-
                             </tbody>
 
                             <?php if ($row->type_trx == "AMBIL") : ?>
@@ -134,18 +134,18 @@
                                     </td>
                                 </tr>
                             <?php else : ?>
-                                <tr>
-                                    <td class="text-right border-b w-32 font-medium" colspan="3">Ongkir</td>
+                                <!-- <tr>
+                                    <td class="text-right border-b w-32 font-medium" colspan="4">Ongkir</td>
                                     <td class="text-center border-b w-32 font-medium"><?= number_format($row->ongkir) ?> </td>
-                                </tr>
+                                </tr> -->
                                 <tr>
-                                    <td class="text-right border-b w-32 font-medium" colspan="3">Total Harga</td>
+                                    <td class="text-right border-b w-32 font-medium" colspan="4">Total Harga</td>
                                     <td class="text-right border-b w-32 font-medium grandtotal"> </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="3">Barang Diantar Dengan Kurir : <br>
+                                    <!-- <td colspan="3">Barang Diantar Dengan Kurir : <br>
                                         <small><?= $row->jenis_courier ?> - <?= number_format($row->ongkir) ?></small>
-                                    </td>
+                                    </td> -->
                                 </tr>
                                 <tr>
                                     <td> </td>

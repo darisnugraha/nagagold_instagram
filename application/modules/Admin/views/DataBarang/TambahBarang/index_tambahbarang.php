@@ -170,11 +170,9 @@
                    
             </div>
             <input type="hidden" value="" class="jml_gambar" name="jml_gambar">
-
             <div class="col-span-12">
                 <button type="submit" class="button bg-theme-1 input w-full btn-block text-white">Simpan</button>
             </div>
-
         </form>
     </div>
 </div>

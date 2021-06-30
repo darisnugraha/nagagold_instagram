@@ -51,20 +51,21 @@
                         </div>
                     </div>
                     <div class="mt-10 lg:mt-0 lg:ml-auto lg:text-right">
-                        <div class="text-base text-gray-600">Id Transaksi</div>
+                        <div class="text-base text-gray-600">Nomor Transaksi</div>
                         <div class="text-lg text-theme-1 font-medium mt-2">#<?= $row->id_trx ?></div>
-                        <div class="mt-1">Jan 02, 2021</div>
+                        <!-- <div class="mt-1">Jan 02, 2021</div> -->
                     </div>
                 </div>
-                <div class="px-5 sm:px-16 py-10 sm:py-20">
+                <div class="px-6 sm:px-16 py-10 sm:py-20">
                     <div class="overflow-x-auto">
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th class="border-b-2 whitespace-no-wrap">KODE BARCODE</th>
+                                    <th class="border-b-2 whitespace-no-wrap">BARCODE</th>
                                     <th class="border-b-2 whitespace-no-wrap">NAMA BARANG</th>
                                     <th class="border-b-2 text-right whitespace-no-wrap">QTY</th>
                                     <th class="border-b-2 text-right whitespace-no-wrap">HARGA</th>
+                                    <th class="border-b-2 text-right whitespace-no-wrap">ONGKOS</th>
                                     <th class="border-b-2 text-right whitespace-no-wrap">TOTAL</th>
                                 </tr>
                             </thead>
@@ -84,12 +85,12 @@
                                             <div class="font-medium whitespace-no-wrap"><?= $detailbarang->nama_barang ?></div>
                                             <div class="text-gray-600 text-xs whitespace-no-wrap"></div>
                                         </td>
-                                        <td class="text-right border-b w-32">1</td>
+                                        <td class="text-right border-b w-16">1</td>
                                         <td class="text-right border-b w-32"><?= number_format($detailbarang->harga) ?></td>
+                                        <td class="text-right border-b w-32"><?= number_format($detailbarang->ongkos) ?></td>
                                         <td class="text-right border-b w-32 font-medium"><?= number_format($detailbarang->harga) ?></td>
                                     </tr>
                                 <?php endforeach; ?>
-
                             </tbody>
                             <?php if ($row->type_trx == "AMBIL") : ?>
                                 <tr>
@@ -114,18 +115,18 @@
                                     </td>
                                 </tr>
                             <?php else : ?>
-                                <tr>
+                                <!-- <tr>
                                     <td class="text-right border-b w-32 font-medium" colspan="4">Ongkir</td>
                                     <td class="text-center border-b w-32 font-medium"><?= number_format($row->ongkir) ?> </td>
-                                </tr>
+                                </tr> -->
                                 <tr>
-                                    <td class="text-right border-b w-32 font-medium" colspan="4">Total Harga</td>
+                                    <td class="text-right border-b w-32 font-medium" colspan="5">Total Harga</td>
                                     <td class="text-right border-b w-32 font-medium grandtotal"> <?= number_format( $grandtotal) ?> </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="4">Barang Diantar Dengan Kurir : <br>
+                                    <!-- <td colspan="4">Barang Diantar Dengan Kurir : <br>
                                         <small><?= $row->jenis_courier ?> - <?= number_format($row->ongkir) ?></small>
-                                    </td>
+                                    </td> -->
                                 </tr>
                                 <tr>
                                     <td> </td>
