@@ -3,15 +3,7 @@ class MYPDF extends TCPDF
 {
 
 	// Page footer
-	public function Footer()
-	{
-		// Position at 15 mm from bottom
-		$this->SetY(-15);
-		// Set font
-		$this->SetFont('helvetica', 'I', 8);
-		// Page number
-		$this->Cell(0, 10, 'Page ' . $this->getAliasNumPage() . '/' . $this->getAliasNbPages(), 0, false, 'C', 0, '', 0, false, 'T', 'M');
-	}
+	
 }
 $pdf = new MYPDF('P', 'mm', 'A4 Potrait', true, 'UTF-8', false);
 $pdf->setHeaderData('', 0, '', '', array(0, 0, 0), array(255, 255, 255));
@@ -33,10 +25,12 @@ foreach ($DetailTransaksi->data as $row) {
             <br>
 			<table border="0">
 				<tr>
-					<td width="32.5%" >
+                    <td width="32.5%" > <img src="'.base_url('assets/logo/LogoHeader.png').'" width="150px"> </td>
+                    <td align="center" width="36.5%"><b><font size="15px">INVOICE</font></b> <br><br><span color="#1C3FAA">#'.$row->id_trx.'</span></td>
+                    <!-- <td width="30%" align="right">Id Transaksi<br>#'.$row->id_trx.'</td> -->
+					<td width="32.5%" width="30%">
                     <span><span color="#1C3FAA">'.$row->nama_customer.'</span><br>
-                    '.$row->email.'<br>';
-
+                    '.$row->email.'<br>&nbsp;&nbsp;'.$row->no_hp.'<br>';
                     if ($row->type_trx=="AMBIL") {
                         foreach ($row->alamat  as $alamat) {
                             if ($alamat->status_default==1) {
@@ -50,9 +44,7 @@ foreach ($DetailTransaksi->data as $row) {
                     }
 
                 $html .= '</span>
-                                </td>
-                                <td align="center" width="36.5%"><b><font size="15px">INVOICE</font></b> <br><br></td>
-                                <td width="30%" align="right">Id Transaksi<br>#'.$row->id_trx.'</td>
+                            </td>
                             </tr>
                             <tr align="right">
                                 <td width="32.5%" ></td>
@@ -68,6 +60,7 @@ foreach ($DetailTransaksi->data as $row) {
                         <th style="border-top: 1px solid black; border-bottom: 1px solid black;"  align="center">NAMA BARANG</th>
                         <th style="border-top: 1px solid black; border-bottom: 1px solid black;"  align="center">QTY</th>
                         <th style="border-top: 1px solid black; border-bottom: 1px solid black;"  align="center">HARGA</th>
+                        <th style="border-top: 1px solid black; border-bottom: 1px solid black;"  align="center">Ongkos</th>
                         <th style="border-top: 1px solid black; border-bottom: 1px solid black;"  align="center">TOTAL</th>
                     </tr>
                 </thead>
@@ -83,61 +76,84 @@ foreach ($DetailTransaksi->data as $row) {
 
                 $html .= '<tr>
                 <td style="border-bottom: 0.5px solid black;">
-                    <div class="font-medium whitespace-no-wrap">'.$detailbarang->nama_barang.'
+                    <div>'.$detailbarang->nama_barang.'
                     <small>
                         <br>Kode Barcode :'.$detailbarang->kode_barcode.'
                         <br>Berat :'.$detailbarang->berat.'
-                        <br> 
+                        <br>
+                    </small> 
                     ';
-                    if($detailbarang->ongkos == 0){
-                        $html .= '';
-                    }else{
-                        $html .= 'Ongkos Produksi '.number_format($detailbarang->ongkos);
-                    }
-                $html .= '</small>
+                    // if($detailbarang->ongkos == 0){
+                    //     $html .= '';
+                    // }else{
+                    //     $html .= 'Ongkos Produksi '.number_format($detailbarang->ongkos);
+                    // }
+                $html .= '
                 </div>
                     </td>
                     <td style="border-bottom: 0.5px solid black;" align="center">1</td>
                     <td style="border-bottom: 0.5px solid black;" align="center">'.number_format($detailbarang->harga).'</td>
+                    <td style="border-bottom: 0.5px solid black;" align="center">'.number_format($detailbarang->ongkos).'</td>
                     <td style="border-bottom: 0.5px solid black;" align="right">'.number_format($total_harga).'</td>
                 </tr>';
               }
-              $html .='<tr>
-                    <td style="border-bottom: 0.5px solid black;" colspan="3">Ongkir</td>
+              $html .='<!-- <tr>
+                    <td style="border-bottom: 0.5px solid black;" colspan="4">Ongkir</td>
                     <td style="border-bottom: 0.5px solid black;" align="right">'.number_format($row->ongkir) .'</td>
-                </tr>
+                </tr> -->
                 <tr>
-                    <td style="border-bottom: 0.5px solid black;" colspan="3">Total Harga</td>
+                    <td style="border-bottom: 0.5px solid black;" colspan="4">Total Harga</td>
                     <td style="border-bottom: 0.5px solid black;" align="right">'.number_format($grandtotal).' </td>
                 </tr>';
-        $html .= '</tbody>
+                $html .='<tr>
+                    <td colspan="4"></td>
+                    <td align="right"></td>
+                </tr>';
+                $html .= '<tr>
+                    <td colspan="4"></td>
+                    <td align="right">';
+              if  ($row->type_trx == "AMBIL") {
+                $dp = $grandtotal * 50 / 100;
+                $sisa = $grandtotal * 50 / 100; 
+                $html .= '<div align="right"> Total Dp : '.number_format($dp) .'</div>
+                          <div align="right"> Sisa Bayar : '.number_format($sisa).'</div>';
+                }else{
+                $html .= '<div align="right">Sudah Lunas</div>';
+                }
+              $html .= '</td>
+              </tr>';
+              $html .= '</tbody>
                         </table>
                     </div>
                 </div>
-                <div>
-                    <div>';
-        if ($row->type_trx == "AMBIL") {
-            $html .= 'Barang di ambil di toko : ';
-            foreach ($row->toko  as $toko) {
-                $html .= $toko->nama_toko.'<br>'.$toko->alamat_lengkap.'<br>'.$toko->nama_kecamatan.''.$toko->nama_kota.','.$toko->kode_pos.','.$toko->nama_provinsi;
-            }
-        }else{
-            $html .= '<span color="#718096">Barang Diantar Dengan Kurir :'.  $row->jenis_courier. "-". number_format($row->ongkir).'</span>';
-        }
-        $html .= '</div>
-        <div>
-            <div align="right">Total Transasksi</div>
-            <div align="right">'.number_format($grandtotal).'</div>';
-        if  ($row->type_trx == "AMBIL") {
-            $dp = $grandtotal * 50 / 100;
-            $sisa = $grandtotal * 50 / 100; 
-            $html .= '<div align="right"> Total Dp : '.number_format($dp) .'</div>
-            <div align="right"> Sisa Bayar : '.number_format($sisa).'</div>';
-        }else{
-            $html .= '<div align="right">Sudah Lunas</div>';
-        }
-        $html .= '</div>
-</div>
+                ';
+        // if ($row->type_trx == "AMBIL") {
+        //     $html .= 'Barang di ambil di toko : ';
+        //     foreach ($row->toko  as $toko) {
+        //         $html .= $toko->nama_toko.'<br>'.$toko->alamat_lengkap.'<br>'.$toko->nama_kecamatan.''.$toko->nama_kota.','.$toko->kode_pos.','.$toko->nama_provinsi;
+        //     }
+        // }else{
+        //     $html .= '<span color="#718096">Barang Diantar Dengan Kurir :'.  $row->jenis_courier. "-". number_format($row->ongkir).'</span>';
+        // }
+        // $html .= '
+        // <table>
+        //     <tr>
+        //         <!-- <td><br><br>&nbsp;&nbsp;Id Transaksi<br><br>&nbsp;&nbsp;<span color="#1C3FAA">#'.$row->id_trx.'</span></td> -->
+        //         <td>
+        //             <div align="right">Total Transasksi</div>
+        //             <div align="right">'.number_format($grandtotal).'</div>';
+        // if  ($row->type_trx == "AMBIL") {
+        //     $dp = $grandtotal * 50 / 100;
+        //     $sisa = $grandtotal * 50 / 100; 
+        //     $html .= '<div align="right"> Total Dp : '.number_format($dp) .'</div>
+        //               <div align="right"> Sisa Bayar : '.number_format($sisa).'</div>';
+        // }else{
+        //     $html .= '<div align="right">Sudah Lunas</div>';
+        // }
+        $html .= '
+               <!-- </td>
+            </tr>
+        </table> -->
 </div>
 <!-- END: Invoice -->
 </div>';
