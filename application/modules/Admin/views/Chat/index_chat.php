@@ -36,6 +36,7 @@
                     
                     <div class="chat__chat-list overflow-y-auto scrollbar-hidden pr-1 pt-1 mt-4">
                     <?php $no=1; foreach($ChatData->data as $row ): ?>
+                        <a href="#" onclick="pilihChat('<?=$row->kode_customer?>'); return false;" class="font-medium">
                         <div class="intro-x cursor-pointer box relative flex items-center p-5 ">
                             <div class="w-12 h-12 flex-none image-fit mr-1">
                                 <img alt="Midone Tailwind HTML Admin Template" class="rounded-full"
@@ -46,7 +47,7 @@
                             </div>
                             <div class="ml-2 overflow-hidden">
                                 <div class="flex items-center">
-                                    <a href="#" onclick="pilihChat('<?=$row->kode_customer?>'); return false;" class="font-medium"><?= $row->nama_customer?></a>
+                                    <span><?= $row->nama_customer?></span>
                                     <div class="text-xs text-gray-500 ml-6"><?= date('H:i',strtotime($row->detail[0]->input_date))?></div>
                                 </div>
                                 <?php
@@ -59,6 +60,7 @@
                                 class="w-5 h-5 flex items-center justify-center absolute top-0 right-0 text-xs text-white rounded-full bg-theme-1 font-medium -mt-1 -mr-1 <?= $row->count_message_open > 0 ? '': 'hidden'?>">
                                 <?= $row->count_message_open?></div>
                         </div>
+                        </a>
                         <br>
                         <?php endforeach;?>
                     </div>
