@@ -141,7 +141,7 @@
                         </div>
                         <div class="mt-3">
                             <div class="font-medium">Hey, <?= $this->session->userdata('nama_user') ?>!</div>
-                            <div class="text-gray-600 mt-1">Silakan pilih obrolan untuk mengirim pesan. <?=$json?></div>
+                            <div class="text-gray-600 mt-1">Silakan pilih obrolan untuk mengirim pesan.</div>
                         </div>
                     </div>
                 </div>
