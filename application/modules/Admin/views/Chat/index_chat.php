@@ -40,19 +40,23 @@
                             <div class="w-12 h-12 flex-none image-fit mr-1">
                                 <img alt="Midone Tailwind HTML Admin Template" class="rounded-full"
                                     src="<?= base_url('assets/admin/images/profile-1.png') ?>">
-                                <div
+                                <!-- <div
                                     class="w-3 h-3 bg-theme-9 absolute right-0 bottom-0 rounded-full border-2 border-white">
-                                </div>
+                                </div> -->
                             </div>
                             <div class="ml-2 overflow-hidden">
                                 <div class="flex items-center">
                                     <a href="#" onclick="pilihChat('<?=$row->kode_customer?>'); return false;" class="font-medium"><?= $row->nama_customer?></a>
                                     <div class="text-xs text-gray-500 ml-6"><?= date('H:i',strtotime($row->detail[0]->input_date))?></div>
                                 </div>
-                                <div class="w-full truncate text-gray-600"><?= $row->detail[0]->pesan?></div>
+                                <?php
+                                    $count = count($row->detail);
+                                    $json = json_encode($row->detail[$count-1]);
+                                ?>
+                                <div class="w-full truncate text-gray-600"><div class="fa fa-check" style="display:<?= $row->detail[$count-1]->input_by === 'CUSTOMER' ? '' : 'none'?>"></div>&nbsp;<?= $row->detail[$count-1]->pesan?></div>
                             </div>
                             <div
-                                class="w-5 h-5 flex items-center justify-center absolute top-0 right-0 text-xs text-white rounded-full bg-theme-1 font-medium -mt-1 -mr-1">
+                                class="w-5 h-5 flex items-center justify-center absolute top-0 right-0 text-xs text-white rounded-full bg-theme-1 font-medium -mt-1 -mr-1 <?= $row->count_message_open > 0 ? '': 'hidden'?>">
                                 <?= $row->count_message_open?></div>
                         </div>
                         <br>
@@ -137,7 +141,7 @@
                         </div>
                         <div class="mt-3">
                             <div class="font-medium">Hey, <?= $this->session->userdata('nama_user') ?>!</div>
-                            <div class="text-gray-600 mt-1">Silakan pilih obrolan untuk mengirim pesan.</div>
+                            <div class="text-gray-600 mt-1">Silakan pilih obrolan untuk mengirim pesan. <?=$json?></div>
                         </div>
                     </div>
                 </div>
@@ -161,6 +165,7 @@ let no = 0;
 let margin = 0;
 
 function pilihChat(kode) {
+    localStorage.setItem('kode_cust',kode);
     tgl = '';
     no = 0;
     margin = 0;
@@ -187,8 +192,8 @@ function pilihChat(kode) {
             let respone = JSON.parse(respons);
             if (respone.status === 'berhasil') {
                 let chat = chatdata.find(function (item) {
-       return item.kode_customer === kode;
-    });
+                    return item.kode_customer === kode;
+                });
     kode_cust = kode;
     $('#nama_customer').html(chat.nama_customer);
     $('#chat').empty();
@@ -217,7 +222,7 @@ function pilihChat(kode) {
                 `);
             }
             tgl = tgl_chat;
-            console.log(element);
+            // console.log(element);
             if (element.input_by === "CUSTOMER") {
                 $('#chat').append(`
             <div>
@@ -327,7 +332,8 @@ $('#form-chat').submit(function(e) {
         },
         complete: function(respons) {
             console.log(respons);
-            location.reload();
+            // location.reload();
+            pilihChat(localStorage.getItem('kode_cust'));
         },
     })
 
