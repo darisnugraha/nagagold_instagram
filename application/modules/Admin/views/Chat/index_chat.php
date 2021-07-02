@@ -332,8 +332,8 @@ $('#form-chat').submit(function(e) {
         },
         complete: function(respons) {
             console.log(respons);
-            // location.reload();
-            pilihChat(localStorage.getItem('kode_cust'));
+            location.reload();
+            // pilihChat(localStorage.getItem('kode_cust'));
         },
     })
 
