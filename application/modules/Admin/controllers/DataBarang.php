@@ -38,23 +38,23 @@ class DataBarang extends MX_Controller
             mkdir($directory, 0755, true);
         }
         
-        $data['kode_barang']  = $this->input->post('kode_barcode');
-        $data['kode_barcode'] = $this->input->post('kode_barcode');
-        $data['kode_intern']  = $this->input->post('kode_intern') ? $this->input->post('kode_intern') : '-';
-        $data['nama_barang']  = $this->input->post('nama_barang');
-        $data['nama_atribut']  = $this->input->post('nama_atribut') ? $this->input->post('nama_atribut') : '-';
+        $data['kode_barang']    = strval($this->input->post('kode_barcode'));
+        $data['kode_barcode']   = strval($this->input->post('kode_barcode'));
+        $data['kode_intern']    = $this->input->post('kode_intern') ? $this->input->post('kode_intern') : '-';
+        $data['nama_barang']    = $this->input->post('nama_barang');
+        $data['nama_atribut']   = $this->input->post('nama_atribut') ? $this->input->post('nama_atribut') : '-';
         $data['harga_atribut']  = intval($this->input->post('harga_atribut')) ? intval($this->input->post('harga_atribut')) : 0;
-        $data['ongkos']  = intval($this->input->post('ongkos'));
+        $data['ongkos']         = intval($this->input->post('ongkos'));
         $data['kode_kategori']  = $this->input->post('kode_kategori');
-        $data['kode_jenis']  = $this->input->post('kode_jenis');
+        $data['kode_jenis']     = $this->input->post('kode_jenis');
         $data['kode_kelompok']  = $this->input->post('kode_kelompok');
         $data['kode_jenis_kelompok']  = $this->input->post('jenis_kelompok');
-        $data['kadar']  = floatval($this->input->post('kadar'));
-        $data['kadar_cetak']  = ($this->input->post('kadar_cetak'));
-        $data['berat']  = floatval($this->input->post('berat'));
-        $data['berat_asli']  = floatval($this->input->post('berat_asli'));
-        $data['stock']  = intval($this->input->post('stock'));
-
+        $data['kadar']          = floatval($this->input->post('kadar'));
+        $data['kadar_cetak']    = ($this->input->post('kadar_cetak'));
+        $data['berat']          = floatval($this->input->post('berat'));
+        $data['berat_asli']     = floatval($this->input->post('berat_asli'));
+        $data['stock']          = intval($this->input->post('stock'));
+        
         $config['quality']          = '50%';
         $config['upload_path']   =  $directory; //path folder
         $config['overwrite']     = TRUE;
@@ -109,6 +109,7 @@ class DataBarang extends MX_Controller
             redirect('wp-tambah-barang-online');
         } else {
             $this->session->set_flashdata('alert', information($respons->pesan));
+            redirect('wp-tambah-barang-online');
         }
     }
     function tambahbarangonline(){
