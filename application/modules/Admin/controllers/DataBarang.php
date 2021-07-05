@@ -43,8 +43,8 @@ class DataBarang extends MX_Controller
         $data['kode_intern']  = $this->input->post('kode_intern') ? $this->input->post('kode_intern') : '-';
         $data['nama_barang']  = $this->input->post('nama_barang');
         $data['nama_atribut']  = $this->input->post('nama_atribut') ? $this->input->post('nama_atribut') : '-';
-        $data['harga_atribut']  = intval($this->input->post('harga_atribut')) ? intval($this->input->post('harga_atribut')) : 0;
-        $data['ongkos']  = intval($this->input->post('ongkos'));
+        $data['harga_atribut']  = intval($this->input->post('harga_atribut')) ? intval(str_replace(",","",$this->input->post('harga_atribut'))) : 0;
+        $data['ongkos']  = intval($this->input->post('ongkos')) ? intval(str_replace(",","",$this->input->post('ongkos'))) : 0;
         $data['kode_kategori']  = $this->input->post('kode_kategori');
         $data['kode_jenis']  = $this->input->post('kode_jenis');
         $data['kode_kelompok']  = $this->input->post('kode_kelompok');
@@ -101,7 +101,7 @@ class DataBarang extends MX_Controller
             }
         }
         $data['gambar'] = $data1;
-        // var_dump($data1);
+        // echo intval(str_replace(",","",$this->input->post('harga_atribut')));
         // die;
         $respons                     = $this->SERVER_API->_postAPI('barang/simpan-barang-online', $data, $this->token);
         if ($respons->status == "berhasil") {
