@@ -75,7 +75,7 @@
                     <tr>
                         <th class="border-b-2 text-left whitespace-no-wrap">Kode Barcode</th>
                         <th class="border-b-2 text-left whitespace-no-wrap">Nama Barang</th>
-                        <th class="border-b-2 text-center whitespace-no-wrap">Action</th>
+                        <th class="border-b-2 text-center whitespace-no-wrap">Action Hapus Barang</th>
                     </tr>
                 </thead>
                 <tbody id="databarang1">
@@ -245,7 +245,9 @@
                             <tr>
                                 <td>` + element.kode_barcode + `</td>
                                 <td>` + element.nama_barang + `</td>
-                                <td align="center"><input type='radio'  onclick="hapusconfirmbarang('` + element.kode_barcode + `')" class="btn btn-sm btn-danger btn-delete" type="button" name='record'></td>
+                                <td align="center">
+                                    <input type='radio' onclick="hapusconfirmbarang('` + element.kode_barcode + `')" name='record'>
+                                </td>
                             </tr>
                             "`;
                         $("#databarang1").append(markup);
