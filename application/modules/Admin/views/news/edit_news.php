@@ -47,6 +47,7 @@
                                     <input type="file" onchange="document.getElementById('output1').src = window.URL.createObjectURL(this.files[0])"
                                             type="file" name="photo" class="input w-full border mt-2 flex-1"
                                             placeholder="Masukan Nama Jenis">
+                                    <img src='<?= $row->lokasi_gambar ?>' style="width:20%; height:20%;">
                                             <small style="color:red">* Ukuran File 1280px x 810px </small>
                                             <small style="color:red">* Kosongkan Jika Tidak Ingin Mengedit Gambar </small>
                                 </div>
@@ -66,7 +67,8 @@
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <button class="button w-20 bg-theme-1 text-white w-full"> Simpan </button>
+                                    <input type="button" class="button w-20 border text-gray-700 mr-1" value="Batal" onClick="cancelButton()">
+                                    <button class="button w-20 bg-theme-1 text-white"> Simpan </button>
                                 </div>
                             </div>
                         </div>
@@ -129,4 +131,7 @@ $('.ui-title').css('display', 'none');
 //     .catch(error => {
 //         // console.error(error);
 //     });
+function cancelButton() {
+    window.history.back();
+}
 </script>

@@ -62,7 +62,8 @@
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <button class="button w-20 bg-theme-1 text-white w-full"> Simpan </button>
+                                    <input type="button" class="button w-20 border text-gray-700 mr-1" value="Batal" onClick="cancelButton()">
+                                    <button class="button w-20 bg-theme-1 text-white"> Simpan </button>
                                 </div>
                             </div>
                         </div>
@@ -125,4 +126,7 @@ $('.ui-title').css('display', 'none');
 //     .catch(error => {
 //         // console.error(error);
 //     });
+function cancelButton() {
+    window.history.back();
+}
 </script>
