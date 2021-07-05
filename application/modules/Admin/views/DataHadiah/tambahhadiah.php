@@ -23,7 +23,7 @@
                         </div> -->
                         <div class="col-span-12 sm:col-span-12">
                             <label>Point</label>
-                            <input type="text" required onkeypress="return NumberNoEnter(event)" name="point" class="input w-full border mt-2 flex-1" placeholder="Masukan Stock Hadiah">
+                            <input type="text" required onkeypress="return NumberNoEnter(event)" name="point" class="input w-full border mt-2 flex-1" placeholder="Masukan Point Hadiah">
                         </div>
                         <div class="col-span-12">
                             <img width="570" height="250" id="output1" class="viewimages" src="<?= base_url('assets/images/slidenotfound.jpg') ?>">

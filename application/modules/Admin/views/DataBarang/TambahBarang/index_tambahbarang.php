@@ -18,7 +18,7 @@
                             placeholder="Kode Barang">
                     </div>
                 </div>
-                <div class="col-span-4">
+                <div class="col-span-4 hidden">
                     <div>
                         <label>Kode Barcode</label>
                         <input type="text" value="<?php echo $kode_barang ?>" name="kode_barcode" required class="input w-full border" readonly
