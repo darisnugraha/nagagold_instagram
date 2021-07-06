@@ -21,7 +21,7 @@
             <div class="tab-content">
                 <div class="tab-content__pane active" id="chats">
                     <div class="pr-1">
-                        <div class="box px-5 pt-5 pb-5 lg:pb-0 mt-5">
+                        <div class="box px-5 pt-5 pb-5 lg:pb-0 mt-5 hidden">
                             <div class="relative text-gray-700">
                                 <input type="text" class="input input--lg w-full bg-gray-200 pr-10 placeholder-theme-13"
                                     placeholder="Search for messages or users...">
@@ -36,6 +36,15 @@
                     
                     <div class="chat__chat-list overflow-y-auto scrollbar-hidden pr-1 pt-1 mt-4">
                     <?php $no=1; foreach($ChatData->data as $row ): ?>
+                    <?php
+                        $count_mess = array_filter($row->detail, function ($var)
+                        {
+                            return $var->input_by === "CUSTOMER" && $var->status === "OPEN";
+                        });
+
+                        // echo json_encode($count_mess);
+                        // die;
+                    ?>
                         <a href="#" onclick="pilihChat('<?=$row->kode_customer?>'); return false;" class="font-medium">
                         <div class="intro-x cursor-pointer box relative flex items-center p-5 ">
                             <div class="w-12 h-12 flex-none image-fit mr-1">
@@ -54,11 +63,12 @@
                                     $count = count($row->detail);
                                     $json = json_encode($row->detail[$count-1]);
                                 ?>
-                                <div class="w-full truncate text-gray-600"><div class="fa fa-check" style="display:<?= $row->detail[$count-1]->input_by === 'CUSTOMER' ? '' : 'none'?>"></div>&nbsp;<?= $row->detail[$count-1]->pesan?></div>
+                                <div class="w-full truncate text-gray-600"><div class="fa fa-check" style="display:<?= $row->detail[$count-1]->input_by === 'ADMIN TOKO' ? '' : 'none'?>"></div>&nbsp;<?= $row->detail[$count-1]->pesan?></div>
                             </div>
                             <div
-                                class="w-5 h-5 flex items-center justify-center absolute top-0 right-0 text-xs text-white rounded-full bg-theme-1 font-medium -mt-1 -mr-1 <?= $row->count_message_open > 0 ? '': 'hidden'?>">
-                                <?= $row->count_message_open?></div>
+                                class="w-5 h-5 flex items-center justify-center absolute top-0 right-0 text-xs text-white rounded-full bg-theme-1 font-medium -mt-1 -mr-1 <?= count($count_mess) > 0 ? "":"hidden"?>">
+                                <span id="jumlah_pesan_belum_dibaca"><?= count($count_mess) ?></span>
+                            </div>
                         </div>
                         </a>
                         <br>
@@ -167,6 +177,8 @@ let no = 0;
 let margin = 0;
 
 function pilihChat(kode) {
+    $('#jumlah_pesan_belum_dibaca').empty();
+    $('#jumlah_pesan_belum_dibaca').append('0');
     localStorage.setItem('kode_cust',kode);
     tgl = '';
     no = 0;
@@ -196,10 +208,10 @@ function pilihChat(kode) {
                 let chat = chatdata.find(function (item) {
                     return item.kode_customer === kode;
                 });
-    kode_cust = kode;
-    $('#nama_customer').html(chat.nama_customer);
-    $('#chat').empty();
-        chat.detail.forEach(element => {
+            kode_cust = kode;
+            $('#nama_customer').html(chat.nama_customer);
+            $('#chat').empty();
+            chat.detail.forEach(element => {
 
             let Jam = new Date(element.input_date).getHours();
             let Menit = new Date(element.input_date).getMinutes();
@@ -207,6 +219,26 @@ function pilihChat(kode) {
             let Month = new Date(element.input_date).getMonth();
             let Year = new Date(element.input_date).getFullYear();;
             let tgl_chat = Tanggal + ' ' + monthNames[Month] + ' ' + Year;
+            // console.log(Menit);
+            let menit_display;
+            if (Menit > 0 && Menit < 7) {
+                menit_display = Menit.toString() + "0";
+            }else if(Menit > 6 && Menit < 10){
+                menit_display = "0" + Menit.toString();
+            }else{
+                menit_display = Menit;
+            }
+            // console.log(menit_display);
+            let jam_display;
+            
+            if (Jam > 0 && Jam < 7) {
+                jam_display = Jam.toString() + "0";
+            }else if(Jam > 6 && Jam < 10){
+                jam_display = "0" + Jam.toString();
+            }else{
+                jam_display = Jam;
+            }
+
             if (tgl === tgl_chat) {
                 $('#chat').append(``);
             }else{
@@ -224,7 +256,7 @@ function pilihChat(kode) {
                 `);
             }
             tgl = tgl_chat;
-            // console.log(element);
+            // console.log(element.pesan.length);
             if (element.input_by === "CUSTOMER") {
                 $('#chat').append(`
             <div>
@@ -232,10 +264,10 @@ function pilihChat(kode) {
                 
             </div>
             <div class="clear-both"></div>
-            <div class="chat__box__text-box flex items-end float-right mb-4">
+            <div class="chat__box__text-box flex items-end float-right mb-4" style="margin-right:${element.pesan.length > 40 ? '15' : '0'}px;">
                 <div class="bg-theme-1 px-4 py-3 text-white rounded-l-md rounded-t-md">
-                    <${element.jenis_pesan === "Link" ? "a href = '"+element.pesan+"' target='_blank'":"p"}>${element.pesan.length > 40 ? element.pesan.substring(0,24) + "..." : element.pesan}</${element.jenis_pesan === "Link" ? "a":"p"}>
-                    <div class="mt-1 text-xs text-theme-25">${Jam}:${Menit}</div>
+                    <${element.jenis_pesan === "Link" ? "a href = '"+element.pesan+"' target='_blank'":"p"}>${element.pesan.length > 40 ? element.pesan.substring(0,24) + "\n" + element.pesan.substr(24, 24) + "\n" + element.pesan.substr(element.pesan.length - 24, element.pesan.length) : element.pesan}</${element.jenis_pesan === "Link" ? "a":"p"}>
+                    <div class="mt-1 text-xs text-theme-25">${jam_display}:${menit_display}</div>
                 </div>
                 <div class="w-10 h-10 hidden sm:block flex-none image-fit relative ml-5">
                     <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="<?= base_url('assets/admin/images/profile-1.png') ?>">
@@ -252,7 +284,7 @@ function pilihChat(kode) {
                 </div>
                 <div class="bg-gray-200 px-4 py-3 text-gray-700 rounded-r-md rounded-t-md">
                     ${element.pesan}
-                    <div class="mt-1 text-xs text-gray-600">${Jam}:${Menit}</div>
+                    <div class="mt-1 text-xs text-gray-600">${jam_display}:${menit_display}</div>
                 </div>
             </div>
             <div class="clear-both"></div>

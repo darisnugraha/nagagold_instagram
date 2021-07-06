@@ -60,7 +60,7 @@ foreach ($DetailTransaksi->data as $row) {
                         <th style="border-top: 1px solid black; border-bottom: 1px solid black;"  align="center">NAMA BARANG</th>
                         <th style="border-top: 1px solid black; border-bottom: 1px solid black;"  align="center">QTY</th>
                         <th style="border-top: 1px solid black; border-bottom: 1px solid black;"  align="center">HARGA</th>
-                        <th style="border-top: 1px solid black; border-bottom: 1px solid black;"  align="center">Ongkos</th>
+                        <th style="border-top: 1px solid black; border-bottom: 1px solid black;"  align="center">ONGKOS</th>
                         <th style="border-top: 1px solid black; border-bottom: 1px solid black;"  align="center">TOTAL</th>
                     </tr>
                 </thead>

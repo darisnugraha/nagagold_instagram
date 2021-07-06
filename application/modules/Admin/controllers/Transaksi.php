@@ -71,7 +71,7 @@ class Transaksi extends MX_Controller
     public function printinvoice($id)
     {
         $respons['DetailTransaksi']  = $this->SERVER_API->_getAPI('penjualan/payment-confirm-filter-penjualan/' . $id, $this->token);
-        $this->load->view('Transaksi/Validasi/Penjualan/print_invoice', $respons);
+        $this->load->view('Transaksi/Validasi/Penjualan/print_invoice_pdf', $respons);
     }
     public function printinvoiceproses($id)
     {
