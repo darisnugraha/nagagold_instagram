@@ -5,6 +5,12 @@
       $chatdata = $this->SERVER_API->_getAPI('chat/getCustomer', $this->session->userdata('token'));
       $chatcount = $chatdata->data[0]->count_message_open
     ?>
+    <?php
+    $count_mess = array_filter($chatdata->data[0]->detail, function ($var)
+    {
+        return $var->input_by === "ADMIN TOKO" && $var->status === "OPEN";
+    });
+    ?>
     <div class="footer-nav-area" id="footerNav">
       <div class="container h-100 px-0">
         <div class="suha-footer-nav h-100">
@@ -14,7 +20,7 @@
               <li class="<?= $this->session->userdata('title') == "Shop" ? 'active' : '' ?>"><a onclick="$('.loaderform').show();" href="<?= base_url('shop') ?>"><i class="lni lni-shopping-basket"></i>Shop</a></li>
               <li class="<?= $this->session->userdata('title') == "LiveChat" ? 'active' : '' ?>"><a onClick='updateChat()'">
               <!-- <a onclick="$('.loaderform').show();" href="<?= base_url('chat') ?>"> -->
-              <?php if ($chatcount > 0) : ?>
+              <?php if (count($count_mess) > 0) : ?>
                 <div class="item"><span class="notify-badge"><?=$chatcount?></span></div>
                 <?php else: ?>
                   <div></div>
