@@ -66,7 +66,7 @@
                                 <div class="w-full truncate text-gray-600"><div class="fa fa-check" style="display:<?= $row->detail[$count-1]->input_by === 'ADMIN TOKO' ? '' : 'none'?>"></div>&nbsp;<?= $row->detail[$count-1]->pesan?></div>
                             </div>
                             <div
-                                class="w-5 h-5 flex items-center justify-center absolute top-0 right-0 text-xs text-white rounded-full bg-theme-1 font-medium -mt-1 -mr-1 <?= count($count_mess) > 0 ? "":"hidden"?>">
+                                class="w-5 h-5 flex items-center justify-center absolute top-0 right-0 text-xs text-white rounded-full bg-theme-1 font-medium -mt-1 -mr-1 <?= count($count_mess) > 0 ? "":"hidden"?>" id="count">
                                 <span id="jumlah_pesan_belum_dibaca"><?= count($count_mess) ?></span>
                             </div>
                         </div>
@@ -108,7 +108,7 @@
                             <div class="ml-3 mr-auto">
                                 <div class="font-medium text-base"><span id="nama_customer"></span></div>
                                 <div class="text-gray-600 text-xs sm:text-sm"> <span
-                                        class="mx-1">•</span> Online</div>
+                                        class="mx-1">•</span> Customer</div>
                             </div>
                         </div>
                         <div
@@ -179,6 +179,7 @@ let margin = 0;
 function pilihChat(kode) {
     $('#jumlah_pesan_belum_dibaca').empty();
     $('#jumlah_pesan_belum_dibaca').append('0');
+    document.getElementById("count").style.display = "none";
     localStorage.setItem('kode_cust',kode);
     tgl = '';
     no = 0;
