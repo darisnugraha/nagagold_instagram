@@ -120,16 +120,16 @@
             load_data(limit, start);
         }
 
-        $(window).scroll(function() {
-            if ($(window).scrollTop() + $(window).height() > $("#load_data").height() && action ==
-                'inactive') {
-                lazzy_loader(limit);
-                action = 'active';
-                setTimeout(function() {
-                    load_data(limit, start);
-                }, 1000);
-            }
-        });
+        // $(window).scroll(function() {
+        //     if ($(window).scrollTop() + $(window).height() > $("#load_data").height() && action ==
+        //         'inactive') {
+        //         lazzy_loader(limit);
+        //         action = 'active';
+        //         setTimeout(function() {
+        //             load_data(limit, start);
+        //         }, 1000);
+        //     }
+        // });
 
     });
 </script>
