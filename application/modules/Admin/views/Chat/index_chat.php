@@ -304,6 +304,7 @@ function pilihChat(kode) {
     }
 
 $('#form-chat').submit(function(e) {
+    let tgl = '';
     e.preventDefault();
     let data = $("#message").val();
     // setTimeout(() => {
