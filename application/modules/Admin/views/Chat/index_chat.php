@@ -164,8 +164,9 @@
     </div>
 </div>
 <script>
-let data = '<?= json_encode($ChatData->data[0])?>';
+let data = '<?= json_encode($ChatData)?>';
 let chatdata = JSON.parse(data);
+chatdata = chatdata.data;
 let kode_cust = '';
 let baseurl = '<?php echo base_url()?>';
 const monthNames = ["January", "February", "March", "April", "May", "June",
@@ -178,23 +179,16 @@ console.log(data);
 console.log(chatdata);
 
 function pilihChat(kode) {
-    let data = '<?= json_encode($ChatData->data)?>';
+    let data = '<?= json_encode($ChatData)?>';
     let chatdata = JSON.parse(data);
+    chatdata = chatdata.data;
     let kode_cust = '';
-    // let tgl = '';
     let baseurl = '<?php echo base_url()?>';
     const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
         ];
     let no = 0;
     let margin = 0;
-    $('#jumlah_pesan_belum_dibaca').empty();
-    $('#jumlah_pesan_belum_dibaca').append('0');
-    document.getElementById("count").style.display = "none";
-    localStorage.setItem('kode_cust',kode);
-    let tgl = '';
-    no = 0;
-    margin = 0;
     
     $.ajax({
         url: baseurl + 'wp-chat/confirm/' + kode,
