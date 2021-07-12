@@ -168,7 +168,7 @@ let data;
 data = '<?= json_encode($ChatData->data)?>';
 let chatdata = JSON.parse(data);
 let kode_cust = '';
-let tgl = '';
+// let tgl = '';
 let baseurl = '<?php echo base_url()?>';
 const monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
@@ -181,7 +181,7 @@ function pilihChat(kode) {
     $('#jumlah_pesan_belum_dibaca').append('0');
     document.getElementById("count").style.display = "none";
     localStorage.setItem('kode_cust',kode);
-    tgl = '';
+    let tgl = '';
     no = 0;
     margin = 0;
     $.ajax({
