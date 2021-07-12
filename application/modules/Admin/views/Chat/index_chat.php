@@ -164,8 +164,7 @@
     </div>
 </div>
 <script>
-let data;
-data = '<?= json_encode($ChatData->data)?>';
+let data = '<?= json_encode($ChatData->data)?>';
 let chatdata = JSON.parse(data);
 let kode_cust = '';
 // let tgl = '';
@@ -177,8 +176,7 @@ let no = 0;
 let margin = 0;
 
 function pilihChat(kode) {
-    let data;
-    data = '<?= json_encode($ChatData->data)?>';
+    let data = '<?= json_encode($ChatData->data)?>';
     let chatdata = JSON.parse(data);
     let kode_cust = '';
     // let tgl = '';
@@ -195,6 +193,8 @@ function pilihChat(kode) {
     let tgl = '';
     no = 0;
     margin = 0;
+    console.log(data);
+    console.log(chatdata);
     $.ajax({
         url: baseurl + 'wp-chat/confirm/' + kode,
         method: "PUT",
