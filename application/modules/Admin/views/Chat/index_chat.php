@@ -165,7 +165,8 @@
 </div>
 <script>
 let data = '<?= json_encode($ChatData)?>';
-let chatdata = JSON.parse(data);
+localStorage.setItem('datachat', data || []);
+let chatdata = JSON.parse(localStorage.getItem('datachat'));
 chatdata = chatdata.data;
 let kode_cust = '';
 let baseurl = '<?php echo base_url()?>';
@@ -175,12 +176,10 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
 let no = 0;
 let margin = 0;
 
-console.log(data);
-console.log(chatdata);
-
 function pilihChat(kode) {
     let data = '<?= json_encode($ChatData)?>';
-    let chatdata = JSON.parse(data);
+    localStorage.setItem('datachat', data || []);
+    let chatdata = JSON.parse(localStorage.getItem('datachat'));
     chatdata = chatdata.data;
     let kode_cust = '';
     let baseurl = '<?php echo base_url()?>';
@@ -210,6 +209,7 @@ function pilihChat(kode) {
                 })
         },
         success: function(respons) {
+            let tgl = '';
             let respone = JSON.parse(respons);
             if (respone.status === 'berhasil') {
                 let chat = chatdata.find(function (item) {
