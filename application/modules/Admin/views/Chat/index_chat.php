@@ -176,7 +176,7 @@ let no = 0;
 let margin = 0;
 
 function pilihChat(kode) {
-    let data = "<?= json_encode($ChatData->data)?>";
+    let data = '<?= json_encode($ChatData->data)?>';
     let chatdata = JSON.parse(data);
     let kode_cust = '';
     // let tgl = '';
