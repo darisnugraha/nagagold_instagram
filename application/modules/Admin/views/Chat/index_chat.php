@@ -177,6 +177,17 @@ let no = 0;
 let margin = 0;
 
 function pilihChat(kode) {
+    let data;
+    data = '<?= json_encode($ChatData->data)?>';
+    let chatdata = JSON.parse(data);
+    let kode_cust = '';
+    // let tgl = '';
+    let baseurl = '<?php echo base_url()?>';
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+        ];
+    let no = 0;
+    let margin = 0;
     $('#jumlah_pesan_belum_dibaca').empty();
     $('#jumlah_pesan_belum_dibaca').append('0');
     document.getElementById("count").style.display = "none";
