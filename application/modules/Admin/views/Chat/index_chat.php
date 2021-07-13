@@ -197,6 +197,9 @@ function pilihChat(kode) {
                 })
         },
         success: function(respons) {
+            $('#jumlah_pesan_belum_dibaca').empty();
+            $('#jumlah_pesan_belum_dibaca').append('0');
+            document.getElementById("count").style.display = "none";
             let tgl = '';
             let respone = JSON.parse(respons);
             if (respone.status === 'berhasil') {
