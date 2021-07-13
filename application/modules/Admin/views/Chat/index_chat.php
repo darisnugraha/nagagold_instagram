@@ -210,14 +210,17 @@ function pilihChat(kode) {
             $('#nama_customer').html(chat.nama_customer);
             $('#chat').empty();
             chat.detail.forEach(element => {
-
-            let Jam = new Date(element.input_date).getHours();
-            let Menit = new Date(element.input_date).getMinutes();
-            let Tanggal = new Date(element.input_date).getDate();
-            let Month = new Date(element.input_date).getMonth();
-            let Year = new Date(element.input_date).getFullYear();;
+            let date = new Date(element.input_date);
+            date = date.toString();
+            console.log(date);
+            let Jam = new Date(date).getHours();
+            // Jam = parseInt(Jam) - 8;
+            let Menit = new Date(date).getMinutes();
+            let Tanggal = new Date(date).getDate();
+            let Month = new Date(date).getMonth();
+            let Year = new Date(date).getFullYear();;
             let tgl_chat = Tanggal + ' ' + monthNames[Month] + ' ' + Year;
-            // console.log(Menit);
+            console.log(Jam);
             let menit_display;
             if (Menit > 0 && Menit < 7) {
                 menit_display = Menit.toString() + "0";

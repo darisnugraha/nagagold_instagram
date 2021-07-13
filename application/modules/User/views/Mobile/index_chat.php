@@ -101,12 +101,14 @@ $(document).ready(function() {
     // let tgl = '';
     if (chatdata.length > 0) {
         chatdata[0].detail.forEach(element => {
-            let Jam = new Date(element.input_date).getHours();
-            let Menit = new Date(element.input_date).getMinutes();
-
-            let Tanggal = new Date(element.input_date).getDate();
-            let Month = new Date(element.input_date).getMonth();
-            let Year = new Date(element.input_date).getFullYear();;
+            let date = new Date(element.input_date);
+            date = date.toString();
+            console.log(date);
+            let Jam = new Date(date).getHours();
+            let Menit = new Date(date).getMinutes();
+            let Tanggal = new Date(date).getDate();
+            let Month = new Date(date).getMonth();
+            let Year = new Date(date).getFullYear();;
             let tgl_chat = Tanggal + ' ' + monthNames[Month] + ' ' + Year;
             if (tgl === tgl_chat) {
                 $('#chat').append(``);
