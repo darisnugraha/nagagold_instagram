@@ -177,18 +177,6 @@ let no = 0;
 let margin = 0;
 
 function pilihChat(kode) {
-    let data = '<?= json_encode($ChatData)?>';
-    localStorage.setItem('datachat', data || []);
-    let chatdata = JSON.parse(localStorage.getItem('datachat'));
-    chatdata = chatdata.data;
-    let kode_cust = '';
-    let baseurl = '<?php echo base_url()?>';
-    const monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-        ];
-    let no = 0;
-    let margin = 0;
-    
     $.ajax({
         url: baseurl + 'wp-chat/confirm/' + kode,
         method: "PUT",

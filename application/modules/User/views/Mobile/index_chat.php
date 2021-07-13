@@ -84,9 +84,7 @@
 </div>
 
 <script>
-$(document).ready(function() {
-    let data;
-    data = '<?= json_encode($ChatData->data)?>';
+    let data = '<?= json_encode($ChatData->data)?>';
     let chatdata = JSON.parse(data);
 
     var limit = 2;
@@ -99,6 +97,7 @@ $(document).ready(function() {
     "July", "August", "September", "October", "November", "December"
     ];
     
+$(document).ready(function() {
     let tgl = '';
     if (chatdata.length > 0) {
         chatdata[0].detail.forEach(element => {
