@@ -92,13 +92,13 @@
     var action = 'inactive';
 
     let type_message = '-';
-    // let tgl = '';
+    let tgl = '';
     const monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
     ];
     
 $(document).ready(function() {
-    let tgl = '';
+    // let tgl = '';
     if (chatdata.length > 0) {
         chatdata[0].detail.forEach(element => {
             let Jam = new Date(element.input_date).getHours();
