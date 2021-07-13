@@ -57,7 +57,7 @@
                             <div class="ml-2 overflow-hidden">
                                 <div class="flex items-center">
                                     <span><?= $row->nama_customer?></span>
-                                    <div class="text-xs text-gray-500 ml-6"><?= date('H:i',strtotime($row->detail[0]->input_date))?></div>
+                                    <div class="text-xs text-gray-500 ml-6"><?= date('H:i',strtotime($row->detail[0]->input_date) - (8 * 60 * 60))?></div>
                                 </div>
                                 <?php
                                     $count = count($row->detail);
@@ -177,6 +177,7 @@ let no = 0;
 let margin = 0;
 
 function pilihChat(kode) {
+
     $.ajax({
         url: baseurl + 'wp-chat/confirm/' + kode,
         method: "PUT",
@@ -211,8 +212,8 @@ function pilihChat(kode) {
             $('#chat').empty();
             chat.detail.forEach(element => {
             let date = new Date(element.input_date);
-            date = date.toString();
-            console.log(date);
+            date.setHours(date.getHours() - 8);
+            // console.log(date);
             let Jam = new Date(date).getHours();
             // Jam = parseInt(Jam) - 8;
             let Menit = new Date(date).getMinutes();

@@ -102,8 +102,8 @@ $(document).ready(function() {
     if (chatdata.length > 0) {
         chatdata[0].detail.forEach(element => {
             let date = new Date(element.input_date);
-            date = date.toString();
-            console.log(date);
+            date.setHours(date.getHours() - 8);
+            // console.log(date);
             let Jam = new Date(date).getHours();
             let Menit = new Date(date).getMinutes();
             let Tanggal = new Date(date).getDate();
