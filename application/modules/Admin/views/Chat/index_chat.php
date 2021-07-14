@@ -63,7 +63,7 @@
                                     $count = count($row->detail);
                                     $json = json_encode($row->detail[$count-1]);
                                 ?>
-                                <div class="w-full truncate text-gray-600"><div class="fa fa-check" style="display:<?= $row->detail[$count-1]->input_by === 'ADMIN TOKO' ? '' : 'none'?>"></div>&nbsp;<?= strpos($row->detail[$count-1]->pesan,'\n') ? str_replace('\n','<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',$row->detail[$count-1]->pesan) : $row->detail[$count-1]->pesan?></div>
+                                <div class="w-full truncate text-gray-600"><div class="fa fa-check" style="display:<?= $row->detail[$count-1]->input_by === 'ADMIN TOKO' ? '' : 'none'?>"></div>&nbsp;<?= strpos($row->detail[$count-1]->pesan,'\n') ? str_replace('\n','<br>&nbsp;',$row->detail[$count-1]->pesan) : $row->detail[$count-1]->pesan?></div>
                             </div>
                             <div
                                 class="w-5 h-5 flex items-center justify-center absolute top-0 right-0 text-xs text-white rounded-full bg-theme-1 font-medium -mt-1 -mr-1 <?= count($count_mess) > 0 ? "":"hidden"?>" id="count">
