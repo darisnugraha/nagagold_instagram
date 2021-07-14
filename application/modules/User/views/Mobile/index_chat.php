@@ -122,7 +122,10 @@ $(document).ready(function() {
                 `);
             }
             tgl = tgl_chat;
-            
+
+            let lb = /\n/;
+            let lb_search = element.pesan.search(lb);
+
             if (element.input_by === "CUSTOMER") {
                 $('#chat').append(`
                 <div>
@@ -133,7 +136,7 @@ $(document).ready(function() {
                 <div class="user-message-content">
                     <div class="user-message-text">
                     ${element.jenis_pesan === "Link" ? "<a href = '"+element.pesan+"' target='_blank'>":""}
-                        <p> ${element.pesan}</p>
+                        <p> ${lb_search > -1 ? element.pesan.replace('\n','<br>') : element.pesan}</p>
                     ${element.jenis_pesan === "Link" ? "</a>":""}
                         <span>${Jam}:${Menit}</span>
                     </div>
@@ -149,7 +152,7 @@ $(document).ready(function() {
                     <div class="agent-thumbnail mr-2"><img src="<?= base_url('assets/mobile/v2/img/bg-img/profile-9.png') ?>"
                             alt=""></div>
                     <div class="agent-message-text">
-                        <p>${element.pesan}</p>
+                        <p>${lb_search > -1 ? element.pesan.replace('\n','<br>') : element.pesan}</p>
                         <span>${Jam}:${Menit}</span>
                     </div>
                 </div>
@@ -175,7 +178,8 @@ $(document).ready(function() {
 
 $('#form-chat').submit(function(e) {
     e.preventDefault();
-    let data = $("#message").val();
+    let data_kirim = $("#message").val().replace("\n", "\\n");
+    let data_display = $("#message").val().replace("\n", "<br>");
     // setTimeout(() => {
     let Jam = new Date().getHours();
     let Menit = new Date().getMinutes();
@@ -199,7 +203,7 @@ $('#form-chat').submit(function(e) {
     <div>
          <div class="user-message-content">
                     <div class="user-message-text">
-                        <p> ` + data + `</p><span>` + Jam + `:` + Menit + `</span>
+                        <p> ` + data_display + `</p><span>` + Jam + `:` + Menit + `</span>
                     </div>
                 </div>
     </div>
@@ -213,7 +217,7 @@ $('#form-chat').submit(function(e) {
             method: "POST",
             dataType : "json",
             data: { 
-                pesan : data,
+                pesan : data_kirim,
                 jenis_pesan : type_message
                 },
             cache: false,

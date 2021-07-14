@@ -63,7 +63,7 @@
                                     $count = count($row->detail);
                                     $json = json_encode($row->detail[$count-1]);
                                 ?>
-                                <div class="w-full truncate text-gray-600"><div class="fa fa-check" style="display:<?= $row->detail[$count-1]->input_by === 'ADMIN TOKO' ? '' : 'none'?>"></div>&nbsp;<?= $row->detail[$count-1]->pesan?></div>
+                                <div class="w-full truncate text-gray-600"><div class="fa fa-check" style="display:<?= $row->detail[$count-1]->input_by === 'ADMIN TOKO' ? '' : 'none'?>"></div>&nbsp;<?= strpos($row->detail[$count-1]->pesan,'\n') ? str_replace('\n','<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',$row->detail[$count-1]->pesan) : $row->detail[$count-1]->pesan?></div>
                             </div>
                             <div
                                 class="w-5 h-5 flex items-center justify-center absolute top-0 right-0 text-xs text-white rounded-full bg-theme-1 font-medium -mt-1 -mr-1 <?= count($count_mess) > 0 ? "":"hidden"?>" id="count">
@@ -174,10 +174,12 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
     ];
 let no = 0;
+let tgl = '';
 let margin = 0;
 
 function pilihChat(kode) {
-
+    // let no = 0;
+    // let margin = 0;
     $.ajax({
         url: baseurl + 'wp-chat/confirm/' + kode,
         method: "PUT",
@@ -201,7 +203,7 @@ function pilihChat(kode) {
             $('#jumlah_pesan_belum_dibaca').empty();
             $('#jumlah_pesan_belum_dibaca').append('0');
             document.getElementById("count").style.display = "none";
-            let tgl = '';
+            // let tgl = '';
             let respone = JSON.parse(respons);
             if (respone.status === 'berhasil') {
                 let chat = chatdata.find(function (item) {
@@ -221,7 +223,7 @@ function pilihChat(kode) {
             let Month = new Date(date).getMonth();
             let Year = new Date(date).getFullYear();;
             let tgl_chat = Tanggal + ' ' + monthNames[Month] + ' ' + Year;
-            console.log(Jam);
+            // console.log(Jam);
             let menit_display;
             if (Menit > 0 && Menit < 7) {
                 menit_display = Menit.toString() + "0";
@@ -258,7 +260,9 @@ function pilihChat(kode) {
                 `);
             }
             tgl = tgl_chat;
-            // console.log(element.pesan.length);
+            let lb = /\n/;
+            let lb_search = element.pesan.search(lb);
+            // console.log(lb_search);
             if (element.input_by === "CUSTOMER") {
                 $('#chat').append(`
             <div>
@@ -268,7 +272,9 @@ function pilihChat(kode) {
             <div class="clear-both"></div>
             <div class="chat__box__text-box flex items-end float-right mb-4" style="margin-right:${element.pesan.length > 40 ? '15' : '0'}px;">
                 <div class="bg-theme-1 px-4 py-3 text-white rounded-l-md rounded-t-md">
-                    <${element.jenis_pesan === "Link" ? "a href = '"+element.pesan+"' target='_blank'":"p"}>${element.pesan.length > 40 ? element.pesan.substring(0,24) + "\n" + element.pesan.substr(24, 24) + "\n" + element.pesan.substr(element.pesan.length - 24, element.pesan.length) : element.pesan}</${element.jenis_pesan === "Link" ? "a":"p"}>
+                    <${element.jenis_pesan === "Link" ? "a href = '"+element.pesan+"' target='_blank'":"p"}>
+                        ${element.pesan.length > 40 ? element.pesan.substring(0,24) + "\n" + element.pesan.substr(24, 24) + "\n" + element.pesan.substr(element.pesan.length - 24, element.pesan.length) : lb_search > -1 ? element.pesan.replace('\n','<br>') : element.pesan}
+                    </${element.jenis_pesan === "Link" ? "a":"p"}>
                     <div class="mt-1 text-xs text-theme-25">${jam_display}:${menit_display}</div>
                 </div>
                 <div class="w-10 h-10 hidden sm:block flex-none image-fit relative ml-5">
@@ -285,7 +291,7 @@ function pilihChat(kode) {
                     <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="<?= base_url('assets/admin/images/profile-9.png') ?>">
                 </div>
                 <div class="bg-gray-200 px-4 py-3 text-gray-700 rounded-r-md rounded-t-md">
-                    ${element.pesan}
+                    ${lb_search > -1 ? element.pesan.replace('\n','<br>') : element.pesan}
                     <div class="mt-1 text-xs text-gray-600">${jam_display}:${menit_display}</div>
                 </div>
             </div>
@@ -304,11 +310,19 @@ function pilihChat(kode) {
     })
     }
 
+    // let pesan_data = '';
+    // document.getElementById('message').addEventListener('keyup', function(event) {
+    //     if (event.code === 'Enter'){
+            
+    //     }
+    // });
+
 $('#form-chat').submit(function(e) {
-    let tgl = '';
+    // let tgl = '';
     e.preventDefault();
-    let data = $("#message").val();
-    // setTimeout(() => {
+    let data_kirim = $("#message").val().replace("\n", "\\n");
+    let data_display = $("#message").val().replace("\n", "<br>");
+    console.log(data_kirim);
     let Jam = new Date().getHours();
     let Menit = new Date().getMinutes();
     let Tanggal = new Date().getDate();
@@ -334,7 +348,7 @@ $('#form-chat').submit(function(e) {
             <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="<?= base_url('assets/admin/images/profile-9.png') ?>">
         </div>
         <div class="bg-gray-200 px-4 py-3 text-gray-700 rounded-r-md rounded-t-md">
-            ${data}
+            ${data_display}
         <div class="mt-1 text-xs text-gray-600">2 mins ago</div>
     </div>
     </div>
@@ -348,13 +362,14 @@ $('#form-chat').submit(function(e) {
     window.scrollTo(0,document.body.scrollHeight);
     document.getElementById("message").focus();
     
+    // return false;
     $.ajax({
         url: base_url + 'add/wp-chat',
         method: "POST",
         dataType : "json",
         data: {
             kode_customer : kode_cust, 
-            pesan : data,
+            pesan : data_kirim,
             jenis_pesan : '-',
             nama_file : '-',
             },
