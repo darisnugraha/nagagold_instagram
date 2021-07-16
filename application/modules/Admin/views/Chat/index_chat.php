@@ -55,14 +55,14 @@
                                 </div> -->
                             </div>
                             <div class="ml-2 overflow-hidden">
-                                <div class="flex items-center">
-                                    <span><?= $row->nama_customer?></span>
-                                    <div class="text-xs text-gray-500 ml-6"><?= date('H:i',strtotime($row->detail[$count-1]->input_date) - (8 * 60 * 60))?></div>
-                                </div>
                                 <?php
                                     $count = count($row->detail);
                                     $json = json_encode($row->detail[$count-1]);
                                 ?>
+                                <div class="flex items-center">
+                                    <span><?= $row->nama_customer?></span>
+                                    <div class="text-xs text-gray-500 ml-6"><?= date('H:i',strtotime($row->detail[$count-1]->input_date) - (8 * 60 * 60))?></div>
+                                </div>
                                 <div class="w-full truncate text-gray-600"><div class="fa fa-check" style="display:<?= $row->detail[$count-1]->input_by === 'ADMIN TOKO' ? '' : 'none'?>"></div>&nbsp;<?= strpos($row->detail[$count-1]->pesan,'\n') ? str_replace('\n','<br>&nbsp;',$row->detail[$count-1]->pesan) : $row->detail[$count-1]->pesan?></div>
                             </div>
                             <div
@@ -180,6 +180,10 @@ let margin = 0;
 function pilihChat(kode) {
     // let no = 0;
     // let margin = 0;
+    $('#jumlah_pesan_belum_dibaca').empty();
+    $('#jumlah_pesan_belum_dibaca').append('0');
+    document.getElementById("count").style.display = "none";
+
     $.ajax({
         url: baseurl + 'wp-chat/confirm/' + kode,
         method: "PUT",
@@ -200,10 +204,11 @@ function pilihChat(kode) {
                 })
         },
         success: function(respons) {
-            $('#jumlah_pesan_belum_dibaca').empty();
-            $('#jumlah_pesan_belum_dibaca').append('0');
-            document.getElementById("count").style.display = "none";
             // let tgl = '';
+            // let datecoba="2021-07-13T12:15:15.000Z";
+            // let datecoba = new Date("2021-07-16T11:19:25.000Z");
+            // datecoba.setHours(datecoba.getHours() - 8);
+
             let respone = JSON.parse(respons);
             if (respone.status === 'berhasil') {
                 let chat = chatdata.find(function (item) {
@@ -217,32 +222,16 @@ function pilihChat(kode) {
             date.setHours(date.getHours() - 8);
             // console.log(date);
             let Jam = new Date(date).getHours();
-            // Jam = parseInt(Jam) - 8;
             let Menit = new Date(date).getMinutes();
             let Tanggal = new Date(date).getDate();
             let Month = new Date(date).getMonth();
-            let Year = new Date(date).getFullYear();;
+            let Year = new Date(date).getFullYear();
             let tgl_chat = Tanggal + ' ' + monthNames[Month] + ' ' + Year;
-            // console.log(Jam);
-            let menit_display;
-            if (Menit > 0 && Menit < 7) {
-                menit_display = Menit.toString() + "0";
-            }else if(Menit > 6 && Menit < 10){
-                menit_display = "0" + Menit.toString();
-            }else{
-                menit_display = Menit;
-            }
-            // console.log(menit_display);
-            let jam_display;
-            
-            if (Jam > 0 && Jam < 7) {
-                jam_display = Jam.toString() + "0";
-            }else if(Jam > 6 && Jam < 10){
-                jam_display = "0" + Jam.toString();
-            }else{
-                jam_display = Jam;
-            }
 
+            let menit_display = ("0" + Menit).slice(-2);
+            
+            let jam_display = ("0" + Jam).slice(-2);
+            // console.log(jam_display + menit_display);
             if (tgl === tgl_chat) {
                 $('#chat').append(``);
             }else{
@@ -262,8 +251,8 @@ function pilihChat(kode) {
             tgl = tgl_chat;
             let lb = /\n/;
             let lb_search = element.pesan.search(lb);
-            console.log(lb_search);
-            console.log(element.pesan.replace(/(\r\n|\r|\n)/g, "<br>"));
+            // console.log(lb_search);
+            // console.log(element.pesan.replace(/(\r\n|\r|\n)/g, "<br>"));
             if (element.input_by === "CUSTOMER") {
                 $('#chat').append(`
             <div>
@@ -329,7 +318,7 @@ $('#form-chat').submit(function(e) {
     let Menit = new Date().getMinutes();
     let Tanggal = new Date().getDate();
     let Month = new Date().getMonth();
-    let Year = new Date().getFullYear();;
+    let Year = new Date().getFullYear();
     let tgl_chat = Tanggal + ' ' + monthNames[Month] + ' ' + Year;
     if (tgl === tgl_chat) {
         $('#chat').append(``);

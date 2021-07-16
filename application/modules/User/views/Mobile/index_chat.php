@@ -108,7 +108,9 @@ $(document).ready(function() {
             let Menit = new Date(date).getMinutes();
             let Tanggal = new Date(date).getDate();
             let Month = new Date(date).getMonth();
-            let Year = new Date(date).getFullYear();;
+            let Year = new Date(date).getFullYear();
+            let jam_display = ("0" + Jam).slice(-2);
+            let menit_display = ("0" + Menit).slice(-2);
             let tgl_chat = Tanggal + ' ' + monthNames[Month] + ' ' + Year;
             if (tgl === tgl_chat) {
                 $('#chat').append(``);
@@ -138,7 +140,7 @@ $(document).ready(function() {
                     ${element.jenis_pesan === "Link" ? "<a href = '"+element.pesan+"' target='_blank'>":""}
                         <p> ${lb_search > -1 ? element.pesan.replace(/(\r\n|\r|\n)/g,"<br>") : element.pesan}</p>
                     ${element.jenis_pesan === "Link" ? "</a>":""}
-                        <span>${Jam}:${Menit}</span>
+                        <span>${jam_display}:${menit_display}</span>
                     </div>
                 </div>
                 </div>
@@ -153,7 +155,7 @@ $(document).ready(function() {
                             alt=""></div>
                     <div class="agent-message-text">
                         <p>${lb_search > -1 ? element.pesan.replace(/(\r\n|\r|\n)/g,"<br>") : element.pesan}</p>
-                        <span>${Jam}:${Menit}</span>
+                        <span>${jam_display}:${menit_display}</span>
                     </div>
                 </div>
                 <div class="user-message-content">
@@ -180,13 +182,16 @@ $('#form-chat').submit(function(e) {
     e.preventDefault();
     let data_kirim = $("#message").val().replace(/(\r\n|\r|\n)/g, "\\n");
     let data_display = $("#message").val().replace(/(\r\n|\r|\n)/g, "<br>");
-    // setTimeout(() => {
+    
     let Jam = new Date().getHours();
     let Menit = new Date().getMinutes();
     let Tanggal = new Date().getDate();
     let Month = new Date().getMonth();
-    let Year = new Date().getFullYear();;
+    let Year = new Date().getFullYear();
     let tgl_chat = Tanggal + ' ' + monthNames[Month] + ' ' + Year;
+    let jam_display = ("0" + Jam).slice(-2);
+    let menit_display = ("0" + Menit).slice(-2);
+
     if (tgl === tgl_chat) {
         $('#chat').append(``);
     }else{
