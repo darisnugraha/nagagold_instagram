@@ -57,7 +57,7 @@
                             <div class="ml-2 overflow-hidden">
                                 <div class="flex items-center">
                                     <span><?= $row->nama_customer?></span>
-                                    <div class="text-xs text-gray-500 ml-6"><?= date('H:i',strtotime($row->detail[0]->input_date) - (8 * 60 * 60))?></div>
+                                    <div class="text-xs text-gray-500 ml-6"><?= date('H:i',strtotime($row->detail[$count-1]->input_date) - (8 * 60 * 60))?></div>
                                 </div>
                                 <?php
                                     $count = count($row->detail);
@@ -262,7 +262,8 @@ function pilihChat(kode) {
             tgl = tgl_chat;
             let lb = /\n/;
             let lb_search = element.pesan.search(lb);
-            // console.log(lb_search);
+            console.log(lb_search);
+            console.log(element.pesan.replace(/(\r\n|\r|\n)/g, "<br>"));
             if (element.input_by === "CUSTOMER") {
                 $('#chat').append(`
             <div>
@@ -273,7 +274,7 @@ function pilihChat(kode) {
             <div class="chat__box__text-box flex items-end float-right mb-4" style="margin-right:${element.pesan.length > 40 ? '15' : '0'}px;">
                 <div class="bg-theme-1 px-4 py-3 text-white rounded-l-md rounded-t-md">
                     <${element.jenis_pesan === "Link" ? "a href = '"+element.pesan+"' target='_blank'":"p"}>
-                        ${element.pesan.length > 40 ? element.pesan.substring(0,24) + "\n" + element.pesan.substr(24, 24) + "\n" + element.pesan.substr(element.pesan.length - 24, element.pesan.length) : lb_search > -1 ? element.pesan.replace('\n','<br>') : element.pesan}
+                        ${element.pesan.length > 40 ? element.pesan.substring(0,24) + "\n" + element.pesan.substr(24, 24) + "\n" + element.pesan.substr(element.pesan.length - 24, element.pesan.length) : lb_search > -1 ? element.pesan.replace(/(\r\n|\r|\n)/g,"<br>") : element.pesan}
                     </${element.jenis_pesan === "Link" ? "a":"p"}>
                     <div class="mt-1 text-xs text-theme-25">${jam_display}:${menit_display}</div>
                 </div>
@@ -291,7 +292,7 @@ function pilihChat(kode) {
                     <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="<?= base_url('assets/admin/images/profile-9.png') ?>">
                 </div>
                 <div class="bg-gray-200 px-4 py-3 text-gray-700 rounded-r-md rounded-t-md">
-                    ${lb_search > -1 ? element.pesan.replace('\n','<br>') : element.pesan}
+                    ${lb_search > -1 ? element.pesan.replace(/(\r\n|\r|\n)/g,"<br>") : element.pesan}
                     <div class="mt-1 text-xs text-gray-600">${jam_display}:${menit_display}</div>
                 </div>
             </div>
@@ -320,8 +321,9 @@ function pilihChat(kode) {
 $('#form-chat').submit(function(e) {
     // let tgl = '';
     e.preventDefault();
-    let data_kirim = $("#message").val().replace("\n", "\\n");
-    let data_display = $("#message").val().replace("\n", "<br>");
+    let data_terima = $('#message').val();
+    let data_kirim = data_terima.replace(/(\r\n|\r|\n)/g, "\\n");
+    let data_display = $("#message").val().replace(/(\r\n|\r|\n)/g , "<br>");
     console.log(data_kirim);
     let Jam = new Date().getHours();
     let Menit = new Date().getMinutes();
@@ -361,7 +363,6 @@ $('#form-chat').submit(function(e) {
     $("#message").val("");
     window.scrollTo(0,document.body.scrollHeight);
     document.getElementById("message").focus();
-    
     // return false;
     $.ajax({
         url: base_url + 'add/wp-chat',

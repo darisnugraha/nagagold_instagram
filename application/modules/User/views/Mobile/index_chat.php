@@ -136,7 +136,7 @@ $(document).ready(function() {
                 <div class="user-message-content">
                     <div class="user-message-text">
                     ${element.jenis_pesan === "Link" ? "<a href = '"+element.pesan+"' target='_blank'>":""}
-                        <p> ${lb_search > -1 ? element.pesan.replace('\n','<br>') : element.pesan}</p>
+                        <p> ${lb_search > -1 ? element.pesan.replace(/(\r\n|\r|\n)/g,"<br>") : element.pesan}</p>
                     ${element.jenis_pesan === "Link" ? "</a>":""}
                         <span>${Jam}:${Menit}</span>
                     </div>
@@ -152,7 +152,7 @@ $(document).ready(function() {
                     <div class="agent-thumbnail mr-2"><img src="<?= base_url('assets/mobile/v2/img/bg-img/profile-9.png') ?>"
                             alt=""></div>
                     <div class="agent-message-text">
-                        <p>${lb_search > -1 ? element.pesan.replace('\n','<br>') : element.pesan}</p>
+                        <p>${lb_search > -1 ? element.pesan.replace(/(\r\n|\r|\n)/g,"<br>") : element.pesan}</p>
                         <span>${Jam}:${Menit}</span>
                     </div>
                 </div>
@@ -178,8 +178,8 @@ $(document).ready(function() {
 
 $('#form-chat').submit(function(e) {
     e.preventDefault();
-    let data_kirim = $("#message").val().replace("\n", "\\n");
-    let data_display = $("#message").val().replace("\n", "<br>");
+    let data_kirim = $("#message").val().replace(/(\r\n|\r|\n)/g, "\\n");
+    let data_display = $("#message").val().replace(/(\r\n|\r|\n)/g, "<br>");
     // setTimeout(() => {
     let Jam = new Date().getHours();
     let Menit = new Date().getMinutes();
