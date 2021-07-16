@@ -66,8 +66,8 @@
                                 <div class="w-full truncate text-gray-600"><div class="fa fa-check" style="display:<?= $row->detail[$count-1]->input_by === 'ADMIN TOKO' ? '' : 'none'?>"></div>&nbsp;<?= strpos($row->detail[$count-1]->pesan,'\n') ? str_replace('\n','<br>&nbsp;',$row->detail[$count-1]->pesan) : $row->detail[$count-1]->pesan?></div>
                             </div>
                             <div
-                                class="w-5 h-5 flex items-center justify-center absolute top-0 right-0 text-xs text-white rounded-full bg-theme-1 font-medium -mt-1 -mr-1 <?= count($count_mess) > 0 ? "":"hidden"?>" id="count">
-                                <span id="jumlah_pesan_belum_dibaca"><?= count($count_mess) ?></span>
+                                class="w-5 h-5 flex items-center justify-center absolute top-0 right-0 text-xs text-white rounded-full bg-theme-1 font-medium -mt-1 -mr-1 <?= count($count_mess) > 0 ? "":"hidden"?>" id="count_<?=$row->kode_customer?>">
+                                <span id="jumlah_pesan_belum_dibaca_<?=$row->kode_customer?>"><?= count($count_mess) ?></span>
                             </div>
                         </div>
                         </a>
@@ -178,11 +178,9 @@ let tgl = '';
 let margin = 0;
 
 function pilihChat(kode) {
-    // let no = 0;
-    // let margin = 0;
-    $('#jumlah_pesan_belum_dibaca').empty();
-    $('#jumlah_pesan_belum_dibaca').append('0');
-    document.getElementById("count").style.display = "none";
+    $(`#jumlah_pesan_belum_dibaca_${kode}`).html('');
+    $(`#jumlah_pesan_belum_dibaca_${kode}`).append('0');
+    document.getElementById(`count_${kode}`).style.display = "none";
 
     $.ajax({
         url: baseurl + 'wp-chat/confirm/' + kode,
@@ -204,11 +202,6 @@ function pilihChat(kode) {
                 })
         },
         success: function(respons) {
-            // let tgl = '';
-            // let datecoba="2021-07-13T12:15:15.000Z";
-            // let datecoba = new Date("2021-07-16T11:19:25.000Z");
-            // datecoba.setHours(datecoba.getHours() - 8);
-
             let respone = JSON.parse(respons);
             if (respone.status === 'berhasil') {
                 let chat = chatdata.find(function (item) {
@@ -231,7 +224,6 @@ function pilihChat(kode) {
             let menit_display = ("0" + Menit).slice(-2);
             
             let jam_display = ("0" + Jam).slice(-2);
-            // console.log(jam_display + menit_display);
             if (tgl === tgl_chat) {
                 $('#chat').append(``);
             }else{
@@ -251,8 +243,7 @@ function pilihChat(kode) {
             tgl = tgl_chat;
             let lb = /\n/;
             let lb_search = element.pesan.search(lb);
-            // console.log(lb_search);
-            // console.log(element.pesan.replace(/(\r\n|\r|\n)/g, "<br>"));
+            
             if (element.input_by === "CUSTOMER") {
                 $('#chat').append(`
             <div>
@@ -352,7 +343,6 @@ $('#form-chat').submit(function(e) {
     $("#message").val("");
     window.scrollTo(0,document.body.scrollHeight);
     document.getElementById("message").focus();
-    // return false;
     $.ajax({
         url: base_url + 'add/wp-chat',
         method: "POST",
