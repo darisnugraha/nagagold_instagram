@@ -1,9 +1,9 @@
 ###################
-Nagatech Retail
+Nagatech Integrasi Instagram
 ###################
 
 ###################
-Git clone https://github.com/nagatech-si/hidup_store.git
+Let's Start !
 ###################
 
 
