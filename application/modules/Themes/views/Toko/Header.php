@@ -42,6 +42,7 @@ $ceonnection = cek_internet();
 ?>
 
 <head>
+    <meta name="facebook-domain-verification" content="ka62mg9dy0s401hdb5rk2gryc13cfx" />
     <title><?= strtoupper($data->data[0]->nama_perusahaan) ?> </title>
     <link rel="apple-touch-icon" href="<?= base_url('assets/logo/tm-152.png') ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

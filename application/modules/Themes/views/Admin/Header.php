@@ -70,6 +70,7 @@ if ($thisPage == "/hidup_retail/data-kelompok" || $thisPage == "/hidup_retail/da
 <!-- BEGIN: Head -->
 
 <head>
+    <meta name="facebook-domain-verification" content="ka62mg9dy0s401hdb5rk2gryc13cfx" />
     <meta charset="utf-8">
     <link href="<?= base_url('assets/logo/icon.png') ?>" rel="shortcut icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
