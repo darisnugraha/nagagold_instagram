@@ -78,7 +78,7 @@ if ($thisPage == "/hidup_retail/data-kelompok" || $thisPage == "/hidup_retail/da
     <meta name="author" content="LEFT4CODE">
     <title><?= $this->session->userdata('title'); ?> | TM Hidup</title>
     <!-- BEGIN: CSS Assets-->
-    <link rel="stylesheet" href="<?= base_url('assets/admin/') ?>css/app.css?=1.0" />
+    <link rel="stylesheet" href="<?= base_url('assets/admin/') ?>css/app.css?=1.1" />
     <script src="<?= base_url('assets/admin/js') ?>/jquery.min.js"></script>
     <script src="<?= base_url('assets/admin/js') ?>/chart.js"></script>
     <link href="<?= base_url('assets/admin/css') ?>/select2.min.css" rel="stylesheet" />

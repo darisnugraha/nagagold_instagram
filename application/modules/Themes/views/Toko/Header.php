@@ -49,7 +49,7 @@ $ceonnection = cek_internet();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
     <link rel="icon" href="<?= base_url('assets/logo/fanction.ico') ?>" type="image/x-icon" />
-    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/theme/css/default.min.css?v1.1') ?>">
+    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/theme/css/default.min.css?v1.2') ?>">
     <script type="text/javascript" src="<?= base_url() ?>assets/theme/js/jquery.min.js?ver=1.0"></script>
     <script>
         var base_url = '<?= base_url() ?>';

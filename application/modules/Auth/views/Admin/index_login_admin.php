@@ -8,7 +8,7 @@
         <meta name="description" content="Midone admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities.">
         <meta name="keywords" content="admin template, Midone admin template, dashboard template, flat admin template, responsive admin template, web app">
         <meta name="author" content="LEFT4CODE">
-        <title>LOGIN ADMIN | TM HIDUP</title>
+        <title>LOGIN ADMIN | Nagagold</title>
         <!-- BEGIN: CSS Assets-->
         <link rel="stylesheet" href="<?= base_url('assets/admin/') ?>css/app.css" />
         <!-- END: CSS Assets-->
@@ -21,7 +21,7 @@
                 <div class="hidden xl:flex flex-col min-h-screen">
                     <a href="" class="-intro-x flex items-center pt-5">
                         <img alt="Midone Tailwind HTML Admin Template" class="w-6" src="<?= base_url('assets/logo/') ?>icon.png">
-                        <span class="text-white text-lg ml-3"> TM<span class="font-medium">Hidup</span> </span>
+                        <span class="text-white text-lg ml-3"> Naga<span class="font-medium">gold</span> </span>
                     </a>
                     <div class="my-auto">
                         <img alt="Midone Tailwind HTML Admin Template" class="-intro-x w-1/2 -mt-16" src="<?= base_url('assets/admin/') ?>images/illustration.svg">
