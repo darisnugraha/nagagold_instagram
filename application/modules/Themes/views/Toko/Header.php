@@ -42,7 +42,51 @@ $ceonnection = cek_internet();
 ?>
 
 <head>
-    <meta name="facebook-domain-verification" content="ka62mg9dy0s401hdb5rk2gryc13cfx" />
+    <!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1649526498580271');
+fbq('init', '856456008632968');
+fbq('init', '3079176082318692');
+fbq('init', '357724442481867');
+fbq('track', 'PageView');
+fbq('trackCustom','DataBarang',{
+        "@context":"https://schema.org",
+        "@type":"Product",
+        "productID":"facebook_tshirt_001",
+        "name":"Facebook T-Shirt",
+        "description":"Unisex Facebook T-shirt, Small",
+        "url":"https://example.org/facebook",
+        "image":"https://example.org/facebook.jpg",
+        "brand":"facebook",
+        "offers": [
+            {
+            "@type": "Offer",
+            "price": "7.99",
+            "priceCurrency": "USD",
+            "itemCondition": "https://schema.org/NewCondition",
+            "availability": "https://schema.org/InStock"
+            }
+        ],
+        "additionalProperty": [{
+            "@type": "PropertyValue",
+            "propertyID": "item_group_id",
+            "value": "fb_tshirts"
+        }]
+        })
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=357724442481867&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+    <meta name="facebook-domain-verification" content="prh62z9b8lpakyikco99d8ij547mse" />
     <title><?= strtoupper($data->data[0]->nama_perusahaan) ?> </title>
     <link rel="apple-touch-icon" href="<?= base_url('assets/logo/tm-152.png') ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,6 +97,32 @@ $ceonnection = cek_internet();
     <script type="text/javascript" src="<?= base_url() ?>assets/theme/js/jquery.min.js?ver=1.0"></script>
     <script>
         var base_url = '<?= base_url() ?>';
+    </script>
+    <script type="application/ld+json">
+        {
+        "@context":"https://schema.org",
+        "@type":"Product",
+        "productID":"facebook_tshirt_001",
+        "name":"Facebook T-Shirt",
+        "description":"Unisex Facebook T-shirt, Small",
+        "url":"https://example.org/facebook",
+        "image":"https://example.org/facebook.jpg",
+        "brand":"facebook",
+        "offers": [
+            {
+            "@type": "Offer",
+            "price": "7.99",
+            "priceCurrency": "USD",
+            "itemCondition": "https://schema.org/NewCondition",
+            "availability": "https://schema.org/InStock"
+            }
+        ],
+        "additionalProperty": [{
+            "@type": "PropertyValue",
+            "propertyID": "item_group_id",
+            "value": "fb_tshirts"
+        }]
+        }
     </script>
 </head>
 <div class="preloader">
