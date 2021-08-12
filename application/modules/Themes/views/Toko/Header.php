@@ -57,30 +57,33 @@ fbq('init', '856456008632968');
 fbq('init', '3079176082318692');
 fbq('init', '357724442481867');
 fbq('track', 'PageView');
-fbq('trackCustom','DataBarang',{
-        "@context":"https://schema.org",
-        "@type":"Product",
-        "productID":"facebook_tshirt_001",
-        "name":"Facebook T-Shirt",
-        "description":"Unisex Facebook T-shirt, Small",
-        "url":"https://example.org/facebook",
-        "image":"https://example.org/facebook.jpg",
-        "brand":"facebook",
-        "offers": [
-            {
-            "@type": "Offer",
-            "price": "7.99",
-            "priceCurrency": "USD",
-            "itemCondition": "https://schema.org/NewCondition",
-            "availability": "https://schema.org/InStock"
-            }
-        ],
-        "additionalProperty": [{
-            "@type": "PropertyValue",
-            "propertyID": "item_group_id",
-            "value": "fb_tshirts"
-        }]
-        })
+fbq('track', 'viewContent')
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Product",
+  "productID":"facebook_tshirt_001",
+  "name":"Facebook T-Shirt",
+  "description":"Unisex Facebook T-shirt, Small",
+  "url":"https://example.org/facebook",
+  "image":"https://example.org/facebook.jpg",
+  "brand":"facebook",
+  "offers": [
+    {
+      "@type": "Offer",
+      "price": "7.99",
+      "priceCurrency": "USD",
+      "itemCondition": "https://schema.org/NewCondition",
+      "availability": "https://schema.org/InStock"
+    }
+  ],
+  "additionalProperty": [{
+    "@type": "PropertyValue",
+    "propertyID": "item_group_id",
+    "value": "fb_tshirts"
+  }]
+}
 </script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=357724442481867&ev=PageView&noscript=1"
